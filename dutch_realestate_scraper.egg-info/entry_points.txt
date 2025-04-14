@@ -1,0 +1,2 @@
+[console_scripts]
+dutch-realestate-scraper = dutch_realestate_scraper.cli:main

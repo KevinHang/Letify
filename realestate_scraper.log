@@ -1,0 +1,653 @@
+2025-04-14 21:44:52,377 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 21:44:52.377518
+2025-04-14 21:44:55,332 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 21:44:55.332783
+2025-04-14 21:45:10,696 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 21:45:10.696060
+2025-04-14 21:45:55,087 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 21:45:55.087110
+2025-04-14 21:45:55,087 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 21:45:55,105 - database.connection - ERROR - Error connecting to database: connection failed: connection to server at "127.0.0.1", port 5432 failed: FATAL:  role "postgres" does not exist
+2025-04-14 21:47:56,096 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 21:47:56.096042
+2025-04-14 21:47:56,096 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 21:47:56,109 - database.connection - ERROR - Error connecting to database: connection failed: connection to server at "127.0.0.1", port 5432 failed: FATAL:  role "postgres" does not exist
+2025-04-14 21:48:55,358 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 21:48:55.357991
+2025-04-14 21:48:55,358 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 21:48:55,386 - database.connection - ERROR - Error connecting to database: connection failed: connection to server at "127.0.0.1", port 5432 failed: FATAL:  role "postgres" does not exist
+2025-04-14 21:49:25,721 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 21:49:25.721170
+2025-04-14 21:49:25,721 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 21:49:25,738 - database.connection - ERROR - Error connecting to database: connection failed: connection to server at "127.0.0.1", port 5432 failed: FATAL:  role "postgres" does not exist
+2025-04-14 21:50:16,974 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 21:50:16.974285
+2025-04-14 21:50:16,974 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 21:50:16,989 - database.connection - ERROR - Error connecting to database: connection failed: connection to server at "127.0.0.1", port 5432 failed: FATAL:  role "postgres" does not exist
+2025-04-14 21:50:44,810 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 21:50:44.810332
+2025-04-14 21:50:44,810 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 21:50:44,825 - database.connection - ERROR - Error connecting to database: connection failed: connection to server at "127.0.0.1", port 5432 failed: FATAL:  role "postgres" does not exist
+2025-04-14 21:51:04,551 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 21:51:04.551934
+2025-04-14 21:51:04,552 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 21:51:04,567 - database.connection - ERROR - Error connecting to database: connection failed: connection to server at "127.0.0.1", port 5432 failed: FATAL:  role "postgres" does not exist
+2025-04-14 21:51:26,415 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 21:51:26.415269
+2025-04-14 21:51:26,415 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 21:51:26,434 - database.connection - ERROR - Error connecting to database: connection failed: connection to server at "127.0.0.1", port 5432 failed: FATAL:  role "postgres" does not exist
+2025-04-14 21:51:42,516 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 21:51:42.516452
+2025-04-14 21:51:42,516 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 21:51:42,750 - database.migrations - INFO - Database initialized successfully
+2025-04-14 21:51:42,755 - __main__ - INFO - Running a single scan cycle
+2025-04-14 21:51:42,758 - main - INFO - Scanning funda for amsterdam...
+2025-04-14 21:51:43,126 - httpx - INFO - HTTP Request: GET https://www.funda.nl/en/zoeken/huur/?selected_area=[%22amsterdam%22]&publication_date=%221%22&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-14 21:51:43,132 - main - INFO - Found 0 listings for funda in amsterdam
+2025-04-14 21:51:43,134 - main - INFO - Completed scan of funda for amsterdam: 0 new, 0 total in 0.37s
+2025-04-14 21:51:43,135 - main - INFO - Scanning funda for rotterdam...
+2025-04-14 21:51:43,231 - httpx - INFO - HTTP Request: GET https://www.funda.nl/en/zoeken/huur/?selected_area=[%22rotterdam%22]&publication_date=%221%22&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-14 21:51:43,232 - main - INFO - Found 0 listings for funda in rotterdam
+2025-04-14 21:51:43,233 - main - INFO - Completed scan of funda for rotterdam: 0 new, 0 total in 0.10s
+2025-04-14 21:51:43,233 - main - INFO - Scanning pararius for amsterdam...
+2025-04-14 21:51:43,638 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-14 21:51:43,657 - main - INFO - Found 0 listings for pararius in amsterdam
+2025-04-14 21:51:43,658 - main - INFO - Completed scan of pararius for amsterdam: 0 new, 0 total in 0.42s
+2025-04-14 21:51:43,658 - main - INFO - Scanning pararius for rotterdam...
+2025-04-14 21:51:44,093 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-14 21:51:44,099 - main - INFO - Found 0 listings for pararius in rotterdam
+2025-04-14 21:51:44,100 - main - INFO - Completed scan of pararius for rotterdam: 0 new, 0 total in 0.44s
+2025-04-14 21:51:44,100 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-14 21:51:44,100 - main - INFO - Detecting potential duplicate listings...
+2025-04-14 21:51:44,135 - main - INFO - Found 0 potential duplicate pairs
+2025-04-14 21:53:22,632 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 21:53:22.632675
+2025-04-14 21:53:22,633 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 21:53:22,650 - database.migrations - INFO - Database initialized successfully
+2025-04-14 21:53:22,654 - __main__ - INFO - Running a single scan cycle
+2025-04-14 21:53:22,656 - main - INFO - Skipping funda for amsterdam - not due yet
+2025-04-14 21:53:22,657 - main - INFO - Skipping funda for rotterdam - not due yet
+2025-04-14 21:53:22,657 - main - INFO - Skipping pararius for amsterdam - not due yet
+2025-04-14 21:53:22,657 - main - INFO - Skipping pararius for rotterdam - not due yet
+2025-04-14 21:53:22,657 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-14 21:53:22,657 - main - INFO - Detecting potential duplicate listings...
+2025-04-14 21:53:22,890 - main - INFO - Found 0 potential duplicate pairs
+2025-04-14 21:53:35,619 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 21:53:35.618999
+2025-04-14 21:53:35,619 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 21:53:35,632 - database.migrations - INFO - Database initialized successfully
+2025-04-14 21:53:35,635 - __main__ - INFO - Running a single scan cycle
+2025-04-14 21:53:35,636 - main - INFO - Skipping funda for amsterdam - not due yet
+2025-04-14 21:53:35,637 - main - INFO - Skipping funda for rotterdam - not due yet
+2025-04-14 21:53:35,637 - main - INFO - Skipping pararius for amsterdam - not due yet
+2025-04-14 21:53:35,637 - main - INFO - Skipping pararius for rotterdam - not due yet
+2025-04-14 21:53:35,637 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-14 21:53:35,637 - main - INFO - Detecting potential duplicate listings...
+2025-04-14 21:53:35,688 - main - INFO - Found 0 potential duplicate pairs
+2025-04-14 22:01:08,190 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 22:01:08.190676
+2025-04-14 22:01:08,191 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 22:01:08,211 - database.migrations - INFO - Database initialized successfully
+2025-04-14 22:01:08,215 - __main__ - INFO - Running a single scan cycle
+2025-04-14 22:01:08,217 - main - INFO - Scanning funda for amsterdam...
+2025-04-14 22:01:08,633 - httpx - INFO - HTTP Request: GET https://www.funda.nl/en/zoeken/huur/?selected_area=[%22amsterdam%22]&publication_date=%221%22&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-14 22:01:08,646 - main - INFO - Found 0 listings for funda in amsterdam
+2025-04-14 22:01:08,650 - main - INFO - Completed scan of funda for amsterdam: 0 new, 0 total in 0.43s
+2025-04-14 22:01:08,651 - main - INFO - Scanning funda for rotterdam...
+2025-04-14 22:01:08,841 - httpx - INFO - HTTP Request: GET https://www.funda.nl/en/zoeken/huur/?selected_area=[%22rotterdam%22]&publication_date=%221%22&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-14 22:01:08,845 - main - INFO - Found 0 listings for funda in rotterdam
+2025-04-14 22:01:08,848 - main - INFO - Completed scan of funda for rotterdam: 0 new, 0 total in 0.19s
+2025-04-14 22:01:08,849 - main - INFO - Skipping pararius for amsterdam - not due yet
+2025-04-14 22:01:08,849 - main - INFO - Skipping pararius for rotterdam - not due yet
+2025-04-14 22:01:08,849 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-14 22:01:08,849 - main - INFO - Detecting potential duplicate listings...
+2025-04-14 22:01:09,043 - main - INFO - Found 0 potential duplicate pairs
+2025-04-14 22:02:41,454 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 22:02:41.454449
+2025-04-14 22:02:41,454 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 22:02:41,547 - database.migrations - INFO - Database initialized successfully
+2025-04-14 22:02:41,570 - __main__ - INFO - Running a single scan cycle
+2025-04-14 22:02:41,573 - main - INFO - Skipping funda for amsterdam - not due yet
+2025-04-14 22:02:41,573 - main - INFO - Skipping funda for rotterdam - not due yet
+2025-04-14 22:02:41,574 - main - INFO - Scanning pararius for amsterdam...
+2025-04-14 22:02:42,224 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-14 22:02:42,242 - main - INFO - Found 0 listings for pararius in amsterdam
+2025-04-14 22:02:42,245 - main - INFO - Completed scan of pararius for amsterdam: 0 new, 0 total in 0.67s
+2025-04-14 22:02:42,246 - main - INFO - Scanning pararius for rotterdam...
+2025-04-14 22:02:42,737 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-14 22:02:42,746 - main - INFO - Found 0 listings for pararius in rotterdam
+2025-04-14 22:02:42,747 - main - INFO - Completed scan of pararius for rotterdam: 0 new, 0 total in 0.50s
+2025-04-14 22:02:42,747 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-14 22:02:42,747 - main - INFO - Detecting potential duplicate listings...
+2025-04-14 22:02:42,974 - main - INFO - Found 0 potential duplicate pairs
+2025-04-14 22:05:21,495 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 22:05:21.495663
+2025-04-14 22:05:21,496 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 22:05:21,597 - database.migrations - INFO - Database initialized successfully
+2025-04-14 22:05:21,617 - __main__ - INFO - Running a single scan cycle
+2025-04-14 22:05:21,623 - main - INFO - Skipping funda for amsterdam - not due yet
+2025-04-14 22:05:21,626 - main - INFO - Skipping funda for rotterdam - not due yet
+2025-04-14 22:05:21,627 - main - INFO - Skipping pararius for amsterdam - not due yet
+2025-04-14 22:05:21,627 - main - INFO - Skipping pararius for rotterdam - not due yet
+2025-04-14 22:05:21,628 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-14 22:05:21,630 - main - INFO - Detecting potential duplicate listings...
+2025-04-14 22:05:22,637 - main - INFO - Found 0 potential duplicate pairs
+2025-04-14 22:05:42,843 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 22:05:42.843143
+2025-04-14 22:05:42,844 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 22:05:42,869 - database.migrations - INFO - Database initialized successfully
+2025-04-14 22:05:42,872 - __main__ - INFO - Running a single scan cycle
+2025-04-14 22:05:42,875 - main - INFO - Skipping funda for amsterdam - not due yet
+2025-04-14 22:05:42,875 - main - INFO - Skipping funda for rotterdam - not due yet
+2025-04-14 22:05:42,876 - main - INFO - Skipping pararius for amsterdam - not due yet
+2025-04-14 22:05:42,877 - main - INFO - Skipping pararius for rotterdam - not due yet
+2025-04-14 22:05:42,877 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-14 22:05:42,877 - main - INFO - Detecting potential duplicate listings...
+2025-04-14 22:05:43,030 - main - INFO - Found 0 potential duplicate pairs
+2025-04-14 22:05:46,794 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 22:05:46.794564
+2025-04-14 22:05:46,794 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 22:05:46,807 - database.migrations - INFO - Database initialized successfully
+2025-04-14 22:05:46,810 - __main__ - INFO - Running a single scan cycle
+2025-04-14 22:05:46,811 - main - INFO - Skipping funda for amsterdam - not due yet
+2025-04-14 22:05:46,812 - main - INFO - Skipping funda for rotterdam - not due yet
+2025-04-14 22:05:46,812 - main - INFO - Skipping pararius for amsterdam - not due yet
+2025-04-14 22:05:46,812 - main - INFO - Skipping pararius for rotterdam - not due yet
+2025-04-14 22:05:46,812 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-14 22:05:46,812 - main - INFO - Detecting potential duplicate listings...
+2025-04-14 22:05:46,837 - main - INFO - Found 0 potential duplicate pairs
+2025-04-14 22:05:56,902 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 22:05:56.902611
+2025-04-14 22:05:56,902 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 22:05:56,921 - database.migrations - INFO - Database initialized successfully
+2025-04-14 22:05:56,927 - __main__ - INFO - Running a single scan cycle
+2025-04-14 22:05:56,929 - main - INFO - Skipping funda for amsterdam - not due yet
+2025-04-14 22:05:56,930 - main - INFO - Skipping funda for rotterdam - not due yet
+2025-04-14 22:05:56,930 - main - INFO - Skipping pararius for amsterdam - not due yet
+2025-04-14 22:05:56,930 - main - INFO - Skipping pararius for rotterdam - not due yet
+2025-04-14 22:05:56,930 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-14 22:05:56,930 - main - INFO - Detecting potential duplicate listings...
+2025-04-14 22:05:57,071 - main - INFO - Found 0 potential duplicate pairs
+2025-04-14 22:06:03,949 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 22:06:03.949551
+2025-04-14 22:06:03,949 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 22:06:03,965 - database.migrations - INFO - Database initialized successfully
+2025-04-14 22:06:03,970 - __main__ - INFO - Running a single scan cycle
+2025-04-14 22:06:03,971 - main - INFO - Skipping funda for amsterdam - not due yet
+2025-04-14 22:06:03,972 - main - INFO - Skipping funda for rotterdam - not due yet
+2025-04-14 22:06:03,972 - main - INFO - Skipping pararius for amsterdam - not due yet
+2025-04-14 22:06:03,972 - main - INFO - Skipping pararius for rotterdam - not due yet
+2025-04-14 22:06:03,972 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-14 22:06:03,972 - main - INFO - Detecting potential duplicate listings...
+2025-04-14 22:06:04,000 - main - INFO - Found 0 potential duplicate pairs
+2025-04-14 22:06:05,757 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 22:06:05.757234
+2025-04-14 22:06:05,757 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 22:06:05,770 - database.migrations - INFO - Database initialized successfully
+2025-04-14 22:06:05,772 - __main__ - INFO - Running a single scan cycle
+2025-04-14 22:06:05,774 - main - INFO - Skipping funda for amsterdam - not due yet
+2025-04-14 22:06:05,774 - main - INFO - Skipping funda for rotterdam - not due yet
+2025-04-14 22:06:05,774 - main - INFO - Skipping pararius for amsterdam - not due yet
+2025-04-14 22:06:05,775 - main - INFO - Skipping pararius for rotterdam - not due yet
+2025-04-14 22:06:05,775 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-14 22:06:05,775 - main - INFO - Detecting potential duplicate listings...
+2025-04-14 22:06:05,803 - main - INFO - Found 0 potential duplicate pairs
+2025-04-14 22:06:07,606 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 22:06:07.606351
+2025-04-14 22:06:07,606 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 22:06:07,619 - database.migrations - INFO - Database initialized successfully
+2025-04-14 22:06:07,622 - __main__ - INFO - Running a single scan cycle
+2025-04-14 22:06:07,623 - main - INFO - Skipping funda for amsterdam - not due yet
+2025-04-14 22:06:07,624 - main - INFO - Skipping funda for rotterdam - not due yet
+2025-04-14 22:06:07,624 - main - INFO - Skipping pararius for amsterdam - not due yet
+2025-04-14 22:06:07,624 - main - INFO - Skipping pararius for rotterdam - not due yet
+2025-04-14 22:06:07,624 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-14 22:06:07,624 - main - INFO - Detecting potential duplicate listings...
+2025-04-14 22:06:07,651 - main - INFO - Found 0 potential duplicate pairs
+2025-04-14 22:06:15,095 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 22:06:15.095495
+2025-04-14 22:06:15,095 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 22:06:15,111 - database.migrations - INFO - Database initialized successfully
+2025-04-14 22:06:15,115 - __main__ - INFO - Running a single scan cycle
+2025-04-14 22:06:15,120 - main - INFO - Scanning funda for amsterdam...
+2025-04-14 22:06:15,226 - httpx - INFO - HTTP Request: GET https://www.funda.nl/en/zoeken/huur/?selected_area=[%22amsterdam%22]&publication_date=%221%22&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-14 22:06:15,230 - main - INFO - Found 0 listings for funda in amsterdam
+2025-04-14 22:06:15,233 - main - INFO - Completed scan of funda for amsterdam: 0 new, 0 total in 0.11s
+2025-04-14 22:06:15,234 - main - INFO - Scanning funda for rotterdam...
+2025-04-14 22:06:15,629 - httpx - INFO - HTTP Request: GET https://www.funda.nl/en/zoeken/huur/?selected_area=[%22rotterdam%22]&publication_date=%221%22&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-14 22:06:15,687 - main - INFO - Found 0 listings for funda in rotterdam
+2025-04-14 22:06:15,689 - main - INFO - Completed scan of funda for rotterdam: 0 new, 0 total in 0.45s
+2025-04-14 22:06:15,689 - main - INFO - Skipping pararius for amsterdam - not due yet
+2025-04-14 22:06:15,690 - main - INFO - Skipping pararius for rotterdam - not due yet
+2025-04-14 22:06:15,690 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-14 22:06:15,690 - main - INFO - Detecting potential duplicate listings...
+2025-04-14 22:06:15,731 - main - INFO - Found 0 potential duplicate pairs
+2025-04-14 22:08:09,669 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 22:08:09.669557
+2025-04-14 22:08:09,670 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 22:08:09,812 - database.migrations - INFO - Database initialized successfully
+2025-04-14 22:08:09,834 - __main__ - INFO - Running a single scan cycle
+2025-04-14 22:08:09,837 - main - INFO - Skipping funda for amsterdam - not due yet
+2025-04-14 22:08:09,851 - main - INFO - Skipping funda for rotterdam - not due yet
+2025-04-14 22:08:09,852 - main - INFO - Skipping pararius for amsterdam - not due yet
+2025-04-14 22:08:09,854 - main - INFO - Skipping pararius for rotterdam - not due yet
+2025-04-14 22:08:09,856 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-14 22:08:09,856 - main - INFO - Detecting potential duplicate listings...
+2025-04-14 22:08:10,119 - main - INFO - Found 0 potential duplicate pairs
+2025-04-14 22:08:17,409 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 22:08:17.409632
+2025-04-14 22:08:17,409 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 22:08:17,422 - database.migrations - INFO - Database initialized successfully
+2025-04-14 22:08:17,425 - __main__ - INFO - Running a single scan cycle
+2025-04-14 22:08:17,427 - main - INFO - Skipping funda for amsterdam - not due yet
+2025-04-14 22:08:17,427 - main - INFO - Skipping funda for rotterdam - not due yet
+2025-04-14 22:08:17,428 - main - INFO - Skipping pararius for amsterdam - not due yet
+2025-04-14 22:08:17,428 - main - INFO - Skipping pararius for rotterdam - not due yet
+2025-04-14 22:08:17,428 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-14 22:08:17,428 - main - INFO - Detecting potential duplicate listings...
+2025-04-14 22:08:17,452 - main - INFO - Found 0 potential duplicate pairs
+2025-04-14 22:08:21,532 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 22:08:21.532077
+2025-04-14 22:08:21,532 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 22:08:21,546 - database.migrations - INFO - Database initialized successfully
+2025-04-14 22:08:21,549 - __main__ - INFO - Running a single scan cycle
+2025-04-14 22:08:21,551 - main - INFO - Skipping funda for amsterdam - not due yet
+2025-04-14 22:08:21,551 - main - INFO - Skipping funda for rotterdam - not due yet
+2025-04-14 22:08:21,551 - main - INFO - Skipping pararius for amsterdam - not due yet
+2025-04-14 22:08:21,552 - main - INFO - Skipping pararius for rotterdam - not due yet
+2025-04-14 22:08:21,552 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-14 22:08:21,552 - main - INFO - Detecting potential duplicate listings...
+2025-04-14 22:08:21,584 - main - INFO - Found 0 potential duplicate pairs
+2025-04-14 22:08:39,794 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 22:08:39.794533
+2025-04-14 22:08:39,795 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 22:08:39,817 - database.migrations - INFO - Database initialized successfully
+2025-04-14 22:08:39,821 - __main__ - INFO - Running a single scan cycle
+2025-04-14 22:08:39,825 - main - INFO - Skipping funda for amsterdam - not due yet
+2025-04-14 22:08:39,825 - main - INFO - Skipping funda for rotterdam - not due yet
+2025-04-14 22:08:39,825 - main - INFO - Skipping pararius for amsterdam - not due yet
+2025-04-14 22:08:39,826 - main - INFO - Skipping pararius for rotterdam - not due yet
+2025-04-14 22:08:39,826 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-14 22:08:39,826 - main - INFO - Detecting potential duplicate listings...
+2025-04-14 22:08:40,009 - main - INFO - Found 0 potential duplicate pairs
+2025-04-14 22:08:49,544 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 22:08:49.543995
+2025-04-14 22:08:49,544 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 22:08:49,555 - database.migrations - INFO - Database initialized successfully
+2025-04-14 22:08:49,559 - __main__ - INFO - Running a single scan cycle
+2025-04-14 22:08:49,561 - main - INFO - Skipping funda for amsterdam - not due yet
+2025-04-14 22:08:49,561 - main - INFO - Skipping funda for rotterdam - not due yet
+2025-04-14 22:08:49,561 - main - INFO - Skipping pararius for amsterdam - not due yet
+2025-04-14 22:08:49,561 - main - INFO - Skipping pararius for rotterdam - not due yet
+2025-04-14 22:08:49,561 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-14 22:08:49,562 - main - INFO - Detecting potential duplicate listings...
+2025-04-14 22:08:49,593 - main - INFO - Found 0 potential duplicate pairs
+2025-04-14 22:08:52,319 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 22:08:52.319516
+2025-04-14 22:08:52,319 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 22:08:52,337 - database.migrations - INFO - Database initialized successfully
+2025-04-14 22:08:52,342 - __main__ - INFO - Running a single scan cycle
+2025-04-14 22:08:52,344 - main - INFO - Skipping funda for amsterdam - not due yet
+2025-04-14 22:08:52,345 - main - INFO - Skipping funda for rotterdam - not due yet
+2025-04-14 22:08:52,345 - main - INFO - Skipping pararius for amsterdam - not due yet
+2025-04-14 22:08:52,345 - main - INFO - Skipping pararius for rotterdam - not due yet
+2025-04-14 22:08:52,345 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-14 22:08:52,345 - main - INFO - Detecting potential duplicate listings...
+2025-04-14 22:08:52,479 - main - INFO - Found 0 potential duplicate pairs
+2025-04-14 22:09:11,079 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 22:09:11.079629
+2025-04-14 22:09:11,080 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 22:09:11,103 - database.migrations - INFO - Database initialized successfully
+2025-04-14 22:09:11,106 - __main__ - INFO - Running a single scan cycle
+2025-04-14 22:09:11,109 - main - INFO - Skipping funda for amsterdam - not due yet
+2025-04-14 22:09:11,109 - main - INFO - Skipping funda for rotterdam - not due yet
+2025-04-14 22:09:11,109 - main - INFO - Skipping pararius for amsterdam - not due yet
+2025-04-14 22:09:11,110 - main - INFO - Skipping pararius for rotterdam - not due yet
+2025-04-14 22:09:11,110 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-14 22:09:11,110 - main - INFO - Detecting potential duplicate listings...
+2025-04-14 22:09:11,280 - main - INFO - Found 0 potential duplicate pairs
+2025-04-14 22:09:34,154 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 22:09:34.154069
+2025-04-14 22:09:34,154 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 22:09:34,175 - database.migrations - INFO - Database initialized successfully
+2025-04-14 22:09:34,179 - __main__ - INFO - Running a single scan cycle
+2025-04-14 22:09:34,181 - main - INFO - Skipping funda for amsterdam - not due yet
+2025-04-14 22:09:34,181 - main - INFO - Skipping funda for rotterdam - not due yet
+2025-04-14 22:09:34,182 - main - INFO - Skipping pararius for amsterdam - not due yet
+2025-04-14 22:09:34,182 - main - INFO - Skipping pararius for rotterdam - not due yet
+2025-04-14 22:09:34,182 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-14 22:09:34,182 - main - INFO - Detecting potential duplicate listings...
+2025-04-14 22:09:34,354 - main - INFO - Found 0 potential duplicate pairs
+2025-04-14 22:10:33,789 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 22:10:33.789799
+2025-04-14 22:10:33,790 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 22:10:33,807 - database.migrations - INFO - Database initialized successfully
+2025-04-14 22:10:33,810 - __main__ - INFO - Running a single scan cycle
+2025-04-14 22:10:33,812 - main - INFO - Skipping funda for amsterdam - not due yet
+2025-04-14 22:10:33,812 - main - INFO - Skipping funda for rotterdam - not due yet
+2025-04-14 22:10:33,813 - main - INFO - Skipping pararius for amsterdam - not due yet
+2025-04-14 22:10:33,813 - main - INFO - Skipping pararius for rotterdam - not due yet
+2025-04-14 22:10:33,813 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-14 22:10:33,813 - main - INFO - Detecting potential duplicate listings...
+2025-04-14 22:10:34,010 - main - INFO - Found 0 potential duplicate pairs
+2025-04-14 22:11:21,313 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 22:11:21.313790
+2025-04-14 22:11:21,314 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 22:11:21,331 - database.migrations - INFO - Database initialized successfully
+2025-04-14 22:11:21,336 - __main__ - INFO - Running a single scan cycle
+2025-04-14 22:11:21,341 - main - INFO - Scanning funda for amsterdam...
+2025-04-14 22:11:21,843 - httpx - INFO - HTTP Request: GET https://www.funda.nl/en/zoeken/huur/?selected_area=[%22amsterdam%22]&publication_date=%221%22&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-14 22:11:21,886 - main - INFO - Found 0 listings for funda in amsterdam
+2025-04-14 22:11:21,888 - main - INFO - Completed scan of funda for amsterdam: 0 new, 0 total in 0.54s
+2025-04-14 22:11:21,888 - main - INFO - Scanning funda for rotterdam...
+2025-04-14 22:11:22,075 - httpx - INFO - HTTP Request: GET https://www.funda.nl/en/zoeken/huur/?selected_area=[%22rotterdam%22]&publication_date=%221%22&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-14 22:11:22,099 - main - INFO - Found 0 listings for funda in rotterdam
+2025-04-14 22:11:22,100 - main - INFO - Completed scan of funda for rotterdam: 0 new, 0 total in 0.21s
+2025-04-14 22:11:22,101 - main - INFO - Scanning pararius for amsterdam...
+2025-04-14 22:11:22,551 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-14 22:11:22,568 - main - INFO - Found 0 listings for pararius in amsterdam
+2025-04-14 22:11:22,569 - main - INFO - Completed scan of pararius for amsterdam: 0 new, 0 total in 0.47s
+2025-04-14 22:11:22,569 - main - INFO - Scanning pararius for rotterdam...
+2025-04-14 22:11:22,997 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-14 22:11:23,021 - main - INFO - Found 0 listings for pararius in rotterdam
+2025-04-14 22:11:23,022 - main - INFO - Completed scan of pararius for rotterdam: 0 new, 0 total in 0.45s
+2025-04-14 22:11:23,022 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-14 22:11:23,022 - main - INFO - Detecting potential duplicate listings...
+2025-04-14 22:11:23,220 - main - INFO - Found 0 potential duplicate pairs
+2025-04-14 22:11:41,218 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 22:11:41.218301
+2025-04-14 22:11:41,218 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 22:11:41,239 - database.migrations - INFO - Database initialized successfully
+2025-04-14 22:11:41,242 - __main__ - INFO - Running a single scan cycle
+2025-04-14 22:11:41,245 - main - INFO - Scanning funda for amsterdam...
+2025-04-14 22:11:41,720 - httpx - INFO - HTTP Request: GET https://www.funda.nl/en/zoeken/huur/?selected_area=[%22amsterdam%22]&publication_date=%221%22&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-14 22:11:41,728 - main - INFO - Found 0 listings for funda in amsterdam
+2025-04-14 22:11:41,730 - main - INFO - Completed scan of funda for amsterdam: 0 new, 0 total in 0.48s
+2025-04-14 22:11:41,730 - main - INFO - Scanning funda for rotterdam...
+2025-04-14 22:11:41,785 - httpx - INFO - HTTP Request: GET https://www.funda.nl/en/zoeken/huur/?selected_area=[%22rotterdam%22]&publication_date=%221%22&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-14 22:11:41,786 - main - INFO - Found 0 listings for funda in rotterdam
+2025-04-14 22:11:41,787 - main - INFO - Completed scan of funda for rotterdam: 0 new, 0 total in 0.06s
+2025-04-14 22:11:41,788 - main - INFO - Scanning pararius for amsterdam...
+2025-04-14 22:11:42,175 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-14 22:11:42,193 - main - INFO - Found 0 listings for pararius in amsterdam
+2025-04-14 22:11:42,194 - main - INFO - Completed scan of pararius for amsterdam: 0 new, 0 total in 0.41s
+2025-04-14 22:11:42,195 - main - INFO - Scanning pararius for rotterdam...
+2025-04-14 22:11:42,682 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-14 22:11:42,698 - main - INFO - Found 0 listings for pararius in rotterdam
+2025-04-14 22:11:42,699 - main - INFO - Completed scan of pararius for rotterdam: 0 new, 0 total in 0.50s
+2025-04-14 22:11:42,699 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-14 22:11:42,699 - main - INFO - Detecting potential duplicate listings...
+2025-04-14 22:11:42,877 - main - INFO - Found 0 potential duplicate pairs
+2025-04-14 22:11:58,973 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 22:11:58.973262
+2025-04-14 22:11:58,973 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 22:11:58,992 - database.migrations - INFO - Database initialized successfully
+2025-04-14 22:11:58,997 - __main__ - INFO - Running a single scan cycle
+2025-04-14 22:11:59,002 - main - INFO - Scanning funda for amsterdam...
+2025-04-14 22:11:59,096 - httpx - INFO - HTTP Request: GET https://www.funda.nl/en/zoeken/huur/?selected_area=[%22amsterdam%22]&publication_date=%221%22&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-14 22:11:59,099 - main - INFO - Found 0 listings for funda in amsterdam
+2025-04-14 22:11:59,101 - main - INFO - Completed scan of funda for amsterdam: 0 new, 0 total in 0.10s
+2025-04-14 22:11:59,102 - main - INFO - Scanning funda for rotterdam...
+2025-04-14 22:11:59,153 - httpx - INFO - HTTP Request: GET https://www.funda.nl/en/zoeken/huur/?selected_area=[%22rotterdam%22]&publication_date=%221%22&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-14 22:11:59,154 - main - INFO - Found 0 listings for funda in rotterdam
+2025-04-14 22:11:59,155 - main - INFO - Completed scan of funda for rotterdam: 0 new, 0 total in 0.05s
+2025-04-14 22:11:59,156 - main - INFO - Scanning pararius for amsterdam...
+2025-04-14 22:11:59,540 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-14 22:11:59,561 - main - INFO - Found 0 listings for pararius in amsterdam
+2025-04-14 22:11:59,563 - main - INFO - Completed scan of pararius for amsterdam: 0 new, 0 total in 0.41s
+2025-04-14 22:11:59,564 - main - INFO - Scanning pararius for rotterdam...
+2025-04-14 22:11:59,954 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-14 22:11:59,973 - main - INFO - Found 0 listings for pararius in rotterdam
+2025-04-14 22:11:59,974 - main - INFO - Completed scan of pararius for rotterdam: 0 new, 0 total in 0.41s
+2025-04-14 22:11:59,974 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-14 22:11:59,974 - main - INFO - Detecting potential duplicate listings...
+2025-04-14 22:12:00,111 - main - INFO - Found 0 potential duplicate pairs
+2025-04-14 22:16:57,383 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 22:16:57.383190
+2025-04-14 22:16:57,383 - __main__ - INFO - Starting scraper for sources: ['funda'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 22:16:57,400 - database.migrations - INFO - Database initialized successfully
+2025-04-14 22:16:57,404 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-14 22:16:57,404 - main - INFO - Starting new scan cycle...
+2025-04-14 22:16:57,406 - main - INFO - Scanning funda for amsterdam...
+2025-04-14 22:16:57,553 - httpx - INFO - HTTP Request: GET https://www.funda.nl/en/zoeken/huur/?selected_area=[%22amsterdam%22]&publication_date=%221%22&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-14 22:16:57,557 - main - INFO - Found 0 listings for funda in amsterdam
+2025-04-14 22:16:57,559 - main - INFO - Completed scan of funda for amsterdam: 0 new, 0 total in 0.15s
+2025-04-14 22:16:57,560 - main - INFO - Scanning funda for rotterdam...
+2025-04-14 22:16:57,839 - httpx - INFO - HTTP Request: GET https://www.funda.nl/en/zoeken/huur/?selected_area=[%22rotterdam%22]&publication_date=%221%22&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-14 22:16:57,846 - main - INFO - Found 0 listings for funda in rotterdam
+2025-04-14 22:16:57,849 - main - INFO - Completed scan of funda for rotterdam: 0 new, 0 total in 0.29s
+2025-04-14 22:16:57,849 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-14 22:16:57,849 - main - INFO - Detecting potential duplicate listings...
+2025-04-14 22:16:58,063 - main - INFO - Found 0 potential duplicate pairs
+2025-04-14 22:16:58,063 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-14 22:17:12,490 - main - INFO - Scraper task cancelled
+2025-04-14 22:19:32,788 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 22:19:32.788106
+2025-04-14 22:19:32,788 - __main__ - INFO - Starting scraper for sources: ['funda'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 22:19:32,879 - database.migrations - INFO - Database initialized successfully
+2025-04-14 22:19:32,886 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-14 22:19:32,886 - main - INFO - Starting new scan cycle...
+2025-04-14 22:19:32,909 - main - INFO - Scanning funda for amsterdam...
+2025-04-14 22:19:33,015 - httpx - INFO - HTTP Request: GET https://www.funda.nl/en/zoeken/huur/?selected_area=[%22amsterdam%22]&publication_date=%221%22&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-14 22:19:33,018 - main - INFO - Found 0 listings for funda in amsterdam
+2025-04-14 22:19:33,044 - main - INFO - Completed scan of funda for amsterdam: 0 new, 0 total in 0.11s
+2025-04-14 22:19:33,071 - main - INFO - Scanning funda for rotterdam...
+2025-04-14 22:19:33,158 - httpx - INFO - HTTP Request: GET https://www.funda.nl/en/zoeken/huur/?selected_area=[%22rotterdam%22]&publication_date=%221%22&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-14 22:19:33,160 - main - INFO - Found 0 listings for funda in rotterdam
+2025-04-14 22:19:33,161 - main - INFO - Completed scan of funda for rotterdam: 0 new, 0 total in 0.09s
+2025-04-14 22:19:33,161 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-14 22:19:33,161 - main - INFO - Detecting potential duplicate listings...
+2025-04-14 22:19:33,945 - main - INFO - Found 0 potential duplicate pairs
+2025-04-14 22:19:33,956 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-14 22:25:42,733 - main - INFO - Scraper task cancelled
+2025-04-14 22:25:47,131 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 22:25:47.131536
+2025-04-14 22:25:47,131 - __main__ - INFO - Starting scraper for sources: ['funda'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 22:25:47,149 - database.migrations - INFO - Database initialized successfully
+2025-04-14 22:25:47,153 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-14 22:25:47,153 - main - INFO - Starting new scan cycle...
+2025-04-14 22:25:47,155 - main - INFO - Scanning funda for amsterdam...
+2025-04-14 22:25:47,282 - httpx - INFO - HTTP Request: GET https://www.funda.nl/en/zoeken/huur/?selected_area=[%22amsterdam%22]&publication_date=%221%22&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-14 22:25:47,283 - main - INFO - Found 0 listings for funda in amsterdam
+2025-04-14 22:25:47,285 - main - INFO - Completed scan of funda for amsterdam: 0 new, 0 total in 0.13s
+2025-04-14 22:25:47,286 - main - INFO - Scanning funda for rotterdam...
+2025-04-14 22:25:47,352 - httpx - INFO - HTTP Request: GET https://www.funda.nl/en/zoeken/huur/?selected_area=[%22rotterdam%22]&publication_date=%221%22&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-14 22:25:47,353 - main - INFO - Found 0 listings for funda in rotterdam
+2025-04-14 22:25:47,354 - main - INFO - Completed scan of funda for rotterdam: 0 new, 0 total in 0.07s
+2025-04-14 22:25:47,354 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-14 22:25:47,354 - main - INFO - Detecting potential duplicate listings...
+2025-04-14 22:25:47,390 - main - INFO - Found 0 potential duplicate pairs
+2025-04-14 22:25:47,390 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-14 22:30:01,657 - main - INFO - Scraper task cancelled
+2025-04-14 22:30:17,560 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 22:30:17.560527
+2025-04-14 22:30:17,560 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 22:30:17,577 - database.migrations - INFO - Database initialized successfully
+2025-04-14 22:30:17,582 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-14 22:30:17,582 - main - INFO - Starting new scan cycle...
+2025-04-14 22:30:17,584 - main - INFO - Scanning pararius for amsterdam...
+2025-04-14 22:30:18,043 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-14 22:30:18,066 - main - INFO - Found 0 listings for pararius in amsterdam
+2025-04-14 22:30:18,068 - main - INFO - Completed scan of pararius for amsterdam: 0 new, 0 total in 0.48s
+2025-04-14 22:30:18,069 - main - INFO - Scanning pararius for rotterdam...
+2025-04-14 22:30:18,546 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-14 22:30:18,555 - main - INFO - Found 0 listings for pararius in rotterdam
+2025-04-14 22:30:18,556 - main - INFO - Completed scan of pararius for rotterdam: 0 new, 0 total in 0.49s
+2025-04-14 22:30:18,556 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-14 22:30:18,556 - main - INFO - Detecting potential duplicate listings...
+2025-04-14 22:30:18,627 - main - INFO - Found 0 potential duplicate pairs
+2025-04-14 22:30:18,627 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-14 22:32:11,017 - main - INFO - Scraper task cancelled
+2025-04-14 22:32:52,311 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 22:32:52.311737
+2025-04-14 22:32:52,312 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 22:32:52,334 - database.migrations - INFO - Database initialized successfully
+2025-04-14 22:32:52,339 - utils.http - WARNING - brotli module not available
+2025-04-14 22:32:52,339 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-14 22:32:52,339 - main - INFO - Starting new scan cycle...
+2025-04-14 22:32:52,341 - main - INFO - Scanning pararius for amsterdam...
+2025-04-14 22:32:54,604 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-14 22:32:54,608 - utils.http - WARNING - Failed to decode with charset utf-8
+2025-04-14 22:32:54,615 - main - INFO - Found 0 listings for pararius in amsterdam
+2025-04-14 22:32:54,617 - main - INFO - Completed scan of pararius for amsterdam: 0 new, 0 total in 2.27s
+2025-04-14 22:32:54,617 - main - INFO - Scanning pararius for rotterdam...
+2025-04-14 22:32:55,833 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-14 22:32:55,835 - utils.http - WARNING - Failed to decode with charset utf-8
+2025-04-14 22:32:55,837 - main - INFO - Found 0 listings for pararius in rotterdam
+2025-04-14 22:32:55,838 - main - INFO - Completed scan of pararius for rotterdam: 0 new, 0 total in 1.22s
+2025-04-14 22:32:55,838 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-14 22:32:55,838 - main - INFO - Detecting potential duplicate listings...
+2025-04-14 22:32:55,990 - main - INFO - Found 0 potential duplicate pairs
+2025-04-14 22:32:55,990 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-14 22:33:01,894 - main - INFO - Scraper task cancelled
+2025-04-14 22:33:32,508 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 22:33:32.508044
+2025-04-14 22:33:32,508 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 22:33:32,530 - database.migrations - INFO - Database initialized successfully
+2025-04-14 22:33:32,534 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-14 22:33:32,535 - main - INFO - Starting new scan cycle...
+2025-04-14 22:33:32,537 - main - INFO - Scanning pararius for amsterdam...
+2025-04-14 22:33:33,720 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-14 22:33:33,725 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartments/amsterdam?filters[since]=1. Retrying with different approach.
+2025-04-14 22:33:37,919 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-14 22:33:38,001 - main - INFO - Found 30 listings for pararius in amsterdam
+2025-04-14 22:33:39,246 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/f355e8c6/oostenburgermiddenstraat "HTTP/1.1 200 OK"
+2025-04-14 22:33:39,257 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/f355e8c6/oostenburgermiddenstraat. Retrying with different approach.
+2025-04-14 22:33:43,967 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/f355e8c6/oostenburgermiddenstraat "HTTP/1.1 200 OK"
+2025-04-14 22:33:43,978 - main - ERROR - Error processing listing https://www.pararius.com/apartment-for-rent/amsterdam/f355e8c6/oostenburgermiddenstraat: Bad CSS Selectors: dt:-soup-contains('Construction year') + dd
+2025-04-14 22:33:45,913 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/2b6ede46/nieuwpoortstraat "HTTP/1.1 200 OK"
+2025-04-14 22:33:45,923 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/2b6ede46/nieuwpoortstraat. Retrying with different approach.
+2025-04-14 22:33:52,076 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/2b6ede46/nieuwpoortstraat "HTTP/1.1 200 OK"
+2025-04-14 22:33:52,088 - main - ERROR - Error processing listing https://www.pararius.com/apartment-for-rent/amsterdam/2b6ede46/nieuwpoortstraat: Bad CSS Selectors: dt:-soup-contains('Construction year') + dd
+2025-04-14 22:33:53,641 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/abb2b634/klaas-katerstraat "HTTP/1.1 200 OK"
+2025-04-14 22:33:53,651 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/abb2b634/klaas-katerstraat. Retrying with different approach.
+2025-04-14 22:33:59,936 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/abb2b634/klaas-katerstraat "HTTP/1.1 200 OK"
+2025-04-14 22:33:59,942 - main - ERROR - Error processing listing https://www.pararius.com/apartment-for-rent/amsterdam/abb2b634/klaas-katerstraat: Bad CSS Selectors: dt:-soup-contains('Construction year') + dd
+2025-04-14 22:34:01,677 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/33737699/paardenstraat "HTTP/1.1 200 OK"
+2025-04-14 22:34:01,682 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/33737699/paardenstraat. Retrying with different approach.
+2025-04-14 22:34:07,661 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/33737699/paardenstraat "HTTP/1.1 200 OK"
+2025-04-14 22:34:07,670 - main - ERROR - Error processing listing https://www.pararius.com/apartment-for-rent/amsterdam/33737699/paardenstraat: Bad CSS Selectors: dt:-soup-contains('Construction year') + dd
+2025-04-14 22:34:09,502 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/39ac4091/daniel-stalpertstraat "HTTP/1.1 200 OK"
+2025-04-14 22:34:09,515 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/39ac4091/daniel-stalpertstraat. Retrying with different approach.
+2025-04-14 22:34:13,704 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/39ac4091/daniel-stalpertstraat "HTTP/1.1 200 OK"
+2025-04-14 22:34:13,714 - main - ERROR - Error processing listing https://www.pararius.com/apartment-for-rent/amsterdam/39ac4091/daniel-stalpertstraat: Bad CSS Selectors: dt:-soup-contains('Construction year') + dd
+2025-04-14 22:34:14,711 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/3a2a9ca5/singel "HTTP/1.1 200 OK"
+2025-04-14 22:34:14,720 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/3a2a9ca5/singel. Retrying with different approach.
+2025-04-14 22:34:18,264 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/3a2a9ca5/singel "HTTP/1.1 200 OK"
+2025-04-14 22:34:18,277 - main - ERROR - Error processing listing https://www.pararius.com/apartment-for-rent/amsterdam/3a2a9ca5/singel: Bad CSS Selectors: dt:-soup-contains('Construction year') + dd
+2025-04-14 22:34:19,183 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/56d31f9f/ferdinand-bolstraat "HTTP/1.1 200 OK"
+2025-04-14 22:34:19,192 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/56d31f9f/ferdinand-bolstraat. Retrying with different approach.
+2025-04-14 22:34:22,426 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/56d31f9f/ferdinand-bolstraat "HTTP/1.1 200 OK"
+2025-04-14 22:34:22,434 - main - ERROR - Error processing listing https://www.pararius.com/apartment-for-rent/amsterdam/56d31f9f/ferdinand-bolstraat: Bad CSS Selectors: dt:-soup-contains('Construction year') + dd
+2025-04-14 22:34:23,184 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/edb935ad/stolwijkstraat "HTTP/1.1 200 OK"
+2025-04-14 22:34:23,195 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/edb935ad/stolwijkstraat. Retrying with different approach.
+2025-04-14 22:34:27,688 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/edb935ad/stolwijkstraat "HTTP/1.1 200 OK"
+2025-04-14 22:34:27,698 - main - ERROR - Error processing listing https://www.pararius.com/apartment-for-rent/amsterdam/edb935ad/stolwijkstraat: Bad CSS Selectors: dt:-soup-contains('Construction year') + dd
+2025-04-14 22:34:29,116 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/c6650047/loosduinenstraat "HTTP/1.1 200 OK"
+2025-04-14 22:34:29,124 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/c6650047/loosduinenstraat. Retrying with different approach.
+2025-04-14 22:34:32,676 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/c6650047/loosduinenstraat "HTTP/1.1 200 OK"
+2025-04-14 22:34:32,686 - main - ERROR - Error processing listing https://www.pararius.com/apartment-for-rent/amsterdam/c6650047/loosduinenstraat: Bad CSS Selectors: dt:-soup-contains('Construction year') + dd
+2025-04-14 22:34:34,450 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/0a56b9b5/lia-doranastraat "HTTP/1.1 200 OK"
+2025-04-14 22:34:34,458 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/0a56b9b5/lia-doranastraat. Retrying with different approach.
+2025-04-14 22:34:39,504 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/0a56b9b5/lia-doranastraat "HTTP/1.1 200 OK"
+2025-04-14 22:34:39,512 - main - ERROR - Error processing listing https://www.pararius.com/apartment-for-rent/amsterdam/0a56b9b5/lia-doranastraat: Bad CSS Selectors: dt:-soup-contains('Construction year') + dd
+2025-04-14 22:34:40,553 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/81ff4ca2/nieuwe-kerkstraat "HTTP/1.1 200 OK"
+2025-04-14 22:34:40,562 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/81ff4ca2/nieuwe-kerkstraat. Retrying with different approach.
+2025-04-14 22:34:44,168 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/81ff4ca2/nieuwe-kerkstraat "HTTP/1.1 200 OK"
+2025-04-14 22:34:44,177 - main - ERROR - Error processing listing https://www.pararius.com/apartment-for-rent/amsterdam/81ff4ca2/nieuwe-kerkstraat: Bad CSS Selectors: dt:-soup-contains('Construction year') + dd
+2025-04-14 22:34:45,111 - httpx - INFO - HTTP Request: GET https://www.pararius.com/house-for-rent/amsterdam/b8a8451a/sarphatipark "HTTP/1.1 200 OK"
+2025-04-14 22:34:45,121 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/house-for-rent/amsterdam/b8a8451a/sarphatipark. Retrying with different approach.
+2025-04-14 22:34:49,213 - httpx - INFO - HTTP Request: GET https://www.pararius.com/house-for-rent/amsterdam/b8a8451a/sarphatipark "HTTP/1.1 200 OK"
+2025-04-14 22:34:49,225 - main - ERROR - Error processing listing https://www.pararius.com/house-for-rent/amsterdam/b8a8451a/sarphatipark: Bad CSS Selectors: dt:-soup-contains('Construction year') + dd
+2025-04-14 22:34:50,412 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/600dece2/bonairestraat "HTTP/1.1 200 OK"
+2025-04-14 22:34:50,423 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/600dece2/bonairestraat. Retrying with different approach.
+2025-04-14 22:34:54,668 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/600dece2/bonairestraat "HTTP/1.1 200 OK"
+2025-04-14 22:34:54,677 - main - ERROR - Error processing listing https://www.pararius.com/apartment-for-rent/amsterdam/600dece2/bonairestraat: Bad CSS Selectors: dt:-soup-contains('Construction year') + dd
+2025-04-14 22:34:56,679 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/34eb3253/kinkerstraat "HTTP/1.1 200 OK"
+2025-04-14 22:34:56,696 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/34eb3253/kinkerstraat. Retrying with different approach.
+2025-04-14 22:35:00,151 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/34eb3253/kinkerstraat "HTTP/1.1 200 OK"
+2025-04-14 22:35:00,159 - main - ERROR - Error processing listing https://www.pararius.com/apartment-for-rent/amsterdam/34eb3253/kinkerstraat: Bad CSS Selectors: dt:-soup-contains('Construction year') + dd
+2025-04-14 22:35:01,868 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/323186db/westlandgracht "HTTP/1.1 200 OK"
+2025-04-14 22:35:01,875 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/323186db/westlandgracht. Retrying with different approach.
+2025-04-14 22:35:06,274 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/323186db/westlandgracht "HTTP/1.1 200 OK"
+2025-04-14 22:35:06,285 - main - ERROR - Error processing listing https://www.pararius.com/apartment-for-rent/amsterdam/323186db/westlandgracht: Bad CSS Selectors: dt:-soup-contains('Construction year') + dd
+2025-04-14 22:35:07,741 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/27c1df14/brahmsstraat "HTTP/1.1 200 OK"
+2025-04-14 22:35:07,749 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/27c1df14/brahmsstraat. Retrying with different approach.
+2025-04-14 22:35:12,365 - main - INFO - Scraper task cancelled
+2025-04-14 22:39:51,862 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 22:39:51.862456
+2025-04-14 22:39:51,863 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 22:39:51,889 - database.migrations - INFO - Database initialized successfully
+2025-04-14 22:39:51,894 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-14 22:39:51,894 - main - INFO - Starting new scan cycle...
+2025-04-14 22:39:51,897 - main - INFO - Scanning pararius for amsterdam...
+2025-04-14 22:39:53,393 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-14 22:39:53,412 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartments/amsterdam?filters[since]=1. Retrying with different approach.
+2025-04-14 22:39:59,462 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-14 22:39:59,542 - main - INFO - Found 30 listings for pararius in amsterdam
+2025-04-14 22:40:00,821 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/f355e8c6/oostenburgermiddenstraat "HTTP/1.1 200 OK"
+2025-04-14 22:40:00,829 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/f355e8c6/oostenburgermiddenstraat. Retrying with different approach.
+2025-04-14 22:40:06,426 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/f355e8c6/oostenburgermiddenstraat "HTTP/1.1 200 OK"
+2025-04-14 22:40:06,576 - main - INFO - Added new listing: None (pararius - €2,075
+                    
+                        per month)
+2025-04-14 22:40:11,052 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/2b6ede46/nieuwpoortstraat "HTTP/1.1 200 OK"
+2025-04-14 22:40:11,061 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/2b6ede46/nieuwpoortstraat. Retrying with different approach.
+2025-04-14 22:40:15,762 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/2b6ede46/nieuwpoortstraat "HTTP/1.1 200 OK"
+2025-04-14 22:40:20,321 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/abb2b634/klaas-katerstraat "HTTP/1.1 200 OK"
+2025-04-14 22:40:20,331 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/abb2b634/klaas-katerstraat. Retrying with different approach.
+2025-04-14 22:40:25,984 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/abb2b634/klaas-katerstraat "HTTP/1.1 200 OK"
+2025-04-14 22:40:30,902 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/33737699/paardenstraat "HTTP/1.1 200 OK"
+2025-04-14 22:40:30,909 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/33737699/paardenstraat. Retrying with different approach.
+2025-04-14 22:40:35,566 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/33737699/paardenstraat "HTTP/1.1 200 OK"
+2025-04-14 22:40:37,868 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/39ac4091/daniel-stalpertstraat "HTTP/1.1 200 OK"
+2025-04-14 22:40:37,877 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/39ac4091/daniel-stalpertstraat. Retrying with different approach.
+2025-04-14 22:40:43,225 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/39ac4091/daniel-stalpertstraat "HTTP/1.1 200 OK"
+2025-04-14 22:40:46,865 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/3a2a9ca5/singel "HTTP/1.1 200 OK"
+2025-04-14 22:40:46,879 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/3a2a9ca5/singel. Retrying with different approach.
+2025-04-14 22:40:52,005 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/3a2a9ca5/singel "HTTP/1.1 200 OK"
+2025-04-14 22:40:54,340 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/56d31f9f/ferdinand-bolstraat "HTTP/1.1 200 OK"
+2025-04-14 22:40:54,347 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/56d31f9f/ferdinand-bolstraat. Retrying with different approach.
+2025-04-14 22:41:00,189 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/56d31f9f/ferdinand-bolstraat "HTTP/1.1 200 OK"
+2025-04-14 22:41:03,578 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/edb935ad/stolwijkstraat "HTTP/1.1 200 OK"
+2025-04-14 22:41:03,587 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/edb935ad/stolwijkstraat. Retrying with different approach.
+2025-04-14 22:41:09,326 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/edb935ad/stolwijkstraat "HTTP/1.1 200 OK"
+2025-04-14 22:41:13,002 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/c6650047/loosduinenstraat "HTTP/1.1 200 OK"
+2025-04-14 22:41:13,010 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/c6650047/loosduinenstraat. Retrying with different approach.
+2025-04-14 22:41:17,094 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/c6650047/loosduinenstraat "HTTP/1.1 200 OK"
+2025-04-14 22:41:19,703 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/0a56b9b5/lia-doranastraat "HTTP/1.1 200 OK"
+2025-04-14 22:41:19,714 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/0a56b9b5/lia-doranastraat. Retrying with different approach.
+2025-04-14 22:41:24,762 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/0a56b9b5/lia-doranastraat "HTTP/1.1 200 OK"
+2025-04-14 22:41:28,144 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/81ff4ca2/nieuwe-kerkstraat "HTTP/1.1 200 OK"
+2025-04-14 22:41:28,153 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/81ff4ca2/nieuwe-kerkstraat. Retrying with different approach.
+2025-04-14 22:41:33,444 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/81ff4ca2/nieuwe-kerkstraat "HTTP/1.1 200 OK"
+2025-04-14 22:41:36,783 - httpx - INFO - HTTP Request: GET https://www.pararius.com/house-for-rent/amsterdam/b8a8451a/sarphatipark "HTTP/1.1 200 OK"
+2025-04-14 22:41:36,793 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/house-for-rent/amsterdam/b8a8451a/sarphatipark. Retrying with different approach.
+2025-04-14 22:41:42,104 - httpx - INFO - HTTP Request: GET https://www.pararius.com/house-for-rent/amsterdam/b8a8451a/sarphatipark "HTTP/1.1 200 OK"
+2025-04-14 22:41:45,217 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/600dece2/bonairestraat "HTTP/1.1 200 OK"
+2025-04-14 22:41:45,230 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/600dece2/bonairestraat. Retrying with different approach.
+2025-04-14 22:41:50,195 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/600dece2/bonairestraat "HTTP/1.1 200 OK"
+2025-04-14 22:41:54,254 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/34eb3253/kinkerstraat "HTTP/1.1 200 OK"
+2025-04-14 22:41:54,264 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/34eb3253/kinkerstraat. Retrying with different approach.
+2025-04-14 22:41:59,440 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/34eb3253/kinkerstraat "HTTP/1.1 200 OK"
+2025-04-14 22:42:02,793 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/323186db/westlandgracht "HTTP/1.1 200 OK"
+2025-04-14 22:42:02,805 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/323186db/westlandgracht. Retrying with different approach.
+2025-04-14 22:42:08,388 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/323186db/westlandgracht "HTTP/1.1 200 OK"
+2025-04-14 22:42:12,385 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/27c1df14/brahmsstraat "HTTP/1.1 200 OK"
+2025-04-14 22:42:12,395 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/27c1df14/brahmsstraat. Retrying with different approach.
+2025-04-14 22:42:17,360 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/27c1df14/brahmsstraat "HTTP/1.1 200 OK"
+2025-04-14 22:42:21,178 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/e7d1e077/eemsstraat "HTTP/1.1 200 OK"
+2025-04-14 22:42:21,188 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/e7d1e077/eemsstraat. Retrying with different approach.
+2025-04-14 22:42:26,929 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/e7d1e077/eemsstraat "HTTP/1.1 200 OK"
+2025-04-14 22:42:29,482 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/8ba9981f/amsteldijk "HTTP/1.1 200 OK"
+2025-04-14 22:42:29,487 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/8ba9981f/amsteldijk. Retrying with different approach.
+2025-04-14 22:42:33,342 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/8ba9981f/amsteldijk "HTTP/1.1 200 OK"
+2025-04-14 22:42:36,573 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/6d2e8284/marowijnestraat "HTTP/1.1 200 OK"
+2025-04-14 22:42:36,582 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/6d2e8284/marowijnestraat. Retrying with different approach.
+2025-04-14 22:42:40,040 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/6d2e8284/marowijnestraat "HTTP/1.1 200 OK"
+2025-04-14 22:42:43,821 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/13883151/haarlemmerweg "HTTP/1.1 200 OK"
+2025-04-14 22:42:43,834 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/13883151/haarlemmerweg. Retrying with different approach.
+2025-04-14 22:42:49,702 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/13883151/haarlemmerweg "HTTP/1.1 200 OK"
+2025-04-14 22:42:53,810 - httpx - INFO - HTTP Request: GET https://www.pararius.com/house-for-rent/amsterdam/0d474032/buiksloterdijk "HTTP/1.1 200 OK"
+2025-04-14 22:42:53,818 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/house-for-rent/amsterdam/0d474032/buiksloterdijk. Retrying with different approach.
+2025-04-14 22:42:59,896 - httpx - INFO - HTTP Request: GET https://www.pararius.com/house-for-rent/amsterdam/0d474032/buiksloterdijk "HTTP/1.1 200 OK"
+2025-04-14 22:43:02,462 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/971e228c/overtoom "HTTP/1.1 200 OK"
+2025-04-14 22:43:02,471 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/971e228c/overtoom. Retrying with different approach.
+2025-04-14 22:43:08,248 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/971e228c/overtoom "HTTP/1.1 200 OK"
+2025-04-14 22:43:11,264 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/bcff307e/gerard-doustraat "HTTP/1.1 200 OK"
+2025-04-14 22:43:11,270 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/bcff307e/gerard-doustraat. Retrying with different approach.
+2025-04-14 22:43:15,833 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/bcff307e/gerard-doustraat "HTTP/1.1 200 OK"
+2025-04-14 22:43:19,145 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/684f5c6a/van-hogendorpstraat "HTTP/1.1 200 OK"
+2025-04-14 22:43:19,151 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/684f5c6a/van-hogendorpstraat. Retrying with different approach.
+2025-04-14 22:43:24,398 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/684f5c6a/van-hogendorpstraat "HTTP/1.1 200 OK"
+2025-04-14 22:43:28,772 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/ab75b5ff/gijsbrecht-van-ijselsteinstraat "HTTP/1.1 200 OK"
+2025-04-14 22:43:28,779 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/ab75b5ff/gijsbrecht-van-ijselsteinstraat. Retrying with different approach.
+2025-04-14 22:43:34,354 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/ab75b5ff/gijsbrecht-van-ijselsteinstraat "HTTP/1.1 200 OK"
+2025-04-14 22:43:38,198 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/e2d9f8c2/korte-lepelstraat "HTTP/1.1 200 OK"
+2025-04-14 22:43:38,210 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/e2d9f8c2/korte-lepelstraat. Retrying with different approach.
+2025-04-14 22:43:44,281 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/e2d9f8c2/korte-lepelstraat "HTTP/1.1 200 OK"
+2025-04-14 22:43:48,641 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/41ee4636/pieter-van-der-doesstraat "HTTP/1.1 200 OK"
+2025-04-14 22:43:48,649 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/41ee4636/pieter-van-der-doesstraat. Retrying with different approach.
+2025-04-14 22:43:54,322 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/41ee4636/pieter-van-der-doesstraat "HTTP/1.1 200 OK"
+2025-04-14 22:43:56,654 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/90cd5561/lomanstraat "HTTP/1.1 200 OK"
+2025-04-14 22:43:56,664 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/90cd5561/lomanstraat. Retrying with different approach.
+2025-04-14 22:44:01,435 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/90cd5561/lomanstraat "HTTP/1.1 200 OK"
+2025-04-14 22:44:04,447 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/16b8ab22/jan-evertsenstraat "HTTP/1.1 200 OK"
+2025-04-14 22:44:04,464 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/16b8ab22/jan-evertsenstraat. Retrying with different approach.
+2025-04-14 22:44:07,786 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/16b8ab22/jan-evertsenstraat "HTTP/1.1 200 OK"
+2025-04-14 22:44:11,290 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/722ac52b/nieuwe-herengracht "HTTP/1.1 200 OK"
+2025-04-14 22:44:11,301 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/amsterdam/722ac52b/nieuwe-herengracht. Retrying with different approach.
+2025-04-14 22:44:14,969 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/amsterdam/722ac52b/nieuwe-herengracht "HTTP/1.1 200 OK"
+2025-04-14 22:44:17,771 - main - INFO - Completed scan of pararius for amsterdam: 1 new, 30 total in 265.87s
+2025-04-14 22:44:17,773 - main - INFO - Scanning pararius for rotterdam...
+2025-04-14 22:44:19,107 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-14 22:44:19,124 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartments/rotterdam?filters[since]=1. Retrying with different approach.
+2025-04-14 22:44:24,682 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-14 22:44:24,766 - main - INFO - Found 32 listings for pararius in rotterdam
+2025-04-14 22:44:25,521 - httpx - INFO - HTTP Request: GET https://www.pararius.com/studio-for-rent/rotterdam/78bfd635/hendrik-sweijsstraat "HTTP/1.1 200 OK"
+2025-04-14 22:44:25,528 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/studio-for-rent/rotterdam/78bfd635/hendrik-sweijsstraat. Retrying with different approach.
+2025-04-14 22:44:31,163 - httpx - INFO - HTTP Request: GET https://www.pararius.com/studio-for-rent/rotterdam/78bfd635/hendrik-sweijsstraat "HTTP/1.1 200 OK"
+2025-04-14 22:44:35,076 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/rotterdam/31efe122/ceintuurbaan "HTTP/1.1 200 OK"
+2025-04-14 22:44:35,085 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartment-for-rent/rotterdam/31efe122/ceintuurbaan. Retrying with different approach.
+2025-04-14 22:44:38,388 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartment-for-rent/rotterdam/31efe122/ceintuurbaan "HTTP/1.1 200 OK"
+2025-04-14 22:44:43,176 - httpx - INFO - HTTP Request: GET https://www.pararius.com/house-for-rent/rotterdam/ec468d00/johanna-van-duynstraat "HTTP/1.1 200 OK"
+2025-04-14 22:44:43,185 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/house-for-rent/rotterdam/ec468d00/johanna-van-duynstraat. Retrying with different approach.
+2025-04-14 22:44:48,597 - httpx - INFO - HTTP Request: GET https://www.pararius.com/house-for-rent/rotterdam/ec468d00/johanna-van-duynstraat "HTTP/1.1 200 OK"
+2025-04-14 22:44:48,996 - main - INFO - Scraper task cancelled

@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: dutch_realestate_scraper
+Version: 1.0.0
+Requires-Dist: httpx
+Requires-Dist: selectolax
+Requires-Dist: psycopg
+Requires-Dist: pgvector
+Requires-Dist: python-dotenv
+Dynamic: requires-dist

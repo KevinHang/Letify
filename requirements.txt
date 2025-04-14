@@ -1,0 +1,42 @@
+# HTTP client
+httpx>=0.24.0
+httpx-socks>=0.7.0  # For SOCKS proxy support
+
+# HTML parsing
+selectolax>=0.3.12
+beautifulsoup4>=4.11.1  # Alternative HTML parser for flexibility
+
+# Database
+psycopg>=3.1.9
+pgvector>=0.2.0
+
+# Environment variables
+python-dotenv>=1.0.0
+
+# Type hints
+typing-extensions>=4.5.0
+
+# Date handling
+python-dateutil>=2.8.2
+
+# Asynchronous support
+asyncio>=3.4.3
+aiohttp>=3.8.4  # Alternative async HTTP client
+
+# Utility libraries
+tenacity>=8.2.2  # For retries with exponential backoff
+pydantic>=1.10.7  # For data validation
+click>=8.1.3  # For CLI enhancements
+
+# Logging
+colorlog>=6.7.0  # For colored console logging
+
+# Optional - Development dependencies
+pytest>=7.3.1
+black>=23.3.0
+isort>=5.12.0
+flake8>=6.0.0
+brotli>=1.0.9
+httpx>=0.24.0
+httpx-socks>=0.7.0  # For SOCKS proxy support
+tenacity>=8.2.2

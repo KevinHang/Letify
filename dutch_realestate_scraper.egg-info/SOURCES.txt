@@ -1,0 +1,8 @@
+README.md
+setup.py
+dutch_realestate_scraper.egg-info/PKG-INFO
+dutch_realestate_scraper.egg-info/SOURCES.txt
+dutch_realestate_scraper.egg-info/dependency_links.txt
+dutch_realestate_scraper.egg-info/entry_points.txt
+dutch_realestate_scraper.egg-info/requires.txt
+dutch_realestate_scraper.egg-info/top_level.txt

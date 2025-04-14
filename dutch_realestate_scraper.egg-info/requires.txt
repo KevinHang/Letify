@@ -1,0 +1,5 @@
+httpx
+selectolax
+psycopg
+pgvector
+python-dotenv
