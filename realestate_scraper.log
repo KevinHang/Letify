@@ -651,3 +651,1412 @@
 2025-04-14 22:44:43,185 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/house-for-rent/rotterdam/ec468d00/johanna-van-duynstraat. Retrying with different approach.
 2025-04-14 22:44:48,597 - httpx - INFO - HTTP Request: GET https://www.pararius.com/house-for-rent/rotterdam/ec468d00/johanna-van-duynstraat "HTTP/1.1 200 OK"
 2025-04-14 22:44:48,996 - main - INFO - Scraper task cancelled
+2025-04-14 22:50:40,140 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-14 22:50:40.140213
+2025-04-14 22:50:40,143 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-14 22:50:40,162 - database.migrations - INFO - Database initialized successfully
+2025-04-14 22:50:40,168 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-14 22:50:40,168 - main - INFO - Starting new scan cycle...
+2025-04-14 22:50:40,171 - main - INFO - Scanning pararius for amsterdam...
+2025-04-14 22:50:41,929 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-14 22:50:41,946 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartments/amsterdam?filters[since]=1. Retrying with different approach.
+2025-04-14 22:50:48,373 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-14 22:50:48,388 - main - INFO - Found 30 listings for pararius in amsterdam
+2025-04-14 22:50:48,434 - main - INFO - Completed scan of pararius for amsterdam: 0 new, 30 total in 8.26s
+2025-04-14 22:50:48,435 - main - INFO - Scanning pararius for rotterdam...
+2025-04-14 22:50:49,807 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-14 22:50:49,816 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartments/rotterdam?filters[since]=1. Retrying with different approach.
+2025-04-14 22:50:56,156 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-14 22:50:56,168 - main - INFO - Found 32 listings for pararius in rotterdam
+2025-04-14 22:50:56,188 - main - INFO - Completed scan of pararius for rotterdam: 0 new, 32 total in 7.75s
+2025-04-14 22:50:56,188 - main - INFO - Scan complete: 0 new listings from 62 total processed
+2025-04-14 22:50:56,188 - main - INFO - Detecting potential duplicate listings...
+2025-04-14 22:50:56,201 - main - INFO - Found 0 potential duplicate pairs
+2025-04-14 22:50:56,201 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-14 22:53:31,151 - main - INFO - Scraper task cancelled
+2025-04-15 22:11:10,424 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-15 22:11:10.424013
+2025-04-15 22:11:10,425 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam']
+2025-04-15 22:11:10,534 - database.migrations - INFO - Database initialized successfully
+2025-04-15 22:11:10,541 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-15 22:11:10,541 - main - INFO - Starting new scan cycle...
+2025-04-15 22:11:10,550 - main - INFO - Scanning pararius for amsterdam...
+2025-04-15 22:11:12,785 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-15 22:11:12,799 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartments/amsterdam?filters[since]=1. Retrying with different approach.
+2025-04-15 22:11:16,307 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-15 22:11:16,338 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-15 22:11:16,464 - main - INFO - Completed scan of pararius for amsterdam: 0 new, 32 total in 5.91s
+2025-04-15 22:11:16,464 - main - INFO - Scan complete: 0 new listings from 32 total processed
+2025-04-15 22:11:16,464 - main - INFO - Detecting potential duplicate listings...
+2025-04-15 22:11:16,479 - main - INFO - Found 0 potential duplicate pairs
+2025-04-15 22:11:16,479 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-15 22:11:22,077 - main - INFO - Scraper task cancelled
+2025-04-15 22:11:42,515 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-15 22:11:42.515210
+2025-04-15 22:11:42,516 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam']
+2025-04-15 22:11:42,534 - database.migrations - INFO - Database initialized successfully
+2025-04-15 22:11:42,537 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-15 22:11:42,537 - main - INFO - Starting new scan cycle...
+2025-04-15 22:11:42,539 - main - INFO - Scanning pararius for amsterdam...
+2025-04-15 22:11:44,861 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-15 22:11:44,880 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartments/amsterdam?filters[since]=1. Retrying with different approach.
+2025-04-15 22:11:49,673 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-15 22:11:49,719 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-15 22:11:49,774 - main - INFO - Completed scan of pararius for amsterdam: 0 new, 32 total in 7.23s
+2025-04-15 22:11:49,774 - main - INFO - Scan complete: 0 new listings from 32 total processed
+2025-04-15 22:11:49,774 - main - INFO - Detecting potential duplicate listings...
+2025-04-15 22:11:49,781 - main - INFO - Found 0 potential duplicate pairs
+2025-04-15 22:11:49,781 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-15 22:24:27,874 - main - INFO - Scraper task cancelled
+2025-04-15 22:24:30,431 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-15 22:24:30.431694
+2025-04-15 22:24:30,433 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam']
+2025-04-15 22:24:30,452 - database.migrations - INFO - Database initialized successfully
+2025-04-15 22:24:30,455 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-15 22:24:30,455 - main - INFO - Starting new scan cycle...
+2025-04-15 22:24:30,458 - main - INFO - Scanning pararius for amsterdam...
+2025-04-15 22:24:31,755 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-15 22:24:31,773 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartments/amsterdam?filters[since]=1. Retrying with different approach.
+2025-04-15 22:24:37,931 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-15 22:24:37,952 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-15 22:24:37,984 - main - INFO - Added new listing: Flat Akbarstraat (pararius - €2,050 per month)
+2025-04-15 22:24:38,043 - main - INFO - Completed scan of pararius for amsterdam: 1 new, 32 total in 7.58s
+2025-04-15 22:24:38,043 - main - INFO - Scan complete: 1 new listings from 32 total processed
+2025-04-15 22:24:38,043 - main - INFO - Detecting potential duplicate listings...
+2025-04-15 22:24:38,047 - main - INFO - Found 0 potential duplicate pairs
+2025-04-15 22:24:38,047 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-15 22:25:39,671 - main - INFO - Scraper task cancelled
+2025-04-15 22:25:41,534 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-15 22:25:41.534816
+2025-04-15 22:25:41,535 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam']
+2025-04-15 22:25:41,551 - database.migrations - INFO - Database initialized successfully
+2025-04-15 22:25:41,556 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-15 22:25:41,557 - main - INFO - Starting new scan cycle...
+2025-04-15 22:25:41,559 - main - INFO - Scanning pararius for amsterdam...
+2025-04-15 22:25:43,399 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-15 22:25:43,419 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartments/amsterdam?filters[since]=1. Retrying with different approach.
+2025-04-15 22:25:48,915 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-15 22:25:48,927 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-15 22:25:48,982 - main - INFO - Completed scan of pararius for amsterdam: 0 new, 32 total in 7.42s
+2025-04-15 22:25:48,983 - main - INFO - Scan complete: 0 new listings from 32 total processed
+2025-04-15 22:25:48,983 - main - INFO - Detecting potential duplicate listings...
+2025-04-15 22:25:48,985 - main - INFO - Found 0 potential duplicate pairs
+2025-04-15 22:25:48,985 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-15 22:26:31,681 - main - INFO - Scraper task cancelled
+2025-04-15 22:26:33,818 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-15 22:26:33.818449
+2025-04-15 22:26:33,818 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam']
+2025-04-15 22:26:33,835 - database.migrations - INFO - Database initialized successfully
+2025-04-15 22:26:33,838 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-15 22:26:33,838 - main - INFO - Starting new scan cycle...
+2025-04-15 22:26:33,840 - main - INFO - Scanning pararius for amsterdam...
+2025-04-15 22:26:36,082 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-15 22:26:36,103 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartments/amsterdam?filters[since]=1. Retrying with different approach.
+2025-04-15 22:26:39,730 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-15 22:26:39,760 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-15 22:26:39,815 - main - INFO - Completed scan of pararius for amsterdam: 0 new, 32 total in 5.97s
+2025-04-15 22:26:39,815 - main - INFO - Scan complete: 0 new listings from 32 total processed
+2025-04-15 22:26:39,815 - main - INFO - Detecting potential duplicate listings...
+2025-04-15 22:26:39,817 - main - INFO - Found 0 potential duplicate pairs
+2025-04-15 22:26:39,818 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-15 22:37:00,449 - main - INFO - Scraper task cancelled
+2025-04-15 22:37:02,881 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-15 22:37:02.881365
+2025-04-15 22:37:02,881 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam']
+2025-04-15 22:37:02,899 - database.migrations - INFO - Database initialized successfully
+2025-04-15 22:37:02,904 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-15 22:37:02,904 - main - INFO - Starting new scan cycle...
+2025-04-15 22:37:02,907 - main - INFO - Scanning pararius for amsterdam...
+2025-04-15 22:37:04,857 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-15 22:37:04,873 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartments/amsterdam?filters[since]=1. Retrying with different approach.
+2025-04-15 22:37:09,714 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-15 22:37:09,731 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-15 22:37:09,763 - main - INFO - Added new listing: Flat Hoofdweg 442 H (pararius - €2,400 per month)
+2025-04-15 22:37:09,765 - main - INFO - Added new listing: Flat Akbarstraat (pararius - €2,050 per month)
+2025-04-15 22:37:09,766 - main - INFO - Added new listing: Flat Groenhoven (pararius - €1,500 per month)
+2025-04-15 22:37:09,767 - main - INFO - Added new listing: Flat Marcantilaan (pararius - €2,250 per month)
+2025-04-15 22:37:09,768 - main - INFO - Added new listing: Flat Goudsbloemstraat (pararius - €2,475 per month)
+2025-04-15 22:37:09,769 - main - INFO - Added new listing: Flat Pieter Jacobszstraat 12 D (pararius - €3,500 per month)
+2025-04-15 22:37:09,770 - main - INFO - Added new listing: Flat Memeleiland 48 (pararius - €2,600 per month)
+2025-04-15 22:37:09,771 - main - INFO - Added new listing: Flat Woestduinstraat (pararius - €3,250 per month)
+2025-04-15 22:37:09,771 - main - INFO - Added new listing: Flat Turnhoutplantsoen (pararius - €3,500 per month)
+2025-04-15 22:37:09,772 - main - INFO - Added new listing: Flat Patroclosstraat (pararius - €3,500 per month)
+2025-04-15 22:37:09,773 - main - INFO - Added new listing: Studio Zeeburgerpad (pararius - €2,175 per month)
+2025-04-15 22:37:09,773 - main - INFO - Added new listing: Flat Rapenburg 28 F (pararius - €2,100 per month)
+2025-04-15 22:37:09,774 - main - INFO - Added new listing: Flat Haparandaweg (pararius - €2,650 per month)
+2025-04-15 22:37:09,775 - main - INFO - Added new listing: Flat Singel (pararius - €2,950 per month)
+2025-04-15 22:37:09,776 - main - INFO - Added new listing: Flat Stadhouderskade 116 2 (pararius - €3,250 per month)
+2025-04-15 22:37:09,776 - main - INFO - Added new listing: Flat Tweede Bloemdwarsstraat (pararius - €3,950 per month)
+2025-04-15 22:37:09,777 - main - INFO - Added new listing: Flat Kaasjeskruidstraat (pararius - €1,980 per month)
+2025-04-15 22:37:09,778 - main - INFO - Added new listing: Flat Hasebroekstraat (pararius - €2,900 per month)
+2025-04-15 22:37:09,778 - main - INFO - Added new listing: Flat Rietwijkerstraat (pararius - €2,800 per month)
+2025-04-15 22:37:09,779 - main - INFO - Added new listing: Flat Van Breestraat (pararius - €4,000 per month)
+2025-04-15 22:37:09,779 - main - INFO - Added new listing: Flat Olympiaplein (pararius - €5,250 per month)
+2025-04-15 22:37:09,780 - main - INFO - Added new listing: Flat Roerstraat (pararius - €4,100 per month)
+2025-04-15 22:37:09,781 - main - INFO - Added new listing: Flat Bellamystraat 76 A (pararius - €2,950 per month)
+2025-04-15 22:37:09,781 - main - INFO - Added new listing: Flat Singel (pararius - €6,250 per month)
+2025-04-15 22:37:09,782 - main - INFO - Added new listing: Flat Potgieterstraat (pararius - €2,850 per month)
+2025-04-15 22:37:09,783 - main - INFO - Added new listing: Flat Julius Pergerstraat (pararius - €2,495 per month)
+2025-04-15 22:37:09,783 - main - INFO - Added new listing: Flat Linnaeusparkweg (pararius - €2,850 per month)
+2025-04-15 22:37:09,784 - main - INFO - Added new listing: Flat Oostenburgermiddenstraat 657 (pararius - €2,075 per month)
+2025-04-15 22:37:09,785 - main - INFO - Added new listing: Flat Nieuwpoortstraat 94 D 14 (pararius - €2,750 per month)
+2025-04-15 22:37:09,785 - main - INFO - Added new listing: Flat Klaas Katerstraat (pararius - €2,000 per month)
+2025-04-15 22:37:09,786 - main - INFO - Added new listing: Flat Paardenstraat (pararius - €2,750 per month)
+2025-04-15 22:37:09,787 - main - INFO - Completed scan of pararius for amsterdam: 31 new, 32 total in 6.88s
+2025-04-15 22:37:09,787 - main - INFO - Scan complete: 31 new listings from 32 total processed
+2025-04-15 22:37:09,788 - main - INFO - Detecting potential duplicate listings...
+2025-04-15 22:37:09,789 - main - INFO - Found 0 potential duplicate pairs
+2025-04-15 22:37:09,790 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-15 22:39:22,524 - main - INFO - Scraper task cancelled
+2025-04-15 22:39:24,675 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-15 22:39:24.675548
+2025-04-15 22:39:24,676 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam']
+2025-04-15 22:39:24,794 - database.migrations - INFO - Database initialized successfully
+2025-04-15 22:39:24,819 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-15 22:39:24,822 - main - INFO - Starting new scan cycle...
+2025-04-15 22:39:24,826 - main - INFO - Scanning pararius for amsterdam...
+2025-04-15 22:39:26,527 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-15 22:39:26,548 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartments/amsterdam?filters[since]=1. Retrying with different approach.
+2025-04-15 22:39:30,465 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-15 22:39:30,483 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-15 22:39:30,537 - main - INFO - Completed scan of pararius for amsterdam: 0 new, 32 total in 5.70s
+2025-04-15 22:39:30,537 - main - INFO - Scan complete: 0 new listings from 32 total processed
+2025-04-15 22:39:30,537 - main - INFO - Detecting potential duplicate listings...
+2025-04-15 22:39:30,539 - main - INFO - Found 0 potential duplicate pairs
+2025-04-15 22:39:30,539 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-15 22:39:41,135 - main - INFO - Scraper task cancelled
+2025-04-15 22:42:05,057 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-15 22:42:05.057336
+2025-04-15 22:42:05,059 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam']
+2025-04-15 22:42:05,077 - database.migrations - INFO - Database initialized successfully
+2025-04-15 22:42:05,081 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-15 22:42:05,081 - main - INFO - Starting new scan cycle...
+2025-04-15 22:42:05,084 - main - INFO - Scanning pararius for amsterdam...
+2025-04-15 22:42:06,684 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-15 22:42:06,709 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartments/amsterdam?filters[since]=1. Retrying with different approach.
+2025-04-15 22:42:12,632 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-15 22:42:12,668 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-15 22:42:12,708 - main - INFO - Added new listing: Flat Hoofdweg 442 H (pararius - €2,400 per month)
+2025-04-15 22:42:12,710 - main - INFO - Added new listing: Flat Akbarstraat (pararius - €2,050 per month)
+2025-04-15 22:42:12,711 - main - INFO - Added new listing: Flat Groenhoven (pararius - €1,500 per month)
+2025-04-15 22:42:12,713 - main - INFO - Added new listing: Flat Marcantilaan (pararius - €2,250 per month)
+2025-04-15 22:42:12,714 - main - INFO - Added new listing: Flat Goudsbloemstraat (pararius - €2,475 per month)
+2025-04-15 22:42:12,716 - main - INFO - Added new listing: Flat Pieter Jacobszstraat 12 D (pararius - €3,500 per month)
+2025-04-15 22:42:12,718 - main - INFO - Added new listing: Flat Memeleiland 48 (pararius - €2,600 per month)
+2025-04-15 22:42:12,719 - main - INFO - Added new listing: Flat Woestduinstraat (pararius - €3,250 per month)
+2025-04-15 22:42:12,720 - main - INFO - Added new listing: Flat Turnhoutplantsoen (pararius - €3,500 per month)
+2025-04-15 22:42:12,722 - main - INFO - Added new listing: Flat Patroclosstraat (pararius - €3,500 per month)
+2025-04-15 22:42:12,723 - main - INFO - Added new listing: Studio Zeeburgerpad (pararius - €2,175 per month)
+2025-04-15 22:42:12,723 - main - INFO - Added new listing: Flat Rapenburg 28 F (pararius - €2,100 per month)
+2025-04-15 22:42:12,724 - main - INFO - Added new listing: Flat Haparandaweg (pararius - €2,650 per month)
+2025-04-15 22:42:12,725 - main - INFO - Added new listing: Flat Singel (pararius - €2,950 per month)
+2025-04-15 22:42:12,726 - main - INFO - Added new listing: Flat Stadhouderskade 116 2 (pararius - €3,250 per month)
+2025-04-15 22:42:12,727 - main - INFO - Added new listing: Flat Tweede Bloemdwarsstraat (pararius - €3,950 per month)
+2025-04-15 22:42:12,728 - main - INFO - Added new listing: Flat Kaasjeskruidstraat (pararius - €1,980 per month)
+2025-04-15 22:42:12,729 - main - INFO - Added new listing: Flat Hasebroekstraat (pararius - €2,900 per month)
+2025-04-15 22:42:12,730 - main - INFO - Added new listing: Flat Rietwijkerstraat (pararius - €2,800 per month)
+2025-04-15 22:42:12,731 - main - INFO - Added new listing: Flat Van Breestraat (pararius - €4,000 per month)
+2025-04-15 22:42:12,731 - main - INFO - Added new listing: Flat Olympiaplein (pararius - €5,250 per month)
+2025-04-15 22:42:12,732 - main - INFO - Added new listing: Flat Roerstraat (pararius - €4,100 per month)
+2025-04-15 22:42:12,733 - main - INFO - Added new listing: Flat Bellamystraat 76 A (pararius - €2,950 per month)
+2025-04-15 22:42:12,733 - main - INFO - Added new listing: Flat Singel (pararius - €6,250 per month)
+2025-04-15 22:42:12,734 - main - INFO - Added new listing: Flat Potgieterstraat (pararius - €2,850 per month)
+2025-04-15 22:42:12,735 - main - INFO - Added new listing: Flat Julius Pergerstraat (pararius - €2,495 per month)
+2025-04-15 22:42:12,735 - main - INFO - Added new listing: Flat Linnaeusparkweg (pararius - €2,850 per month)
+2025-04-15 22:42:12,736 - main - INFO - Added new listing: Flat Oostenburgermiddenstraat 657 (pararius - €2,075 per month)
+2025-04-15 22:42:12,737 - main - INFO - Added new listing: Flat Nieuwpoortstraat 94 D 14 (pararius - €2,750 per month)
+2025-04-15 22:42:12,738 - main - INFO - Added new listing: Flat Klaas Katerstraat (pararius - €2,000 per month)
+2025-04-15 22:42:12,739 - main - INFO - Added new listing: Flat Paardenstraat (pararius - €2,750 per month)
+2025-04-15 22:42:12,740 - main - INFO - Added new listing: Flat Daniël Stalpertstraat (pararius - €3,650 per month)
+2025-04-15 22:42:12,740 - main - INFO - Completed scan of pararius for amsterdam: 32 new, 32 total in 7.66s
+2025-04-15 22:42:12,741 - main - INFO - Scan complete: 32 new listings from 32 total processed
+2025-04-15 22:42:12,741 - main - INFO - Detecting potential duplicate listings...
+2025-04-15 22:42:12,750 - main - INFO - Found 0 potential duplicate pairs
+2025-04-15 22:42:12,750 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-15 22:42:17,498 - main - INFO - Scraper task cancelled
+2025-04-15 22:44:48,301 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-15 22:44:48.301486
+2025-04-15 22:44:48,303 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam']
+2025-04-15 22:44:48,321 - database.migrations - INFO - Database initialized successfully
+2025-04-15 22:44:48,326 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-15 22:44:48,326 - main - INFO - Starting new scan cycle...
+2025-04-15 22:44:48,328 - main - INFO - Scanning pararius for amsterdam...
+2025-04-15 22:44:50,674 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-15 22:44:50,684 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartments/amsterdam?filters[since]=1. Retrying with different approach.
+2025-04-15 22:44:57,022 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-15 22:44:57,038 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-15 22:44:57,070 - main - INFO - Added new listing: Flat Akbarstraat (pararius - €2,050 per month)
+2025-04-15 22:44:57,071 - main - INFO - Added new listing: Flat Hoofdweg 442 H (pararius - €2,400 per month)
+2025-04-15 22:44:57,072 - main - INFO - Added new listing: Flat Groenhoven (pararius - €1,500 per month)
+2025-04-15 22:44:57,072 - main - INFO - Added new listing: Flat Marcantilaan (pararius - €2,250 per month)
+2025-04-15 22:44:57,073 - main - INFO - Added new listing: Flat Goudsbloemstraat (pararius - €2,475 per month)
+2025-04-15 22:44:57,074 - main - INFO - Added new listing: Flat Pieter Jacobszstraat 12 D (pararius - €3,500 per month)
+2025-04-15 22:44:57,075 - main - INFO - Added new listing: Flat Memeleiland 48 (pararius - €2,600 per month)
+2025-04-15 22:44:57,075 - main - INFO - Added new listing: Flat Woestduinstraat (pararius - €3,250 per month)
+2025-04-15 22:44:57,076 - main - INFO - Added new listing: Flat Turnhoutplantsoen (pararius - €3,500 per month)
+2025-04-15 22:44:57,076 - main - INFO - Added new listing: Flat Patroclosstraat (pararius - €3,500 per month)
+2025-04-15 22:44:57,077 - main - INFO - Added new listing: Studio Zeeburgerpad (pararius - €2,175 per month)
+2025-04-15 22:44:57,078 - main - INFO - Added new listing: Flat Rapenburg 28 F (pararius - €2,100 per month)
+2025-04-15 22:44:57,079 - main - INFO - Added new listing: Flat Haparandaweg (pararius - €2,650 per month)
+2025-04-15 22:44:57,079 - main - INFO - Added new listing: Flat Singel (pararius - €2,950 per month)
+2025-04-15 22:44:57,080 - main - INFO - Added new listing: Flat Stadhouderskade 116 2 (pararius - €3,250 per month)
+2025-04-15 22:44:57,081 - main - INFO - Added new listing: Flat Tweede Bloemdwarsstraat (pararius - €3,950 per month)
+2025-04-15 22:44:57,082 - main - INFO - Added new listing: Flat Kaasjeskruidstraat (pararius - €1,980 per month)
+2025-04-15 22:44:57,082 - main - INFO - Added new listing: Flat Hasebroekstraat (pararius - €2,900 per month)
+2025-04-15 22:44:57,083 - main - INFO - Added new listing: Flat Rietwijkerstraat (pararius - €2,800 per month)
+2025-04-15 22:44:57,084 - main - INFO - Added new listing: Flat Van Breestraat (pararius - €4,000 per month)
+2025-04-15 22:44:57,084 - main - INFO - Added new listing: Flat Olympiaplein (pararius - €5,250 per month)
+2025-04-15 22:44:57,085 - main - INFO - Added new listing: Flat Roerstraat (pararius - €4,100 per month)
+2025-04-15 22:44:57,085 - main - INFO - Added new listing: Flat Bellamystraat 76 A (pararius - €2,950 per month)
+2025-04-15 22:44:57,086 - main - INFO - Added new listing: Flat Singel (pararius - €6,250 per month)
+2025-04-15 22:44:57,086 - main - INFO - Added new listing: Flat Potgieterstraat (pararius - €2,850 per month)
+2025-04-15 22:44:57,087 - main - INFO - Added new listing: Flat Julius Pergerstraat (pararius - €2,495 per month)
+2025-04-15 22:44:57,088 - main - INFO - Added new listing: Flat Linnaeusparkweg (pararius - €2,850 per month)
+2025-04-15 22:44:57,088 - main - INFO - Added new listing: Flat Oostenburgermiddenstraat 657 (pararius - €2,075 per month)
+2025-04-15 22:44:57,089 - main - INFO - Added new listing: Flat Nieuwpoortstraat 94 D 14 (pararius - €2,750 per month)
+2025-04-15 22:44:57,090 - main - INFO - Added new listing: Flat Klaas Katerstraat (pararius - €2,000 per month)
+2025-04-15 22:44:57,090 - main - INFO - Added new listing: Flat Paardenstraat (pararius - €2,750 per month)
+2025-04-15 22:44:57,091 - main - INFO - Added new listing: Flat Daniël Stalpertstraat (pararius - €3,650 per month)
+2025-04-15 22:44:57,092 - main - INFO - Completed scan of pararius for amsterdam: 32 new, 32 total in 8.76s
+2025-04-15 22:44:57,092 - main - INFO - Scan complete: 32 new listings from 32 total processed
+2025-04-15 22:44:57,092 - main - INFO - Detecting potential duplicate listings...
+2025-04-15 22:44:57,099 - main - INFO - Found 0 potential duplicate pairs
+2025-04-15 22:44:57,099 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-15 22:45:08,358 - main - INFO - Scraper task cancelled
+2025-04-15 22:47:10,850 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-15 22:47:10.850929
+2025-04-15 22:47:10,853 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam']
+2025-04-15 22:47:10,873 - database.migrations - INFO - Database initialized successfully
+2025-04-15 22:47:10,881 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-15 22:47:10,881 - main - INFO - Starting new scan cycle...
+2025-04-15 22:47:10,883 - main - INFO - Scanning pararius for amsterdam...
+2025-04-15 22:47:11,925 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-15 22:47:11,944 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartments/amsterdam?filters[since]=1. Retrying with different approach.
+2025-04-15 22:47:16,526 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-15 22:47:16,549 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-15 22:47:16,576 - main - INFO - Added new listing: Flat Akbarstraat (pararius - €2,050 per month)
+2025-04-15 22:47:16,577 - main - INFO - Added new listing: Flat Hoofdweg 442 H (pararius - €2,400 per month)
+2025-04-15 22:47:16,578 - main - INFO - Added new listing: Flat Groenhoven (pararius - €1,500 per month)
+2025-04-15 22:47:16,579 - main - INFO - Added new listing: Flat Marcantilaan (pararius - €2,250 per month)
+2025-04-15 22:47:16,580 - main - INFO - Added new listing: Flat Goudsbloemstraat (pararius - €2,475 per month)
+2025-04-15 22:47:16,581 - main - INFO - Added new listing: Flat Pieter Jacobszstraat 12 D (pararius - €3,500 per month)
+2025-04-15 22:47:16,581 - main - INFO - Added new listing: Flat Memeleiland 48 (pararius - €2,600 per month)
+2025-04-15 22:47:16,582 - main - INFO - Added new listing: Flat Woestduinstraat (pararius - €3,250 per month)
+2025-04-15 22:47:16,583 - main - INFO - Added new listing: Flat Turnhoutplantsoen (pararius - €3,500 per month)
+2025-04-15 22:47:16,584 - main - INFO - Added new listing: Flat Patroclosstraat (pararius - €3,500 per month)
+2025-04-15 22:47:16,584 - main - INFO - Added new listing: Studio Zeeburgerpad (pararius - €2,175 per month)
+2025-04-15 22:47:16,585 - main - INFO - Added new listing: Flat Rapenburg 28 F (pararius - €2,100 per month)
+2025-04-15 22:47:16,586 - main - INFO - Added new listing: Flat Haparandaweg (pararius - €2,650 per month)
+2025-04-15 22:47:16,586 - main - INFO - Added new listing: Flat Singel (pararius - €2,950 per month)
+2025-04-15 22:47:16,587 - main - INFO - Added new listing: Flat Stadhouderskade 116 2 (pararius - €3,250 per month)
+2025-04-15 22:47:16,587 - main - INFO - Added new listing: Flat Tweede Bloemdwarsstraat (pararius - €3,950 per month)
+2025-04-15 22:47:16,588 - main - INFO - Added new listing: Flat Kaasjeskruidstraat (pararius - €1,980 per month)
+2025-04-15 22:47:16,588 - main - INFO - Added new listing: Flat Hasebroekstraat (pararius - €2,900 per month)
+2025-04-15 22:47:16,589 - main - INFO - Added new listing: Flat Rietwijkerstraat (pararius - €2,800 per month)
+2025-04-15 22:47:16,590 - main - INFO - Added new listing: Flat Van Breestraat (pararius - €4,000 per month)
+2025-04-15 22:47:16,590 - main - INFO - Added new listing: Flat Olympiaplein (pararius - €5,250 per month)
+2025-04-15 22:47:16,591 - main - INFO - Added new listing: Flat Roerstraat (pararius - €4,100 per month)
+2025-04-15 22:47:16,591 - main - INFO - Added new listing: Flat Bellamystraat 76 A (pararius - €2,950 per month)
+2025-04-15 22:47:16,592 - main - INFO - Added new listing: Flat Singel (pararius - €6,250 per month)
+2025-04-15 22:47:16,593 - main - INFO - Added new listing: Flat Potgieterstraat (pararius - €2,850 per month)
+2025-04-15 22:47:16,594 - main - INFO - Added new listing: Flat Julius Pergerstraat (pararius - €2,495 per month)
+2025-04-15 22:47:16,594 - main - INFO - Added new listing: Flat Linnaeusparkweg (pararius - €2,850 per month)
+2025-04-15 22:47:16,595 - main - INFO - Added new listing: Flat Oostenburgermiddenstraat 657 (pararius - €2,075 per month)
+2025-04-15 22:47:16,596 - main - INFO - Added new listing: Flat Nieuwpoortstraat 94 D 14 (pararius - €2,750 per month)
+2025-04-15 22:47:16,596 - main - INFO - Added new listing: Flat Klaas Katerstraat (pararius - €2,000 per month)
+2025-04-15 22:47:16,597 - main - INFO - Added new listing: Flat Paardenstraat (pararius - €2,750 per month)
+2025-04-15 22:47:16,598 - main - INFO - Added new listing: Flat Daniël Stalpertstraat (pararius - €3,650 per month)
+2025-04-15 22:47:16,599 - main - INFO - Completed scan of pararius for amsterdam: 32 new, 32 total in 5.71s
+2025-04-15 22:47:16,599 - main - INFO - Scan complete: 32 new listings from 32 total processed
+2025-04-15 22:47:16,599 - main - INFO - Detecting potential duplicate listings...
+2025-04-15 22:47:16,609 - main - INFO - Found 0 potential duplicate pairs
+2025-04-15 22:47:16,609 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-15 22:47:34,540 - main - INFO - Scraper task cancelled
+2025-04-15 22:52:26,472 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-15 22:52:26.472579
+2025-04-15 22:52:26,474 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam']
+2025-04-15 22:52:26,494 - database.migrations - INFO - Database initialized successfully
+2025-04-15 22:52:26,501 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-15 22:52:26,501 - main - INFO - Starting new scan cycle...
+2025-04-15 22:52:26,503 - main - INFO - Scanning pararius for amsterdam...
+2025-04-15 22:52:27,589 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-15 22:52:27,609 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartments/amsterdam?filters[since]=1. Retrying with different approach.
+2025-04-15 22:52:31,472 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-15 22:52:31,483 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-15 22:52:31,523 - main - INFO - Added new listing: Flat Hoofdweg 442 H (pararius - €2,400 per month)
+2025-04-15 22:52:31,524 - main - INFO - Added new listing: Flat Akbarstraat (pararius - €2,050 per month)
+2025-04-15 22:52:31,525 - main - INFO - Added new listing: Flat Groenhoven (pararius - €1,500 per month)
+2025-04-15 22:52:31,526 - main - INFO - Added new listing: Flat Marcantilaan (pararius - €2,250 per month)
+2025-04-15 22:52:31,527 - main - INFO - Added new listing: Flat Goudsbloemstraat (pararius - €2,475 per month)
+2025-04-15 22:52:31,529 - main - INFO - Added new listing: Flat Pieter Jacobszstraat 12 D (pararius - €3,500 per month)
+2025-04-15 22:52:31,529 - main - INFO - Added new listing: Flat Memeleiland 48 (pararius - €2,600 per month)
+2025-04-15 22:52:31,531 - main - INFO - Added new listing: Flat Woestduinstraat (pararius - €3,250 per month)
+2025-04-15 22:52:31,531 - main - INFO - Added new listing: Flat Turnhoutplantsoen (pararius - €3,500 per month)
+2025-04-15 22:52:31,532 - main - INFO - Added new listing: Flat Patroclosstraat (pararius - €3,500 per month)
+2025-04-15 22:52:31,534 - main - INFO - Added new listing: Studio Zeeburgerpad (pararius - €2,175 per month)
+2025-04-15 22:52:31,534 - main - INFO - Added new listing: Flat Rapenburg 28 F (pararius - €2,100 per month)
+2025-04-15 22:52:31,535 - main - INFO - Added new listing: Flat Haparandaweg (pararius - €2,650 per month)
+2025-04-15 22:52:31,536 - main - INFO - Added new listing: Flat Singel (pararius - €2,950 per month)
+2025-04-15 22:52:31,537 - main - INFO - Added new listing: Flat Stadhouderskade 116 2 (pararius - €3,250 per month)
+2025-04-15 22:52:31,538 - main - INFO - Added new listing: Flat Tweede Bloemdwarsstraat (pararius - €3,950 per month)
+2025-04-15 22:52:31,539 - main - INFO - Added new listing: Flat Kaasjeskruidstraat (pararius - €1,980 per month)
+2025-04-15 22:52:31,540 - main - INFO - Added new listing: Flat Hasebroekstraat (pararius - €2,900 per month)
+2025-04-15 22:52:31,541 - main - INFO - Added new listing: Flat Rietwijkerstraat (pararius - €2,800 per month)
+2025-04-15 22:52:31,542 - main - INFO - Added new listing: Flat Van Breestraat (pararius - €4,000 per month)
+2025-04-15 22:52:31,543 - main - INFO - Added new listing: Flat Olympiaplein (pararius - €5,250 per month)
+2025-04-15 22:52:31,543 - main - INFO - Added new listing: Flat Roerstraat (pararius - €4,100 per month)
+2025-04-15 22:52:31,544 - main - INFO - Added new listing: Flat Bellamystraat 76 A (pararius - €2,950 per month)
+2025-04-15 22:52:31,545 - main - INFO - Added new listing: Flat Singel (pararius - €6,250 per month)
+2025-04-15 22:52:31,546 - main - INFO - Added new listing: Flat Potgieterstraat (pararius - €2,850 per month)
+2025-04-15 22:52:31,547 - main - INFO - Added new listing: Flat Julius Pergerstraat (pararius - €2,495 per month)
+2025-04-15 22:52:31,548 - main - INFO - Added new listing: Flat Linnaeusparkweg (pararius - €2,850 per month)
+2025-04-15 22:52:31,548 - main - INFO - Added new listing: Flat Oostenburgermiddenstraat 657 (pararius - €2,075 per month)
+2025-04-15 22:52:31,549 - main - INFO - Added new listing: Flat Nieuwpoortstraat 94 D 14 (pararius - €2,750 per month)
+2025-04-15 22:52:31,550 - main - INFO - Added new listing: Flat Klaas Katerstraat (pararius - €2,000 per month)
+2025-04-15 22:52:31,551 - main - INFO - Added new listing: Flat Paardenstraat (pararius - €2,750 per month)
+2025-04-15 22:52:31,552 - main - INFO - Added new listing: Flat Daniël Stalpertstraat (pararius - €3,650 per month)
+2025-04-15 22:52:31,553 - main - INFO - Completed scan of pararius for amsterdam: 32 new, 32 total in 5.05s
+2025-04-15 22:52:31,553 - main - INFO - Scan complete: 32 new listings from 32 total processed
+2025-04-15 22:52:31,553 - main - INFO - Detecting potential duplicate listings...
+2025-04-15 22:52:31,564 - main - INFO - Found 0 potential duplicate pairs
+2025-04-15 22:52:31,564 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-16 13:12:52,085 - main - INFO - Starting new scan cycle...
+2025-04-16 13:12:52,116 - main - INFO - Scanning pararius for amsterdam...
+2025-04-16 13:12:54,043 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-16 13:12:54,063 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartments/amsterdam?filters[since]=1. Retrying with different approach.
+2025-04-16 13:13:00,191 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-16 13:13:00,232 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-16 13:13:00,240 - main - INFO - Added new listing: Flat Hendrik Jacobszstraat (pararius - €2,950 per month)
+2025-04-16 13:13:00,246 - main - INFO - Added new listing: Flat Ben van Meerendonkstraat (pararius - €2,350 per month)
+2025-04-16 13:13:00,247 - main - INFO - Added new listing: Flat Albert Cuypstraat (pararius - €3,250 per month)
+2025-04-16 13:13:00,249 - main - INFO - Added new listing: Flat Loosduinenstraat (pararius - €3,500 per month)
+2025-04-16 13:13:00,250 - main - INFO - Added new listing: Flat Schierstins (pararius - €2,350 per month)
+2025-04-16 13:13:00,252 - main - INFO - Added new listing: Flat Haarlemmermeerstraat (pararius - €3,500 per month)
+2025-04-16 13:13:00,253 - main - INFO - Added new listing: Flat Westerstraat 121 1 (pararius - €2,000 per month)
+2025-04-16 13:13:00,282 - main - INFO - Completed scan of pararius for amsterdam: 7 new, 32 total in 8.16s
+2025-04-16 13:13:00,282 - main - INFO - Scan complete: 7 new listings from 32 total processed
+2025-04-16 13:13:00,282 - main - INFO - Detecting potential duplicate listings...
+2025-04-16 13:13:00,286 - main - INFO - Found 0 potential duplicate pairs
+2025-04-16 13:13:00,286 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-16 16:34:07,726 - main - INFO - Starting new scan cycle...
+2025-04-16 16:34:07,744 - main - INFO - Scanning pararius for amsterdam...
+2025-04-16 16:34:10,015 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-16 16:34:10,024 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartments/amsterdam?filters[since]=1. Retrying with different approach.
+2025-04-16 16:34:14,179 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-16 16:34:14,197 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-16 16:34:14,213 - main - INFO - Added new listing: Flat Amstel (pararius - €2,950 per month)
+2025-04-16 16:34:14,216 - main - INFO - Added new listing: Flat Solitudolaan (pararius - €6,000 per month)
+2025-04-16 16:34:14,219 - main - INFO - Added new listing: Flat Kanaalstraat 30 3 (pararius - €4,500 per month)
+2025-04-16 16:34:14,219 - main - INFO - Added new listing: Flat Huidenstraat (pararius - €2,850 per month)
+2025-04-16 16:34:14,220 - main - INFO - Added new listing: Flat Swammerdamstraat (pararius - €3,850 per month)
+2025-04-16 16:34:14,221 - main - INFO - Added new listing: Flat De Lairessestraat 172 K (pararius - €4,950 per month)
+2025-04-16 16:34:14,221 - main - INFO - Added new listing: Flat Henegouwenstraat (pararius - €2,250 per month)
+2025-04-16 16:34:14,222 - main - INFO - Added new listing: Flat Slingerbeekstraat (pararius - €2,250 per month)
+2025-04-16 16:34:14,223 - main - INFO - Added new listing: Flat Achtergracht (pararius - €3,000 per month)
+2025-04-16 16:34:14,223 - main - INFO - Added new listing: Flat Hondecoeterstraat (pararius - €4,500 per month)
+2025-04-16 16:34:14,238 - main - INFO - Completed scan of pararius for amsterdam: 10 new, 32 total in 6.49s
+2025-04-16 16:34:14,238 - main - INFO - Scan complete: 10 new listings from 32 total processed
+2025-04-16 16:34:14,238 - main - INFO - Detecting potential duplicate listings...
+2025-04-16 16:34:14,240 - main - INFO - Found 0 potential duplicate pairs
+2025-04-16 16:34:14,240 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 07:27:08,837 - main - INFO - Starting new scan cycle...
+2025-04-17 07:27:08,873 - main - INFO - Scanning pararius for amsterdam...
+2025-04-17 07:27:10,850 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 07:27:10,859 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartments/amsterdam?filters[since]=1. Retrying with different approach.
+2025-04-17 07:27:17,334 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 07:27:17,350 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-17 07:27:17,365 - main - INFO - Added new listing: Flat Leidsekruisstraat (pararius - €2,500 per month)
+2025-04-17 07:27:17,366 - main - INFO - Added new listing: Flat Sportstraat 74 1 (pararius - €1,990 per month)
+2025-04-17 07:27:17,367 - main - INFO - Added new listing: Flat Ariana Nozemanstraat (pararius - Price on request)
+2025-04-17 07:27:17,369 - main - INFO - Added new listing: Flat Maasstraat (pararius - €2,350 per month)
+2025-04-17 07:27:17,370 - main - INFO - Added new listing: Flat Danie Theronstraat (pararius - €2,600 per month)
+2025-04-17 07:27:17,371 - main - INFO - Added new listing: Flat Zeeburgerkade (pararius - €2,400 per month)
+2025-04-17 07:27:17,372 - main - INFO - Added new listing: Flat Sarphatipark (pararius - €3,250 per month)
+2025-04-17 07:27:17,373 - main - INFO - Added new listing: Flat Sarphatipark (pararius - €5,950 per month)
+2025-04-17 07:27:17,374 - main - INFO - Added new listing: Flat Lumeijstraat (pararius - €2,625 per month)
+2025-04-17 07:27:17,390 - main - INFO - Completed scan of pararius for amsterdam: 9 new, 32 total in 8.52s
+2025-04-17 07:27:17,390 - main - INFO - Scan complete: 9 new listings from 32 total processed
+2025-04-17 07:27:17,390 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 07:27:17,393 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 07:27:17,393 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 14:23:00,496 - main - INFO - Scraper task cancelled
+2025-04-17 14:23:25,992 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 14:23:25.992422
+2025-04-17 14:23:25,994 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam']
+2025-04-17 14:23:26,029 - database.migrations - INFO - Database initialized successfully
+2025-04-17 14:23:26,032 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 14:23:26,032 - main - INFO - Starting new scan cycle...
+2025-04-17 14:23:26,035 - main - INFO - Scanning pararius for amsterdam...
+2025-04-17 14:23:29,221 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 14:23:29,240 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartments/amsterdam?filters[since]=1. Retrying with different approach.
+2025-04-17 14:23:33,733 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 14:23:33,762 - main - INFO - Found 31 listings for pararius in amsterdam
+2025-04-17 14:23:33,801 - main - INFO - Added new listing: Flat Akbarstraat (pararius - €2,050 per month)
+2025-04-17 14:23:33,802 - main - INFO - Added new listing: Flat Ariana Nozemanstraat (pararius - €3,400 per month)
+2025-04-17 14:23:33,803 - main - INFO - Added new listing: Flat Spuistraat (pararius - €2,650 per month)
+2025-04-17 14:23:33,804 - main - INFO - Added new listing: Flat Eemsstraat (pararius - €2,650 per month)
+2025-04-17 14:23:33,805 - main - INFO - Added new listing: Flat Pantograafstraat 44 (pararius - €1,749 per month)
+2025-04-17 14:23:33,806 - main - INFO - Added new listing: Flat Stadhouderskade (pararius - €4,500 per month)
+2025-04-17 14:23:33,807 - main - INFO - Added new listing: Flat Mary van der Sluisstraat 180 (pararius - €1,677 per month)
+2025-04-17 14:23:33,808 - main - INFO - Added new listing: Flat Eef Kamerbeekstraat 100 (pararius - €1,548 per month)
+2025-04-17 14:23:33,808 - main - INFO - Added new listing: Flat Elzenhagensingel 407 (pararius - €1,708 per month)
+2025-04-17 14:23:33,809 - main - INFO - Added new listing: Flat Lutonhof (pararius - €2,750 per month)
+2025-04-17 14:23:33,809 - main - INFO - Added new listing: Flat Elckerlijcstraat (pararius - €3,250 per month)
+2025-04-17 14:23:33,810 - main - INFO - Added new listing: Flat Roerstraat (pararius - €5,500 per month)
+2025-04-17 14:23:33,811 - main - INFO - Added new listing: Flat Gustav Mahlerlaan 875 (pararius - €2,485 per month)
+2025-04-17 14:23:33,812 - main - INFO - Added new listing: Flat Gustav Mahlerlaan 857 (pararius - €2,400 per month)
+2025-04-17 14:23:33,813 - main - INFO - Added new listing: Flat Sam van Houtenstraat (pararius - €2,899 per month)
+2025-04-17 14:23:33,814 - main - INFO - Added new listing: Flat Eerste Constantijn Huygensstraat (pararius - €4,000 per month)
+2025-04-17 14:23:33,814 - main - INFO - Added new listing: Flat Gustav Mahlerlaan (pararius - €3,750 per month)
+2025-04-17 14:23:33,815 - main - INFO - Added new listing: House Henriëtte Bosmansstraat 44 (pararius - €8,000 per month)
+2025-04-17 14:23:33,815 - main - INFO - Added new listing: Flat Leidsekruisstraat (pararius - €2,500 per month)
+2025-04-17 14:23:33,816 - main - INFO - Added new listing: Flat Sportstraat 74 1 (pararius - €1,990 per month)
+2025-04-17 14:23:33,816 - main - INFO - Added new listing: Flat Ariana Nozemanstraat (pararius - €3,300 per month)
+2025-04-17 14:23:33,817 - main - INFO - Added new listing: Flat Maasstraat (pararius - €2,350 per month)
+2025-04-17 14:23:33,818 - main - INFO - Added new listing: Flat Danie Theronstraat (pararius - €2,600 per month)
+2025-04-17 14:23:33,818 - main - INFO - Added new listing: Flat Zeeburgerkade (pararius - €2,400 per month)
+2025-04-17 14:23:33,819 - main - INFO - Added new listing: Flat Sarphatipark (pararius - €3,250 per month)
+2025-04-17 14:23:33,819 - main - INFO - Added new listing: Flat Sarphatipark (pararius - €5,950 per month)
+2025-04-17 14:23:33,820 - main - INFO - Added new listing: Flat Lumeijstraat (pararius - €2,625 per month)
+2025-04-17 14:23:33,821 - main - INFO - Added new listing: Flat Solitudolaan (pararius - €6,000 per month)
+2025-04-17 14:23:33,822 - main - INFO - Added new listing: Flat Kanaalstraat 30 3 (pararius - €4,500 per month)
+2025-04-17 14:23:33,822 - main - INFO - Added new listing: Flat Huidenstraat (pararius - €2,850 per month)
+2025-04-17 14:23:33,823 - main - INFO - Added new listing: Flat Swammerdamstraat (pararius - €3,850 per month)
+2025-04-17 14:23:33,823 - main - INFO - Completed scan of pararius for amsterdam: 31 new, 31 total in 7.79s
+2025-04-17 14:23:33,824 - main - INFO - Scan complete: 31 new listings from 31 total processed
+2025-04-17 14:23:33,824 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 14:23:33,836 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 14:23:33,836 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 14:23:43,336 - main - INFO - Scraper task cancelled
+2025-04-17 14:28:20,776 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 14:28:20.776712
+2025-04-17 14:28:20,779 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam']
+2025-04-17 14:28:20,796 - database.migrations - INFO - Database initialized successfully
+2025-04-17 14:28:20,800 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 14:28:20,800 - main - INFO - Starting new scan cycle...
+2025-04-17 14:28:20,804 - main - INFO - Scanning pararius for amsterdam...
+2025-04-17 14:28:21,919 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 14:28:21,950 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartments/amsterdam?filters[since]=1. Retrying with different approach.
+2025-04-17 14:28:27,953 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 14:28:27,975 - main - INFO - Found 31 listings for pararius in amsterdam
+2025-04-17 14:28:28,013 - main - INFO - Added new listing: Flat Akbarstraat (pararius - €2,050 per month)
+2025-04-17 14:28:28,014 - main - INFO - Added new listing: Flat Ariana Nozemanstraat (pararius - €3,400 per month)
+2025-04-17 14:28:28,014 - main - INFO - Added new listing: Flat Spuistraat (pararius - €2,650 per month)
+2025-04-17 14:28:28,015 - main - INFO - Added new listing: Flat Eemsstraat (pararius - €2,650 per month)
+2025-04-17 14:28:28,016 - main - INFO - Added new listing: Flat Pantograafstraat 44 (pararius - €1,749 per month)
+2025-04-17 14:28:28,017 - main - INFO - Added new listing: Flat Stadhouderskade (pararius - €4,500 per month)
+2025-04-17 14:28:28,017 - main - INFO - Added new listing: Flat Mary van der Sluisstraat 180 (pararius - €1,677 per month)
+2025-04-17 14:28:28,018 - main - INFO - Added new listing: Flat Eef Kamerbeekstraat 100 (pararius - €1,548 per month)
+2025-04-17 14:28:28,019 - main - INFO - Added new listing: Flat Elzenhagensingel 407 (pararius - €1,708 per month)
+2025-04-17 14:28:28,019 - main - INFO - Added new listing: Flat Lutonhof (pararius - €2,750 per month)
+2025-04-17 14:28:28,020 - main - INFO - Added new listing: Flat Elckerlijcstraat (pararius - €3,250 per month)
+2025-04-17 14:28:28,021 - main - INFO - Added new listing: Flat Roerstraat (pararius - €5,500 per month)
+2025-04-17 14:28:28,022 - main - INFO - Added new listing: Flat Gustav Mahlerlaan 875 (pararius - €2,485 per month)
+2025-04-17 14:28:28,022 - main - INFO - Added new listing: Flat Gustav Mahlerlaan 857 (pararius - €2,400 per month)
+2025-04-17 14:28:28,023 - main - INFO - Added new listing: Flat Sam van Houtenstraat (pararius - €2,899 per month)
+2025-04-17 14:28:28,024 - main - INFO - Added new listing: Flat Eerste Constantijn Huygensstraat (pararius - €4,000 per month)
+2025-04-17 14:28:28,024 - main - INFO - Added new listing: Flat Gustav Mahlerlaan (pararius - €3,750 per month)
+2025-04-17 14:28:28,025 - main - INFO - Added new listing: House Henriëtte Bosmansstraat 44 (pararius - €8,000 per month)
+2025-04-17 14:28:28,026 - main - INFO - Added new listing: Flat Leidsekruisstraat (pararius - €2,500 per month)
+2025-04-17 14:28:28,026 - main - INFO - Added new listing: Flat Sportstraat 74 1 (pararius - €1,990 per month)
+2025-04-17 14:28:28,027 - main - INFO - Added new listing: Flat Ariana Nozemanstraat (pararius - €3,300 per month)
+2025-04-17 14:28:28,027 - main - INFO - Added new listing: Flat Maasstraat (pararius - €2,350 per month)
+2025-04-17 14:28:28,028 - main - INFO - Added new listing: Flat Danie Theronstraat (pararius - €2,600 per month)
+2025-04-17 14:28:28,028 - main - INFO - Added new listing: Flat Zeeburgerkade (pararius - €2,400 per month)
+2025-04-17 14:28:28,029 - main - INFO - Added new listing: Flat Sarphatipark (pararius - €3,250 per month)
+2025-04-17 14:28:28,030 - main - INFO - Added new listing: Flat Sarphatipark (pararius - €5,950 per month)
+2025-04-17 14:28:28,031 - main - INFO - Added new listing: Flat Lumeijstraat (pararius - €2,625 per month)
+2025-04-17 14:28:28,031 - main - INFO - Added new listing: Flat Solitudolaan (pararius - €6,000 per month)
+2025-04-17 14:28:28,032 - main - INFO - Added new listing: Flat Kanaalstraat 30 3 (pararius - €4,500 per month)
+2025-04-17 14:28:28,032 - main - INFO - Added new listing: Flat Huidenstraat (pararius - €2,850 per month)
+2025-04-17 14:28:28,033 - main - INFO - Added new listing: Flat Swammerdamstraat (pararius - €3,850 per month)
+2025-04-17 14:28:28,033 - main - INFO - Completed scan of pararius for amsterdam: 31 new, 31 total in 7.23s
+2025-04-17 14:28:28,034 - main - INFO - Scan complete: 31 new listings from 31 total processed
+2025-04-17 14:28:28,034 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 14:28:28,048 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 14:28:28,048 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 14:32:37,508 - main - INFO - Scraper task cancelled
+2025-04-17 14:32:39,559 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 14:32:39.559007
+2025-04-17 14:32:39,561 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam']
+2025-04-17 14:32:39,577 - database.migrations - INFO - Database initialized successfully
+2025-04-17 14:32:39,582 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 14:32:39,582 - main - INFO - Starting new scan cycle...
+2025-04-17 14:32:39,585 - main - INFO - Scanning pararius for amsterdam...
+2025-04-17 14:32:41,103 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 14:32:41,144 - utils.http - WARNING - Bot detection triggered for https://www.pararius.com/apartments/amsterdam?filters[since]=1. Retrying with different approach.
+2025-04-17 14:32:46,079 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 14:32:46,103 - main - INFO - Found 31 listings for pararius in amsterdam
+2025-04-17 14:32:46,141 - main - INFO - Added new listing: Flat Eerste Helmersstraat (pararius - €4,250 per month)
+2025-04-17 14:32:46,159 - main - INFO - Completed scan of pararius for amsterdam: 1 new, 31 total in 6.57s
+2025-04-17 14:32:46,159 - main - INFO - Scan complete: 1 new listings from 31 total processed
+2025-04-17 14:32:46,159 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 14:32:46,161 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 14:32:46,161 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 14:33:32,897 - main - INFO - Scraper task cancelled
+2025-04-17 14:44:44,282 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 14:44:44.282398
+2025-04-17 14:44:44,287 - __main__ - INFO - Starting scraper for sources: ['funda'], cities: ['amsterdam']
+2025-04-17 14:44:44,306 - database.migrations - INFO - Database initialized successfully
+2025-04-17 14:44:44,313 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 14:44:44,313 - main - INFO - Starting new scan cycle...
+2025-04-17 14:44:44,317 - main - INFO - Scanning funda for amsterdam...
+2025-04-17 14:44:45,314 - httpx - INFO - HTTP Request: GET https://www.funda.nl/en/zoeken/huur/?selected_area=[%22amsterdam%22]&publication_date=%221%22&sort=%22date_down%22&object_type=['house','apartment'] "HTTP/1.1 200 OK"
+2025-04-17 14:44:45,315 - utils.http - WARNING - Bot detection triggered for https://www.funda.nl/en/zoeken/huur/?selected_area=["amsterdam"]&publication_date="1"&sort="date_down"&object_type=['house','apartment']. Retrying with different approach.
+2025-04-17 14:44:49,558 - httpx - INFO - HTTP Request: GET https://www.funda.nl/en/zoeken/huur/?selected_area=[%22amsterdam%22]&publication_date=%221%22&sort=%22date_down%22&object_type=['house','apartment'] "HTTP/1.1 200 OK"
+2025-04-17 14:44:49,562 - main - INFO - Found 0 listings for funda in amsterdam
+2025-04-17 14:44:49,565 - main - INFO - Completed scan of funda for amsterdam: 0 new, 0 total in 5.25s
+2025-04-17 14:44:49,565 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-17 14:44:49,565 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 14:44:49,603 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 14:44:49,604 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 14:45:01,272 - main - INFO - Scraper task cancelled
+2025-04-17 14:45:16,628 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 14:45:16.628641
+2025-04-17 14:45:16,633 - __main__ - INFO - Starting scraper for sources: ['funda'], cities: ['amsterdam']
+2025-04-17 14:45:16,652 - database.migrations - INFO - Database initialized successfully
+2025-04-17 14:45:16,660 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 14:45:16,661 - main - INFO - Starting new scan cycle...
+2025-04-17 14:45:16,665 - main - INFO - Scanning funda for amsterdam...
+2025-04-17 14:45:17,609 - httpx - INFO - HTTP Request: GET https://www.funda.nl/en/zoeken/huur/?selected_area=[%22amsterdam%22]&publication_date=%221%22&sort=%22date_down%22&object_type=['house','apartment'] "HTTP/1.1 200 OK"
+2025-04-17 14:45:17,610 - utils.http - WARNING - Bot detection triggered for https://www.funda.nl/en/zoeken/huur/?selected_area=["amsterdam"]&publication_date="1"&sort="date_down"&object_type=['house','apartment']. Retrying with different approach.
+2025-04-17 14:45:22,339 - httpx - INFO - HTTP Request: GET https://www.funda.nl/en/zoeken/huur/?selected_area=[%22amsterdam%22]&publication_date=%221%22&sort=%22date_down%22&object_type=['house','apartment'] "HTTP/1.1 200 OK"
+2025-04-17 14:45:22,344 - main - INFO - Found 0 listings for funda in amsterdam
+2025-04-17 14:45:22,346 - main - INFO - Completed scan of funda for amsterdam: 0 new, 0 total in 5.68s
+2025-04-17 14:45:22,346 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-17 14:45:22,346 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 14:45:22,383 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 14:45:22,383 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 14:45:24,268 - main - INFO - Scraper task cancelled
+2025-04-17 14:48:17,579 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 14:48:17.579781
+2025-04-17 14:48:17,581 - __main__ - INFO - Starting scraper for sources: ['funda'], cities: ['amsterdam']
+2025-04-17 14:48:17,676 - database.migrations - INFO - Database initialized successfully
+2025-04-17 14:48:17,694 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 14:48:17,694 - main - INFO - Starting new scan cycle...
+2025-04-17 14:48:17,699 - main - INFO - Scanning funda for amsterdam...
+2025-04-17 14:48:19,289 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[amsterdam]&object_type=['house','apartment']&sort='date_down'&publication_date=1 "HTTP/1.1 200 OK"
+2025-04-17 14:48:19,290 - utils.http - WARNING - Bot detection triggered for https://www.funda.nl/zoeken/huur?selected_area=[amsterdam]&object_type=['house','apartment']&sort='date_down'&publication_date=1. Retrying with different approach.
+2025-04-17 14:48:22,760 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[amsterdam]&object_type=['house','apartment']&sort='date_down'&publication_date=1 "HTTP/1.1 200 OK"
+2025-04-17 14:48:22,767 - main - INFO - Found 0 listings for funda in amsterdam
+2025-04-17 14:48:22,769 - main - INFO - Completed scan of funda for amsterdam: 0 new, 0 total in 5.07s
+2025-04-17 14:48:22,769 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-17 14:48:22,770 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 14:48:22,823 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 14:48:22,824 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 14:48:24,946 - main - INFO - Scraper task cancelled
+2025-04-17 14:50:44,417 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 14:50:44.417566
+2025-04-17 14:50:44,418 - __main__ - INFO - Starting scraper for sources: ['funda'], cities: ['amsterdam']
+2025-04-17 14:50:44,483 - database.migrations - INFO - Database initialized successfully
+2025-04-17 14:50:44,495 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 14:50:44,495 - main - INFO - Starting new scan cycle...
+2025-04-17 14:50:44,499 - main - INFO - Scanning funda for amsterdam...
+2025-04-17 14:50:46,433 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 14:50:46,509 - main - INFO - Found 0 listings for funda in amsterdam
+2025-04-17 14:50:46,513 - main - INFO - Completed scan of funda for amsterdam: 0 new, 0 total in 2.01s
+2025-04-17 14:50:46,513 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-17 14:50:46,513 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 14:50:46,556 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 14:50:46,556 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 14:50:49,274 - main - INFO - Scraper task cancelled
+2025-04-17 15:03:06,917 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 15:03:06.916987
+2025-04-17 15:03:06,918 - __main__ - INFO - Starting scraper for sources: ['funda'], cities: ['amsterdam']
+2025-04-17 15:03:06,937 - database.migrations - INFO - Database initialized successfully
+2025-04-17 15:03:06,941 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 15:03:06,941 - main - INFO - Starting new scan cycle...
+2025-04-17 15:03:06,944 - main - INFO - Scanning funda for amsterdam...
+2025-04-17 15:03:08,357 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 15:03:08,358 - utils.http - WARNING - Bot detection triggered for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down". Retrying with different approach.
+2025-04-17 15:03:13,662 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 15:03:13,714 - main - INFO - Found 0 listings for funda in amsterdam
+2025-04-17 15:03:13,717 - main - INFO - Completed scan of funda for amsterdam: 0 new, 0 total in 6.77s
+2025-04-17 15:03:13,717 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-17 15:03:13,717 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 15:03:13,757 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 15:03:13,757 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 15:09:00,792 - main - INFO - Scraper task cancelled
+2025-04-17 15:12:43,373 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 15:12:43.373678
+2025-04-17 15:12:43,375 - __main__ - INFO - Starting scraper for sources: ['funda'], cities: ['amsterdam']
+2025-04-17 15:12:43,457 - database.migrations - INFO - Database initialized successfully
+2025-04-17 15:12:43,461 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 15:12:43,461 - main - INFO - Starting new scan cycle...
+2025-04-17 15:12:43,485 - main - INFO - Scanning funda for amsterdam...
+2025-04-17 15:12:44,469 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 15:12:44,470 - utils.http - WARNING - Bot detection triggered for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down". Retrying with different approach.
+2025-04-17 15:12:49,117 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 15:12:49,121 - main - INFO - Found 0 listings for funda in amsterdam
+2025-04-17 15:12:49,124 - main - INFO - Completed scan of funda for amsterdam: 0 new, 0 total in 5.62s
+2025-04-17 15:12:49,124 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-17 15:12:49,124 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 15:12:49,175 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 15:12:49,176 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 15:12:58,912 - main - INFO - Scraper task cancelled
+2025-04-17 15:13:00,279 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 15:13:00.278989
+2025-04-17 15:13:00,282 - __main__ - INFO - Starting scraper for sources: ['funda'], cities: ['amsterdam']
+2025-04-17 15:13:00,301 - database.migrations - INFO - Database initialized successfully
+2025-04-17 15:13:00,306 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 15:13:00,306 - main - INFO - Starting new scan cycle...
+2025-04-17 15:13:00,309 - main - INFO - Scanning funda for amsterdam...
+2025-04-17 15:13:01,391 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 15:13:01,392 - utils.http - WARNING - Bot detection triggered for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down". Retrying with different approach.
+2025-04-17 15:13:05,743 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 15:13:05,793 - main - INFO - Found 0 listings for funda in amsterdam
+2025-04-17 15:13:05,795 - main - INFO - Completed scan of funda for amsterdam: 0 new, 0 total in 5.48s
+2025-04-17 15:13:05,796 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-17 15:13:05,796 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 15:13:05,834 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 15:13:05,834 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 15:13:09,033 - main - INFO - Scraper task cancelled
+2025-04-17 15:18:36,292 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 15:18:36.292661
+2025-04-17 15:18:36,298 - __main__ - INFO - Starting scraper for sources: ['funda'], cities: ['amsterdam']
+2025-04-17 15:18:36,317 - database.migrations - INFO - Database initialized successfully
+2025-04-17 15:18:36,321 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 15:18:36,321 - main - INFO - Starting new scan cycle...
+2025-04-17 15:18:36,324 - main - INFO - Scanning funda for amsterdam...
+2025-04-17 15:18:37,860 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 15:18:37,861 - utils.http - WARNING - Bot detection triggered for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down". Retrying with different approach.
+2025-04-17 15:18:42,859 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 15:18:42,869 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-17 15:18:42,909 - main - INFO - Found 15 listings for funda in amsterdam
+2025-04-17 15:18:42,949 - main - INFO - Added new listing: Madurastraat 128 (funda - € 2.175 /maand)
+2025-04-17 15:18:42,950 - main - INFO - Added new listing: Nieuwe Kerkstraat 47 (funda - € 3.450 /maand)
+2025-04-17 15:18:42,951 - main - INFO - Added new listing: Willem de Zwijgerlaan 83-H (funda - € 2.250 /maand)
+2025-04-17 15:18:42,952 - main - INFO - Added new listing: Gustav Mahlerlaan 931 (funda - € 3.750 /maand)
+2025-04-17 15:18:42,952 - main - INFO - Added new listing: Spuistraat 201-B (funda - € 2.650 /maand)
+2025-04-17 15:18:42,953 - main - INFO - Added new listing: Eerste Constantijn Huygensstraat 50-H (funda - € 4.000 /maand)
+2025-04-17 15:18:42,954 - main - INFO - Added new listing: Henriëtte Bosmansstraat 44 (funda - € 8.000 /maand)
+2025-04-17 15:18:42,955 - main - INFO - Added new listing: Ariana Nozemanstraat 162 (funda - € 3.300 /maand)
+2025-04-17 15:18:42,956 - main - INFO - Added new listing: Leidsekruisstraat 10-1 (funda - € 2.500 /maand)
+2025-04-17 15:18:42,957 - main - INFO - Added new listing: Johannes Verhulststraat 6-2 (funda - € 2.250 /maand)
+2025-04-17 15:18:42,957 - main - INFO - Added new listing: Turnhoutplantsoen 120 (funda - € 3.500 /maand)
+2025-04-17 15:18:42,958 - main - INFO - Added new listing: Archimedesplantsoen 41-H (funda - € 3.000 /maand)
+2025-04-17 15:18:42,958 - main - INFO - Added new listing: Oostenburgermiddenstraat 357 (funda - € 1.290 /maand)
+2025-04-17 15:18:42,959 - main - INFO - Added new listing: Copernicusstraat 30 (funda - € 3.000 /maand)
+2025-04-17 15:18:42,960 - main - INFO - Added new listing: Stadionkade 40-1 (funda - € 2.850 /maand)
+2025-04-17 15:18:42,960 - main - INFO - Completed scan of funda for amsterdam: 15 new, 15 total in 6.64s
+2025-04-17 15:18:42,960 - main - INFO - Scan complete: 15 new listings from 15 total processed
+2025-04-17 15:18:42,960 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 15:18:42,971 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 15:18:42,971 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 15:18:51,523 - main - INFO - Scraper task cancelled
+2025-04-17 15:55:11,908 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 15:55:11.908808
+2025-04-17 15:55:11,911 - __main__ - INFO - Starting scraper for sources: ['funda'], cities: ['amsterdam']
+2025-04-17 15:55:11,928 - database.migrations - INFO - Database initialized successfully
+2025-04-17 15:55:11,932 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 15:55:11,932 - main - INFO - Starting new scan cycle...
+2025-04-17 15:55:11,935 - main - INFO - Scanning funda for amsterdam...
+2025-04-17 15:55:13,036 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 15:55:13,059 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-17 15:55:13,115 - main - INFO - Found 15 listings for funda in amsterdam
+2025-04-17 15:55:13,153 - main - INFO - Added new listing: Van Eeghenstraat 31-B (funda - € 2.750 /maand)
+2025-04-17 15:55:13,154 - main - INFO - Added new listing: Lutonhof 331 (funda - € 2.750 /maand)
+2025-04-17 15:55:13,155 - main - INFO - Added new listing: Kribbestraat 23-H (funda - € 2.700 /maand)
+2025-04-17 15:55:13,166 - main - INFO - Completed scan of funda for amsterdam: 3 new, 15 total in 1.23s
+2025-04-17 15:55:13,166 - main - INFO - Scan complete: 3 new listings from 15 total processed
+2025-04-17 15:55:13,166 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 15:55:13,186 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 15:55:13,186 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 15:55:18,852 - main - INFO - Scraper task cancelled
+2025-04-17 15:55:22,958 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 15:55:22.958322
+2025-04-17 15:55:22,958 - __main__ - INFO - Starting scraper for sources: ['funda'], cities: ['amsterdam']
+2025-04-17 15:55:22,977 - database.migrations - INFO - Database initialized successfully
+2025-04-17 15:55:22,981 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 15:55:22,981 - main - INFO - Starting new scan cycle...
+2025-04-17 15:55:22,983 - main - INFO - Skipping funda for amsterdam - not due yet
+2025-04-17 15:55:22,983 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-17 15:55:22,983 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 15:55:23,012 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 15:55:23,012 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 15:55:34,661 - main - INFO - Scraper task cancelled
+2025-04-17 15:55:37,354 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 15:55:37.354126
+2025-04-17 15:55:37,354 - __main__ - INFO - Starting scraper for sources: ['funda'], cities: ['amsterdam']
+2025-04-17 15:55:37,374 - database.migrations - INFO - Database initialized successfully
+2025-04-17 15:55:37,381 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 15:55:37,381 - main - INFO - Starting new scan cycle...
+2025-04-17 15:55:37,384 - main - INFO - Scanning funda for amsterdam...
+2025-04-17 15:55:38,397 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 15:55:38,399 - utils.http - WARNING - Bot detection triggered for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down". Retrying with different approach.
+2025-04-17 15:55:41,850 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 15:55:41,851 - scrapers.funda - WARNING - No listing elements found in the HTML. Check if the page structure has changed.
+2025-04-17 15:55:41,852 - main - INFO - Found 0 listings for funda in amsterdam
+2025-04-17 15:55:41,853 - main - INFO - Completed scan of funda for amsterdam: 0 new, 0 total in 4.47s
+2025-04-17 15:55:41,853 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-17 15:55:41,853 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 15:55:41,886 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 15:55:41,886 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 15:56:11,624 - main - INFO - Scraper task cancelled
+2025-04-17 15:59:33,202 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 15:59:33.201985
+2025-04-17 15:59:33,204 - __main__ - INFO - Starting scraper for sources: ['funda'], cities: ['amsterdam']
+2025-04-17 15:59:33,223 - database.migrations - INFO - Database initialized successfully
+2025-04-17 15:59:33,228 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 15:59:33,228 - main - INFO - Starting new scan cycle...
+2025-04-17 15:59:33,231 - main - INFO - Scanning funda for amsterdam...
+2025-04-17 15:59:34,175 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 15:59:34,176 - utils.http - WARNING - Bot detection triggered for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down". Retrying with different approach.
+2025-04-17 15:59:40,563 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 15:59:40,566 - scrapers.funda - WARNING - No listing elements found in the HTML. Check if the page structure has changed.
+2025-04-17 15:59:40,567 - main - INFO - Found 0 listings for funda in amsterdam
+2025-04-17 15:59:40,569 - main - INFO - Completed scan of funda for amsterdam: 0 new, 0 total in 7.34s
+2025-04-17 15:59:40,569 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-17 15:59:40,569 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 15:59:40,613 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 15:59:40,613 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 16:01:22,484 - main - INFO - Scraper task cancelled
+2025-04-17 16:01:24,348 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 16:01:24.348963
+2025-04-17 16:01:24,352 - __main__ - INFO - Starting scraper for sources: ['funda'], cities: ['amsterdam']
+2025-04-17 16:01:24,381 - database.migrations - INFO - Database initialized successfully
+2025-04-17 16:01:24,385 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 16:01:24,385 - main - INFO - Starting new scan cycle...
+2025-04-17 16:01:24,387 - main - INFO - Scanning funda for amsterdam...
+2025-04-17 16:01:26,364 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 16:01:26,396 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-17 16:01:26,445 - main - INFO - Found 15 listings for funda in amsterdam
+2025-04-17 16:01:26,866 - main - INFO - Completed scan of funda for amsterdam: 0 new, 15 total in 2.48s
+2025-04-17 16:01:26,866 - main - INFO - Scan complete: 0 new listings from 15 total processed
+2025-04-17 16:01:26,866 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 16:01:26,917 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 16:01:26,928 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 16:01:31,422 - main - INFO - Scraper task cancelled
+2025-04-17 16:01:34,759 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 16:01:34.759340
+2025-04-17 16:01:34,759 - __main__ - INFO - Starting scraper for sources: ['funda'], cities: ['amsterdam']
+2025-04-17 16:01:34,772 - database.migrations - INFO - Database initialized successfully
+2025-04-17 16:01:34,776 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 16:01:34,776 - main - INFO - Starting new scan cycle...
+2025-04-17 16:01:34,777 - main - INFO - Skipping funda for amsterdam - not due yet
+2025-04-17 16:01:34,777 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-17 16:01:34,778 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 16:01:34,801 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 16:01:34,802 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 16:01:37,650 - main - INFO - Scraper task cancelled
+2025-04-17 16:01:40,601 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 16:01:40.601683
+2025-04-17 16:01:40,602 - __main__ - INFO - Starting scraper for sources: ['funda'], cities: ['amsterdam']
+2025-04-17 16:01:40,615 - database.migrations - INFO - Database initialized successfully
+2025-04-17 16:01:40,619 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 16:01:40,619 - main - INFO - Starting new scan cycle...
+2025-04-17 16:01:40,621 - main - INFO - Scanning funda for amsterdam...
+2025-04-17 16:01:42,018 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 16:01:42,032 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-17 16:01:42,074 - main - INFO - Found 15 listings for funda in amsterdam
+2025-04-17 16:01:42,130 - main - INFO - Completed scan of funda for amsterdam: 0 new, 15 total in 1.51s
+2025-04-17 16:01:42,130 - main - INFO - Scan complete: 0 new listings from 15 total processed
+2025-04-17 16:01:42,130 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 16:01:42,132 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 16:01:42,132 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 16:01:48,558 - main - INFO - Scraper task cancelled
+2025-04-17 16:01:59,703 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 16:01:59.703812
+2025-04-17 16:01:59,704 - __main__ - INFO - Starting scraper for sources: ['funda'], cities: ['amsterdam']
+2025-04-17 16:01:59,723 - database.migrations - INFO - Database initialized successfully
+2025-04-17 16:01:59,727 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 16:01:59,727 - main - INFO - Starting new scan cycle...
+2025-04-17 16:01:59,731 - main - INFO - Scanning funda for amsterdam...
+2025-04-17 16:02:01,251 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 16:02:01,252 - utils.http - WARNING - Bot detection triggered for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down". Retrying with different approach.
+2025-04-17 16:02:06,768 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 16:02:06,772 - scrapers.funda - WARNING - No listing elements found in the HTML. Check if the page structure has changed.
+2025-04-17 16:02:06,774 - main - INFO - Found 0 listings for funda in amsterdam
+2025-04-17 16:02:06,776 - main - INFO - Completed scan of funda for amsterdam: 0 new, 0 total in 7.04s
+2025-04-17 16:02:06,776 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-17 16:02:06,776 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 16:02:06,812 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 16:02:06,812 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 16:02:10,945 - main - INFO - Scraper task cancelled
+2025-04-17 16:09:13,826 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 16:09:13.826688
+2025-04-17 16:09:13,830 - __main__ - INFO - Starting scraper for sources: ['funda'], cities: ['amsterdam']
+2025-04-17 16:09:13,847 - database.migrations - INFO - Database initialized successfully
+2025-04-17 16:09:13,852 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 16:09:13,852 - main - INFO - Starting new scan cycle...
+2025-04-17 16:09:13,855 - main - INFO - Scanning funda for amsterdam...
+2025-04-17 16:09:15,705 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 16:09:15,706 - utils.http - WARNING - Bot detection triggered for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down". Retrying with different approach.
+2025-04-17 16:09:18,722 - main - ERROR - Error scanning funda for amsterdam: AsyncClient.get() got an unexpected keyword argument 'retry_anti_bot'
+2025-04-17 16:09:18,723 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-17 16:09:18,723 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 16:09:18,762 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 16:09:18,762 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 16:09:26,373 - main - INFO - Scraper task cancelled
+2025-04-17 16:15:00,007 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 16:15:00.007771
+2025-04-17 16:15:00,012 - __main__ - INFO - Starting scraper for sources: ['funda'], cities: ['amsterdam']
+2025-04-17 16:15:00,029 - database.migrations - INFO - Database initialized successfully
+2025-04-17 16:15:00,033 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 16:15:00,033 - main - INFO - Starting new scan cycle...
+2025-04-17 16:15:00,036 - main - INFO - Scanning funda for amsterdam...
+2025-04-17 16:15:00,781 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 16:15:00,782 - utils.http - WARNING - Anti-bot measures detected (retry 0/3) for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-17 16:15:00,783 - utils.http - INFO - Anti-bot retry 1 for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down", waiting 2.4 seconds...
+2025-04-17 16:15:05,567 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 16:15:05,568 - utils.http - WARNING - Anti-bot measures detected (retry 1/3) for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-17 16:15:05,568 - utils.http - INFO - Anti-bot retry 2 for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down", waiting 9.2 seconds...
+2025-04-17 16:15:18,012 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 16:15:18,031 - utils.http - INFO - Successfully bypassed anti-bot measures after 2 retries for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-17 16:15:18,036 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-17 16:15:18,083 - main - INFO - Found 15 listings for funda in amsterdam
+2025-04-17 16:15:18,129 - main - INFO - Completed scan of funda for amsterdam: 0 new, 15 total in 18.09s
+2025-04-17 16:15:18,129 - main - INFO - Scan complete: 0 new listings from 15 total processed
+2025-04-17 16:15:18,129 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 16:15:18,140 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 16:15:18,140 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 16:15:28,033 - main - INFO - Scraper task cancelled
+2025-04-17 16:16:14,702 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 16:16:14.701994
+2025-04-17 16:16:14,707 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam']
+2025-04-17 16:16:14,729 - database.migrations - INFO - Database initialized successfully
+2025-04-17 16:16:14,733 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 16:16:14,733 - main - INFO - Starting new scan cycle...
+2025-04-17 16:16:14,738 - main - INFO - Scanning funda for amsterdam...
+2025-04-17 16:16:15,615 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 16:16:15,616 - utils.http - WARNING - Anti-bot measures detected (retry 0/3) for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-17 16:16:15,617 - utils.http - INFO - Anti-bot retry 1 for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down", waiting 3.9 seconds...
+2025-04-17 16:16:23,609 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 16:16:23,610 - utils.http - WARNING - Anti-bot measures detected (retry 1/3) for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-17 16:16:23,610 - utils.http - INFO - Anti-bot retry 2 for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down", waiting 7.5 seconds...
+2025-04-17 16:16:37,375 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 16:16:37,393 - utils.http - INFO - Successfully bypassed anti-bot measures after 2 retries for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-17 16:16:37,398 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-17 16:16:37,400 - main - INFO - Found 15 listings for funda in amsterdam
+2025-04-17 16:16:37,447 - main - INFO - Completed scan of funda for amsterdam: 0 new, 15 total in 22.71s
+2025-04-17 16:16:37,447 - main - INFO - Scanning pararius for amsterdam...
+2025-04-17 16:16:38,501 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 16:16:38,511 - utils.http - WARNING - Anti-bot measures detected (retry 0/3) for https://www.pararius.com/apartments/amsterdam?filters[since]=1
+2025-04-17 16:16:38,512 - utils.http - INFO - Anti-bot retry 1 for https://www.pararius.com/apartments/amsterdam?filters[since]=1, waiting 5.0 seconds...
+2025-04-17 16:16:46,476 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 16:16:46,512 - utils.http - WARNING - Anti-bot measures detected (retry 1/3) for https://www.pararius.com/apartments/amsterdam?filters[since]=1
+2025-04-17 16:16:46,513 - utils.http - INFO - Anti-bot retry 2 for https://www.pararius.com/apartments/amsterdam?filters[since]=1, waiting 9.2 seconds...
+2025-04-17 16:16:58,878 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 16:16:58,899 - utils.http - WARNING - Anti-bot measures detected (retry 2/3) for https://www.pararius.com/apartments/amsterdam?filters[since]=1
+2025-04-17 16:16:58,900 - utils.http - INFO - Anti-bot retry 3 for https://www.pararius.com/apartments/amsterdam?filters[since]=1, waiting 9.4 seconds...
+2025-04-17 16:17:12,090 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 16:17:12,107 - utils.http - INFO - Successfully bypassed anti-bot measures after 3 retries for https://www.pararius.com/apartments/amsterdam?filters[since]=1
+2025-04-17 16:17:12,117 - main - INFO - Found 30 listings for pararius in amsterdam
+2025-04-17 16:17:12,120 - main - INFO - Added new listing: Flat Bilderdijkstraat (pararius - €3,300 per month)
+2025-04-17 16:17:12,122 - main - INFO - Added new listing: Flat Willem de Zwijgerlaan 83 H (pararius - €2,250 per month)
+2025-04-17 16:17:12,124 - main - INFO - Added new listing: Flat Herculesstraat (pararius - €2,000 per month)
+2025-04-17 16:17:12,125 - main - INFO - Added new listing: Flat Ariana Nozemanstraat (pararius - €3,300 per month)
+2025-04-17 16:17:12,127 - main - INFO - Added new listing: Flat Van Eeghenstraat 31 B (pararius - €2,750 per month)
+2025-04-17 16:17:12,128 - main - INFO - Added new listing: House Radioweg 14 H (pararius - €2,650 per month)
+2025-04-17 16:17:12,129 - main - INFO - Added new listing: Flat Jisperveldstraat (pararius - €2,450 per month)
+2025-04-17 16:17:12,130 - main - INFO - Added new listing: Flat Rozenstraat (pararius - €2,650 per month)
+2025-04-17 16:17:12,131 - main - INFO - Added new listing: Flat Spuistraat (pararius - €2,350 per month)
+2025-04-17 16:17:12,133 - main - INFO - Added new listing: Flat Wolbrantskerkweg (pararius - €2,750 per month)
+2025-04-17 16:17:12,134 - main - INFO - Added new listing: Flat Henri Polaklaan (pararius - €3,200 per month)
+2025-04-17 16:17:12,152 - main - INFO - Completed scan of pararius for amsterdam: 11 new, 30 total in 34.70s
+2025-04-17 16:17:12,152 - main - INFO - Scan complete: 11 new listings from 45 total processed
+2025-04-17 16:17:12,152 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 16:17:12,166 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 16:17:12,166 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 16:18:37,825 - main - INFO - Scraper task cancelled
+2025-04-17 16:19:05,818 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 16:19:05.818927
+2025-04-17 16:19:05,823 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam']
+2025-04-17 16:19:05,847 - database.migrations - INFO - Database initialized successfully
+2025-04-17 16:19:05,851 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 16:19:05,851 - main - INFO - Starting new scan cycle...
+2025-04-17 16:19:05,854 - main - INFO - Scanning funda for amsterdam...
+2025-04-17 16:19:07,975 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 16:19:08,011 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-17 16:19:08,014 - main - INFO - Found 15 listings for funda in amsterdam
+2025-04-17 16:19:08,057 - main - INFO - Added new listing: Bijlmerdreef 528 (funda - € 3.000 /maand)
+2025-04-17 16:19:08,058 - main - INFO - Added new listing: Van Eeghenstraat 31-B (funda - € 2.750 /maand)
+2025-04-17 16:19:08,060 - main - INFO - Added new listing: Lutonhof 331 (funda - € 2.750 /maand)
+2025-04-17 16:19:08,061 - main - INFO - Added new listing: Kribbestraat 23-H (funda - € 2.700 /maand)
+2025-04-17 16:19:08,062 - main - INFO - Added new listing: Madurastraat 128 (funda - € 2.175 /maand)
+2025-04-17 16:19:08,064 - main - INFO - Added new listing: Nieuwe Kerkstraat 47 (funda - € 3.450 /maand)
+2025-04-17 16:19:08,065 - main - INFO - Added new listing: Willem de Zwijgerlaan 83-H (funda - € 2.250 /maand)
+2025-04-17 16:19:08,065 - main - INFO - Added new listing: Gustav Mahlerlaan 931 (funda - € 3.750 /maand)
+2025-04-17 16:19:08,066 - main - INFO - Added new listing: Spuistraat 201-B (funda - € 2.650 /maand)
+2025-04-17 16:19:08,067 - main - INFO - Added new listing: Eerste Constantijn Huygensstraat 50-H (funda - € 4.000 /maand)
+2025-04-17 16:19:08,068 - main - INFO - Added new listing: Henriëtte Bosmansstraat 44 (funda - € 8.000 /maand)
+2025-04-17 16:19:08,069 - main - INFO - Added new listing: Ariana Nozemanstraat 162 (funda - € 2.950 /maand)
+2025-04-17 16:19:08,070 - main - INFO - Added new listing: Leidsekruisstraat 10-1 (funda - € 2.500 /maand)
+2025-04-17 16:19:08,071 - main - INFO - Added new listing: Johannes Verhulststraat 6-2 (funda - € 2.250 /maand)
+2025-04-17 16:19:08,071 - main - INFO - Added new listing: Turnhoutplantsoen 120 (funda - € 3.500 /maand)
+2025-04-17 16:19:08,072 - main - INFO - Completed scan of funda for amsterdam: 15 new, 15 total in 2.22s
+2025-04-17 16:19:08,073 - main - INFO - Scanning pararius for amsterdam...
+2025-04-17 16:19:10,391 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 16:19:10,431 - utils.http - WARNING - Anti-bot measures detected (retry 0/4) for https://www.pararius.com/apartments/amsterdam?filters[since]=1
+2025-04-17 16:19:10,432 - utils.http - INFO - Anti-bot retry 1 for https://www.pararius.com/apartments/amsterdam?filters[since]=1, waiting 3.9 seconds...
+2025-04-17 16:19:16,487 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 16:19:16,515 - utils.http - WARNING - Anti-bot measures detected (retry 1/4) for https://www.pararius.com/apartments/amsterdam?filters[since]=1
+2025-04-17 16:19:16,516 - utils.http - INFO - Anti-bot retry 2 for https://www.pararius.com/apartments/amsterdam?filters[since]=1, waiting 8.3 seconds...
+2025-04-17 16:19:28,286 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 16:19:28,298 - utils.http - WARNING - Anti-bot measures detected (retry 2/4) for https://www.pararius.com/apartments/amsterdam?filters[since]=1
+2025-04-17 16:19:28,299 - utils.http - INFO - Anti-bot retry 3 for https://www.pararius.com/apartments/amsterdam?filters[since]=1, waiting 10.1 seconds...
+2025-04-17 16:19:41,814 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 16:19:41,846 - utils.http - WARNING - Anti-bot measures detected (retry 3/4) for https://www.pararius.com/apartments/amsterdam?filters[since]=1
+2025-04-17 16:19:41,846 - utils.http - INFO - Anti-bot retry 4 for https://www.pararius.com/apartments/amsterdam?filters[since]=1, waiting 17.0 seconds...
+2025-04-17 16:20:02,485 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 16:20:02,492 - utils.http - INFO - Successfully bypassed anti-bot measures after 4 retries for https://www.pararius.com/apartments/amsterdam?filters[since]=1
+2025-04-17 16:20:02,504 - main - INFO - Found 30 listings for pararius in amsterdam
+2025-04-17 16:20:02,508 - main - INFO - Added new listing: Flat Bilderdijkstraat (pararius - €3,300 per month)
+2025-04-17 16:20:02,509 - main - INFO - Added new listing: Flat Willem de Zwijgerlaan 83 H (pararius - €2,250 per month)
+2025-04-17 16:20:02,510 - main - INFO - Added new listing: Flat Herculesstraat (pararius - €2,000 per month)
+2025-04-17 16:20:02,512 - main - INFO - Added new listing: Flat Ariana Nozemanstraat (pararius - €3,300 per month)
+2025-04-17 16:20:02,513 - main - INFO - Added new listing: Flat Van Eeghenstraat 31 B (pararius - €2,750 per month)
+2025-04-17 16:20:02,517 - main - INFO - Added new listing: House Radioweg 14 H (pararius - €2,650 per month)
+2025-04-17 16:20:02,518 - main - INFO - Added new listing: Flat Jisperveldstraat (pararius - €2,450 per month)
+2025-04-17 16:20:02,519 - main - INFO - Added new listing: Flat Rozenstraat (pararius - €2,650 per month)
+2025-04-17 16:20:02,520 - main - INFO - Added new listing: Flat Spuistraat (pararius - €2,350 per month)
+2025-04-17 16:20:02,521 - main - INFO - Added new listing: Flat Wolbrantskerkweg (pararius - €2,750 per month)
+2025-04-17 16:20:02,522 - main - INFO - Added new listing: Flat Henri Polaklaan (pararius - €3,200 per month)
+2025-04-17 16:20:02,523 - main - INFO - Added new listing: Flat Eerste Helmersstraat (pararius - €4,250 per month)
+2025-04-17 16:20:02,524 - main - INFO - Added new listing: Flat Ariana Nozemanstraat (pararius - €3,400 per month)
+2025-04-17 16:20:02,525 - main - INFO - Added new listing: Flat Spuistraat (pararius - €2,650 per month)
+2025-04-17 16:20:02,526 - main - INFO - Added new listing: Flat Eemsstraat (pararius - €2,650 per month)
+2025-04-17 16:20:02,526 - main - INFO - Added new listing: Flat Pantograafstraat 44 (pararius - €1,749 per month)
+2025-04-17 16:20:02,527 - main - INFO - Added new listing: Flat Stadhouderskade (pararius - €4,500 per month)
+2025-04-17 16:20:02,528 - main - INFO - Added new listing: Flat Mary van der Sluisstraat 180 (pararius - €1,677 per month)
+2025-04-17 16:20:02,529 - main - INFO - Added new listing: Flat Eef Kamerbeekstraat 100 (pararius - €1,548 per month)
+2025-04-17 16:20:02,530 - main - INFO - Added new listing: Flat Elzenhagensingel 407 (pararius - €1,708 per month)
+2025-04-17 16:20:02,530 - main - INFO - Added new listing: Flat Lutonhof (pararius - €2,750 per month)
+2025-04-17 16:20:02,531 - main - INFO - Added new listing: Flat Elckerlijcstraat (pararius - €3,250 per month)
+2025-04-17 16:20:02,532 - main - INFO - Added new listing: Flat Roerstraat (pararius - €5,500 per month)
+2025-04-17 16:20:02,533 - main - INFO - Added new listing: Flat Gustav Mahlerlaan 875 (pararius - €2,485 per month)
+2025-04-17 16:20:02,533 - main - INFO - Added new listing: Flat Gustav Mahlerlaan 857 (pararius - €2,400 per month)
+2025-04-17 16:20:02,534 - main - INFO - Added new listing: Flat Sam van Houtenstraat (pararius - €2,899 per month)
+2025-04-17 16:20:02,535 - main - INFO - Added new listing: Flat Eerste Constantijn Huygensstraat (pararius - €4,000 per month)
+2025-04-17 16:20:02,536 - main - INFO - Added new listing: Flat Gustav Mahlerlaan (pararius - €3,750 per month)
+2025-04-17 16:20:02,537 - main - INFO - Added new listing: House Henriëtte Bosmansstraat 44 (pararius - €8,000 per month)
+2025-04-17 16:20:02,538 - main - INFO - Added new listing: Flat Leidsekruisstraat (pararius - €2,500 per month)
+2025-04-17 16:20:02,540 - main - INFO - Completed scan of pararius for amsterdam: 30 new, 30 total in 54.47s
+2025-04-17 16:20:02,540 - main - INFO - Scan complete: 45 new listings from 45 total processed
+2025-04-17 16:20:02,540 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 16:20:02,554 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 16:20:02,554 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 16:20:47,586 - main - INFO - Scraper task cancelled
+2025-04-17 16:26:52,344 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 16:26:52.344664
+2025-04-17 16:26:52,346 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['rotterdam']
+2025-04-17 16:26:52,362 - database.migrations - INFO - Database initialized successfully
+2025-04-17 16:26:52,366 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 16:26:52,366 - main - INFO - Starting new scan cycle...
+2025-04-17 16:26:52,369 - main - INFO - Scanning funda for rotterdam...
+2025-04-17 16:26:54,801 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22rotterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 16:26:54,803 - utils.http - WARNING - Anti-bot measures detected (retry 0/4) for https://www.funda.nl/zoeken/huur?selected_area=["rotterdam"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-17 16:26:54,803 - utils.http - INFO - Anti-bot retry 1 for https://www.funda.nl/zoeken/huur?selected_area=["rotterdam"]&object_type=["house","apartment"]&sort="date_down", waiting 2.7 seconds...
+2025-04-17 16:26:59,866 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22rotterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 16:26:59,867 - utils.http - WARNING - Anti-bot measures detected (retry 1/4) for https://www.funda.nl/zoeken/huur?selected_area=["rotterdam"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-17 16:26:59,867 - utils.http - INFO - Anti-bot retry 2 for https://www.funda.nl/zoeken/huur?selected_area=["rotterdam"]&object_type=["house","apartment"]&sort="date_down", waiting 5.1 seconds...
+2025-04-17 16:27:11,133 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22rotterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 16:27:11,156 - utils.http - INFO - Successfully bypassed anti-bot measures after 2 retries for https://www.funda.nl/zoeken/huur?selected_area=["rotterdam"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-17 16:27:11,162 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-17 16:27:11,164 - main - INFO - Found 15 listings for funda in rotterdam
+2025-04-17 16:27:11,203 - main - INFO - Added new listing: Factorij 26 (funda - € 2.200 /maand)
+2025-04-17 16:27:11,205 - main - INFO - Added new listing: Kerstant van den Bergelaan 24-B (funda - € 2.750 /maand)
+2025-04-17 16:27:11,206 - main - INFO - Added new listing: Westzeedijk 138-E (funda - € 1.370 /maand)
+2025-04-17 16:27:11,207 - main - INFO - Added new listing: Godschalkstraat 142 (funda - € 1.284 /maand)
+2025-04-17 16:27:11,208 - main - INFO - Added new listing: Godschalkstraat 100 (funda - € 1.284 /maand)
+2025-04-17 16:27:11,210 - main - INFO - Added new listing: Godschalkstraat 118 (funda - € 1.284 /maand)
+2025-04-17 16:27:11,211 - main - INFO - Added new listing: Bergstraat 8-C (funda - € 2.250 /maand)
+2025-04-17 16:27:11,212 - main - INFO - Added new listing: Luzacstraat 7-A01 (funda - € 1.400 /maand)
+2025-04-17 16:27:11,213 - main - INFO - Added new listing: Boompjes 49-U (funda - € 3.350 /maand)
+2025-04-17 16:27:11,214 - main - INFO - Added new listing: Straatweg 44-C (funda - € 1.850 /maand)
+2025-04-17 16:27:11,215 - main - INFO - Added new listing: Kruisplein 436 (funda - € 2.450 /maand)
+2025-04-17 16:27:11,215 - main - INFO - Added new listing: Willem de Zwijgerstraat 8 (funda - Prijs op aanvraag)
+2025-04-17 16:27:11,216 - main - INFO - Added new listing: Wilgenplaslaan 198-C04 (funda - € 1.550 /maand)
+2025-04-17 16:27:11,217 - main - INFO - Added new listing: Baan 42-R (funda - € 1.650 /maand)
+2025-04-17 16:27:11,218 - main - INFO - Added new listing: Ebenhaëzerstraat 7-M (funda - € 1.995 /maand)
+2025-04-17 16:27:11,220 - main - INFO - Completed scan of funda for rotterdam: 15 new, 15 total in 18.85s
+2025-04-17 16:27:11,220 - main - INFO - Scanning pararius for rotterdam...
+2025-04-17 16:27:12,156 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 16:27:12,173 - utils.http - WARNING - Anti-bot measures detected (retry 0/4) for https://www.pararius.com/apartments/rotterdam?filters[since]=1
+2025-04-17 16:27:12,173 - utils.http - INFO - Anti-bot retry 1 for https://www.pararius.com/apartments/rotterdam?filters[since]=1, waiting 2.4 seconds...
+2025-04-17 16:27:17,372 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 16:27:17,392 - utils.http - WARNING - Anti-bot measures detected (retry 1/4) for https://www.pararius.com/apartments/rotterdam?filters[since]=1
+2025-04-17 16:27:17,393 - utils.http - INFO - Anti-bot retry 2 for https://www.pararius.com/apartments/rotterdam?filters[since]=1, waiting 6.2 seconds...
+2025-04-17 16:27:28,033 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 16:27:28,110 - utils.http - WARNING - Anti-bot measures detected (retry 2/4) for https://www.pararius.com/apartments/rotterdam?filters[since]=1
+2025-04-17 16:27:28,111 - utils.http - INFO - Anti-bot retry 3 for https://www.pararius.com/apartments/rotterdam?filters[since]=1, waiting 11.1 seconds...
+2025-04-17 16:27:44,752 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 16:27:44,837 - utils.http - WARNING - Anti-bot measures detected (retry 3/4) for https://www.pararius.com/apartments/rotterdam?filters[since]=1
+2025-04-17 16:27:44,838 - utils.http - INFO - Anti-bot retry 4 for https://www.pararius.com/apartments/rotterdam?filters[since]=1, waiting 17.6 seconds...
+2025-04-17 16:28:12,155 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 16:28:12,162 - utils.http - INFO - Successfully bypassed anti-bot measures after 4 retries for https://www.pararius.com/apartments/rotterdam?filters[since]=1
+2025-04-17 16:28:12,176 - main - INFO - Found 31 listings for pararius in rotterdam
+2025-04-17 16:28:12,178 - main - INFO - Added new listing: Studio Hendrik Sweijsstraat (pararius - €2,600 per month)
+2025-04-17 16:28:12,179 - main - INFO - Added new listing: Flat Polderlaan (pararius - €2,350 per month)
+2025-04-17 16:28:12,180 - main - INFO - Added new listing: Flat Posthoornstraat (pararius - €3,750 per month)
+2025-04-17 16:28:12,182 - main - INFO - Added new listing: Flat Bergweg (pararius - €2,245 per month)
+2025-04-17 16:28:12,183 - main - INFO - Added new listing: Flat Reyerdijk 74 (pararius - €741 per month)
+2025-04-17 16:28:12,184 - main - INFO - Added new listing: Flat Bethlehemstraat 28 B (pararius - €1,995 per month)
+2025-04-17 16:28:12,186 - main - INFO - Added new listing: Flat Katendrechtse Lagedijk (pararius - €927 per month)
+2025-04-17 16:28:12,187 - main - INFO - Added new listing: Flat Schiehavenkade (pararius - €1,940 per month)
+2025-04-17 16:28:12,189 - main - INFO - Added new listing: Flat Botersloot (pararius - €2,500 per month)
+2025-04-17 16:28:12,190 - main - INFO - Added new listing: Flat Baroniestraat (pararius - €1,045 per month)
+2025-04-17 16:28:12,191 - main - INFO - Added new listing: Flat Eendrachtsweg (pararius - €1,675 per month)
+2025-04-17 16:28:12,192 - main - INFO - Added new listing: Flat Brouwhuisstraat (pararius - €2,750 per month)
+2025-04-17 16:28:12,193 - main - INFO - Added new listing: Flat Westzeedijk 138 E (pararius - €1,370 per month)
+2025-04-17 16:28:12,194 - main - INFO - Added new listing: Room Ackersdijkstraat (pararius - €755 per month)
+2025-04-17 16:28:12,195 - main - INFO - Added new listing: Flat Parklaan (pararius - €1,645 per month)
+2025-04-17 16:28:12,196 - main - INFO - Added new listing: Flat Mauritsweg (pararius - €1,795 per month)
+2025-04-17 16:28:12,196 - main - INFO - Added new listing: Flat Zuidplein 588 (pararius - €2,300 per month)
+2025-04-17 16:28:12,197 - main - INFO - Added new listing: Flat Henegouwerlaan (pararius - €2,450 per month)
+2025-04-17 16:28:12,198 - main - INFO - Added new listing: Flat Watertorenweg 587 (pararius - €2,150 per month)
+2025-04-17 16:28:12,199 - main - INFO - Added new listing: House Spoorsingel (pararius - €2,295 per month)
+2025-04-17 16:28:12,199 - main - INFO - Added new listing: Flat Oostzeedijk Beneden (pararius - €1,209 per month)
+2025-04-17 16:28:12,200 - main - INFO - Added new listing: Flat Spinozaweg (pararius - €1,150 per month)
+2025-04-17 16:28:12,201 - main - INFO - Added new listing: Flat Nieuwe Binnenweg (pararius - €2,330 per month)
+2025-04-17 16:28:12,202 - main - INFO - Added new listing: Flat Boompjes (pararius - €3,350 per month)
+2025-04-17 16:28:12,202 - main - INFO - Added new listing: Flat Straatweg 44 C (pararius - €1,850 per month)
+2025-04-17 16:28:12,203 - main - INFO - Added new listing: Flat Drinkwaterweg 481 (pararius - €2,150 per month)
+2025-04-17 16:28:12,204 - main - INFO - Added new listing: Flat Lepelaarsingel (pararius - €927 per month)
+2025-04-17 16:28:12,205 - main - INFO - Added new listing: Flat Vorkstraat (pararius - €1,495 per month)
+2025-04-17 16:28:12,206 - main - INFO - Added new listing: Flat Rodenrijsestraat (pararius - €2,075 per month)
+2025-04-17 16:28:12,206 - main - INFO - Added new listing: Room Mathenesserweg (pararius - €625 per month)
+2025-04-17 16:28:12,207 - main - INFO - Added new listing: Room Mathenesserweg (pararius - €511 per month)
+2025-04-17 16:28:12,208 - main - INFO - Completed scan of pararius for rotterdam: 31 new, 31 total in 60.99s
+2025-04-17 16:28:12,208 - main - INFO - Scan complete: 46 new listings from 46 total processed
+2025-04-17 16:28:12,208 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 16:28:12,222 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 16:28:12,222 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 16:38:39,349 - main - INFO - Scraper task cancelled
+2025-04-17 16:38:41,834 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 16:38:41.834910
+2025-04-17 16:38:41,835 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['rotterdam']
+2025-04-17 16:38:41,937 - database.migrations - INFO - Database initialized successfully
+2025-04-17 16:38:41,942 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 16:38:41,942 - main - INFO - Starting new scan cycle...
+2025-04-17 16:38:41,949 - main - INFO - Scanning funda for rotterdam...
+2025-04-17 16:38:43,904 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22rotterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 16:38:43,921 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-17 16:38:43,922 - main - INFO - Found 15 listings for funda in rotterdam
+2025-04-17 16:38:43,969 - main - INFO - Completed scan of funda for rotterdam: 0 new, 15 total in 2.02s
+2025-04-17 16:38:43,970 - main - INFO - Scanning pararius for rotterdam...
+2025-04-17 16:38:44,939 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 16:38:44,969 - utils.http - WARNING - Anti-bot measures detected (retry 0/4) for https://www.pararius.com/apartments/rotterdam?filters[since]=1
+2025-04-17 16:38:44,969 - utils.http - INFO - Anti-bot retry 1 for https://www.pararius.com/apartments/rotterdam?filters[since]=1, waiting 3.4 seconds...
+2025-04-17 16:38:50,216 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 16:38:50,228 - utils.http - WARNING - Anti-bot measures detected (retry 1/4) for https://www.pararius.com/apartments/rotterdam?filters[since]=1
+2025-04-17 16:38:50,228 - utils.http - INFO - Anti-bot retry 2 for https://www.pararius.com/apartments/rotterdam?filters[since]=1, waiting 8.3 seconds...
+2025-04-17 16:39:00,501 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 16:39:00,541 - utils.http - WARNING - Anti-bot measures detected (retry 2/4) for https://www.pararius.com/apartments/rotterdam?filters[since]=1
+2025-04-17 16:39:00,541 - utils.http - INFO - Anti-bot retry 3 for https://www.pararius.com/apartments/rotterdam?filters[since]=1, waiting 11.1 seconds...
+2025-04-17 16:39:15,308 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 16:39:15,336 - utils.http - WARNING - Anti-bot measures detected (retry 3/4) for https://www.pararius.com/apartments/rotterdam?filters[since]=1
+2025-04-17 16:39:15,336 - utils.http - INFO - Anti-bot retry 4 for https://www.pararius.com/apartments/rotterdam?filters[since]=1, waiting 17.0 seconds...
+2025-04-17 16:39:39,267 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 16:39:39,275 - utils.http - INFO - Successfully bypassed anti-bot measures after 4 retries for https://www.pararius.com/apartments/rotterdam?filters[since]=1
+2025-04-17 16:39:39,285 - main - INFO - Found 31 listings for pararius in rotterdam
+2025-04-17 16:39:39,319 - main - INFO - Completed scan of pararius for rotterdam: 0 new, 31 total in 55.35s
+2025-04-17 16:39:39,319 - main - INFO - Scan complete: 0 new listings from 46 total processed
+2025-04-17 16:39:39,319 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 16:39:39,335 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 16:39:39,335 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 16:47:42,065 - main - INFO - Scraper task cancelled
+2025-04-17 16:47:44,005 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 16:47:44.005676
+2025-04-17 16:47:44,009 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['rotterdam']
+2025-04-17 16:47:44,026 - database.migrations - INFO - Database initialized successfully
+2025-04-17 16:47:44,030 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 16:47:44,030 - main - INFO - Starting new scan cycle...
+2025-04-17 16:47:44,032 - main - INFO - Scanning funda for rotterdam...
+2025-04-17 16:47:44,751 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22rotterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 16:47:44,784 - utils.http - WARNING - Anti-bot pattern detected: 'Je bent bijna op de pagina die je zoekt'
+2025-04-17 16:47:44,784 - utils.http - WARNING - Anti-bot measures detected (retry 0/4) for https://www.funda.nl/zoeken/huur?selected_area=["rotterdam"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-17 16:47:44,784 - utils.http - INFO - Anti-bot retry 1/4 using Desktop Chrome profile for https://www.funda.nl/zoeken/huur?selected_area=["rotterdam"]&object_type=["house","apartment"]&sort="date_down", waiting 4.5 seconds...
+2025-04-17 16:47:52,555 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22rotterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 16:47:52,556 - utils.http - WARNING - Anti-bot pattern detected: 'Je bent bijna op de pagina die je zoekt'
+2025-04-17 16:47:52,556 - utils.http - WARNING - Anti-bot measures detected (retry 1/4) for https://www.funda.nl/zoeken/huur?selected_area=["rotterdam"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-17 16:47:52,556 - utils.http - INFO - Anti-bot retry 2/4 using Mobile Safari profile for https://www.funda.nl/zoeken/huur?selected_area=["rotterdam"]&object_type=["house","apartment"]&sort="date_down", waiting 4.9 seconds...
+2025-04-17 16:48:00,940 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22rotterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 16:48:00,959 - utils.http - INFO - Successfully bypassed anti-bot measures after 2 retries for https://www.funda.nl/zoeken/huur?selected_area=["rotterdam"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-17 16:48:00,962 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-17 16:48:00,963 - main - INFO - Found 15 listings for funda in rotterdam
+2025-04-17 16:48:01,013 - main - INFO - Completed scan of funda for rotterdam: 0 new, 15 total in 16.98s
+2025-04-17 16:48:01,013 - main - INFO - Scanning pararius for rotterdam...
+2025-04-17 16:48:02,705 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 16:48:02,739 - utils.http - WARNING - Anti-bot pattern detected: 'robot'
+2025-04-17 16:48:02,740 - utils.http - WARNING - Anti-bot measures detected (retry 0/4) for https://www.pararius.com/apartments/rotterdam?filters[since]=1
+2025-04-17 16:48:02,740 - utils.http - INFO - Anti-bot retry 1/4 using Desktop Chrome profile for https://www.pararius.com/apartments/rotterdam?filters[since]=1, waiting 3.0 seconds...
+2025-04-17 16:48:07,385 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 16:48:07,397 - utils.http - WARNING - Anti-bot pattern detected: 'robot'
+2025-04-17 16:48:07,397 - utils.http - WARNING - Anti-bot measures detected (retry 1/4) for https://www.pararius.com/apartments/rotterdam?filters[since]=1
+2025-04-17 16:48:07,397 - utils.http - INFO - Anti-bot retry 2/4 using Mobile Safari profile for https://www.pararius.com/apartments/rotterdam?filters[since]=1, waiting 9.8 seconds...
+2025-04-17 16:48:23,111 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 16:48:23,147 - utils.http - WARNING - Anti-bot pattern detected: 'robot'
+2025-04-17 16:48:23,147 - utils.http - WARNING - Anti-bot measures detected (retry 2/4) for https://www.pararius.com/apartments/rotterdam?filters[since]=1
+2025-04-17 16:48:23,148 - utils.http - INFO - Anti-bot retry 3/4 using Desktop Safari profile for https://www.pararius.com/apartments/rotterdam?filters[since]=1, waiting 14.7 seconds...
+2025-04-17 16:48:42,821 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 16:48:42,847 - utils.http - WARNING - Anti-bot pattern detected: 'robot'
+2025-04-17 16:48:42,848 - utils.http - WARNING - Anti-bot measures detected (retry 3/4) for https://www.pararius.com/apartments/rotterdam?filters[since]=1
+2025-04-17 16:48:42,848 - utils.http - INFO - Anti-bot retry 4/4 using Firefox Linux profile for https://www.pararius.com/apartments/rotterdam?filters[since]=1, waiting 18.7 seconds...
+2025-04-17 16:49:10,959 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 16:49:10,988 - utils.http - INFO - Successfully bypassed anti-bot measures after 4 retries for https://www.pararius.com/apartments/rotterdam?filters[since]=1
+2025-04-17 16:49:11,000 - main - INFO - Found 31 listings for pararius in rotterdam
+2025-04-17 16:49:11,056 - main - INFO - Completed scan of pararius for rotterdam: 0 new, 31 total in 70.04s
+2025-04-17 16:49:11,056 - main - INFO - Scan complete: 0 new listings from 46 total processed
+2025-04-17 16:49:11,056 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 16:49:11,070 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 16:49:11,070 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 16:49:16,182 - main - INFO - Scraper task cancelled
+2025-04-17 16:50:47,453 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 16:50:47.453031
+2025-04-17 16:50:47,457 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['rotterdam']
+2025-04-17 16:50:47,473 - database.migrations - INFO - Database initialized successfully
+2025-04-17 16:50:47,476 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 16:50:47,476 - main - INFO - Starting new scan cycle...
+2025-04-17 16:50:47,479 - main - INFO - Scanning funda for rotterdam...
+2025-04-17 16:50:49,539 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22rotterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 16:50:49,539 - utils.http - WARNING - Anti-bot pattern detected: 'Je bent bijna op de pagina die je zoekt'
+2025-04-17 16:50:49,539 - utils.http - WARNING - Anti-bot measures detected (retry 0/6) for https://www.funda.nl/zoeken/huur?selected_area=["rotterdam"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-17 16:50:49,539 - utils.http - INFO - Anti-bot retry 1/6 using Desktop Chrome profile for https://www.funda.nl/zoeken/huur?selected_area=["rotterdam"]&object_type=["house","apartment"]&sort="date_down", waiting 3.2 seconds...
+2025-04-17 16:50:56,502 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22rotterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 16:50:56,505 - utils.http - WARNING - Anti-bot pattern detected: 'Je bent bijna op de pagina die je zoekt'
+2025-04-17 16:50:56,505 - utils.http - WARNING - Anti-bot measures detected (retry 1/6) for https://www.funda.nl/zoeken/huur?selected_area=["rotterdam"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-17 16:50:56,506 - utils.http - INFO - Anti-bot retry 2/6 using Mobile Safari profile for https://www.funda.nl/zoeken/huur?selected_area=["rotterdam"]&object_type=["house","apartment"]&sort="date_down", waiting 9.2 seconds...
+2025-04-17 16:51:11,104 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22rotterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 16:51:11,136 - utils.http - INFO - Successfully bypassed anti-bot measures after 2 retries for https://www.funda.nl/zoeken/huur?selected_area=["rotterdam"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-17 16:51:11,142 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-17 16:51:11,145 - main - INFO - Found 15 listings for funda in rotterdam
+2025-04-17 16:51:11,177 - main - INFO - Added new listing: Factorij 26 (funda - € 2.200 /maand)
+2025-04-17 16:51:11,178 - main - INFO - Added new listing: Kerstant van den Bergelaan 24-B (funda - € 2.750 /maand)
+2025-04-17 16:51:11,179 - main - INFO - Added new listing: Westzeedijk 138-E (funda - € 1.370 /maand)
+2025-04-17 16:51:11,180 - main - INFO - Added new listing: Godschalkstraat 142 (funda - € 1.284 /maand)
+2025-04-17 16:51:11,181 - main - INFO - Added new listing: Godschalkstraat 100 (funda - € 1.284 /maand)
+2025-04-17 16:51:11,182 - main - INFO - Added new listing: Godschalkstraat 118 (funda - € 1.284 /maand)
+2025-04-17 16:51:11,183 - main - INFO - Added new listing: Bergstraat 8-C (funda - € 2.250 /maand)
+2025-04-17 16:51:11,184 - main - INFO - Added new listing: Luzacstraat 7-A01 (funda - € 1.400 /maand)
+2025-04-17 16:51:11,185 - main - INFO - Added new listing: Boompjes 49-U (funda - € 3.350 /maand)
+2025-04-17 16:51:11,185 - main - INFO - Added new listing: Straatweg 44-C (funda - € 1.850 /maand)
+2025-04-17 16:51:11,186 - main - INFO - Added new listing: Kruisplein 436 (funda - € 2.450 /maand)
+2025-04-17 16:51:11,187 - main - INFO - Added new listing: Willem de Zwijgerstraat 8 (funda - Prijs op aanvraag)
+2025-04-17 16:51:11,188 - main - INFO - Added new listing: Wilgenplaslaan 198-C04 (funda - € 1.550 /maand)
+2025-04-17 16:51:11,189 - main - INFO - Added new listing: Baan 42-R (funda - € 1.650 /maand)
+2025-04-17 16:51:11,190 - main - INFO - Added new listing: Ebenhaëzerstraat 7-M (funda - € 1.995 /maand)
+2025-04-17 16:51:11,192 - main - INFO - Completed scan of funda for rotterdam: 15 new, 15 total in 23.71s
+2025-04-17 16:51:11,192 - main - INFO - Scanning pararius for rotterdam...
+2025-04-17 16:51:13,005 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 16:51:13,029 - utils.http - WARNING - Anti-bot pattern detected: 'robot'
+2025-04-17 16:51:13,029 - utils.http - WARNING - Anti-bot measures detected (retry 0/6) for https://www.pararius.com/apartments/rotterdam?filters[since]=1
+2025-04-17 16:51:13,030 - utils.http - INFO - Anti-bot retry 1/6 using Desktop Chrome profile for https://www.pararius.com/apartments/rotterdam?filters[since]=1, waiting 3.4 seconds...
+2025-04-17 16:51:19,166 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 16:51:19,208 - utils.http - WARNING - Anti-bot pattern detected: 'robot'
+2025-04-17 16:51:19,209 - utils.http - WARNING - Anti-bot measures detected (retry 1/6) for https://www.pararius.com/apartments/rotterdam?filters[since]=1
+2025-04-17 16:51:19,209 - utils.http - INFO - Anti-bot retry 2/6 using Mobile Safari profile for https://www.pararius.com/apartments/rotterdam?filters[since]=1, waiting 6.2 seconds...
+2025-04-17 16:51:30,218 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 16:51:30,255 - utils.http - WARNING - Anti-bot pattern detected: 'robot'
+2025-04-17 16:51:30,255 - utils.http - WARNING - Anti-bot measures detected (retry 2/6) for https://www.pararius.com/apartments/rotterdam?filters[since]=1
+2025-04-17 16:51:30,255 - utils.http - INFO - Anti-bot retry 3/6 using Desktop Safari profile for https://www.pararius.com/apartments/rotterdam?filters[since]=1, waiting 13.9 seconds...
+2025-04-17 16:51:50,982 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 16:51:51,020 - utils.http - WARNING - Anti-bot pattern detected: 'robot'
+2025-04-17 16:51:51,020 - utils.http - WARNING - Anti-bot measures detected (retry 3/6) for https://www.pararius.com/apartments/rotterdam?filters[since]=1
+2025-04-17 16:51:51,020 - utils.http - INFO - Anti-bot retry 4/6 using Firefox Linux profile for https://www.pararius.com/apartments/rotterdam?filters[since]=1, waiting 14.7 seconds...
+2025-04-17 16:52:13,459 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 16:52:13,484 - utils.http - WARNING - Anti-bot pattern detected: 'robot'
+2025-04-17 16:52:13,484 - utils.http - WARNING - Anti-bot measures detected (retry 4/6) for https://www.pararius.com/apartments/rotterdam?filters[since]=1
+2025-04-17 16:52:13,485 - utils.http - INFO - Anti-bot retry 5/6 using Edge Windows profile for https://www.pararius.com/apartments/rotterdam?filters[since]=1, waiting 16.6 seconds...
+2025-04-17 16:52:41,371 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 16:52:41,412 - utils.http - WARNING - Anti-bot pattern detected: 'robot'
+2025-04-17 16:52:41,412 - utils.http - WARNING - Anti-bot measures detected (retry 5/6) for https://www.pararius.com/apartments/rotterdam?filters[since]=1
+2025-04-17 16:52:41,412 - utils.http - INFO - Anti-bot retry 6/6 using Edge Windows profile for https://www.pararius.com/apartments/rotterdam?filters[since]=1, waiting 24.0 seconds...
+2025-04-17 16:53:17,359 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 16:53:17,368 - utils.http - INFO - Successfully bypassed anti-bot measures after 6 retries for https://www.pararius.com/apartments/rotterdam?filters[since]=1
+2025-04-17 16:53:17,379 - main - INFO - Found 31 listings for pararius in rotterdam
+2025-04-17 16:53:17,383 - main - INFO - Added new listing: Studio Hendrik Sweijsstraat (pararius - €2,600 per month)
+2025-04-17 16:53:17,385 - main - INFO - Added new listing: Flat Polderlaan (pararius - €2,350 per month)
+2025-04-17 16:53:17,386 - main - INFO - Added new listing: Flat Posthoornstraat (pararius - €3,750 per month)
+2025-04-17 16:53:17,387 - main - INFO - Added new listing: Flat Bergweg (pararius - €2,245 per month)
+2025-04-17 16:53:17,388 - main - INFO - Added new listing: Flat Reyerdijk 74 (pararius - €741 per month)
+2025-04-17 16:53:17,390 - main - INFO - Added new listing: Flat Bethlehemstraat 28 B (pararius - €1,995 per month)
+2025-04-17 16:53:17,391 - main - INFO - Added new listing: Flat Katendrechtse Lagedijk (pararius - €927 per month)
+2025-04-17 16:53:17,392 - main - INFO - Added new listing: Flat Schiehavenkade (pararius - €1,940 per month)
+2025-04-17 16:53:17,393 - main - INFO - Added new listing: Flat Botersloot (pararius - €2,500 per month)
+2025-04-17 16:53:17,394 - main - INFO - Added new listing: Flat Baroniestraat (pararius - €1,045 per month)
+2025-04-17 16:53:17,395 - main - INFO - Added new listing: Flat Eendrachtsweg (pararius - €1,675 per month)
+2025-04-17 16:53:17,396 - main - INFO - Added new listing: Flat Brouwhuisstraat (pararius - €2,750 per month)
+2025-04-17 16:53:17,397 - main - INFO - Added new listing: Flat Westzeedijk 138 E (pararius - €1,370 per month)
+2025-04-17 16:53:17,398 - main - INFO - Added new listing: Room Ackersdijkstraat (pararius - €755 per month)
+2025-04-17 16:53:17,399 - main - INFO - Added new listing: Flat Parklaan (pararius - €1,645 per month)
+2025-04-17 16:53:17,400 - main - INFO - Added new listing: Flat Mauritsweg (pararius - €1,795 per month)
+2025-04-17 16:53:17,401 - main - INFO - Added new listing: Flat Zuidplein 588 (pararius - €2,300 per month)
+2025-04-17 16:53:17,402 - main - INFO - Added new listing: Flat Henegouwerlaan (pararius - €2,450 per month)
+2025-04-17 16:53:17,403 - main - INFO - Added new listing: Flat Watertorenweg 587 (pararius - €2,150 per month)
+2025-04-17 16:53:17,403 - main - INFO - Added new listing: House Spoorsingel (pararius - €2,295 per month)
+2025-04-17 16:53:17,404 - main - INFO - Added new listing: Flat Oostzeedijk Beneden (pararius - €1,209 per month)
+2025-04-17 16:53:17,405 - main - INFO - Added new listing: Flat Spinozaweg (pararius - €1,150 per month)
+2025-04-17 16:53:17,406 - main - INFO - Added new listing: Flat Nieuwe Binnenweg (pararius - €2,330 per month)
+2025-04-17 16:53:17,407 - main - INFO - Added new listing: Flat Boompjes (pararius - €3,350 per month)
+2025-04-17 16:53:17,407 - main - INFO - Added new listing: Flat Straatweg 44 C (pararius - €1,850 per month)
+2025-04-17 16:53:17,408 - main - INFO - Added new listing: Flat Drinkwaterweg 481 (pararius - €2,150 per month)
+2025-04-17 16:53:17,409 - main - INFO - Added new listing: Flat Lepelaarsingel (pararius - €927 per month)
+2025-04-17 16:53:17,410 - main - INFO - Added new listing: Flat Vorkstraat (pararius - €1,495 per month)
+2025-04-17 16:53:17,410 - main - INFO - Added new listing: Flat Rodenrijsestraat (pararius - €2,075 per month)
+2025-04-17 16:53:17,411 - main - INFO - Added new listing: Room Mathenesserweg (pararius - €625 per month)
+2025-04-17 16:53:17,412 - main - INFO - Added new listing: Room Mathenesserweg (pararius - €511 per month)
+2025-04-17 16:53:17,413 - main - INFO - Completed scan of pararius for rotterdam: 31 new, 31 total in 126.22s
+2025-04-17 16:53:17,413 - main - INFO - Scan complete: 46 new listings from 46 total processed
+2025-04-17 16:53:17,413 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 16:53:17,425 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 16:53:17,425 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 16:55:01,335 - main - INFO - Scraper task cancelled
+2025-04-17 17:12:28,782 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 17:12:28.782251
+2025-04-17 17:12:28,786 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['rotterdam']
+2025-04-17 17:12:28,801 - database.migrations - INFO - Database initialized successfully
+2025-04-17 17:12:28,805 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 17:12:28,805 - main - INFO - Starting new scan cycle...
+2025-04-17 17:12:28,807 - main - INFO - Scanning funda for rotterdam...
+2025-04-17 17:12:30,297 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22rotterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 17:12:30,299 - utils.http - WARNING - Anti-bot pattern detected: 'Je bent bijna op de pagina die je zoekt'
+2025-04-17 17:12:30,299 - utils.http - WARNING - Anti-bot measures detected (retry 0/8) for https://www.funda.nl/zoeken/huur?selected_area=["rotterdam"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-17 17:12:30,300 - utils.http - INFO - Anti-bot retry 1/8 using Desktop Chrome profile for https://www.funda.nl/zoeken/huur?selected_area=["rotterdam"]&object_type=["house","apartment"]&sort="date_down", waiting 2.2 seconds...
+2025-04-17 17:12:35,319 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22rotterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 17:12:35,321 - utils.http - WARNING - Anti-bot pattern detected: 'Je bent bijna op de pagina die je zoekt'
+2025-04-17 17:12:35,321 - utils.http - WARNING - Anti-bot measures detected (retry 1/8) for https://www.funda.nl/zoeken/huur?selected_area=["rotterdam"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-17 17:12:35,322 - utils.http - INFO - Anti-bot retry 2/8 using Mobile Safari profile for https://www.funda.nl/zoeken/huur?selected_area=["rotterdam"]&object_type=["house","apartment"]&sort="date_down", waiting 8.0 seconds...
+2025-04-17 17:12:48,151 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22rotterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 17:12:48,185 - utils.http - INFO - Successfully bypassed anti-bot measures after 2 retries for https://www.funda.nl/zoeken/huur?selected_area=["rotterdam"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-17 17:12:48,191 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-17 17:12:48,194 - main - INFO - Found 15 listings for funda in rotterdam
+2025-04-17 17:12:48,238 - main - INFO - Completed scan of funda for rotterdam: 0 new, 15 total in 19.43s
+2025-04-17 17:12:48,239 - main - INFO - Scanning pararius for rotterdam...
+2025-04-17 17:12:49,340 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 17:12:49,369 - utils.http - WARNING - Anti-bot pattern detected: 'robot'
+2025-04-17 17:12:49,369 - utils.http - WARNING - Anti-bot measures detected (retry 0/8) for https://www.pararius.com/apartments/rotterdam?filters[since]=1
+2025-04-17 17:12:49,370 - utils.http - INFO - Anti-bot retry 1/8 using Desktop Chrome profile for https://www.pararius.com/apartments/rotterdam?filters[since]=1, waiting 3.5 seconds...
+2025-04-17 17:12:56,124 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 17:12:56,155 - utils.http - WARNING - Anti-bot pattern detected: 'robot'
+2025-04-17 17:12:56,156 - utils.http - WARNING - Anti-bot measures detected (retry 1/8) for https://www.pararius.com/apartments/rotterdam?filters[since]=1
+2025-04-17 17:12:56,156 - utils.http - INFO - Anti-bot retry 2/8 using Mobile Safari profile for https://www.pararius.com/apartments/rotterdam?filters[since]=1, waiting 7.7 seconds...
+2025-04-17 17:13:09,647 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 17:13:09,669 - utils.http - WARNING - Anti-bot pattern detected: 'robot'
+2025-04-17 17:13:09,670 - utils.http - WARNING - Anti-bot measures detected (retry 2/8) for https://www.pararius.com/apartments/rotterdam?filters[since]=1
+2025-04-17 17:13:09,670 - utils.http - INFO - Anti-bot retry 3/8 using Desktop Safari profile for https://www.pararius.com/apartments/rotterdam?filters[since]=1, waiting 11.0 seconds...
+2025-04-17 17:13:23,557 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 17:13:23,591 - utils.http - WARNING - Anti-bot pattern detected: 'robot'
+2025-04-17 17:13:23,591 - utils.http - WARNING - Anti-bot measures detected (retry 3/8) for https://www.pararius.com/apartments/rotterdam?filters[since]=1
+2025-04-17 17:13:23,591 - utils.http - INFO - Anti-bot retry 4/8 using Firefox Linux profile for https://www.pararius.com/apartments/rotterdam?filters[since]=1, waiting 16.3 seconds...
+2025-04-17 17:14:16,206 - utils.http - ERROR - Request error for https://www.pararius.com/apartments/rotterdam?filters[since]=1: 
+2025-04-17 17:14:16,208 - main - ERROR - Error scanning pararius for rotterdam: 
+2025-04-17 17:14:16,212 - main - INFO - Scan complete: 0 new listings from 15 total processed
+2025-04-17 17:14:16,212 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 17:14:16,234 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 17:14:16,234 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 17:30:16,152 - main - INFO - Scraper task cancelled
+2025-04-17 17:30:19,176 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 17:30:19.176266
+2025-04-17 17:30:19,177 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['rotterdam']
+2025-04-17 17:30:19,446 - database.migrations - INFO - Database initialized successfully
+2025-04-17 17:30:19,452 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 17:30:19,453 - main - INFO - Starting new scan cycle...
+2025-04-17 17:30:19,456 - main - INFO - Scanning funda for rotterdam...
+2025-04-17 17:30:21,604 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22rotterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 17:30:21,605 - utils.http - WARNING - Anti-bot pattern detected: 'Je bent bijna op de pagina die je zoekt'
+2025-04-17 17:30:21,605 - utils.http - WARNING - Anti-bot measures detected (retry 0/8) for https://www.funda.nl/zoeken/huur?selected_area=["rotterdam"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-17 17:30:21,605 - utils.http - INFO - Anti-bot retry 1/8 using Desktop Chrome profile for https://www.funda.nl/zoeken/huur?selected_area=["rotterdam"]&object_type=["house","apartment"]&sort="date_down", waiting 3.9 seconds...
+2025-04-17 17:30:21,858 - main - INFO - Scraper task cancelled
+2025-04-17 17:30:29,152 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 17:30:29.152574
+2025-04-17 17:30:29,153 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam']
+2025-04-17 17:30:29,167 - database.migrations - INFO - Database initialized successfully
+2025-04-17 17:30:29,170 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 17:30:29,170 - main - INFO - Starting new scan cycle...
+2025-04-17 17:30:29,172 - main - INFO - Scanning funda for amsterdam...
+2025-04-17 17:30:30,932 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 17:30:30,933 - utils.http - WARNING - Anti-bot pattern detected: 'Je bent bijna op de pagina die je zoekt'
+2025-04-17 17:30:30,933 - utils.http - WARNING - Anti-bot measures detected (retry 0/8) for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-17 17:30:30,934 - utils.http - INFO - Anti-bot retry 1/8 using Desktop Chrome profile for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down", waiting 2.1 seconds...
+2025-04-17 17:30:35,780 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 17:30:35,782 - utils.http - WARNING - Anti-bot pattern detected: 'Je bent bijna op de pagina die je zoekt'
+2025-04-17 17:30:35,782 - utils.http - WARNING - Anti-bot measures detected (retry 1/8) for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-17 17:30:35,782 - utils.http - INFO - Anti-bot retry 2/8 using Mobile Safari profile for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down", waiting 6.8 seconds...
+2025-04-17 17:30:47,435 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 17:30:47,454 - utils.http - INFO - Successfully bypassed anti-bot measures after 2 retries for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-17 17:30:47,459 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-17 17:31:16,521 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 17:31:16.521427
+2025-04-17 17:31:16,527 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam']
+2025-04-17 17:31:16,548 - database.migrations - INFO - Database initialized successfully
+2025-04-17 17:31:16,553 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 17:31:16,553 - main - INFO - Starting new scan cycle...
+2025-04-17 17:31:16,556 - main - INFO - Scanning funda for amsterdam...
+2025-04-17 17:31:18,197 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 17:31:18,198 - utils.http - WARNING - Anti-bot pattern detected: 'Je bent bijna op de pagina die je zoekt'
+2025-04-17 17:31:18,198 - utils.http - WARNING - Anti-bot measures detected (retry 0/8) for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-17 17:31:18,199 - utils.http - INFO - Anti-bot retry 1/8 using Desktop Chrome profile for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down", waiting 4.5 seconds...
+2025-04-17 17:31:26,009 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 17:31:26,011 - utils.http - WARNING - Anti-bot pattern detected: 'Je bent bijna op de pagina die je zoekt'
+2025-04-17 17:31:26,012 - utils.http - WARNING - Anti-bot measures detected (retry 1/8) for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-17 17:31:26,012 - utils.http - INFO - Anti-bot retry 2/8 using Mobile Safari profile for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down", waiting 8.0 seconds...
+2025-04-17 17:31:38,674 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 17:31:38,705 - utils.http - INFO - Successfully bypassed anti-bot measures after 2 retries for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-17 17:31:38,711 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-17 17:35:39,752 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 17:35:39.752270
+2025-04-17 17:35:39,755 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam']
+2025-04-17 17:35:39,773 - database.migrations - INFO - Database initialized successfully
+2025-04-17 17:35:39,778 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 17:35:39,778 - main - INFO - Starting new scan cycle...
+2025-04-17 17:35:39,781 - main - INFO - Scanning funda for amsterdam...
+2025-04-17 17:35:40,673 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 17:35:40,675 - utils.http - WARNING - Anti-bot pattern detected: 'Je bent bijna op de pagina die je zoekt'
+2025-04-17 17:35:40,675 - utils.http - WARNING - Anti-bot measures detected (retry 0/8) for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-17 17:35:40,676 - utils.http - INFO - Anti-bot retry 1/8 using Desktop Chrome profile for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down", waiting 3.5 seconds...
+2025-04-17 17:35:45,934 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 17:35:45,935 - utils.http - WARNING - Anti-bot pattern detected: 'Je bent bijna op de pagina die je zoekt'
+2025-04-17 17:35:45,935 - utils.http - WARNING - Anti-bot measures detected (retry 1/8) for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-17 17:35:45,935 - utils.http - INFO - Anti-bot retry 2/8 using Mobile Safari profile for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down", waiting 8.8 seconds...
+2025-04-17 17:35:57,645 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 17:35:57,676 - utils.http - INFO - Successfully bypassed anti-bot measures after 2 retries for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-17 17:35:57,682 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-17 17:37:17,186 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 17:37:17.186446
+2025-04-17 17:37:17,189 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam']
+2025-04-17 17:37:17,209 - database.migrations - INFO - Database initialized successfully
+2025-04-17 17:37:17,214 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 17:37:17,214 - main - INFO - Starting new scan cycle...
+2025-04-17 17:37:17,218 - main - INFO - Scanning pararius for amsterdam...
+2025-04-17 17:37:19,601 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 17:37:19,629 - utils.http - WARNING - Anti-bot pattern detected: 'robot'
+2025-04-17 17:37:19,629 - utils.http - WARNING - Anti-bot measures detected (retry 0/8) for https://www.pararius.com/apartments/amsterdam?filters[since]=1
+2025-04-17 17:37:19,630 - utils.http - INFO - Anti-bot retry 1/8 using Desktop Chrome profile for https://www.pararius.com/apartments/amsterdam?filters[since]=1, waiting 2.1 seconds...
+2025-04-17 17:37:24,477 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 17:37:24,514 - utils.http - WARNING - Anti-bot pattern detected: 'robot'
+2025-04-17 17:37:24,515 - utils.http - WARNING - Anti-bot measures detected (retry 1/8) for https://www.pararius.com/apartments/amsterdam?filters[since]=1
+2025-04-17 17:37:24,515 - utils.http - INFO - Anti-bot retry 2/8 using Mobile Safari profile for https://www.pararius.com/apartments/amsterdam?filters[since]=1, waiting 5.1 seconds...
+2025-04-17 17:37:32,902 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 17:37:32,979 - utils.http - WARNING - Anti-bot pattern detected: 'robot'
+2025-04-17 17:37:32,979 - utils.http - WARNING - Anti-bot measures detected (retry 2/8) for https://www.pararius.com/apartments/amsterdam?filters[since]=1
+2025-04-17 17:37:32,979 - utils.http - INFO - Anti-bot retry 3/8 using Desktop Safari profile for https://www.pararius.com/apartments/amsterdam?filters[since]=1, waiting 13.6 seconds...
+2025-04-17 17:37:53,137 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 17:37:53,177 - utils.http - WARNING - Anti-bot pattern detected: 'robot'
+2025-04-17 17:37:53,177 - utils.http - WARNING - Anti-bot measures detected (retry 3/8) for https://www.pararius.com/apartments/amsterdam?filters[since]=1
+2025-04-17 17:37:53,177 - utils.http - INFO - Anti-bot retry 4/8 using Firefox Linux profile for https://www.pararius.com/apartments/amsterdam?filters[since]=1, waiting 12.2 seconds...
+2025-04-17 17:38:14,452 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 17:38:14,534 - utils.http - WARNING - Anti-bot pattern detected: 'robot'
+2025-04-17 17:38:14,534 - utils.http - WARNING - Anti-bot measures detected (retry 4/8) for https://www.pararius.com/apartments/amsterdam?filters[since]=1
+2025-04-17 17:38:14,535 - utils.http - INFO - Anti-bot retry 5/8 using Edge Windows profile for https://www.pararius.com/apartments/amsterdam?filters[since]=1, waiting 17.3 seconds...
+2025-04-17 17:38:42,745 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 17:38:42,827 - utils.http - WARNING - Anti-bot pattern detected: 'robot'
+2025-04-17 17:38:42,827 - utils.http - WARNING - Anti-bot measures detected (retry 5/8) for https://www.pararius.com/apartments/amsterdam?filters[since]=1
+2025-04-17 17:38:42,828 - utils.http - INFO - Anti-bot retry 6/8 using Edge Windows profile for https://www.pararius.com/apartments/amsterdam?filters[since]=1, waiting 26.6 seconds...
+2025-04-17 17:39:19,121 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 17:39:19,156 - utils.http - WARNING - Anti-bot pattern detected: 'robot'
+2025-04-17 17:39:19,157 - utils.http - WARNING - Anti-bot measures detected (retry 6/8) for https://www.pararius.com/apartments/amsterdam?filters[since]=1
+2025-04-17 17:39:19,157 - utils.http - INFO - Anti-bot retry 7/8 using Edge Windows profile for https://www.pararius.com/apartments/amsterdam?filters[since]=1, waiting 33.8 seconds...
+2025-04-17 17:40:04,468 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 17:40:04,558 - utils.http - WARNING - Anti-bot pattern detected: 'robot'
+2025-04-17 17:40:04,558 - utils.http - WARNING - Anti-bot measures detected (retry 7/8) for https://www.pararius.com/apartments/amsterdam?filters[since]=1
+2025-04-17 17:40:04,559 - utils.http - INFO - Anti-bot retry 8/8 using Edge Windows profile for https://www.pararius.com/apartments/amsterdam?filters[since]=1, waiting 21.3 seconds...
+2025-04-17 17:40:39,206 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-17 17:40:39,215 - utils.http - INFO - Successfully bypassed anti-bot measures after 8 retries for https://www.pararius.com/apartments/amsterdam?filters[since]=1
+2025-04-17 17:40:39,231 - main - INFO - Found 30 listings for pararius in amsterdam
+2025-04-17 17:40:39,270 - main - INFO - Added new listing: Flat Tweede Helmersstraat (pararius - €2,500 per month)
+2025-04-17 17:40:39,272 - main - INFO - Added new listing: Flat Koningslaan (pararius - €4,700 per month)
+2025-04-17 17:40:39,273 - main - INFO - Added new listing: Flat Geldersekade (pararius - €3,000 per month)
+2025-04-17 17:40:39,274 - main - INFO - Added new listing: Flat Bilderdijkstraat (pararius - €3,300 per month)
+2025-04-17 17:40:39,275 - main - INFO - Added new listing: Flat Willem de Zwijgerlaan 83 H (pararius - €2,250 per month)
+2025-04-17 17:40:39,276 - main - INFO - Added new listing: Flat Herculesstraat (pararius - €2,000 per month)
+2025-04-17 17:40:39,277 - main - INFO - Added new listing: Flat Ariana Nozemanstraat (pararius - €3,300 per month)
+2025-04-17 17:40:39,278 - main - INFO - Added new listing: Flat Van Eeghenstraat 31 B (pararius - €2,750 per month)
+2025-04-17 17:40:39,278 - main - INFO - Added new listing: House Radioweg 14 H (pararius - €2,650 per month)
+2025-04-17 17:40:39,279 - main - INFO - Added new listing: Flat Jisperveldstraat (pararius - €2,450 per month)
+2025-04-17 17:40:39,280 - main - INFO - Added new listing: Flat Rozenstraat (pararius - €2,650 per month)
+2025-04-17 17:40:39,281 - main - INFO - Added new listing: Flat Spuistraat (pararius - €2,350 per month)
+2025-04-17 17:40:39,281 - main - INFO - Added new listing: Flat Wolbrantskerkweg (pararius - €2,750 per month)
+2025-04-17 17:40:39,282 - main - INFO - Added new listing: Flat Henri Polaklaan (pararius - €3,200 per month)
+2025-04-17 17:40:39,283 - main - INFO - Added new listing: Flat Eerste Helmersstraat (pararius - €4,250 per month)
+2025-04-17 17:40:39,284 - main - INFO - Added new listing: Flat Ariana Nozemanstraat (pararius - €3,400 per month)
+2025-04-17 17:40:39,284 - main - INFO - Added new listing: Flat Spuistraat (pararius - €2,650 per month)
+2025-04-17 17:40:39,286 - main - INFO - Added new listing: Flat Eemsstraat (pararius - €2,650 per month)
+2025-04-17 17:40:39,286 - main - INFO - Added new listing: Flat Pantograafstraat 44 (pararius - €1,749 per month)
+2025-04-17 17:40:39,287 - main - INFO - Added new listing: Flat Stadhouderskade (pararius - €4,500 per month)
+2025-04-17 17:40:39,288 - main - INFO - Added new listing: Flat Mary van der Sluisstraat 180 (pararius - €1,677 per month)
+2025-04-17 17:40:39,288 - main - INFO - Added new listing: Flat Eef Kamerbeekstraat 100 (pararius - €1,548 per month)
+2025-04-17 17:40:39,289 - main - INFO - Added new listing: Flat Elzenhagensingel 407 (pararius - €1,708 per month)
+2025-04-17 17:40:39,290 - main - INFO - Added new listing: Flat Lutonhof (pararius - €2,750 per month)
+2025-04-17 17:40:39,290 - main - INFO - Added new listing: Flat Elckerlijcstraat (pararius - €3,250 per month)
+2025-04-17 17:40:39,291 - main - INFO - Added new listing: Flat Roerstraat (pararius - €5,500 per month)
+2025-04-17 17:40:39,291 - main - INFO - Added new listing: Flat Gustav Mahlerlaan 875 (pararius - €2,485 per month)
+2025-04-17 17:40:39,293 - main - INFO - Added new listing: Flat Gustav Mahlerlaan 857 (pararius - €2,400 per month)
+2025-04-17 17:40:39,293 - main - INFO - Added new listing: Flat Sam van Houtenstraat (pararius - €2,899 per month)
+2025-04-17 17:40:39,294 - main - INFO - Added new listing: Flat Eerste Constantijn Huygensstraat (pararius - €4,000 per month)
+2025-04-17 17:40:39,295 - main - INFO - Completed scan of pararius for amsterdam: 30 new, 30 total in 202.08s
+2025-04-17 17:40:39,295 - main - INFO - Scan complete: 30 new listings from 30 total processed
+2025-04-17 17:40:39,295 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 17:40:39,312 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 17:40:39,312 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 17:41:26,176 - main - INFO - Scraper task cancelled
+2025-04-17 17:41:29,171 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 17:41:29.171216
+2025-04-17 17:41:29,171 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam']
+2025-04-17 17:41:29,188 - database.migrations - INFO - Database initialized successfully
+2025-04-17 17:41:29,192 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 17:41:29,192 - main - INFO - Starting new scan cycle...
+2025-04-17 17:41:29,194 - main - INFO - Scanning funda for amsterdam...
+2025-04-17 17:41:30,360 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 17:41:30,362 - utils.http - WARNING - Anti-bot pattern detected: 'Je bent bijna op de pagina die je zoekt'
+2025-04-17 17:41:30,362 - utils.http - WARNING - Anti-bot measures detected (retry 0/8) for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-17 17:41:30,362 - utils.http - INFO - Anti-bot retry 1/8 using Desktop Chrome profile for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down", waiting 3.1 seconds...
+2025-04-17 17:41:37,444 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 17:41:37,445 - utils.http - WARNING - Anti-bot pattern detected: 'Je bent bijna op de pagina die je zoekt'
+2025-04-17 17:41:37,445 - utils.http - WARNING - Anti-bot measures detected (retry 1/8) for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-17 17:41:37,445 - utils.http - INFO - Anti-bot retry 2/8 using Mobile Safari profile for https://www.funda.nl/zoeken/huur?selected_area=["amsterdam"]&object_type=["house","apartment"]&sort="date_down", waiting 9.3 seconds...
+2025-04-17 17:41:44,026 - main - INFO - Scraper task cancelled

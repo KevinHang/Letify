@@ -69,7 +69,7 @@ class PropertyListing:
     
     # Price information
     price: Optional[str] = None
-    price_numeric: Optional[float] = None
+    price_numeric: Optional[int] = None
     price_period: Optional[str] = None  # "month", "week"
     service_costs: Optional[float] = None
     
@@ -83,7 +83,7 @@ class PropertyListing:
 
 **Key Methods:**
 
-- `__post_init__(self) -> None`
+- `generate_property_hash(self) -> None`
   - Generates a property hash for deduplication based on key attributes
 
 - `to_dict(self) -> Dict[str, Any]`
@@ -360,11 +360,6 @@ DB_CONFIG = {
 
 # Construct database connection string
 DB_CONNECTION_STRING = f"postgresql://{DB_CONFIG['user']}:{DB_CONFIG['password']}@{DB_CONFIG['host']}:{DB_CONFIG['port']}/{DB_CONFIG['database']}"
-
-# User agents to rotate for requests
-USER_AGENTS = [
-    # ... list of user agents ...
-]
 
 # Default scan settings
 DEFAULT_SCAN_INTERVAL = int(os.getenv("DEFAULT_SCAN_INTERVAL", "3600"))

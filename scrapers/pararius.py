@@ -1,8 +1,10 @@
 """
-Pararius.com scraper implementation with fixed selectors.
+Pararius.com scraper implementation that extracts data from search page only.
 """
 
 import re
+import uuid
+import hashlib
 from typing import List, Dict, Any, Optional
 from urllib.parse import urljoin
 
@@ -13,7 +15,7 @@ from scrapers.base import BaseScraperStrategy
 
 
 class ParariusScraper(BaseScraperStrategy):
-    """Scraper strategy for Pararius.com"""
+    """Scraper strategy for Pararius.com that extracts data from search results only"""
     
     async def build_search_url(self, city: str, days: int = 1, **kwargs) -> str:
         """Build a search URL for Pararius"""
@@ -34,173 +36,216 @@ class ParariusScraper(BaseScraperStrategy):
         else:
             return self.search_url_template.format(city=city.lower())
     
-    async def parse_search_page(self, html: str) -> List[str]:
-        """Parse the Pararius search results page for listing URLs"""
-        parser = HTMLParser(html)
-        listing_urls = []
+    def _generate_property_hash(self, listing: PropertyListing) -> str:
+        """
+        Generate a unique hash for the property based on available information.
+        This is a more robust implementation that works even with partial data.
+        """
+        # Collect all available identifiers
+        identifiers = []
         
-        # Extract listing URLs from search page
-        for listing_item in parser.css(".listing-search-item"):
-            link = listing_item.css_first(".listing-search-item__link--title")
-            if link and link.attributes.get("href"):
-                href = link.attributes.get("href")
-                full_url = urljoin(self.base_url, href)
-                listing_urls.append(full_url)
+        # Use URL or ID as primary identifier - these should be unique per listing
+        if listing.url:
+            identifiers.append(listing.url)
+        if listing.source_id:
+            identifiers.append(listing.source_id)
+            
+        # Add other identifying information if available
+        if listing.title:
+            identifiers.append(listing.title)
+        if listing.address:
+            identifiers.append(listing.address)
+        if listing.postal_code:
+            identifiers.append(listing.postal_code)
+        if listing.city:
+            identifiers.append(listing.city)
+        if listing.living_area:
+            identifiers.append(f"area:{listing.living_area}")
+        if listing.price_numeric:
+            identifiers.append(f"price:{listing.price_numeric}")
+        if listing.rooms:
+            identifiers.append(f"rooms:{listing.rooms}")
+            
+        # Ensure we have at least something unique
+        if not identifiers:
+            identifiers.append(str(uuid.uuid4()))
+            
+        # Create hash input
+        hash_input = "|".join([str(x) for x in identifiers if x])
         
-        return listing_urls
+        # Generate hash
+        return hashlib.md5(hash_input.encode()).hexdigest()
     
-    def _find_definition_term_value(self, parser: HTMLParser, term_text: str) -> Optional[str]:
+    async def parse_search_page(self, html: str) -> List[PropertyListing]:
         """
-        Find a definition term (dt) containing the given text and return the value (dd)
-        This replaces the :-soup-contains() selector which is not supported in selectolax
-        """
-        # Find all dt elements
-        dt_elements = parser.css("dt")
+        Parse the Pararius search results page and extract listings directly
         
-        for dt in dt_elements:
-            # Check if the text contains our search term
-            if dt.text() and term_text.lower() in dt.text().lower():
-                # Get the next dd element (sibling)
-                dd = dt.next
-                # Skip non-element nodes
-                while dd and dd.tag != "dd":
-                    dd = dd.next
+        Returns a list of PropertyListing objects instead of URLs
+        """
+        parser = HTMLParser(html)
+        listings = []
+        
+        # Extract data from each listing card
+        for listing_item in parser.css(".listing-search-item"):
+            try:
+                # Skip ads (which might be in search results)
+                if listing_item.parent and "search-list__item--listing" not in listing_item.parent.attributes.get("class", ""):
+                    continue
                 
-                if dd and dd.tag == "dd":
-                    return dd.text().strip()
+                # Create a new property listing
+                listing = PropertyListing(source="pararius")
+                
+                # Extract URL and source ID
+                link = listing_item.css_first(".listing-search-item__link--title")
+                if link and link.attributes.get("href"):
+                    href = link.attributes.get("href")
+                    full_url = urljoin(self.base_url, href)
+                    listing.url = full_url
+                    
+                    # Extract source ID from URL
+                    url_match = re.search(r'/([a-f0-9]{8})/', full_url)
+                    if url_match:
+                        listing.source_id = url_match.group(1)
+                    else:
+                        # Generate a unique ID if none found in URL
+                        listing.source_id = str(uuid.uuid4())
+                
+                # Extract title and determine property type
+                title_elem = listing_item.css_first(".listing-search-item__link--title")
+                if title_elem:
+                    title_text = title_elem.text().strip()
+                    listing.title = title_text
+                    
+                    # If title starts with "Flat", it's an apartment
+                    if title_text.startswith("Flat "):
+                        listing.property_type = PropertyType.APARTMENT
+                        # Extract address from title (remove "Flat " prefix)
+                        listing.address = title_text[5:]
+                    elif title_text.startswith("House "):
+                        listing.property_type = PropertyType.HOUSE
+                        # Extract address from title (remove "House " prefix)
+                        listing.address = title_text[6:]
+                    elif title_text.startswith("Room "):
+                        listing.property_type = PropertyType.ROOM
+                        # Extract address from title (remove "Room " prefix)
+                        listing.address = title_text[5:]
+                    elif title_text.startswith("Studio "):
+                        listing.property_type = PropertyType.STUDIO
+                        # Extract address from title (remove "Studio " prefix)
+                        listing.address = title_text[7:]
+                
+                # Extract sub-title with postal code, city, and neighborhood
+                subtitle_elem = listing_item.css_first(".listing-search-item__sub-title")
+                if subtitle_elem:
+                    subtitle_text = subtitle_elem.text().strip()
+                    
+                    # Pattern: "1017 AS Amsterdam (De Weteringschans)"
+                    subtitle_match = re.match(r'(\d{4}\s*[A-Z]{2})\s+([^(]+)(?:\s*\(([^)]+)\))?', subtitle_text)
+                    if subtitle_match:
+                        listing.postal_code = subtitle_match.group(1).strip()
+                        listing.city = subtitle_match.group(2).strip()
+                        if len(subtitle_match.groups()) > 2 and subtitle_match.group(3):
+                            listing.neighborhood = subtitle_match.group(3).strip()
+                
+                # Extract price
+                price_elem = listing_item.css_first(".listing-search-item__price")
+                if price_elem:
+                    price_text = price_elem.text().strip()
+                    listing.price = price_text
+                    
+                    # Extract numeric price 
+                    price_match = re.search(r'€\s*([\d\.,]+)', price_text)
+                    if price_match:
+                        price_str = price_match.group(1)
+                        # Remove all thousands separators (dots/commas)
+                        price_str = price_str.replace(".", "").replace(",", "")
+                        try:
+                            listing.price_numeric = int(price_str)
+                        except ValueError:
+                            pass
+                    
+                    # Extract price period
+                    if "per month" in price_text or "per maand" in price_text:
+                        listing.price_period = "month"
+                    elif "per week" in price_text or "per week" in price_text:
+                        listing.price_period = "week"
+                
+                # Extract featured image
+                img_elem = listing_item.css_first(".picture__image")
+                if img_elem and img_elem.attributes.get("src"):
+                    src = img_elem.attributes.get("src")
+                    # Skip placeholder images
+                    if not src.startswith("data:") and not "svg" in src:
+                        listing.images = [src]
+                
+                # Extract property features
+                features_elems = listing_item.css(".illustrated-features__item")
+                for feature in features_elems:
+                    feature_text = feature.text().strip().lower()
+                    
+                    # Extract surface area
+                    area_match = re.search(r'(\d+)\s*m²', feature_text)
+                    if area_match:
+                        listing.living_area = int(area_match.group(1))
+                    
+                    # Extract number of rooms
+                    room_match = re.search(r'(\d+)\s+room', feature_text)
+                    if room_match:
+                        listing.rooms = int(room_match.group(1))
+                        # Estimate bedrooms if not specified
+                        if listing.rooms > 1:
+                            listing.bedrooms = listing.rooms - 1
+                    
+                    # Extract interior type
+                    if "shell" in feature_text:
+                        listing.interior = InteriorType.SHELL
+                    elif "upholstered" in feature_text:
+                        listing.interior = InteriorType.UPHOLSTERED
+                    elif "furnished" in feature_text:
+                        listing.interior = InteriorType.FURNISHED
+                
+                # Determine property type from URL if not already set
+                if not listing.property_type and listing.url:
+                    if "apartment-for-rent" in listing.url:
+                        listing.property_type = PropertyType.APARTMENT
+                    elif "house-for-rent" in listing.url:
+                        listing.property_type = PropertyType.HOUSE
+                    elif "studio-for-rent" in listing.url:
+                        listing.property_type = PropertyType.STUDIO
+                    elif "room-for-rent" in listing.url:
+                        listing.property_type = PropertyType.ROOM
+                
+                # Generate custom property hash
+                listing.property_hash = self._generate_property_hash(listing)
+                
+                # Add the completed listing to the results
+                listings.append(listing)
+                
+            except Exception as e:
+                # Log error and continue with next listing
+                import logging
+                logger = logging.getLogger(__name__)
+                logger.error(f"Error extracting listing from search page: {e}")
+                continue
         
-        return None
+        return listings
     
     async def parse_listing_page(self, html: str, url: str) -> PropertyListing:
-        """Parse a Pararius listing detail page"""
-        parser = HTMLParser(html)
+        """
+        This method is included for compatibility but should not be called
+        since we extract all information from the search page
+        """
+        # Create a minimal listing with just the URL and source
         listing = PropertyListing(source="pararius", url=url)
         
         # Extract source ID from URL
-        url_match = re.search(r'/([a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12})/', url)
+        url_match = re.search(r'/([a-f0-9]{8})/', url)
         if url_match:
             listing.source_id = url_match.group(1)
+        else:
+            listing.source_id = str(uuid.uuid4())
         
-        # Extract title
-        title_elem = parser.css_first("h1.listing__title")
-        if title_elem:
-            listing.title = title_elem.text().strip()
-        
-        # Extract address and location info
-        address_elem = parser.css_first(".listing__address")
-        if address_elem:
-            listing.address = address_elem.text().strip()
-        
-        location_elem = parser.css_first(".listing__sub-title")
-        if location_elem:
-            loc_text = location_elem.text().strip()
-            postal_city_match = re.match(r'(\d{4}\s*[A-Z]{2})\s+(.+?)\s*(?:\((.+)\))?$', loc_text)
-            if postal_city_match:
-                listing.postal_code = postal_city_match.group(1)
-                listing.city = postal_city_match.group(2)
-                if postal_city_match.group(3):
-                    listing.neighborhood = postal_city_match.group(3)
-        
-        # Extract price
-        price_elem = parser.css_first(".listing-detail-summary__price")
-        if price_elem:
-            price_text = price_elem.text().strip()
-            listing.price = price_text
-            
-            # Extract numeric price
-            price_match = re.search(r'€\s*([\d\.,]+)', price_text)
-            if price_match:
-                price_str = price_match.group(1).replace(".", "").replace(",", ".")
-                try:
-                    listing.price_numeric = float(price_str)
-                except ValueError:
-                    pass
-            
-            # Extract price period
-            if "per month" in price_text or "per maand" in price_text:
-                listing.price_period = "month"
-            elif "per week" in price_text or "per week" in price_text:
-                listing.price_period = "week"
-        
-        # Extract description
-        description_elem = parser.css_first(".listing-detail-description__text")
-        if description_elem:
-            listing.description = description_elem.text().strip()
-        
-        # Extract property characteristics
-        for feature in parser.css(".illustrated-features__item"):
-            feature_class = feature.attributes.get("class", "")
-            feature_text = feature.text().strip()
-            
-            # Extract living area
-            if "surface-area" in feature_class:
-                area_match = re.search(r'(\d+)\s*m²', feature_text)
-                if area_match:
-                    listing.living_area = int(area_match.group(1))
-            
-            # Extract number of rooms/bedrooms
-            elif "number-of-rooms" in feature_class:
-                rooms_match = re.search(r'(\d+)\s+room', feature_text)
-                if rooms_match:
-                    listing.rooms = int(rooms_match.group(1))
-                
-                # Try to extract bedrooms specifically
-                bedrooms_match = re.search(r'(\d+)\s+bedroom', feature_text)
-                if bedrooms_match:
-                    listing.bedrooms = int(bedrooms_match.group(1))
-                elif listing.rooms and listing.rooms > 1:
-                    # If specific bedrooms not mentioned, estimate based on total rooms
-                    listing.bedrooms = listing.rooms - 1
-            
-            # Extract interior type
-            elif "interior" in feature_class:
-                if "shell" in feature_text.lower():
-                    listing.interior = InteriorType.SHELL
-                elif "upholstered" in feature_text.lower():
-                    listing.interior = InteriorType.UPHOLSTERED
-                elif "furnished" in feature_text.lower():
-                    listing.interior = InteriorType.FURNISHED
-        
-        # Extract property type 
-        property_type_elem = parser.css_first(".listing-detail-summary__type")
-        if property_type_elem:
-            type_text = property_type_elem.text().strip().lower()
-            if "apartment" in type_text or "appartement" in type_text:
-                listing.property_type = PropertyType.APARTMENT
-            elif "house" in type_text or "huis" in type_text:
-                listing.property_type = PropertyType.HOUSE
-            elif "studio" in type_text:
-                listing.property_type = PropertyType.STUDIO
-            elif "room" in type_text or "kamer" in type_text:
-                listing.property_type = PropertyType.ROOM
-        
-        # Extract images
-        for img in parser.css(".listing-detail-media__pictures img"):
-            src = img.attributes.get('src') or img.attributes.get('data-src')
-            if src and src not in listing.images:
-                listing.images.append(src)
-        
-        # Extract construction year using the helper method instead of unsupported selector
-        construction_year_text = self._find_definition_term_value(parser, "Construction year")
-        if construction_year_text:
-            year_match = re.search(r'\d{4}', construction_year_text)
-            if year_match:
-                listing.construction_year = int(year_match.group())
-        
-        # Extract availability date
-        available_date_text = self._find_definition_term_value(parser, "Available from")
-        if available_date_text:
-            listing.date_available = available_date_text
-        
-        # Extract service costs
-        service_costs_text = self._find_definition_term_value(parser, "Service costs")
-        if service_costs_text:
-            costs_match = re.search(r'€\s*([\d\.,]+)', service_costs_text)
-            if costs_match:
-                costs_str = costs_match.group(1).replace(".", "").replace(",", ".")
-                try:
-                    listing.service_costs = float(costs_str)
-                except ValueError:
-                    pass
+        # Generate a custom property hash
+        listing.property_hash = self._generate_property_hash(listing)
         
         return listing

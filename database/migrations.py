@@ -35,7 +35,7 @@ def initialize_db(connection_string: str):
                 city TEXT,
                 neighborhood TEXT,
                 price TEXT,
-                price_numeric FLOAT,
+                price_numeric INTEGER,
                 price_period TEXT,
                 service_costs FLOAT,
                 description TEXT,

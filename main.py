@@ -113,55 +113,79 @@ class RealEstateScraper:
                     await self.proxy_manager.report_failure(proxy, e)
                 raise
             
-            # Parse search page to get listing URLs
-            listing_urls = await scraper.parse_search_page(response.text)
+            # Special handling for Pararius - extract listings directly from search page
+            if source == "pararius" or source == "funda":
+                # Parse search page to get listings directly
+                listings = await scraper.parse_search_page(response.text)
 
-            print("xxx", response.text)
-            
-            # Limit the number of listings to process
-            listing_urls = listing_urls[:self.max_results_per_scan]
-            total_listings = len(listing_urls)
-            
-            logger.info(f"Found {total_listings} listings for {source} in {city}")
-            
-            # Process each listing URL
-            for listing_url in listing_urls:
-                try:
-                    # Get a new proxy for each listing if enabled
-                    proxy = await self.proxy_manager.get_proxy() if self.proxy_manager.enabled else None
-                    request_start = time.time()
-                    
+                total_listings = len(listings)
+                
+                logger.info(f"Found {total_listings} listings for {source} in {city}")
+                
+                # Process each listing
+                for listing in listings:
                     try:
-                        # Fetch listing detail page
-                        if proxy:
-                            detail_response = await self.http_client.get(listing_url)
-                            if detail_response.status_code == 200:
-                                await self.proxy_manager.report_success(proxy, time.time() - request_start)
-                        else:
-                            detail_response = await self.http_client.get(listing_url)
+                        # Set city if not already set in the listing
+                        if not listing.city:
+                            listing.city = city
+
+                        # Save listing to database
+                        is_new = self.db.save_listing(listing)
+                        if is_new:
+                            new_listings += 1
+                            logger.info(f"Added new listing: {listing.title} ({listing.source} - {listing.price})")
                     except Exception as e:
-                        if proxy:
-                            await self.proxy_manager.report_failure(proxy, e)
-                        raise
-                    
-                    # Parse listing detail page
-                    listing = await scraper.parse_listing_page(detail_response.text, listing_url)
-                    
-                    # Set city if not already set in the listing
-                    if not listing.city:
-                        listing.city = city
-                    
-                    # Save listing to database
-                    is_new = self.db.save_listing(listing)
-                    if is_new:
-                        new_listings += 1
-                        logger.info(f"Added new listing: {listing.title} ({listing.source} - {listing.price})")
-                    
-                    # Random delay between requests to avoid detection
-                    await asyncio.sleep(random.uniform(1, 3))
-                    
-                except Exception as e:
-                    logger.error(f"Error processing listing {listing_url}: {e}")
+                        logger.error(f"Error processing Pararius listing: {e}")
+            
+            # Standard approach for other sources - get listing URLs and visit each one
+            else:
+                # Parse search page to get listing URLs
+                listing_urls = await scraper.parse_search_page(response.text)
+                
+                # Limit the number of listings to process
+                listing_urls = listing_urls[:self.max_results_per_scan]
+                total_listings = len(listing_urls)
+                
+                logger.info(f"Found {total_listings} listings for {source} in {city}")
+                
+                # Process each listing URL
+                for listing_url in listing_urls:
+                    try:
+                        # Get a new proxy for each listing if enabled
+                        proxy = await self.proxy_manager.get_proxy() if self.proxy_manager.enabled else None
+                        request_start = time.time()
+                        
+                        try:
+                            # Fetch listing detail page
+                            if proxy:
+                                detail_response = await self.http_client.get(listing_url)
+                                if detail_response.status_code == 200:
+                                    await self.proxy_manager.report_success(proxy, time.time() - request_start)
+                            else:
+                                detail_response = await self.http_client.get(listing_url)
+                        except Exception as e:
+                            if proxy:
+                                await self.proxy_manager.report_failure(proxy, e)
+                            raise
+                        
+                        # Parse listing detail page
+                        listing = await scraper.parse_listing_page(detail_response.text, listing_url)
+                        
+                        # Set city if not already set in the listing
+                        if not listing.city:
+                            listing.city = city
+                        
+                        # Save listing to database
+                        is_new = self.db.save_listing(listing)
+                        if is_new:
+                            new_listings += 1
+                            logger.info(f"Added new listing: {listing.title} ({listing.source} - {listing.price})")
+                        
+                        # Random delay between requests to avoid detection
+                        await asyncio.sleep(random.uniform(1, 3))
+                        
+                    except Exception as e:
+                        logger.error(f"Error processing listing {listing_url}: {e}")
             
             # Update scan history
             duration = time.time() - start_time

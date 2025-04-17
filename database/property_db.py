@@ -32,7 +32,7 @@ class PropertyDatabase:
             with self.conn.cursor() as cur:
                 # Ensure property_hash is generated
                 if not listing.property_hash:
-                    listing.__post_init__()
+                    listing.generate_property_hash()
                 
                 # Check if the listing already exists
                 cur.execute(

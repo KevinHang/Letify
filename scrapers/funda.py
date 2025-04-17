@@ -1,161 +1,268 @@
 """
-Funda.nl scraper implementation.
+Funda.nl scraper implementation with search-page-only extraction.
 """
 
 import re
-from typing import List
+import uuid
+import hashlib
+import logging
+from typing import List, Dict, Any, Optional
 from urllib.parse import urljoin
 
-from selectolax.parser import HTMLParser
+from selectolax.parser import HTMLParser, Node
 
 from models.property import PropertyListing, PropertyType, InteriorType
 from scrapers.base import BaseScraperStrategy
 
 
+logger = logging.getLogger(__name__)
+
+
 class FundaScraper(BaseScraperStrategy):
-    """Scraper strategy for Funda.nl"""
+    """Scraper strategy for Funda.nl that extracts data from search results only"""
     
     async def build_search_url(self, city: str, days: int = 1, **kwargs) -> str:
         """Build a search URL for Funda"""
         return self.search_url_template.format(city=city.lower(), days=days)
     
-    async def parse_search_page(self, html: str) -> List[str]:
-        """Parse the Funda search results page for listing URLs"""
+    def _generate_property_hash(self, listing: PropertyListing) -> str:
+        """
+        Generate a unique hash for the property based on available information.
+        This is a robust implementation that works even with partial data.
+        """
+        # Collect all available identifiers
+        identifiers = []
+        
+        # Use URL or ID as primary identifier - these should be unique per listing
+        if listing.url:
+            identifiers.append(listing.url)
+        if listing.source_id:
+            identifiers.append(listing.source_id)
+            
+        # Add other identifying information if available
+        if listing.title:
+            identifiers.append(listing.title)
+        if listing.address:
+            identifiers.append(listing.address)
+        if listing.postal_code:
+            identifiers.append(listing.postal_code)
+        if listing.city:
+            identifiers.append(listing.city)
+        if listing.living_area:
+            identifiers.append(f"area:{listing.living_area}")
+        if listing.price_numeric:
+            identifiers.append(f"price:{listing.price_numeric}")
+        if listing.bedrooms:
+            identifiers.append(f"bedrooms:{listing.bedrooms}")
+            
+        # Ensure we have at least something unique
+        if not identifiers:
+            identifiers.append(str(uuid.uuid4()))
+            
+        # Create hash input
+        hash_input = "|".join([str(x) for x in identifiers if x])
+        
+        # Generate hash
+        return hashlib.md5(hash_input.encode()).hexdigest()
+    
+    async def parse_search_page(self, html: str) -> List[PropertyListing]:
+        """
+        Parse the Funda search results page and extract listings directly
+        
+        Returns a list of PropertyListing objects with data extracted only from search page
+        """
         parser = HTMLParser(html)
-        listing_urls = []
+        listings = []
         
-        # Extract listing URLs from search page
-        for link in parser.css("a[data-test-id='object-image-link']"):
-            href = link.attributes.get("href")
-            if href and "/detail/" in href:
+        # Find all listing cards/items in the search results
+        # Try different selectors to account for potential HTML structure changes
+        listing_elements = parser.css(".flex.flex-col.sm\\:flex-row")
+        
+        if not listing_elements:
+            # Fallback to alternative selector
+            listing_elements = parser.css("div.border-b.pb-3")
+            
+        if not listing_elements:
+            logger.warning("No listing elements found in the HTML. Check if the page structure has changed.")
+            return []
+            
+        logger.info(f"Found {len(listing_elements)} listing elements to process")
+        
+        for card in listing_elements:
+            try:
+                # Create a new property listing
+                listing = PropertyListing(source="funda")
+                
+                # Extract listing URL and source ID
+                link = card.css_first("h2 a") or card.css_first("a[data-testid='listingDetailsAddress']")
+                if not link:
+                    continue
+                    
+                href = link.attributes.get("href")
+                if not href or "/detail/" not in href:
+                    continue
+                    
                 full_url = urljoin(self.base_url, href)
-                listing_urls.append(full_url)
+                listing.url = full_url
+                
+                # Try to extract source ID from URL
+                url_match = re.search(r'/(\d+)/', full_url)
+                if url_match:
+                    listing.source_id = url_match.group(1)
+                else:
+                    # Generate a unique ID if none found in URL
+                    listing.source_id = str(uuid.uuid4())
+                
+                # Extract address
+                address_elem = card.css_first("h2 a .flex.font-semibold span.truncate") or card.css_first("h2 a span.truncate")
+                if address_elem:
+                    address_text = address_elem.text().strip()
+                    if address_text:
+                        listing.address = address_text
+                        listing.title = address_text
+                
+                # Extract postal code and city
+                postal_city_elem = card.css_first("h2 a div.truncate.text-neutral-80") or card.css_first("div.truncate.text-neutral-80")
+                if postal_city_elem:
+                    postal_city_text = postal_city_elem.text().strip()
+                    
+                    # Pattern: "1017DX Amsterdam" or similar
+                    postal_city_match = re.match(r'(\d{4}[A-Z]{2})\s+(.+)', postal_city_text)
+                    if postal_city_match:
+                        listing.postal_code = postal_city_match.group(1)
+                        listing.city = postal_city_match.group(2)
+                    else:
+                        # Try to extract city only
+                        listing.city = postal_city_text
+                
+                # Extract price
+                price_elem = card.css_first("div.font-semibold.mt-2.mb-0 div") or card.css_first(".truncate:contains('€')")
+                if price_elem:
+                    price_text = price_elem.text().strip()
+                    if price_elem.parent and "line-through" in price_elem.parent.attributes.get("class", ""):
+                        # Property is under option or sold
+                        status_elem = card.css_first("span.mb-1.mr-1.inline-block.rounded.px-2.py-0\\.5.text-xs.font-semibold.bg-red-70")
+                        if status_elem:
+                            listing.status = status_elem.text().strip()
+                    
+                    listing.price = price_text
+                    
+                    # Extract numeric price
+                    price_match = re.search(r'€\s*([\d\.,]+)', price_text)
+                    if price_match:
+                        price_str = price_match.group(1).replace(".", "").replace(",", ".")
+                        try:
+                            listing.price_numeric = int(float(price_str))
+                        except ValueError:
+                            pass
+                    
+                    # Extract price period
+                    if "/maand" in price_text or "/mnd" in price_text:
+                        listing.price_period = "month"
+                    elif "/week" in price_text:
+                        listing.price_period = "week"
+                
+                # Extract property features (living area, bedrooms, energy label, etc.)
+                features_list = card.css_first("ul.flex.h-8.flex-wrap.gap-4.overflow-hidden.truncate.py-1")
+                if features_list:
+                    for feature in features_list.css("li"):
+                        feature_text = feature.text().strip()
+                        
+                        # Extract living area
+                        area_match = re.search(r'(\d+)\s*m²', feature_text)
+                        if area_match:
+                            try:
+                                listing.living_area = int(area_match.group(1))
+                            except ValueError:
+                                pass
+                        
+                        # Extract rooms/bedrooms
+                        if not "m²" in feature_text:
+                            rooms_match = re.search(r'(\d+)', feature_text)
+                            if rooms_match:
+                                try:
+                                    rooms = int(rooms_match.group(1))
+                                    # Room icon usually represents bedrooms
+                                    if "bed" in feature.html or "slaap" in feature.html:
+                                        listing.bedrooms = rooms
+                                    else:
+                                        listing.rooms = rooms
+                                except ValueError:
+                                    pass
+                        
+                        # Extract energy label
+                        energy_label_match = re.search(r'([A-G][\+\-]*)$', feature_text)
+                        if energy_label_match:
+                            listing.energy_label = energy_label_match.group(1)
+                
+                # Extract featured image
+                img_elem = card.css_first("img")
+                if img_elem:
+                    src = None
+                    # Check for srcset attribute first
+                    srcset = img_elem.attributes.get("srcset")
+                    if srcset:
+                        # Get the highest resolution image from srcset
+                        src_matches = re.findall(r'(https://[^\s]+)', srcset)
+                        if src_matches:
+                            src = src_matches[-1].split(' ')[0]
+                    
+                    # Fallback to src attribute
+                    if not src:
+                        src = img_elem.attributes.get("src")
+                    
+                    if src and not src.startswith("data:") and not "svg" in src:
+                        listing.images = [src]
+                
+                # Extract property type from URL
+                if "appartement" in listing.url:
+                    listing.property_type = PropertyType.APARTMENT
+                elif "huis" in listing.url:
+                    listing.property_type = PropertyType.HOUSE
+                elif "studio" in listing.url:
+                    listing.property_type = PropertyType.STUDIO
+                elif "kamer" in listing.url:
+                    listing.property_type = PropertyType.ROOM
+                
+                # Extract realtor
+                realtor_elem = card.css_first("a.truncate.text-secondary-70") or card.css_first("a.truncate.text-secondary-70.hover\\:text-secondary-70-darken-1")
+                if realtor_elem:
+                    listing.realtor = realtor_elem.text().strip()
+                
+                # Check if the listing is new
+                new_tag = card.css_first("span.mb-1.mr-1.inline-block.rounded.px-2.py-0\\.5.text-xs.font-semibold.bg-primary-50")
+                if new_tag and "nieuw" in new_tag.text().lower():
+                    listing.is_new = True
+                
+                # Generate custom property hash
+                listing.property_hash = self._generate_property_hash(listing)
+                
+                # Add the completed listing to the results
+                listings.append(listing)
+                
+            except Exception as e:
+                # Log error and continue with next listing
+                logger.error(f"Error extracting listing from Funda search page: {e}")
+                continue
         
-        return listing_urls
+        return listings
     
     async def parse_listing_page(self, html: str, url: str) -> PropertyListing:
-        """Parse a Funda listing detail page"""
-        parser = HTMLParser(html)
+        """
+        This method is included for compatibility but should not be called
+        since we extract all information from the search page
+        """
+        # Create a minimal listing with just the URL and source
         listing = PropertyListing(source="funda", url=url)
         
-        # Extract basic info
-        title_elem = parser.css_first("h1 span:first-child")
-        if title_elem:
-            listing.title = title_elem.text().strip()
-            listing.address = listing.title
+        # Extract source ID from URL
+        url_match = re.search(r'/(\d+)/', url)
+        if url_match:
+            listing.source_id = url_match.group(1)
+        else:
+            listing.source_id = str(uuid.uuid4())
         
-        # Extract postal code and city
-        address_elem = parser.css_first("h1 span.text-neutral-40")
-        if address_elem:
-            address_text = address_elem.text().strip()
-            postal_city_match = re.match(r'(\d{4}\s*[A-Z]{2})\s+(.+)', address_text)
-            if postal_city_match:
-                listing.postal_code = postal_city_match.group(1)
-                listing.city = postal_city_match.group(2)
-        
-        # Extract neighborhood
-        neighborhood_elem = parser.css_first("h1 a[aria-label]")
-        if neighborhood_elem:
-            listing.neighborhood = neighborhood_elem.text().strip()
-        
-        # Extract price
-        price_elem = parser.css_first(".mt-5 .flex.flex-col div")
-        if price_elem:
-            price_text = price_elem.text().strip()
-            listing.price = price_text
-            
-            # Extract numeric price
-            price_match = re.search(r'€\s*([\d\.,]+)', price_text)
-            if price_match:
-                price_str = price_match.group(1).replace(".", "").replace(",", ".")
-                try:
-                    listing.price_numeric = float(price_str)
-                except ValueError:
-                    pass
-            
-            # Extract price period
-            if "/mnd" in price_text or "per month" in price_text:
-                listing.price_period = "month"
-            elif "/week" in price_text or "per week" in price_text:
-                listing.price_period = "week"
-        
-        # Extract description
-        description_elem = parser.css_first(".listing-description-text")
-        if description_elem:
-            listing.description = description_elem.text().strip()
-        
-        # Extract living area and bedrooms from the feature list
-        for feature_elem in parser.css("ul.mt-2 li"):
-            feature_text = feature_elem.text().strip()
-            
-            # Extract living area
-            area_match = re.search(r'(\d+)\s*m²', feature_text)
-            if area_match and not listing.living_area:
-                listing.living_area = int(area_match.group(1))
-            
-            # Extract bedrooms
-            bedrooms_match = re.search(r'(\d+)\s+slaapkamers', feature_text)
-            if bedrooms_match and not listing.bedrooms:
-                listing.bedrooms = int(bedrooms_match.group(1))
-        
-        # Extract property type
-        property_type_elem = parser.css_first("dt:-soup-contains('Soort') + dd")
-        if property_type_elem:
-            property_text = property_type_elem.text().strip().lower()
-            if "appartement" in property_text or "apartment" in property_text:
-                listing.property_type = PropertyType.APARTMENT
-            elif "woonhuis" in property_text or "house" in property_text:
-                listing.property_type = PropertyType.HOUSE
-            elif "studio" in property_text:
-                listing.property_type = PropertyType.STUDIO
-            elif "kamer" in property_text or "room" in property_text:
-                listing.property_type = PropertyType.ROOM
-        
-        # Extract interior type
-        interior_elem = parser.css_first("dt:-soup-contains('Specificaties') + dd")
-        if interior_elem:
-            interior_text = interior_elem.text().strip().lower()
-            if "gemeubileerd" in interior_text or "furnished" in interior_text:
-                listing.interior = InteriorType.FURNISHED
-            elif "gestoffeerd" in interior_text or "upholstered" in interior_text:
-                listing.interior = InteriorType.UPHOLSTERED
-            elif "kaal" in interior_text or "shell" in interior_text:
-                listing.interior = InteriorType.SHELL
-        
-        # Extract construction year
-        year_elem = parser.css_first("dt:-soup-contains('Bouwjaar') + dd")
-        if year_elem:
-            year_match = re.search(r'\d{4}', year_elem.text())
-            if year_match:
-                listing.construction_year = int(year_match.group())
-        
-        # Extract energy label
-        energy_label_elem = parser.css_first("span[class*='bg-[#']")
-        if energy_label_elem:
-            listing.energy_label = energy_label_elem.text().strip()
-        
-        # Extract coordinates from NUXT data
-        nuxt_script = parser.css_first('script#__NUXT_DATA__')
-        if nuxt_script:
-            script_text = nuxt_script.text()
-            lat_match = re.search(r'"lat":([\d\.]+)', script_text)
-            lng_match = re.search(r'"lng":([\d\.]+)', script_text)
-            
-            if lat_match and lng_match:
-                listing.coordinates = {
-                    "lat": float(lat_match.group(1)),
-                    "lng": float(lng_match.group(1))
-                }
-            
-            # Extract source ID
-            id_match = re.search(r'"globalId":(\d+)', script_text)
-            if id_match:
-                listing.source_id = id_match.group(1)
-        
-        # Extract image URLs
-        for img in parser.css("img[alt^='Foto']"):
-            src = img.attributes.get('src')
-            if src and src not in listing.images:
-                listing.images.append(src)
+        # Generate a custom property hash
+        listing.property_hash = self._generate_property_hash(listing)
         
         return listing
