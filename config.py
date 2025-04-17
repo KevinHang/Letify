@@ -9,6 +9,7 @@ the core scraper code.
 import os
 from typing import Dict, Any, List
 from dotenv import load_dotenv
+import random 
 
 # Load environment variables from .env file if present
 load_dotenv()
@@ -25,15 +26,6 @@ DB_CONFIG = {
 # Construct database connection string
 DB_CONNECTION_STRING = f"postgresql://{DB_CONFIG['user']}:{DB_CONFIG['password']}@{DB_CONFIG['host']}:{DB_CONFIG['port']}/{DB_CONFIG['database']}"
 
-# User agents to rotate for requests
-USER_AGENTS = [
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.4 Safari/605.1.15",
-    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36",
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0",
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36 Edg/112.0.1722.48",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
-]
 
 # Default scan settings
 DEFAULT_SCAN_INTERVAL = int(os.getenv("DEFAULT_SCAN_INTERVAL", "3600"))  # 1 hour in seconds
@@ -51,7 +43,7 @@ DEFAULT_SOURCES = os.getenv("DEFAULT_SOURCES", "funda,pararius").split(",")
 SITE_CONFIGS = {
     "funda": {
         "base_url": "https://www.funda.nl",
-        "search_url_template": "https://www.funda.nl/en/zoeken/huur/?selected_area=[\"{city}\"]&publication_date=\"{days}\"&sort=\"date_down\"",
+        "search_url_template": "https://www.funda.nl/zoeken/huur?selected_area=[\"{city}\"]&object_type=[\"house\",\"apartment\"]&sort=\"date_down\"",
         "listing_selector": ".search-result-content",
         "min_interval": 10,  # TODO
     },

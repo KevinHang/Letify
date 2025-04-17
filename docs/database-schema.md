@@ -13,6 +13,8 @@ This document provides a detailed reference of all tables created by the Dutch R
 
 ## Properties Table
 
+psql -h localhost -p 5432 -U kevinhang realestate
+
 The `properties` table stores all property listings from various sources.
 
 ```sql
@@ -28,7 +30,7 @@ CREATE TABLE IF NOT EXISTS properties (
     city TEXT,
     neighborhood TEXT,
     price TEXT,
-    price_numeric FLOAT,
+    price_numeric INTEGER,
     price_period TEXT,
     service_costs FLOAT,
     description TEXT,

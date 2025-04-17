@@ -47,7 +47,7 @@ class PropertyListing:
     
     # Price information
     price: Optional[str] = None
-    price_numeric: Optional[float] = None
+    price_numeric: Optional[int] = None
     price_period: Optional[str] = None  # "month", "week"
     service_costs: Optional[float] = None
     
@@ -86,11 +86,11 @@ class PropertyListing:
     # Hash for deduplication
     property_hash: Optional[str] = None
     
-    def __post_init__(self):
+    def generate_property_hash(self):
         """Generate a property hash for deduplication"""
         if not self.property_hash:
             # Create a hash based on key attributes to detect duplicates across platforms
-            hash_input = f"{self.address}|{self.postal_code}|{self.city}|{self.living_area}|{self.price_numeric}"
+            hash_input = f"{self.url}|{self.address}|{self.source_id}|{self.city}"
             self.property_hash = hashlib.md5(hash_input.encode()).hexdigest()
     
     def to_dict(self) -> Dict[str, Any]:
