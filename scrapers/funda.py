@@ -136,9 +136,12 @@ class FundaScraper(BaseScraperStrategy):
                         listing.city = postal_city_text
                 
                 # Extract price
-                price_elem = card.css_first("div.font-semibold.mt-2.mb-0 div") or card.css_first(".truncate:contains('€')")
+                # First case is if there is only monthly price, second case is if it contains buying price and monthly rent
+                price_elem = card.css_first("div.font-semibold.mt-2.mb-0 div") or card.css_first("div.font-semibold.mt-2 div:nth-child(2)")
+                print("priceelem", price_elem.text())
                 if price_elem:
                     price_text = price_elem.text().strip()
+                    print("price", price_text)
                     if price_elem.parent and "line-through" in price_elem.parent.attributes.get("class", ""):
                         # Property is under option or sold
                         status_elem = card.css_first("span.mb-1.mr-1.inline-block.rounded.px-2.py-0\\.5.text-xs.font-semibold.bg-red-70")

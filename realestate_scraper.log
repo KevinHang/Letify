@@ -2325,3 +2325,120 @@
 2025-04-17 18:19:44,695 - main - INFO - Found 0 potential duplicate pairs
 2025-04-17 18:19:44,695 - main - INFO - Waiting 3600 seconds until next scan...
 2025-04-17 18:20:17,397 - main - INFO - Scraper task cancelled
+2025-04-17 18:21:04,125 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 18:21:04.125156
+2025-04-17 18:21:04,130 - __main__ - INFO - Starting scraper for sources: ['funda'], cities: ['amsterdam']
+2025-04-17 18:21:04,148 - database.migrations - INFO - Database initialized successfully
+2025-04-17 18:21:04,151 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 18:21:04,151 - main - INFO - Starting new scan cycle...
+2025-04-17 18:21:04,154 - main - INFO - Scanning funda for amsterdam...
+2025-04-17 18:21:05,532 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 18:21:05,563 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-17 18:21:05,565 - main - INFO - Found 15 listings for funda in amsterdam
+2025-04-17 18:21:05,599 - main - INFO - Added new listing: Henri Polaklaan 13-B2 (funda - € 3.200 /maand)
+2025-04-17 18:21:05,608 - main - INFO - Completed scan of funda for amsterdam: 1 new, 15 total in 1.45s
+2025-04-17 18:21:05,608 - main - INFO - Scan complete: 1 new listings from 15 total processed
+2025-04-17 18:21:05,609 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 18:21:05,615 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 18:21:05,615 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 18:21:18,325 - main - INFO - Scraper task cancelled
+2025-04-17 18:21:29,933 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 18:21:29.933143
+2025-04-17 18:21:29,934 - __main__ - INFO - Starting scraper for sources: ['funda'], cities: ['amsterdam']
+2025-04-17 18:21:29,951 - database.migrations - INFO - Database initialized successfully
+2025-04-17 18:21:29,954 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 18:21:29,955 - main - INFO - Starting new scan cycle...
+2025-04-17 18:21:29,958 - main - INFO - Scanning funda for amsterdam...
+2025-04-17 18:21:30,651 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 18:21:30,684 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-17 18:22:27,562 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 18:22:27.562377
+2025-04-17 18:22:27,568 - __main__ - INFO - Starting scraper for sources: ['funda'], cities: ['amsterdam']
+2025-04-17 18:22:27,588 - database.migrations - INFO - Database initialized successfully
+2025-04-17 18:22:27,592 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 18:22:27,592 - main - INFO - Starting new scan cycle...
+2025-04-17 18:22:27,596 - main - INFO - Scanning funda for amsterdam...
+2025-04-17 18:22:28,963 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 18:22:28,989 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-17 18:22:28,990 - scrapers.funda - ERROR - Error extracting listing from Funda search page: 'NoneType' object has no attribute 'text'
+2025-04-17 18:22:28,990 - scrapers.funda - ERROR - Error extracting listing from Funda search page: 'NoneType' object has no attribute 'text'
+2025-04-17 18:22:28,991 - main - INFO - Found 13 listings for funda in amsterdam
+2025-04-17 18:22:29,033 - main - INFO - Completed scan of funda for amsterdam: 0 new, 13 total in 1.44s
+2025-04-17 18:22:29,033 - main - INFO - Scan complete: 0 new listings from 13 total processed
+2025-04-17 18:22:29,033 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 18:22:29,040 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 18:22:29,040 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 18:22:57,145 - main - INFO - Scraper task cancelled
+2025-04-17 18:22:58,887 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 18:22:58.887128
+2025-04-17 18:22:58,887 - __main__ - INFO - Starting scraper for sources: ['funda'], cities: ['amsterdam']
+2025-04-17 18:22:58,904 - database.migrations - INFO - Database initialized successfully
+2025-04-17 18:22:58,908 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 18:22:58,909 - main - INFO - Starting new scan cycle...
+2025-04-17 18:22:58,913 - main - INFO - Scanning funda for amsterdam...
+2025-04-17 18:23:00,243 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 18:23:00,281 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-17 18:23:00,283 - scrapers.funda - ERROR - Error extracting listing from Funda search page: 'NoneType' object has no attribute 'text'
+2025-04-17 18:23:00,283 - scrapers.funda - ERROR - Error extracting listing from Funda search page: 'NoneType' object has no attribute 'text'
+2025-04-17 18:23:00,286 - main - INFO - Found 13 listings for funda in amsterdam
+2025-04-17 18:23:00,338 - main - INFO - Completed scan of funda for amsterdam: 0 new, 13 total in 1.42s
+2025-04-17 18:23:00,338 - main - INFO - Scan complete: 0 new listings from 13 total processed
+2025-04-17 18:23:00,338 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 18:23:00,341 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 18:23:00,341 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 18:23:32,161 - main - INFO - Scraper task cancelled
+2025-04-17 18:23:33,990 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 18:23:33.990041
+2025-04-17 18:23:33,990 - __main__ - INFO - Starting scraper for sources: ['funda'], cities: ['amsterdam']
+2025-04-17 18:23:34,013 - database.migrations - INFO - Database initialized successfully
+2025-04-17 18:23:34,018 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 18:23:34,018 - main - INFO - Starting new scan cycle...
+2025-04-17 18:23:34,020 - main - INFO - Scanning funda for amsterdam...
+2025-04-17 18:23:35,081 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 18:23:35,102 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-17 18:23:35,104 - main - INFO - Found 15 listings for funda in amsterdam
+2025-04-17 18:23:35,145 - main - INFO - Completed scan of funda for amsterdam: 0 new, 15 total in 1.12s
+2025-04-17 18:23:35,146 - main - INFO - Scan complete: 0 new listings from 15 total processed
+2025-04-17 18:23:35,146 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 18:23:35,147 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 18:23:35,147 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 18:24:07,367 - main - INFO - Scraper task cancelled
+2025-04-17 18:24:09,139 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 18:24:09.139792
+2025-04-17 18:24:09,140 - __main__ - INFO - Starting scraper for sources: ['funda'], cities: ['amsterdam']
+2025-04-17 18:24:09,159 - database.migrations - INFO - Database initialized successfully
+2025-04-17 18:24:09,164 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 18:24:09,164 - main - INFO - Starting new scan cycle...
+2025-04-17 18:24:09,167 - main - INFO - Scanning funda for amsterdam...
+2025-04-17 18:24:10,422 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 18:24:10,452 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-17 18:24:10,454 - main - INFO - Found 15 listings for funda in amsterdam
+2025-04-17 18:24:10,491 - main - INFO - Added new listing: Geldersekade 11-H (funda - € 799.000 k.k.)
+2025-04-17 18:24:10,492 - main - INFO - Added new listing: Krijn Taconiskade 217 (funda - € 999.000 k.k.)
+2025-04-17 18:24:10,492 - main - INFO - Added new listing: Achtergracht 15-O (funda - € 3.000 /maand)
+2025-04-17 18:24:10,493 - main - INFO - Added new listing: Bijlmerdreef 528 (funda - € 3.000 /maand)
+2025-04-17 18:24:10,494 - main - INFO - Added new listing: Van Eeghenstraat 31-B (funda - € 2.750 /maand)
+2025-04-17 18:24:10,494 - main - INFO - Added new listing: Lutonhof 331 (funda - € 2.750 /maand)
+2025-04-17 18:24:10,495 - main - INFO - Added new listing: Kribbestraat 23-H (funda - € 2.700 /maand)
+2025-04-17 18:24:10,499 - main - INFO - Added new listing: Madurastraat 128 (funda - € 2.175 /maand)
+2025-04-17 18:24:10,500 - main - INFO - Added new listing: Nieuwe Kerkstraat 47 (funda - € 3.450 /maand)
+2025-04-17 18:24:10,500 - main - INFO - Added new listing: Willem de Zwijgerlaan 83-H (funda - € 2.250 /maand)
+2025-04-17 18:24:10,501 - main - INFO - Added new listing: Gustav Mahlerlaan 931 (funda - € 3.750 /maand)
+2025-04-17 18:24:10,501 - main - INFO - Added new listing: Spuistraat 201-B (funda - € 2.650 /maand)
+2025-04-17 18:24:10,502 - main - INFO - Added new listing: Eerste Constantijn Huygensstraat 50-H (funda - € 4.000 /maand)
+2025-04-17 18:24:10,503 - main - INFO - Added new listing: Henriëtte Bosmansstraat 44 (funda - € 8.000 /maand)
+2025-04-17 18:24:10,503 - main - INFO - Completed scan of funda for amsterdam: 14 new, 15 total in 1.34s
+2025-04-17 18:24:10,503 - main - INFO - Scan complete: 14 new listings from 15 total processed
+2025-04-17 18:24:10,503 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 18:24:10,505 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 18:24:10,505 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 18:25:09,218 - main - INFO - Scraper task cancelled
+2025-04-17 18:25:11,073 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-17 18:25:11.073747
+2025-04-17 18:25:11,074 - __main__ - INFO - Starting scraper for sources: ['funda'], cities: ['amsterdam']
+2025-04-17 18:25:11,091 - database.migrations - INFO - Database initialized successfully
+2025-04-17 18:25:11,095 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-17 18:25:11,095 - main - INFO - Starting new scan cycle...
+2025-04-17 18:25:11,098 - main - INFO - Scanning funda for amsterdam...
+2025-04-17 18:25:11,978 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-17 18:25:12,004 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-17 18:25:12,007 - main - INFO - Found 15 listings for funda in amsterdam
+2025-04-17 18:25:12,050 - main - INFO - Completed scan of funda for amsterdam: 0 new, 15 total in 0.95s
+2025-04-17 18:25:12,050 - main - INFO - Scan complete: 0 new listings from 15 total processed
+2025-04-17 18:25:12,050 - main - INFO - Detecting potential duplicate listings...
+2025-04-17 18:25:12,052 - main - INFO - Found 0 potential duplicate pairs
+2025-04-17 18:25:12,052 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-17 18:25:18,430 - main - INFO - Scraper task cancelled
