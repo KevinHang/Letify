@@ -5,10 +5,10 @@ Pararius.com scraper implementation that extracts data from search page only.
 import re
 import uuid
 import hashlib
-from typing import List, Dict, Any, Optional
+from typing import List
 from urllib.parse import urljoin
 
-from selectolax.parser import HTMLParser, Node
+from selectolax.parser import HTMLParser
 
 from models.property import PropertyListing, PropertyType, InteriorType
 from scrapers.base import BaseScraperStrategy

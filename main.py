@@ -113,8 +113,8 @@ class RealEstateScraper:
                     await self.proxy_manager.report_failure(proxy, e)
                 raise
             
-            # Special handling for Pararius - extract listings directly from search page
-            if source == "pararius" or source == "funda":
+            # Handling for search page only - extract listings directly from search page
+            if source == "pararius" or source == "funda": # TODO: change this approach as most websites we fetch from search page directly
                 # Parse search page to get listings directly
                 listings = await scraper.parse_search_page(response.text)
 
@@ -137,7 +137,7 @@ class RealEstateScraper:
                     except Exception as e:
                         logger.error(f"Error processing Pararius listing: {e}")
             
-            # Standard approach for other sources - get listing URLs and visit each one
+            # Another approach for other sources - get listing URLs and visit each one
             else:
                 # Parse search page to get listing URLs
                 listing_urls = await scraper.parse_search_page(response.text)

@@ -6,12 +6,12 @@ import re
 import uuid
 import hashlib
 import logging
-from typing import List, Dict, Any, Optional
+from typing import List
 from urllib.parse import urljoin
 
-from selectolax.parser import HTMLParser, Node
+from selectolax.parser import HTMLParser
 
-from models.property import PropertyListing, PropertyType, InteriorType
+from models.property import PropertyListing, PropertyType
 from scrapers.base import BaseScraperStrategy
 
 
