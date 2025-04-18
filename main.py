@@ -7,6 +7,7 @@ import logging
 import time
 import random
 from typing import List, Dict, Any, Tuple, Optional
+from datetime import datetime, timezone
 
 from config import (
     DB_CONNECTION_STRING,
@@ -36,7 +37,9 @@ class RealEstateScraper:
                  interval: int = DEFAULT_SCAN_INTERVAL,
                  max_results_per_scan: int = MAX_RESULTS_PER_SCAN,
                  max_concurrent_requests: int = MAX_CONCURRENT_REQUESTS,
-                 use_proxies: bool = USE_PROXIES):
+                 use_proxies: bool = USE_PROXIES,
+                 skip_cities: bool = False,
+                 skip_query_urls: bool = False):
         """
         Initialize the scraper with sources and cities to scan.
         
@@ -48,11 +51,15 @@ class RealEstateScraper:
             max_results_per_scan: Maximum number of listings to process per scan
             max_concurrent_requests: Maximum number of concurrent HTTP requests
             use_proxies: Whether to use proxies for HTTP requests
+            skip_cities: Whether to skip city-based scanning
+            skip_query_urls: Whether to skip query URL scanning
         """
         self.sources = sources
         self.cities = cities
         self.interval = interval
         self.max_results_per_scan = max_results_per_scan
+        self.skip_cities = skip_cities
+        self.skip_query_urls = skip_query_urls
         
         # Initialize database
         initialize_db(db_connection_string)
@@ -70,6 +77,89 @@ class RealEstateScraper:
                 self.scrapers[source] = RealEstateScraperFactory.create_scraper(source)
             except ValueError as e:
                 logger.error(f"{e}")
+    
+    async def scan_query_url(self, query_url: Dict[str, Any]) -> Tuple[int, int]:
+        """
+        Scan a specific URL for listings.
+        
+        Args:
+            query_url: Dictionary containing query URL information
+            
+        Returns:
+            Tuple of (new listings count, total listings count)
+        """
+        source = query_url['source']
+        url = query_url['queryurl']
+        query_id = query_url['id']
+        
+        logger.info(f"Scanning specific {source} URL (ID={query_id}): {url}")
+        scraper = self.scrapers.get(source)
+        if not scraper:
+            logger.error(f"No scraper available for {source}")
+            return 0, 0
+        
+        start_time = time.time()
+        new_listings = 0
+        total_listings = 0
+        
+        try:
+            # Get a proxy from the proxy manager if enabled
+            proxy = await self.proxy_manager.get_proxy() if self.proxy_manager.enabled else None
+            
+            try:
+                # Fetch search page
+                if proxy:
+                    response = await self.http_client.get(url)
+                    if response.status_code == 200:
+                        await self.proxy_manager.report_success(proxy, time.time() - start_time)
+                else:
+                    response = await self.http_client.get(url)
+            except Exception as e:
+                if proxy:
+                    await self.proxy_manager.report_failure(proxy, e)
+                raise
+            
+            # Parse search page to get listings directly
+            listings = await scraper.parse_search_page(response.text)
+
+            total_listings = len(listings)
+            
+            logger.info(f"Found {total_listings} listings for {source} from specific URL")
+            
+            # Process each listing
+            for listing in listings:
+                try:
+                    # If city is not set, try to extract from URL
+                    if not listing.city:
+                        # Attempt to extract city from URL or set a placeholder
+                        for city in self.cities:
+                            if city.lower() in url.lower():
+                                listing.city = city
+                                break
+                        if not listing.city:
+                            listing.city = "unknown"  # Placeholder if city can't be determined
+
+                    # Save listing to database
+                    is_new = self.db.save_listing(listing)
+                    if is_new:
+                        new_listings += 1
+                        logger.info(f"Added new listing: {listing.title} ({listing.source} - {listing.price})")
+                except Exception as e:
+                    logger.error(f"Error processing listing: {e}")
+            
+            # Update scan history with a special city name for query URLs
+            duration = time.time() - start_time
+            self.db.update_scan_history(source, f"query_url_{query_id}", url, new_listings, total_listings, duration)
+            
+            # Update the last scan time for this query URL
+            self.db.update_query_url_scan_time(query_id)
+            
+            logger.info(f"Completed scan of query URL (ID={query_id}): {new_listings} new, {total_listings} total in {duration:.2f}s")
+            return new_listings, total_listings
+            
+        except Exception as e:
+            logger.error(f"Error scanning query URL (ID={query_id}): {e}")
+            return 0, 0
     
     async def scan_source_city(self, source: str, city: str, days: int = 1) -> Tuple[int, int]:
         """
@@ -113,79 +203,27 @@ class RealEstateScraper:
                     await self.proxy_manager.report_failure(proxy, e)
                 raise
             
-            # Handling for search page only - extract listings directly from search page
-            if source == "pararius" or source == "funda": # TODO: change this approach as most websites we fetch from search page directly
-                # Parse search page to get listings directly
-                listings = await scraper.parse_search_page(response.text)
+            # Parse search page to get listings directly
+            listings = await scraper.parse_search_page(response.text)
 
-                total_listings = len(listings)
-                
-                logger.info(f"Found {total_listings} listings for {source} in {city}")
-                
-                # Process each listing
-                for listing in listings:
-                    try:
-                        # Set city if not already set in the listing
-                        if not listing.city:
-                            listing.city = city
-
-                        # Save listing to database
-                        is_new = self.db.save_listing(listing)
-                        if is_new:
-                            new_listings += 1
-                            logger.info(f"Added new listing: {listing.title} ({listing.source} - {listing.price})")
-                    except Exception as e:
-                        logger.error(f"Error processing Pararius listing: {e}")
+            total_listings = len(listings)
             
-            # Another approach for other sources - get listing URLs and visit each one
-            else:
-                # Parse search page to get listing URLs
-                listing_urls = await scraper.parse_search_page(response.text)
-                
-                # Limit the number of listings to process
-                listing_urls = listing_urls[:self.max_results_per_scan]
-                total_listings = len(listing_urls)
-                
-                logger.info(f"Found {total_listings} listings for {source} in {city}")
-                
-                # Process each listing URL
-                for listing_url in listing_urls:
-                    try:
-                        # Get a new proxy for each listing if enabled
-                        proxy = await self.proxy_manager.get_proxy() if self.proxy_manager.enabled else None
-                        request_start = time.time()
-                        
-                        try:
-                            # Fetch listing detail page
-                            if proxy:
-                                detail_response = await self.http_client.get(listing_url)
-                                if detail_response.status_code == 200:
-                                    await self.proxy_manager.report_success(proxy, time.time() - request_start)
-                            else:
-                                detail_response = await self.http_client.get(listing_url)
-                        except Exception as e:
-                            if proxy:
-                                await self.proxy_manager.report_failure(proxy, e)
-                            raise
-                        
-                        # Parse listing detail page
-                        listing = await scraper.parse_listing_page(detail_response.text, listing_url)
-                        
-                        # Set city if not already set in the listing
-                        if not listing.city:
-                            listing.city = city
-                        
-                        # Save listing to database
-                        is_new = self.db.save_listing(listing)
-                        if is_new:
-                            new_listings += 1
-                            logger.info(f"Added new listing: {listing.title} ({listing.source} - {listing.price})")
-                        
-                        # Random delay between requests to avoid detection
-                        await asyncio.sleep(random.uniform(1, 3))
-                        
-                    except Exception as e:
-                        logger.error(f"Error processing listing {listing_url}: {e}")
+            logger.info(f"Found {total_listings} listings for {source} in {city}")
+            
+            # Process each listing
+            for listing in listings:
+                try:
+                    # Set city if not already set in the listing
+                    if not listing.city:
+                        listing.city = city
+
+                    # Save listing to database
+                    is_new = self.db.save_listing(listing)
+                    if is_new:
+                        new_listings += 1
+                        logger.info(f"Added new listing: {listing.title} ({listing.source} - {listing.price})")
+                except Exception as e:
+                    logger.error(f"Error processing listing: {e}")
             
             # Update scan history
             duration = time.time() - start_time
@@ -199,7 +237,7 @@ class RealEstateScraper:
             return 0, 0
     
     async def run_one_scan(self):
-        """Run a single scan of all sources and cities."""
+        """Run a single scan based on configured scan modes."""
         total_new = 0
         total_processed = 0
         
@@ -208,25 +246,77 @@ class RealEstateScraper:
             stats = self.proxy_manager.get_proxy_stats()
             logger.info(f"Using proxies: {stats['healthy_proxies']} healthy out of {stats['total_proxies']} total")
         
-        for source in self.sources:
-            for city in self.cities:
-                try:
-                    # Check if it's time to scan this source/city again
-                    last_scan_time = self.db.get_last_scan_time(source, city)
-                    source_min_interval = SITE_CONFIGS.get(source, {}).get("min_interval", self.interval)
-                    
-                    if (last_scan_time is None or 
-                        (time.time() - last_scan_time.timestamp()) >= source_min_interval):
-                        
-                        # Scan this source and city
-                        new_count, total_count = await self.scan_source_city(source, city)
-                        total_new += new_count
-                        total_processed += total_count
-                    else:
-                        logger.info(f"Skipping {source} for {city} - not due yet")
+        # First scan query URLs from the database if not skipped
+        if not self.skip_query_urls:
+            query_urls = self.db.get_enabled_query_urls(self.sources)
+            if query_urls:
+                logger.info(f"Found {len(query_urls)} enabled query URLs to scan")
                 
-                except Exception as e:
-                    logger.error(f"Error in scan of {source} for {city}: {e}")
+                for query_url in query_urls:
+                    # Check if the query URL is for an enabled source
+                    if query_url['source'] not in self.sources:
+                        continue
+                    
+                    # Check if it's time to scan this query URL again
+                    last_scan_time = query_url.get('last_scan_time')
+                    source_min_interval = SITE_CONFIGS.get(query_url['source'], {}).get("min_interval", self.interval)
+                    
+                    should_scan = True
+                    if last_scan_time is not None:
+                        # Ensure we're working with an offset-aware datetime for now
+                        if last_scan_time.tzinfo is None:
+                            last_scan_time = last_scan_time.replace(tzinfo=timezone.utc)
+                        # Get current time as offset-aware
+                        current_time = datetime.now(timezone.utc)
+                        time_since_last_scan = (current_time - last_scan_time).total_seconds()
+                        if time_since_last_scan < source_min_interval:
+                            logger.info(f"Skipping query URL (ID={query_url['id']}) - not due yet")
+                            should_scan = False
+                    
+                    if should_scan:
+                        try:
+                            # Scan this query URL
+                            new_count, total_count = await self.scan_query_url(query_url)
+                            total_new += new_count
+                            total_processed += total_count
+                        except Exception as e:
+                            logger.error(f"Error in scan of query URL (ID={query_url['id']}): {e}")
+            else:
+                logger.info("No enabled query URLs found in database")
+        else:
+            logger.info("Query URL scanning skipped")
+        
+        # Then scan city-based searches if not skipped
+        if not self.skip_cities:
+            for source in self.sources:
+                for city in self.cities:
+                    try:
+                        # Check if it's time to scan this source/city again
+                        last_scan_time = self.db.get_last_scan_time(source, city)
+                        source_min_interval = SITE_CONFIGS.get(source, {}).get("min_interval", self.interval)
+                        
+                        should_scan = True
+                        if last_scan_time is not None:
+                            # Ensure we're working with an offset-aware datetime
+                            if last_scan_time.tzinfo is None:
+                                last_scan_time = last_scan_time.replace(tzinfo=timezone.utc)
+                            # Get current time as offset-aware
+                            current_time = datetime.now(timezone.utc)
+                            time_since_last_scan = (current_time - last_scan_time).total_seconds()
+                            if time_since_last_scan < source_min_interval:
+                                logger.info(f"Skipping {source} for {city} - not due yet")
+                                should_scan = False
+                        
+                        if should_scan:
+                            # Scan this source and city
+                            new_count, total_count = await self.scan_source_city(source, city)
+                            total_new += new_count
+                            total_processed += total_count
+                    
+                    except Exception as e:
+                        logger.error(f"Error in scan of {source} for {city}: {e}")
+        else:
+            logger.info("City-based scanning skipped")
         
         logger.info(f"Scan complete: {total_new} new listings from {total_processed} total processed")
         

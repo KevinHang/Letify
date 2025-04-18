@@ -1,165 +1,174 @@
-# Dutch Real Estate Scraper
+# Dutch Real Estate Scraper - CLI Reference
 
-A flexible, modular system for scraping multiple Dutch real estate websites and storing listing data in a unified database.
+## Overview
 
-## Features
+The Dutch Real Estate Scraper is a configurable tool for scraping real estate listings from popular Dutch property websites. This document provides a complete reference for the command-line interface.
 
-- **Multi-Source Scraping**: Support for multiple real estate websites (Funda, Pararius, and easily expandable)
-- **Multi-City Support**: Scrape properties from any number of cities
-- **Unified Database**: All properties stored in a single PostgreSQL database with efficient indexing
-- **Deduplication**: Cross-site property detection to identify the same property listed on multiple sites
-- **Configurable Scheduling**: Different scan intervals for each source
-- **Geospatial Search**: Find properties near specific locations
-- **Modular Architecture**: Easy to extend with new real estate sites
-- **Optional Proxy Support**: IP rotation to avoid rate limiting
+## Installation
 
-## Quick Start
-
-### Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/dutch-realestate-scraper.git
-   cd dutch-realestate-scraper
-   ```
-
-2. Create a virtual environment and install dependencies:
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   pip install -r requirements.txt
-   ```
-
-3. Set up the PostgreSQL database:
-   ```bash
-   brew services start postgresql
-   createdb realestate
-   psql realestate -c "CREATE EXTENSION postgis; CREATE EXTENSION vector; CREATE EXTENSION fuzzystrmatch;"
-   ```
-
-4. Configure your environment:
-   ```bash
-   cp .env.template .env
-   # Edit .env with your database credentials
-   ```
-
-### Basic Usage
-
-Run a single scan:
+Ensure you have Python 3.8+ installed, then:
 
 ```bash
-python -m cli --once
+# Clone the repository
+git clone https://github.com/yourusername/dutch-real-estate-scraper.git
+cd dutch-real-estate-scraper
+
+# Install dependencies
+pip install -r requirements.txt
 ```
 
-Run continuous scanning:
+## Basic Usage
+
+### Scan Modes
+
+The scraper supports three scanning modes:
 
 ```bash
-python -m cli --interval 3600  # Scan every hour
+# City-based scanning (extracts listings from city search pages)
+python -m cli --city-scan --sources funda,pararius --cities amsterdam,rotterdam
+
+# Query URL scanning (uses URLs stored in the database)
+python -m cli --query-scan --sources funda,pararius
+
+# Combined scanning (both cities and query URLs)
+python -m cli --combined-scan --sources funda,pararius --cities amsterdam,rotterdam
 ```
 
-Specify sources and cities:
-
+Default behavior (if no mode specified):
 ```bash
+# Defaults to city-based scanning when cities are provided
 python -m cli --sources funda,pararius --cities amsterdam,rotterdam
 ```
 
-## Documentation
-
-- [Getting Started Guide](docs/getting-started-guide.md): Comprehensive setup and usage guide
-- [Multi-Site Integration Guide](docs/multi-site-integration-guide.md): How to add new real estate websites
-- [Proxy Usage Guide](docs/proxy-usage-guide.md): Detailed guide for proxy configuration
-- [Modular Structure Benefits](docs/modular-structure-benefit.md): Understanding the code organization
-
-## Project Structure
-
-```
-dutch_realestate_scraper/
-├── __init__.py
-├── config.py                  # Configuration settings
-├── models/
-│   ├── __init__.py
-│   ├── property.py            # PropertyListing data class and related enums
-│   └── scan_history.py        # ScanHistory data class
-├── scrapers/
-│   ├── __init__.py
-│   ├── base.py                # BaseScraperStrategy abstract class
-│   ├── funda.py               # FundaScraper implementation
-│   ├── pararius.py            # ParariusScraper implementation
-│   └── factory.py             # RealEstateScraperFactory class
-├── database/
-│   ├── __init__.py
-│   ├── connection.py          # Database connection management
-│   ├── property_db.py         # PropertyDatabase operations
-│   └── migrations.py          # Database setup and migrations
-├── utils/
-│   ├── __init__.py
-│   ├── http.py                # HTTP request utilities
-│   ├── proxy_manager.py       # Proxy management utilities
-│   └── parsing.py             # HTML parsing utilities
-├── cli.py                     # Command-line interface
-├── main.py                    # Main application entry point
-```
-
-## Command-Line Options
-
-- `--sources`: Comma-separated list of sources to scrape (default: funda,pararius)
-- `--cities`: Comma-separated list of cities to scrape (default: amsterdam)
-- `--interval`: Scraping interval in seconds (default: 3600)
-- `--db`: PostgreSQL connection string
-- `--max-results`: Maximum number of results to process per scan (default: 100)
-- `--max-concurrent`: Maximum number of concurrent requests (default: 5)
-- `--once`: Run only one scan cycle and exit
-- `--debug`: Enable verbose debugging output
-- `--use-proxies`: Enable proxy usage for HTTP requests
-- `--proxy-list`: Comma-separated list of proxy URLs to use
-- `--proxy-stats`: Display proxy statistics
-
-## Requirements
-
-- Python 3.8+
-- PostgreSQL 12+ with PostGIS and pgvector extensions
-- Dependencies listed in requirements.txt
-
-## Extending the Scraper
-
-See [Multi-Site Integration Guide](docs/multi-site-integration-guide.md) for instructions on adding support for new real estate websites.
-
-## Running as a Service
-
-### Systemd Service (Linux)
+### Running Options
 
 ```bash
-sudo nano /etc/systemd/system/realestate-scraper.service
+# Run once and exit
+python -m cli --city-scan --sources funda,pararius --cities amsterdam,rotterdam --once
+
+# Run continuously with a specific interval (in seconds)
+python -m cli --city-scan --sources funda,pararius --cities amsterdam,rotterdam --interval 3600
 ```
 
-Content:
-```ini
-[Unit]
-Description=Dutch Real Estate Scraper
-After=network.target postgresql.service
+## Query URL Management
 
-[Service]
-User=youruser
-WorkingDirectory=/path/to/dutch-realestate-scraper
-ExecStart=/path/to/dutch-realestate-scraper/venv/bin/python -m dutch_realestate_scraper.cli
-Restart=always
-RestartSec=5
-Environment=PYTHONUNBUFFERED=1
+Query URLs allow you to scan specific search results pages, offering more flexibility than city-based scanning.
 
-[Install]
-WantedBy=multi-user.target
-```
+### Adding Query URLs
 
-Enable and start:
 ```bash
-sudo systemctl enable realestate-scraper
-sudo systemctl start realestate-scraper
+# Add a query URL (enabled by default)
+python -m cli --add-query-url "funda:https://www.funda.nl/zoeken/huur?object_type=[\"apartment\"]&sort=\"date_down\"" --add-query-description "Amsterdam apartments"
+
+# Add with POST method instead of GET
+python -m cli --add-query-url "funda:https://www.funda.nl/zoeken/huur?object_type=[\"apartment\"]" --query-method POST
+
+# Add in disabled state
+python -m cli --add-query-url "funda:https://www.funda.nl/zoeken/huur?object_type=[\"apartment\"]" --disable
 ```
 
-## Disclaimer
+Special URL parameters should be escaped with backslashes before the double quotes.
 
-This tool is for educational purposes. Always respect a website's robots.txt and terms of service when scraping. Rate-limit your requests appropriately to avoid overloading the target servers.
+### Managing Query URLs
 
-## License
+```bash
+# List all query URLs
+python -m cli --list-query-urls
 
-MIT License
+# Toggle the enabled status of a query URL (enable if disabled, disable if enabled)
+python -m cli --toggle-query-url 1
+
+# Delete a query URL
+python -m cli --delete-query-url 1
+```
+
+## Additional Options
+
+### Sources and Limits
+
+```bash
+# List available sources
+python -m cli --list-sources
+
+# Specify custom result limits
+python -m cli --max-results 200 --max-concurrent 10
+```
+
+### Proxy Configuration
+
+```bash
+# Enable proxy usage
+python -m cli --use-proxies
+
+# Disable proxy usage
+python -m cli --no-proxies
+
+# Use specific proxies
+python -m cli --proxy-list "http://proxy1.example.com,http://proxy2.example.com"
+
+# Set proxy rotation strategy
+python -m cli --proxy-rotation round_robin  # Options: round_robin, random, fallback
+
+# Display proxy statistics after scanning
+python -m cli --proxy-stats
+```
+
+### Debug Mode
+
+```bash
+# Enable debug logging
+python -m cli --debug
+```
+
+## Environmental Configuration
+
+Many settings can be configured through environment variables or a `.env` file:
+
+```
+# Database settings
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=realestate
+DB_USER=postgres
+DB_PASSWORD=postgres
+
+# Default settings
+DEFAULT_SCAN_INTERVAL=3600
+DEFAULT_CITIES=amsterdam,rotterdam,utrecht,den-haag,eindhoven
+DEFAULT_SOURCES=funda,pararius
+MAX_RESULTS_PER_SCAN=100
+MAX_CONCURRENT_REQUESTS=5
+
+# Proxy settings
+USE_PROXIES=False
+PROXY_LIST=http://proxy1.example.com,http://proxy2.example.com
+PROXY_ROTATION_STRATEGY=round_robin
+```
+
+## Command Reference
+
+| Option | Description |
+|--------|-------------|
+| `--city-scan` | City-based scanning mode |
+| `--query-scan` | Query URL scanning mode |
+| `--combined-scan` | Combined scanning mode |
+| `--sources SOURCES` | Comma-separated list of sources to scrape |
+| `--cities CITIES` | Comma-separated list of cities to scrape |
+| `--interval INTERVAL` | Scraping interval in seconds |
+| `--once` | Run only one scan cycle |
+| `--add-query-url URL` | Add a query URL (format: source:url) |
+| `--query-method {GET,POST}` | HTTP method for the query URL |
+| `--disable` | Add the query URL in disabled state |
+| `--add-query-description DESC` | Description for the query URL |
+| `--list-query-urls` | List all query URLs in the database |
+| `--toggle-query-url ID` | Toggle the enabled status of a query URL |
+| `--delete-query-url ID` | Delete a query URL |
+| `--use-proxies` | Enable proxy usage |
+| `--no-proxies` | Disable proxy usage |
+| `--proxy-list PROXIES` | Comma-separated list of proxy URLs |
+| `--proxy-rotation STRATEGY` | Proxy rotation strategy |
+| `--proxy-stats` | Display proxy statistics after scanning |
+| `--max-results LIMIT` | Maximum results to process per scan |
+| `--max-concurrent LIMIT` | Maximum concurrent requests |
+| `--debug` | Enable debug logging |
+| `--list-sources` | List available sources |

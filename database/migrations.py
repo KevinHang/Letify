@@ -96,6 +96,20 @@ def initialize_db(connection_string: str):
             )
             """)
             
+            # Create query_urls table for specific URLs to scrape
+            cur.execute("""
+            CREATE TABLE IF NOT EXISTS query_urls (
+                id SERIAL PRIMARY KEY,
+                source TEXT NOT NULL,
+                queryurl TEXT NOT NULL,
+                method TEXT NOT NULL DEFAULT 'GET',
+                enabled BOOLEAN DEFAULT false NOT NULL,
+                last_scan_time TIMESTAMP WITH TIME ZONE,
+                description TEXT,
+                UNIQUE (source, queryurl)
+            )
+            """)
+            
             # Create indexes
             cur.execute("CREATE INDEX IF NOT EXISTS idx_properties_source ON properties(source)")
             cur.execute("CREATE INDEX IF NOT EXISTS idx_properties_city ON properties(city)")
@@ -106,6 +120,10 @@ def initialize_db(connection_string: str):
             cur.execute("CREATE INDEX IF NOT EXISTS idx_properties_offering_type ON properties(offering_type)")
             cur.execute("CREATE INDEX IF NOT EXISTS idx_properties_property_type ON properties(property_type)")
             cur.execute("CREATE INDEX IF NOT EXISTS idx_properties_date_scraped ON properties(date_scraped)")
+            
+            # Create index for query_urls
+            cur.execute("CREATE INDEX IF NOT EXISTS idx_query_urls_source ON query_urls(source)")
+            cur.execute("CREATE INDEX IF NOT EXISTS idx_query_urls_enabled ON query_urls(enabled)")
             
             # Create spatial index for location
             cur.execute("CREATE INDEX IF NOT EXISTS idx_properties_location ON properties USING GIST(location)")

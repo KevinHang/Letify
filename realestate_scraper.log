@@ -17212,3 +17212,557 @@
 2025-04-18 20:44:14,196 - main - INFO - Scan complete: 0 new listings from 47 total processed
 2025-04-18 20:44:14,196 - main - INFO - Detecting potential duplicate listings...
 2025-04-18 20:44:14,206 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 21:19:13,701 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 21:19:13.701783
+2025-04-18 21:19:13,725 - __main__ - INFO - Starting scraper for sources: ['pararius', 'funda']
+2025-04-18 21:19:13,726 - __main__ - INFO - Cities to scan: ['amsterdam']
+2025-04-18 21:19:13,729 - database.property_db - ERROR - Error getting enabled query URLs: relation "query_urls" does not exist
+LINE 1: SELECT * FROM query_urls WHERE enabled = TRUE AND source = A...
+                      ^
+2025-04-18 21:19:13,729 - __main__ - INFO - No enabled query URLs found in database for the selected sources
+2025-04-18 21:19:13,765 - database.migrations - INFO - Database initialized successfully
+2025-04-18 21:19:13,770 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-18 21:19:13,770 - main - INFO - Starting new scan cycle...
+2025-04-18 21:19:13,773 - main - INFO - No enabled query URLs found in database
+2025-04-18 21:19:13,775 - main - ERROR - Error in scan of pararius for amsterdam: can't subtract offset-naive and offset-aware datetimes
+2025-04-18 21:19:13,776 - main - ERROR - Error in scan of funda for amsterdam: can't subtract offset-naive and offset-aware datetimes
+2025-04-18 21:19:13,776 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-18 21:19:13,776 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 21:19:13,967 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 21:19:13,968 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-18 21:19:31,011 - main - INFO - Scraper task cancelled
+2025-04-18 21:19:33,114 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 21:19:33.114101
+2025-04-18 21:19:33,129 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius']
+2025-04-18 21:19:33,129 - __main__ - INFO - Cities to scan: ['amsterdam', 'rotterdam']
+2025-04-18 21:19:33,133 - __main__ - INFO - No enabled query URLs found in database for the selected sources
+2025-04-18 21:19:33,143 - database.migrations - INFO - Database initialized successfully
+2025-04-18 21:19:33,147 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-18 21:19:33,147 - main - INFO - Starting new scan cycle...
+2025-04-18 21:19:33,149 - main - INFO - No enabled query URLs found in database
+2025-04-18 21:19:33,150 - main - ERROR - Error in scan of funda for amsterdam: can't subtract offset-naive and offset-aware datetimes
+2025-04-18 21:19:33,150 - main - ERROR - Error in scan of funda for rotterdam: can't subtract offset-naive and offset-aware datetimes
+2025-04-18 21:19:33,150 - main - ERROR - Error in scan of pararius for amsterdam: can't subtract offset-naive and offset-aware datetimes
+2025-04-18 21:19:33,150 - main - ERROR - Error in scan of pararius for rotterdam: can't subtract offset-naive and offset-aware datetimes
+2025-04-18 21:19:33,150 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-18 21:19:33,150 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 21:19:33,179 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 21:19:33,179 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-18 21:19:44,574 - main - INFO - Scraper task cancelled
+2025-04-18 21:20:17,172 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 21:20:17.172794
+2025-04-18 21:20:17,197 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius']
+2025-04-18 21:20:17,197 - __main__ - INFO - Cities to scan: ['amsterdam', 'rotterdam']
+2025-04-18 21:20:17,201 - __main__ - INFO - No enabled query URLs found in database for the selected sources
+2025-04-18 21:20:17,208 - database.migrations - INFO - Database initialized successfully
+2025-04-18 21:20:17,212 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-18 21:20:17,212 - main - INFO - Starting new scan cycle...
+2025-04-18 21:20:17,214 - main - INFO - No enabled query URLs found in database
+2025-04-18 21:20:17,215 - main - ERROR - Error in scan of funda for amsterdam: can't subtract offset-naive and offset-aware datetimes
+2025-04-18 21:20:17,216 - main - ERROR - Error in scan of funda for rotterdam: can't subtract offset-naive and offset-aware datetimes
+2025-04-18 21:20:17,216 - main - ERROR - Error in scan of pararius for amsterdam: can't subtract offset-naive and offset-aware datetimes
+2025-04-18 21:20:17,216 - main - ERROR - Error in scan of pararius for rotterdam: can't subtract offset-naive and offset-aware datetimes
+2025-04-18 21:20:17,216 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-18 21:20:17,216 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 21:20:17,429 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 21:20:17,430 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-18 21:20:42,663 - main - INFO - Scraper task cancelled
+2025-04-18 21:22:13,141 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 21:22:13.141429
+2025-04-18 21:22:13,201 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius']
+2025-04-18 21:22:13,201 - __main__ - INFO - Cities to scan: ['amsterdam', 'rotterdam']
+2025-04-18 21:22:13,208 - __main__ - INFO - No enabled query URLs found in database for the selected sources
+2025-04-18 21:22:13,215 - database.migrations - INFO - Database initialized successfully
+2025-04-18 21:22:13,219 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-18 21:22:13,219 - main - INFO - Starting new scan cycle...
+2025-04-18 21:22:13,221 - main - INFO - No enabled query URLs found in database
+2025-04-18 21:22:13,228 - main - INFO - Scanning funda for amsterdam...
+2025-04-18 21:22:15,085 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 21:22:15,132 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-18 21:22:15,135 - main - INFO - Found 15 listings for funda in amsterdam
+2025-04-18 21:22:16,103 - main - INFO - Completed scan of funda for amsterdam: 0 new, 15 total in 2.87s
+2025-04-18 21:22:16,104 - main - INFO - Scanning funda for rotterdam...
+2025-04-18 21:22:17,646 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22rotterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 21:22:17,689 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-18 21:22:17,691 - main - INFO - Found 15 listings for funda in rotterdam
+2025-04-18 21:22:17,706 - main - INFO - Completed scan of funda for rotterdam: 0 new, 15 total in 1.60s
+2025-04-18 21:22:17,707 - main - INFO - Scanning pararius for amsterdam...
+2025-04-18 21:22:19,108 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 21:22:19,165 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-18 21:22:19,196 - main - INFO - Completed scan of pararius for amsterdam: 0 new, 32 total in 1.49s
+2025-04-18 21:22:19,196 - main - INFO - Scanning pararius for rotterdam...
+2025-04-18 21:22:20,570 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 21:22:20,610 - main - INFO - Found 30 listings for pararius in rotterdam
+2025-04-18 21:22:20,630 - main - INFO - Completed scan of pararius for rotterdam: 0 new, 30 total in 1.43s
+2025-04-18 21:22:20,630 - main - INFO - Scan complete: 0 new listings from 92 total processed
+2025-04-18 21:22:20,630 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 21:22:20,640 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 21:22:20,640 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-18 21:22:25,533 - main - INFO - Scraper task cancelled
+2025-04-18 21:29:09,520 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 21:29:09.520747
+2025-04-18 21:29:09,549 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius']
+2025-04-18 21:29:09,549 - __main__ - INFO - Scan mode: Cities
+2025-04-18 21:29:09,549 - __main__ - INFO - Cities to scan: ['amsterdam', 'rotterdam']
+2025-04-18 21:29:09,558 - database.migrations - INFO - Database initialized successfully
+2025-04-18 21:29:09,562 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-18 21:29:09,562 - main - INFO - Starting new scan cycle...
+2025-04-18 21:29:09,562 - main - INFO - Query URL scanning skipped
+2025-04-18 21:29:09,566 - main - INFO - Scanning funda for amsterdam...
+2025-04-18 21:29:11,539 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 21:29:11,569 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-18 21:29:11,572 - main - INFO - Found 15 listings for funda in amsterdam
+2025-04-18 21:29:11,750 - main - INFO - Completed scan of funda for amsterdam: 0 new, 15 total in 2.18s
+2025-04-18 21:29:11,751 - main - INFO - Scanning funda for rotterdam...
+2025-04-18 21:29:12,689 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22rotterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 21:29:12,717 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-18 21:29:12,720 - main - INFO - Found 15 listings for funda in rotterdam
+2025-04-18 21:29:12,735 - main - INFO - Completed scan of funda for rotterdam: 0 new, 15 total in 0.98s
+2025-04-18 21:29:12,735 - main - INFO - Scanning pararius for amsterdam...
+2025-04-18 21:29:14,209 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 21:29:14,273 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-18 21:29:14,299 - main - INFO - Completed scan of pararius for amsterdam: 0 new, 32 total in 1.56s
+2025-04-18 21:29:14,300 - main - INFO - Scanning pararius for rotterdam...
+2025-04-18 21:29:15,318 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 21:29:15,358 - main - INFO - Found 30 listings for pararius in rotterdam
+2025-04-18 21:29:15,384 - main - INFO - Completed scan of pararius for rotterdam: 0 new, 30 total in 1.08s
+2025-04-18 21:29:15,384 - main - INFO - Scan complete: 0 new listings from 92 total processed
+2025-04-18 21:29:15,384 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 21:29:15,396 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 21:29:15,396 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-18 21:29:48,891 - main - INFO - Scraper task cancelled
+2025-04-18 21:29:51,080 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 21:29:51.080960
+2025-04-18 21:29:51,098 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius']
+2025-04-18 21:29:51,098 - __main__ - INFO - Scan mode: Cities
+2025-04-18 21:29:51,098 - __main__ - INFO - Cities to scan: ['amsterdam', 'rotterdam']
+2025-04-18 21:29:51,105 - database.migrations - INFO - Database initialized successfully
+2025-04-18 21:29:51,112 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-18 21:29:51,112 - main - INFO - Starting new scan cycle...
+2025-04-18 21:29:51,112 - main - INFO - Query URL scanning skipped
+2025-04-18 21:29:51,115 - main - INFO - Scanning funda for amsterdam...
+2025-04-18 21:29:52,189 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 21:29:52,224 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-18 21:29:52,226 - main - INFO - Found 15 listings for funda in amsterdam
+2025-04-18 21:29:52,258 - main - INFO - Added new listing: 's-Gravendijkdreef 261 (funda - € 2.100 /maand)
+2025-04-18 21:29:52,260 - main - INFO - Added new listing: Solitudolaan 134 (funda - € 2.055 /maand)
+2025-04-18 21:29:52,261 - main - INFO - Added new listing: Wolbrantskerkweg 48 (funda - € 2.750 /maand)
+2025-04-18 21:29:52,262 - main - INFO - Added new listing: Nieuwe Nieuwstraat 18-C (funda - € 2.350 /maand)
+2025-04-18 21:29:52,263 - main - INFO - Added new listing: Ariana Nozemanstraat 72 (funda - € 3.300 /maand)
+2025-04-18 21:29:52,265 - main - INFO - Added new listing: Haarlemmermeerstraat 60-3 (funda - € 3.500 /maand)
+2025-04-18 21:29:52,265 - main - INFO - Added new listing: Sarphatipark 88-1 (funda - € 3.250 /maand)
+2025-04-18 21:29:52,266 - main - INFO - Added new listing: Sarphatipark 88-H (funda - € 5.950 /maand)
+2025-04-18 21:29:52,267 - main - INFO - Added new listing: Roerstraat 115-H (funda - € 5.500 /maand)
+2025-04-18 21:29:52,267 - main - INFO - Added new listing: Columbusplein 44-1 (funda - € 2.900 /maand)
+2025-04-18 21:29:52,268 - main - INFO - Added new listing: Ariana Nozemanstraat 164 (funda - € 3.400 /maand)
+2025-04-18 21:29:52,269 - main - INFO - Added new listing: Eerste Helmersstraat 165-2 (funda - € 4.250 /maand)
+2025-04-18 21:29:52,270 - main - INFO - Added new listing: Stadhouderskade 142-A (funda - € 4.500 /maand)
+2025-04-18 21:29:52,271 - main - INFO - Added new listing: Rozenstraat 46-1L (funda - € 2.650 /maand)
+2025-04-18 21:29:52,272 - main - INFO - Added new listing: Spuistraat 229-K (funda - € 2.350 /maand)
+2025-04-18 21:29:52,272 - main - INFO - Completed scan of funda for amsterdam: 15 new, 15 total in 1.16s
+2025-04-18 21:29:52,273 - main - INFO - Scanning funda for rotterdam...
+2025-04-18 21:29:52,897 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22rotterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 21:29:52,952 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-18 21:29:52,954 - main - INFO - Found 15 listings for funda in rotterdam
+2025-04-18 21:29:52,956 - main - INFO - Added new listing: Hoogstraat 20-D (funda - € 1.995 /maand)
+2025-04-18 21:29:52,956 - main - INFO - Added new listing: Wolphaertsbocht 238-C (funda - € 1.796 /maand)
+2025-04-18 21:29:52,957 - main - INFO - Added new listing: Factorij 26 (funda - € 2.200 /maand)
+2025-04-18 21:29:52,958 - main - INFO - Added new listing: Kerstant van den Bergelaan 24-B (funda - € 2.750 /maand)
+2025-04-18 21:29:52,959 - main - INFO - Added new listing: Westzeedijk 138-E (funda - € 1.370 /maand)
+2025-04-18 21:29:52,960 - main - INFO - Added new listing: Godschalkstraat 142 (funda - € 1.284 /maand)
+2025-04-18 21:29:52,961 - main - INFO - Added new listing: Godschalkstraat 100 (funda - € 1.284 /maand)
+2025-04-18 21:29:52,961 - main - INFO - Added new listing: Godschalkstraat 118 (funda - € 1.284 /maand)
+2025-04-18 21:29:52,962 - main - INFO - Added new listing: Bergstraat 8-C (funda - € 2.250 /maand)
+2025-04-18 21:29:52,963 - main - INFO - Added new listing: Luzacstraat 7-A01 (funda - € 1.400 /maand)
+2025-04-18 21:29:52,964 - main - INFO - Added new listing: Boompjes 49-U (funda - € 3.350 /maand)
+2025-04-18 21:29:52,965 - main - INFO - Added new listing: Straatweg 44-C (funda - € 1.850 /maand)
+2025-04-18 21:29:52,966 - main - INFO - Added new listing: Kruisplein 436 (funda - € 2.450 /maand)
+2025-04-18 21:29:52,967 - main - INFO - Added new listing: Willem de Zwijgerstraat 8 (funda - Prijs op aanvraag)
+2025-04-18 21:29:52,968 - main - INFO - Added new listing: Wilgenplaslaan 198-C04 (funda - € 1.550 /maand)
+2025-04-18 21:29:52,968 - main - INFO - Completed scan of funda for rotterdam: 15 new, 15 total in 0.69s
+2025-04-18 21:29:52,968 - main - INFO - Scanning pararius for amsterdam...
+2025-04-18 21:29:53,938 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 21:29:54,001 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-18 21:29:54,003 - main - INFO - Added new listing: Flat Leo Smitstraat (pararius - €5,250 per month)
+2025-04-18 21:29:54,004 - main - INFO - Added new listing: Flat Middenweg (pararius - €3,500 per month)
+2025-04-18 21:29:54,004 - main - INFO - Added new listing: Flat Bijlmerplein 858 E 16 (pararius - €949 per month)
+2025-04-18 21:29:54,006 - main - INFO - Added new listing: Flat Bijlmerplein 858 H 8 (pararius - €1,201 per month)
+2025-04-18 21:29:54,007 - main - INFO - Added new listing: Flat Wijttenbachstraat 24 A (pararius - €2,700 per month)
+2025-04-18 21:29:54,008 - main - INFO - Added new listing: Flat Kempenlaan (pararius - €2,300 per month)
+2025-04-18 21:29:54,009 - main - INFO - Added new listing: Flat Saxenburgerstraat (pararius - €2,875 per month)
+2025-04-18 21:29:54,010 - main - INFO - Added new listing: Flat Vondelstraat (pararius - €2,675 per month)
+2025-04-18 21:29:54,011 - main - INFO - Added new listing: Flat Paardekraalstraat (pararius - €2,250 per month)
+2025-04-18 21:29:54,012 - main - INFO - Added new listing: Flat Pieter Baststraat (pararius - €2,500 per month)
+2025-04-18 21:29:54,013 - main - INFO - Added new listing: Flat Sarphatipark (pararius - €2,850 per month)
+2025-04-18 21:29:54,013 - main - INFO - Added new listing: Flat Nieuwe Nieuwstraat 18 C (pararius - €2,350 per month)
+2025-04-18 21:29:54,014 - main - INFO - Added new listing: Flat Wijdesteeg (pararius - €3,750 per month)
+2025-04-18 21:29:54,015 - main - INFO - Added new listing: Flat 1e Kekerstraat 37 (pararius - €2,250 per month)
+2025-04-18 21:29:54,015 - main - INFO - Added new listing: Flat Prinsengracht (pararius - €3,000 per month)
+2025-04-18 21:29:54,016 - main - INFO - Added new listing: Flat Westlandgracht (pararius - €2,500 per month)
+2025-04-18 21:29:54,017 - main - INFO - Added new listing: Flat Columbusplein 44 1 (pararius - €2,900 per month)
+2025-04-18 21:29:54,017 - main - INFO - Added new listing: Flat Karthuizersdwarsstraat (pararius - €6,950 per month)
+2025-04-18 21:29:54,018 - main - INFO - Added new listing: Flat Bijlmerdreef (pararius - €3,000 per month)
+2025-04-18 21:29:54,019 - main - INFO - Added new listing: Flat Kribbestraat 23 H (pararius - €2,700 per month)
+2025-04-18 21:29:54,019 - main - INFO - Added new listing: Flat Tweede Helmersstraat (pararius - €2,500 per month)
+2025-04-18 21:29:54,020 - main - INFO - Added new listing: Flat Koningslaan (pararius - €4,700 per month)
+2025-04-18 21:29:54,021 - main - INFO - Added new listing: Flat Geldersekade (pararius - €3,000 per month)
+2025-04-18 21:29:54,021 - main - INFO - Added new listing: Flat Bilderdijkstraat (pararius - €3,300 per month)
+2025-04-18 21:29:54,022 - main - INFO - Added new listing: Flat Willem de Zwijgerlaan 83 H (pararius - €2,250 per month)
+2025-04-18 21:29:54,023 - main - INFO - Added new listing: Flat Ariana Nozemanstraat (pararius - €3,300 per month)
+2025-04-18 21:29:54,023 - main - INFO - Added new listing: Flat Van Eeghenstraat 31 B (pararius - €2,750 per month)
+2025-04-18 21:29:54,024 - main - INFO - Added new listing: House Radioweg 14 H (pararius - €2,650 per month)
+2025-04-18 21:29:54,025 - main - INFO - Added new listing: Flat Jisperveldstraat (pararius - €2,450 per month)
+2025-04-18 21:29:54,025 - main - INFO - Added new listing: Flat Rozenstraat (pararius - €2,650 per month)
+2025-04-18 21:29:54,026 - main - INFO - Added new listing: Flat Spuistraat (pararius - €2,350 per month)
+2025-04-18 21:29:54,027 - main - INFO - Added new listing: Flat Wolbrantskerkweg (pararius - €2,750 per month)
+2025-04-18 21:29:54,027 - main - INFO - Completed scan of pararius for amsterdam: 32 new, 32 total in 1.06s
+2025-04-18 21:29:54,028 - main - INFO - Scanning pararius for rotterdam...
+2025-04-18 21:29:55,286 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 21:29:55,377 - main - INFO - Found 30 listings for pararius in rotterdam
+2025-04-18 21:29:55,378 - main - INFO - Added new listing: Flat Schiedamseweg (pararius - €1,850 per month)
+2025-04-18 21:29:55,379 - main - INFO - Added new listing: Flat Nico Koomanskade (pararius - €3,499 per month)
+2025-04-18 21:29:55,380 - main - INFO - Added new listing: Flat Oudedijk (pararius - €1,750 per month)
+2025-04-18 21:29:55,380 - main - INFO - Added new listing: Flat Schieweg (pararius - €1,950 per month)
+2025-04-18 21:29:55,381 - main - INFO - Added new listing: Flat Wolphaertsbocht 238 C (pararius - €1,796 per month)
+2025-04-18 21:29:55,382 - main - INFO - Added new listing: Flat Geldersestraat (pararius - €2,245 per month)
+2025-04-18 21:29:55,382 - main - INFO - Added new listing: Flat Eendrachtsweg (pararius - €1,875 per month)
+2025-04-18 21:29:55,383 - main - INFO - Added new listing: Flat Hoogstraat (pararius - €1,995 per month)
+2025-04-18 21:29:55,384 - main - INFO - Added new listing: Flat Meeuwenstraat (pararius - €2,900 per month)
+2025-04-18 21:29:55,385 - main - INFO - Added new listing: Flat Mauritsstraat (pararius - €1,550 per month)
+2025-04-18 21:29:55,385 - main - INFO - Added new listing: Flat Beukelsweg (pararius - €2,300 per month)
+2025-04-18 21:29:55,386 - main - INFO - Added new listing: Flat Beukelsweg (pararius - €2,300 per month)
+2025-04-18 21:29:55,386 - main - INFO - Added new listing: Flat Schiedamsedijk (pararius - €3,900 per month)
+2025-04-18 21:29:55,387 - main - INFO - Added new listing: Room Hogenbanweg (pararius - €770 per month)
+2025-04-18 21:29:55,388 - main - INFO - Added new listing: Flat Herman Robbersstraat 106 C (pararius - €2,150 per month)
+2025-04-18 21:29:55,388 - main - INFO - Added new listing: Flat Korte Hoogstraat 11 D (pararius - €2,150 per month)
+2025-04-18 21:29:55,389 - main - INFO - Added new listing: Flat Polderlaan (pararius - €2,350 per month)
+2025-04-18 21:29:55,390 - main - INFO - Added new listing: Flat Posthoornstraat (pararius - €3,750 per month)
+2025-04-18 21:29:55,390 - main - INFO - Added new listing: Flat Bergweg (pararius - €2,245 per month)
+2025-04-18 21:29:55,391 - main - INFO - Added new listing: Flat Reyerdijk 74 (pararius - €741 per month)
+2025-04-18 21:29:55,392 - main - INFO - Added new listing: Flat Bethlehemstraat 28 B (pararius - €1,995 per month)
+2025-04-18 21:29:55,392 - main - INFO - Added new listing: Flat Katendrechtse Lagedijk (pararius - €927 per month)
+2025-04-18 21:29:55,393 - main - INFO - Added new listing: Flat Schiehavenkade (pararius - €1,940 per month)
+2025-04-18 21:29:55,394 - main - INFO - Added new listing: Flat Botersloot (pararius - €2,500 per month)
+2025-04-18 21:29:55,394 - main - INFO - Added new listing: Flat Baroniestraat (pararius - €1,045 per month)
+2025-04-18 21:29:55,395 - main - INFO - Added new listing: Flat Eendrachtsweg (pararius - €1,675 per month)
+2025-04-18 21:29:55,395 - main - INFO - Added new listing: Flat Brouwhuisstraat (pararius - €2,750 per month)
+2025-04-18 21:29:55,396 - main - INFO - Added new listing: Flat Westzeedijk 138 E (pararius - €1,370 per month)
+2025-04-18 21:29:55,396 - main - INFO - Added new listing: Flat Parklaan (pararius - €1,645 per month)
+2025-04-18 21:29:55,397 - main - INFO - Added new listing: Flat Mauritsweg (pararius - €1,795 per month)
+2025-04-18 21:29:55,398 - main - INFO - Completed scan of pararius for rotterdam: 30 new, 30 total in 1.37s
+2025-04-18 21:29:55,398 - main - INFO - Scan complete: 92 new listings from 92 total processed
+2025-04-18 21:29:55,398 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 21:29:55,400 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 21:29:55,400 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-18 21:30:37,561 - main - INFO - Scraper task cancelled
+2025-04-18 21:31:16,423 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 21:31:16.423452
+2025-04-18 21:31:16,447 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius']
+2025-04-18 21:31:16,448 - __main__ - INFO - Scan mode: Cities
+2025-04-18 21:31:16,448 - __main__ - INFO - Cities to scan: ['amsterdam', 'rotterdam']
+2025-04-18 21:31:16,454 - database.migrations - INFO - Database initialized successfully
+2025-04-18 21:31:16,459 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-18 21:31:16,459 - main - INFO - Starting new scan cycle...
+2025-04-18 21:31:16,459 - main - INFO - Query URL scanning skipped
+2025-04-18 21:31:16,462 - main - INFO - Scanning funda for amsterdam...
+2025-04-18 21:31:17,492 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 21:31:17,540 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-18 21:31:17,543 - main - INFO - Found 15 listings for funda in amsterdam
+2025-04-18 21:31:17,590 - main - INFO - Completed scan of funda for amsterdam: 0 new, 15 total in 1.13s
+2025-04-18 21:31:17,590 - main - INFO - Scanning funda for rotterdam...
+2025-04-18 21:31:18,603 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22rotterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 21:31:18,605 - utils.http - WARNING - Anti-bot pattern detected: 'Je bent bijna op de pagina die je zoekt'
+2025-04-18 21:31:18,606 - utils.http - WARNING - Anti-bot measures detected (retry 1/3) for https://www.funda.nl/zoeken/huur?selected_area=["rotterdam"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-18 21:31:18,606 - utils.http - INFO - Anti-bot retry 1/3 using Mobile Safari iOS profile for https://www.funda.nl/zoeken/huur?selected_area=["rotterdam"]&object_type=["house","apartment"]&sort="date_down", waiting 3.7 seconds...
+2025-04-18 21:31:23,606 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22rotterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 21:31:23,644 - utils.http - INFO - Successfully bypassed anti-bot measures after 1 retries for https://www.funda.nl/zoeken/huur?selected_area=["rotterdam"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-18 21:31:23,648 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-18 21:31:23,650 - main - INFO - Found 15 listings for funda in rotterdam
+2025-04-18 21:31:23,662 - main - INFO - Completed scan of funda for rotterdam: 0 new, 15 total in 6.07s
+2025-04-18 21:31:23,663 - main - INFO - Scanning pararius for amsterdam...
+2025-04-18 21:31:25,173 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 21:31:25,234 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-18 21:31:25,258 - main - INFO - Completed scan of pararius for amsterdam: 0 new, 32 total in 1.59s
+2025-04-18 21:31:25,259 - main - INFO - Scanning pararius for rotterdam...
+2025-04-18 21:31:26,195 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 21:31:26,253 - main - INFO - Found 30 listings for pararius in rotterdam
+2025-04-18 21:31:26,276 - main - INFO - Completed scan of pararius for rotterdam: 0 new, 30 total in 1.02s
+2025-04-18 21:31:26,276 - main - INFO - Scan complete: 0 new listings from 92 total processed
+2025-04-18 21:31:26,276 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 21:31:26,288 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 21:31:26,288 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-18 21:31:32,310 - main - INFO - Scraper task cancelled
+2025-04-18 21:33:23,621 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 21:33:23.621705
+2025-04-18 21:33:23,651 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius']
+2025-04-18 21:33:23,652 - __main__ - INFO - Scan mode: Cities
+2025-04-18 21:33:23,652 - __main__ - INFO - Cities to scan: ['amsterdam']
+2025-04-18 21:33:23,658 - database.migrations - INFO - Database initialized successfully
+2025-04-18 21:33:23,662 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-18 21:33:23,662 - main - INFO - Starting new scan cycle...
+2025-04-18 21:33:23,662 - main - INFO - Query URL scanning skipped
+2025-04-18 21:33:23,665 - main - INFO - Scanning funda for amsterdam...
+2025-04-18 21:33:25,149 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 21:33:25,178 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-18 21:33:25,180 - main - INFO - Found 15 listings for funda in amsterdam
+2025-04-18 21:33:25,318 - main - INFO - Completed scan of funda for amsterdam: 0 new, 15 total in 1.65s
+2025-04-18 21:33:25,318 - main - INFO - Scanning pararius for amsterdam...
+2025-04-18 21:33:26,209 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 21:33:26,258 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-18 21:33:26,279 - main - INFO - Completed scan of pararius for amsterdam: 0 new, 32 total in 0.96s
+2025-04-18 21:33:26,279 - main - INFO - Scan complete: 0 new listings from 47 total processed
+2025-04-18 21:33:26,279 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 21:33:26,291 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 21:33:26,291 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-18 21:34:17,388 - main - INFO - Scraper task cancelled
+2025-04-18 21:35:02,484 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 21:35:02.484631
+2025-04-18 21:35:02,514 - __main__ - WARNING - Query URL scanning selected but no enabled query URLs found in database
+2025-04-18 21:35:02,515 - __main__ - ERROR - No query URLs and no city-based scanning - nothing to do
+2025-04-18 21:40:40,266 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 21:40:40.266699
+2025-04-18 21:40:40,293 - __main__ - INFO - Added query URL with ID 1: funda:https://www.funda.nl/zoeken/huur?object_type=["apartment"]&publication_date="1"&sort="date_down"
+2025-04-18 21:46:25,211 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 21:46:25.210988
+2025-04-18 21:46:25,235 - __main__ - INFO - Added query URL with ID 2: funda:https://www.funda.nl/zoeken/huur?object_type=["apartment"]&publication_date="1"&search_result=2&sort="date_down" (Method: GET, Status: enabled)
+2025-04-18 21:46:59,773 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 21:46:59.773907
+2025-04-18 21:46:59,803 - __main__ - INFO - Added query URL with ID 3: funda:https://www.funda.nl/zoeken/huur?object_type=["apartment"]&publication_date="1"&search_result=3&sort="date_down" (Method: GET, Status: enabled)
+2025-04-18 21:47:10,207 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 21:47:10.207109
+2025-04-18 21:47:10,221 - __main__ - INFO - Added query URL with ID 4: funda:https://www.funda.nl/zoeken/huur?object_type=["apartment"]&publication_date="1"&search_result=4&sort="date_down" (Method: GET, Status: enabled)
+2025-04-18 21:47:22,966 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 21:47:22.966702
+2025-04-18 21:47:22,987 - __main__ - INFO - Added query URL with ID 5: funda:https://www.funda.nl/zoeken/huur?object_type=["apartment"]&publication_date="1"&search_result=5&sort="date_down" (Method: GET, Status: enabled)
+2025-04-18 21:47:37,919 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 21:47:37.919377
+2025-04-18 21:47:37,952 - __main__ - INFO - Added query URL with ID 6: funda:https://www.funda.nl/zoeken/huur?object_type=["apartment"]&publication_date="1"&search_result=6&sort="date_down" (Method: GET, Status: enabled)
+2025-04-18 21:47:56,472 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 21:47:56.472731
+2025-04-18 21:47:56,504 - __main__ - WARNING - Query URL scanning selected but no enabled query URLs found in database
+2025-04-18 21:47:56,504 - __main__ - ERROR - No query URLs and no city-based scanning - nothing to do
+2025-04-18 21:48:05,855 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 21:48:05.855597
+2025-04-18 21:48:05,870 - __main__ - INFO - Starting scraper for sources: ['pararius', 'funda']
+2025-04-18 21:48:05,870 - __main__ - INFO - Scan mode: Query URLs
+2025-04-18 21:48:05,870 - __main__ - INFO - Found 6 enabled query URLs to scan
+2025-04-18 21:48:05,876 - database.migrations - INFO - Database initialized successfully
+2025-04-18 21:48:05,880 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-18 21:48:05,880 - main - INFO - Starting new scan cycle...
+2025-04-18 21:48:05,882 - main - INFO - Found 6 enabled query URLs to scan
+2025-04-18 21:48:05,882 - main - INFO - Scanning specific funda URL (ID=1): https://www.funda.nl/zoeken/huur?object_type=["apartment"]&publication_date="1"&sort="date_down"
+2025-04-18 21:48:07,084 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?object_type=[%22apartment%22]&publication_date=%221%22&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 21:48:07,113 - scrapers.funda - INFO - Found 17 listing elements to process
+2025-04-18 21:48:07,114 - main - INFO - Found 14 listings for funda from specific URL
+2025-04-18 21:48:07,280 - main - INFO - Added new listing: Marne 118 (funda - € 1.875 /maand)
+2025-04-18 21:48:07,282 - main - INFO - Added new listing: Marne 90 (funda - € 1.105 /maand)
+2025-04-18 21:48:07,283 - main - INFO - Added new listing: Nassaulaan 199 (funda - € 1.127 /maand)
+2025-04-18 21:48:07,284 - main - INFO - Added new listing: Regentesselaan 172 (funda - € 912 /maand)
+2025-04-18 21:48:07,285 - main - INFO - Added new listing: Smidslaantje 12 (funda - € 1.900 /maand)
+2025-04-18 21:48:07,287 - main - INFO - Added new listing: Elisabeth Brugsmaweg 1-618 (funda - € 690 /maand)
+2025-04-18 21:48:07,290 - main - INFO - Added new listing: Bordeslaan 302 (funda - € 1.650 /maand)
+2025-04-18 21:48:07,293 - main - INFO - Added new listing: Brouwersgracht 253-A (funda - € 1.550 /maand)
+2025-04-18 21:48:07,296 - main - INFO - Added new listing: Kapellerlaan 148 (funda - € 975 /maand)
+2025-04-18 21:48:07,298 - main - INFO - Completed scan of query URL (ID=1): 9 new, 14 total in 1.41s
+2025-04-18 21:48:07,298 - main - INFO - Scanning specific funda URL (ID=2): https://www.funda.nl/zoeken/huur?object_type=["apartment"]&publication_date="1"&search_result=2&sort="date_down"
+2025-04-18 21:48:08,515 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?object_type=[%22apartment%22]&publication_date=%221%22&search_result=2&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 21:48:08,541 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-18 21:48:08,543 - main - INFO - Found 15 listings for funda from specific URL
+2025-04-18 21:48:08,544 - main - INFO - Added new listing: Bergweg 25-B (funda - € 1.058 /maand)
+2025-04-18 21:48:08,545 - main - INFO - Added new listing: Steenlaan 124 (funda - € 1.560 /maand)
+2025-04-18 21:48:08,547 - main - INFO - Added new listing: Mgr vdn Tillaartstraat 11 (funda - € 1.295 /maand)
+2025-04-18 21:48:08,547 - main - INFO - Added new listing: van Swinderenstraat 14-A (funda - € 700 /maand)
+2025-04-18 21:48:08,548 - main - INFO - Added new listing: Garbialaan (funda - € 1.230 /maand)
+2025-04-18 21:48:08,550 - main - INFO - Added new listing: Ree 44 (funda - € 1.150 /maand)
+2025-04-18 21:48:08,551 - main - INFO - Added new listing: Marie Baronlaan 43 (funda - € 2.295 /maand)
+2025-04-18 21:48:08,552 - main - INFO - Added new listing: Plantsoen 24 (funda - € 674 /maand)
+2025-04-18 21:48:08,552 - main - INFO - Added new listing: Albertina Agnesstraat 208 (funda - € 1.725 /maand)
+2025-04-18 21:48:08,553 - main - INFO - Added new listing: Garbialaan (funda - € 1.150 /maand)
+2025-04-18 21:48:08,553 - main - INFO - Added new listing: Dorpsstraat 42-C (funda - € 2.450 /maand)
+2025-04-18 21:48:08,554 - main - INFO - Added new listing: Noorderlaan 5-N (funda - € 1.608 /maand)
+2025-04-18 21:48:08,555 - main - INFO - Completed scan of query URL (ID=2): 12 new, 15 total in 1.26s
+2025-04-18 21:48:08,555 - main - INFO - Scanning specific funda URL (ID=3): https://www.funda.nl/zoeken/huur?object_type=["apartment"]&publication_date="1"&search_result=3&sort="date_down"
+2025-04-18 21:48:09,743 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?object_type=[%22apartment%22]&publication_date=%221%22&search_result=3&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 21:48:09,771 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-18 21:48:09,772 - main - INFO - Found 15 listings for funda from specific URL
+2025-04-18 21:48:09,774 - main - INFO - Added new listing: Noorderlaan 5-J (funda - € 1.416 /maand)
+2025-04-18 21:48:09,774 - main - INFO - Added new listing: Noorderlaan 5-B (funda - € 1.824 /maand)
+2025-04-18 21:48:09,775 - main - INFO - Added new listing: Noorderlaan 5-C (funda - € 2.328 /maand)
+2025-04-18 21:48:09,776 - main - INFO - Added new listing: Felix de Nobelhof 27 (funda - € 2.500 /maand)
+2025-04-18 21:48:09,776 - main - INFO - Added new listing: Noorderlaan 5-A (funda - € 1.824 /maand)
+2025-04-18 21:48:09,777 - main - INFO - Added new listing: Banjaertstraat 2-A (funda - € 1.655 /maand)
+2025-04-18 21:48:09,779 - main - INFO - Added new listing: Kloosterland 66 (funda - € 2.250 /maand)
+2025-04-18 21:48:09,780 - main - INFO - Added new listing: Jan Wolkerslaan 665 (funda - € 1.940 /maand)
+2025-04-18 21:48:09,781 - main - INFO - Added new listing: Asserstraat 92 (funda - € 2.150 /maand)
+2025-04-18 21:48:09,781 - main - INFO - Added new listing: Weegbreestraat 205-C26 (funda - € 1.250 /maand)
+2025-04-18 21:48:09,782 - main - INFO - Added new listing: Markendaalseweg 67-D10 (funda - € 721 /maand)
+2025-04-18 21:48:09,782 - main - INFO - Added new listing: Jan Ligthartstraat 707 (funda - € 1.032 /maand)
+2025-04-18 21:48:09,783 - main - INFO - Added new listing: Jan Wolkerslaan 413 (funda - € 1.960 /maand)
+2025-04-18 21:48:09,784 - main - INFO - Completed scan of query URL (ID=3): 13 new, 15 total in 1.23s
+2025-04-18 21:48:09,784 - main - INFO - Scanning specific funda URL (ID=4): https://www.funda.nl/zoeken/huur?object_type=["apartment"]&publication_date="1"&search_result=4&sort="date_down"
+2025-04-18 21:48:10,873 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?object_type=[%22apartment%22]&publication_date=%221%22&search_result=4&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 21:48:10,899 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-18 21:48:10,901 - main - INFO - Found 15 listings for funda from specific URL
+2025-04-18 21:48:10,903 - main - INFO - Added new listing: Maria Stuartplein 208 (funda - € 1.378 /maand)
+2025-04-18 21:48:10,903 - main - INFO - Added new listing: Bomanshof 77 (funda - € 2.150 /maand)
+2025-04-18 21:48:10,904 - main - INFO - Added new listing: Niemeyerstraat 76 (funda - € 2.850 /maand)
+2025-04-18 21:48:10,908 - main - INFO - Added new listing: Burgemeester Hackstraat 9-C (funda - € 1.075 /maand)
+2025-04-18 21:48:10,909 - main - INFO - Added new listing: Van Slingelandtstraat 125 (funda - € 2.750 /maand)
+2025-04-18 21:48:10,910 - main - INFO - Added new listing: Groenhof 115-F (funda - € 1.145 /maand)
+2025-04-18 21:48:10,910 - main - INFO - Added new listing: Piet Mondriaanlaan 359 (funda - € 1.435 /maand)
+2025-04-18 21:48:10,911 - main - INFO - Added new listing: Dorpsweg 1-N (funda - € 1.000 /maand)
+2025-04-18 21:48:10,912 - main - INFO - Added new listing: Vondelstraat 122-B (funda - € 2.675 /maand)
+2025-04-18 21:48:10,912 - main - INFO - Added new listing: Valckenierstraat 7-C (funda - € 1.185 /maand)
+2025-04-18 21:48:10,913 - main - INFO - Completed scan of query URL (ID=4): 10 new, 15 total in 1.13s
+2025-04-18 21:48:10,913 - main - INFO - Scanning specific funda URL (ID=5): https://www.funda.nl/zoeken/huur?object_type=["apartment"]&publication_date="1"&search_result=5&sort="date_down"
+2025-04-18 21:48:11,928 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?object_type=[%22apartment%22]&publication_date=%221%22&search_result=5&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 21:48:11,929 - utils.http - WARNING - Anti-bot pattern detected: 'Je bent bijna op de pagina die je zoekt'
+2025-04-18 21:48:11,929 - utils.http - WARNING - Anti-bot measures detected (retry 1/3) for https://www.funda.nl/zoeken/huur?object_type=["apartment"]&publication_date="1"&search_result=5&sort="date_down"
+2025-04-18 21:48:11,930 - utils.http - INFO - Anti-bot retry 1/3 using Firefox Windows profile for https://www.funda.nl/zoeken/huur?object_type=["apartment"]&publication_date="1"&search_result=5&sort="date_down", waiting 4.1 seconds...
+2025-04-18 21:48:17,323 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?object_type=[%22apartment%22]&publication_date=%221%22&search_result=5&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 21:48:17,345 - utils.http - INFO - Successfully bypassed anti-bot measures after 1 retries for https://www.funda.nl/zoeken/huur?object_type=["apartment"]&publication_date="1"&search_result=5&sort="date_down"
+2025-04-18 21:48:17,347 - scrapers.funda - INFO - Found 1 listing elements to process
+2025-04-18 21:48:17,347 - main - INFO - Found 1 listings for funda from specific URL
+2025-04-18 21:48:17,348 - main - INFO - Added new listing: Schierstins 45 (funda - € 2.350 /maand)
+2025-04-18 21:48:17,350 - main - INFO - Completed scan of query URL (ID=5): 1 new, 1 total in 6.44s
+2025-04-18 21:48:17,350 - main - INFO - Scanning specific funda URL (ID=6): https://www.funda.nl/zoeken/huur?object_type=["apartment"]&publication_date="1"&search_result=6&sort="date_down"
+2025-04-18 21:48:17,994 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?object_type=[%22apartment%22]&publication_date=%221%22&search_result=6&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 21:48:17,995 - utils.http - WARNING - Anti-bot pattern detected: 'Je bent bijna op de pagina die je zoekt'
+2025-04-18 21:48:17,995 - utils.http - WARNING - Anti-bot measures detected (retry 1/3) for https://www.funda.nl/zoeken/huur?object_type=["apartment"]&publication_date="1"&search_result=6&sort="date_down"
+2025-04-18 21:48:17,996 - utils.http - INFO - Anti-bot retry 1/3 using Mobile Safari iOS profile for https://www.funda.nl/zoeken/huur?object_type=["apartment"]&publication_date="1"&search_result=6&sort="date_down", waiting 4.6 seconds...
+2025-04-18 21:48:23,968 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?object_type=[%22apartment%22]&publication_date=%221%22&search_result=6&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 21:48:23,983 - utils.http - INFO - Successfully bypassed anti-bot measures after 1 retries for https://www.funda.nl/zoeken/huur?object_type=["apartment"]&publication_date="1"&search_result=6&sort="date_down"
+2025-04-18 21:48:23,985 - scrapers.funda - WARNING - No listing elements found in the HTML. Check if the page structure has changed.
+2025-04-18 21:48:23,985 - main - INFO - Found 0 listings for funda from specific URL
+2025-04-18 21:48:23,987 - main - INFO - Completed scan of query URL (ID=6): 0 new, 0 total in 6.64s
+2025-04-18 21:48:23,987 - main - INFO - City-based scanning skipped
+2025-04-18 21:48:23,987 - main - INFO - Scan complete: 45 new listings from 60 total processed
+2025-04-18 21:48:23,987 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 21:48:24,000 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 21:48:24,001 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-18 21:48:28,679 - main - INFO - Scraper task cancelled
+2025-04-18 21:51:08,380 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 21:51:08.380454
+2025-04-18 21:51:08,415 - __main__ - INFO - Starting scraper for sources: ['pararius', 'funda']
+2025-04-18 21:51:08,415 - __main__ - INFO - Scan mode: Query URLs
+2025-04-18 21:51:08,416 - __main__ - INFO - Found 6 enabled query URLs to scan
+2025-04-18 21:51:08,423 - database.migrations - INFO - Database initialized successfully
+2025-04-18 21:51:08,430 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-18 21:51:08,430 - main - INFO - Starting new scan cycle...
+2025-04-18 21:51:08,432 - main - INFO - Found 6 enabled query URLs to scan
+2025-04-18 21:51:08,432 - main - INFO - Scanning specific funda URL (ID=1): https://www.funda.nl/zoeken/huur?object_type=["apartment"]&publication_date="1"&sort="date_down"
+2025-04-18 21:51:09,822 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?object_type=[%22apartment%22]&publication_date=%221%22&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 21:51:09,849 - scrapers.funda - INFO - Found 17 listing elements to process
+2025-04-18 21:51:09,851 - main - INFO - Found 14 listings for funda from specific URL
+2025-04-18 21:51:09,886 - main - INFO - Added new listing: Marne 118 (funda - € 1.875 /maand)
+2025-04-18 21:51:09,887 - main - INFO - Added new listing: Marne 90 (funda - € 1.105 /maand)
+2025-04-18 21:51:09,888 - main - INFO - Added new listing: Nassaulaan 199 (funda - € 1.127 /maand)
+2025-04-18 21:51:09,889 - main - INFO - Added new listing: Regentesselaan 172 (funda - € 912 /maand)
+2025-04-18 21:51:09,890 - main - INFO - Added new listing: Smidslaantje 12 (funda - € 1.900 /maand)
+2025-04-18 21:51:09,890 - main - INFO - Added new listing: Elisabeth Brugsmaweg 1-618 (funda - € 690 /maand)
+2025-04-18 21:51:09,891 - main - INFO - Added new listing: Hoogstraat 20-D (funda - € 1.995 /maand)
+2025-04-18 21:51:09,892 - main - INFO - Added new listing: Bordeslaan 302 (funda - € 1.650 /maand)
+2025-04-18 21:51:09,893 - main - INFO - Added new listing: 's-Gravendijkdreef 261 (funda - € 2.100 /maand)
+2025-04-18 21:51:09,893 - main - INFO - Added new listing: Brouwersgracht 253-A (funda - € 1.550 /maand)
+2025-04-18 21:51:09,894 - main - INFO - Added new listing: Solitudolaan 134 (funda - € 2.055 /maand)
+2025-04-18 21:51:09,895 - main - INFO - Added new listing: Wolbrantskerkweg 48 (funda - € 2.750 /maand)
+2025-04-18 21:51:09,895 - main - INFO - Added new listing: Kapellerlaan 148 (funda - € 975 /maand)
+2025-04-18 21:51:09,896 - main - INFO - Added new listing: Nieuwe Nieuwstraat 18-C (funda - € 2.350 /maand)
+2025-04-18 21:51:09,897 - main - INFO - Completed scan of query URL (ID=1): 14 new, 14 total in 1.46s
+2025-04-18 21:51:09,897 - main - INFO - Scanning specific funda URL (ID=2): https://www.funda.nl/zoeken/huur?object_type=["apartment"]&publication_date="1"&search_result=2&sort="date_down"
+2025-04-18 21:51:11,100 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?object_type=[%22apartment%22]&publication_date=%221%22&search_result=2&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 21:51:11,127 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-18 21:51:11,128 - main - INFO - Found 15 listings for funda from specific URL
+2025-04-18 21:51:11,130 - main - INFO - Added new listing: Bergweg 25-B (funda - € 1.058 /maand)
+2025-04-18 21:51:11,131 - main - INFO - Added new listing: Steenlaan 124 (funda - € 1.560 /maand)
+2025-04-18 21:51:11,133 - main - INFO - Added new listing: Wolphaertsbocht 238-C (funda - € 1.796 /maand)
+2025-04-18 21:51:11,134 - main - INFO - Added new listing: Mgr vdn Tillaartstraat 11 (funda - € 1.295 /maand)
+2025-04-18 21:51:11,134 - main - INFO - Added new listing: van Swinderenstraat 14-A (funda - € 700 /maand)
+2025-04-18 21:51:11,135 - main - INFO - Added new listing: Garbialaan (funda - € 1.230 /maand)
+2025-04-18 21:51:11,136 - main - INFO - Added new listing: Ariana Nozemanstraat 72 (funda - € 3.300 /maand)
+2025-04-18 21:51:11,136 - main - INFO - Added new listing: Ree 44 (funda - € 1.150 /maand)
+2025-04-18 21:51:11,137 - main - INFO - Added new listing: Haarlemmermeerstraat 60-3 (funda - € 3.500 /maand)
+2025-04-18 21:51:11,137 - main - INFO - Added new listing: Marie Baronlaan 43 (funda - € 2.295 /maand)
+2025-04-18 21:51:11,138 - main - INFO - Added new listing: Plantsoen 24 (funda - € 674 /maand)
+2025-04-18 21:51:11,139 - main - INFO - Added new listing: Albertina Agnesstraat 208 (funda - € 1.725 /maand)
+2025-04-18 21:51:11,139 - main - INFO - Added new listing: Garbialaan (funda - € 1.150 /maand)
+2025-04-18 21:51:11,140 - main - INFO - Added new listing: Dorpsstraat 42-C (funda - € 2.450 /maand)
+2025-04-18 21:51:11,140 - main - INFO - Added new listing: Noorderlaan 5-N (funda - € 1.608 /maand)
+2025-04-18 21:51:11,141 - main - INFO - Completed scan of query URL (ID=2): 15 new, 15 total in 1.24s
+2025-04-18 21:51:11,141 - main - INFO - Scanning specific funda URL (ID=3): https://www.funda.nl/zoeken/huur?object_type=["apartment"]&publication_date="1"&search_result=3&sort="date_down"
+2025-04-18 21:51:12,151 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?object_type=[%22apartment%22]&publication_date=%221%22&search_result=3&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 21:51:12,185 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-18 21:51:12,187 - main - INFO - Found 15 listings for funda from specific URL
+2025-04-18 21:51:12,189 - main - INFO - Added new listing: Noorderlaan 5-J (funda - € 1.416 /maand)
+2025-04-18 21:51:12,189 - main - INFO - Added new listing: Noorderlaan 5-B (funda - € 1.824 /maand)
+2025-04-18 21:51:12,190 - main - INFO - Added new listing: Noorderlaan 5-C (funda - € 2.328 /maand)
+2025-04-18 21:51:12,191 - main - INFO - Added new listing: Felix de Nobelhof 27 (funda - € 2.500 /maand)
+2025-04-18 21:51:12,191 - main - INFO - Added new listing: Noorderlaan 5-A (funda - € 1.824 /maand)
+2025-04-18 21:51:12,192 - main - INFO - Added new listing: Banjaertstraat 2-A (funda - € 1.655 /maand)
+2025-04-18 21:51:12,192 - main - INFO - Added new listing: Sarphatipark 88-1 (funda - € 3.250 /maand)
+2025-04-18 21:51:12,193 - main - INFO - Added new listing: Sarphatipark 88-H (funda - € 5.950 /maand)
+2025-04-18 21:51:12,194 - main - INFO - Added new listing: Kloosterland 66 (funda - € 2.250 /maand)
+2025-04-18 21:51:12,194 - main - INFO - Added new listing: Jan Wolkerslaan 665 (funda - € 1.940 /maand)
+2025-04-18 21:51:12,195 - main - INFO - Added new listing: Asserstraat 92 (funda - € 2.150 /maand)
+2025-04-18 21:51:12,196 - main - INFO - Added new listing: Weegbreestraat 205-C26 (funda - € 1.250 /maand)
+2025-04-18 21:51:12,196 - main - INFO - Added new listing: Markendaalseweg 67-D10 (funda - € 721 /maand)
+2025-04-18 21:51:12,197 - main - INFO - Added new listing: Jan Ligthartstraat 707 (funda - € 1.032 /maand)
+2025-04-18 21:51:12,197 - main - INFO - Added new listing: Jan Wolkerslaan 413 (funda - € 1.960 /maand)
+2025-04-18 21:51:12,198 - main - INFO - Completed scan of query URL (ID=3): 15 new, 15 total in 1.06s
+2025-04-18 21:51:12,198 - main - INFO - Scanning specific funda URL (ID=4): https://www.funda.nl/zoeken/huur?object_type=["apartment"]&publication_date="1"&search_result=4&sort="date_down"
+2025-04-18 21:51:12,727 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?object_type=[%22apartment%22]&publication_date=%221%22&search_result=4&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 21:51:12,729 - utils.http - WARNING - Anti-bot pattern detected: 'Je bent bijna op de pagina die je zoekt'
+2025-04-18 21:51:12,729 - utils.http - WARNING - Anti-bot measures detected (retry 1/3) for https://www.funda.nl/zoeken/huur?object_type=["apartment"]&publication_date="1"&search_result=4&sort="date_down"
+2025-04-18 21:51:12,729 - utils.http - INFO - Anti-bot retry 1/3 using Firefox Windows profile for https://www.funda.nl/zoeken/huur?object_type=["apartment"]&publication_date="1"&search_result=4&sort="date_down", waiting 3.4 seconds...
+2025-04-18 21:51:17,551 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?object_type=[%22apartment%22]&publication_date=%221%22&search_result=4&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 21:51:17,574 - utils.http - INFO - Successfully bypassed anti-bot measures after 1 retries for https://www.funda.nl/zoeken/huur?object_type=["apartment"]&publication_date="1"&search_result=4&sort="date_down"
+2025-04-18 21:51:17,576 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-18 21:51:17,578 - main - INFO - Found 15 listings for funda from specific URL
+2025-04-18 21:51:17,579 - main - INFO - Added new listing: Roerstraat 115-H (funda - € 5.500 /maand)
+2025-04-18 21:51:17,580 - main - INFO - Added new listing: Maria Stuartplein 208 (funda - € 1.378 /maand)
+2025-04-18 21:51:17,581 - main - INFO - Added new listing: Bomanshof 77 (funda - € 2.150 /maand)
+2025-04-18 21:51:17,581 - main - INFO - Added new listing: Columbusplein 44-1 (funda - € 2.900 /maand)
+2025-04-18 21:51:17,582 - main - INFO - Added new listing: Niemeyerstraat 76 (funda - € 2.850 /maand)
+2025-04-18 21:51:17,583 - main - INFO - Added new listing: Ariana Nozemanstraat 164 (funda - € 3.400 /maand)
+2025-04-18 21:51:17,583 - main - INFO - Added new listing: Eerste Helmersstraat 165-2 (funda - € 4.250 /maand)
+2025-04-18 21:51:17,584 - main - INFO - Added new listing: Stadhouderskade 142-A (funda - € 4.500 /maand)
+2025-04-18 21:51:17,584 - main - INFO - Added new listing: Burgemeester Hackstraat 9-C (funda - € 1.075 /maand)
+2025-04-18 21:51:17,585 - main - INFO - Added new listing: Van Slingelandtstraat 125 (funda - € 2.750 /maand)
+2025-04-18 21:51:17,586 - main - INFO - Added new listing: Groenhof 115-F (funda - € 1.145 /maand)
+2025-04-18 21:51:17,587 - main - INFO - Added new listing: Piet Mondriaanlaan 359 (funda - € 1.435 /maand)
+2025-04-18 21:51:17,587 - main - INFO - Added new listing: Dorpsweg 1-N (funda - € 1.000 /maand)
+2025-04-18 21:51:17,588 - main - INFO - Added new listing: Vondelstraat 122-B (funda - € 2.675 /maand)
+2025-04-18 21:51:17,589 - main - INFO - Added new listing: Valckenierstraat 7-C (funda - € 1.185 /maand)
+2025-04-18 21:51:17,590 - main - INFO - Completed scan of query URL (ID=4): 15 new, 15 total in 5.39s
+2025-04-18 21:51:17,590 - main - INFO - Scanning specific funda URL (ID=5): https://www.funda.nl/zoeken/huur?object_type=["apartment"]&publication_date="1"&search_result=5&sort="date_down"
+2025-04-18 21:51:18,678 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?object_type=[%22apartment%22]&publication_date=%221%22&search_result=5&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 21:51:18,695 - scrapers.funda - INFO - Found 1 listing elements to process
+2025-04-18 21:51:18,695 - main - INFO - Found 1 listings for funda from specific URL
+2025-04-18 21:51:18,697 - main - INFO - Added new listing: Schierstins 45 (funda - € 2.350 /maand)
+2025-04-18 21:51:18,698 - main - INFO - Completed scan of query URL (ID=5): 1 new, 1 total in 1.11s
+2025-04-18 21:51:18,698 - main - INFO - Scanning specific funda URL (ID=6): https://www.funda.nl/zoeken/huur?object_type=["apartment"]&publication_date="1"&search_result=6&sort="date_down"
+2025-04-18 21:51:19,369 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?object_type=[%22apartment%22]&publication_date=%221%22&search_result=6&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 21:51:19,385 - scrapers.funda - WARNING - No listing elements found in the HTML. Check if the page structure has changed.
+2025-04-18 21:51:19,385 - main - INFO - Found 0 listings for funda from specific URL
+2025-04-18 21:51:19,387 - main - INFO - Completed scan of query URL (ID=6): 0 new, 0 total in 0.69s
+2025-04-18 21:51:19,387 - main - INFO - City-based scanning skipped
+2025-04-18 21:51:19,387 - main - INFO - Scan complete: 60 new listings from 60 total processed
+2025-04-18 21:51:19,387 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 21:51:19,398 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 21:51:19,398 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-18 21:51:31,664 - main - INFO - Scraper task cancelled
+2025-04-18 21:52:38,858 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 21:52:38.858206
+2025-04-18 21:52:38,894 - __main__ - INFO - Starting scraper for sources: ['pararius', 'funda']
+2025-04-18 21:52:38,894 - __main__ - INFO - Scan mode: Query URLs
+2025-04-18 21:52:38,894 - __main__ - INFO - Found 1 enabled query URLs to scan
+2025-04-18 21:52:38,906 - database.migrations - INFO - Database initialized successfully
+2025-04-18 21:52:38,912 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-18 21:52:38,912 - main - INFO - Starting new scan cycle...
+2025-04-18 21:52:38,914 - main - INFO - Found 1 enabled query URLs to scan
+2025-04-18 21:52:38,915 - main - INFO - Scanning specific funda URL (ID=1): https://www.funda.nl/zoeken/huur?object_type=["apartment"]&publication_date="1"&sort="date_down"
+2025-04-18 21:52:40,149 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?object_type=[%22apartment%22]&publication_date=%221%22&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 21:52:40,194 - scrapers.funda - INFO - Found 17 listing elements to process
+2025-04-18 21:52:40,197 - main - INFO - Found 14 listings for funda from specific URL
+2025-04-18 21:52:40,264 - main - INFO - Added new listing: Marne 118 (funda - € 1.875 /maand)
+2025-04-18 21:52:40,266 - main - INFO - Added new listing: Marne 90 (funda - € 1.105 /maand)
+2025-04-18 21:52:40,266 - main - INFO - Added new listing: Nassaulaan 199 (funda - € 1.127 /maand)
+2025-04-18 21:52:40,267 - main - INFO - Added new listing: Regentesselaan 172 (funda - € 912 /maand)
+2025-04-18 21:52:40,268 - main - INFO - Added new listing: Smidslaantje 12 (funda - € 1.900 /maand)
+2025-04-18 21:52:40,269 - main - INFO - Added new listing: Elisabeth Brugsmaweg 1-618 (funda - € 690 /maand)
+2025-04-18 21:52:40,269 - main - INFO - Added new listing: Hoogstraat 20-D (funda - € 1.995 /maand)
+2025-04-18 21:52:40,270 - main - INFO - Added new listing: Bordeslaan 302 (funda - € 1.650 /maand)
+2025-04-18 21:52:40,271 - main - INFO - Added new listing: 's-Gravendijkdreef 261 (funda - € 2.100 /maand)
+2025-04-18 21:52:40,272 - main - INFO - Added new listing: Brouwersgracht 253-A (funda - € 1.550 /maand)
+2025-04-18 21:52:40,273 - main - INFO - Added new listing: Solitudolaan 134 (funda - € 2.055 /maand)
+2025-04-18 21:52:40,274 - main - INFO - Added new listing: Wolbrantskerkweg 48 (funda - € 2.750 /maand)
+2025-04-18 21:52:40,275 - main - INFO - Added new listing: Kapellerlaan 148 (funda - € 975 /maand)
+2025-04-18 21:52:40,275 - main - INFO - Added new listing: Nieuwe Nieuwstraat 18-C (funda - € 2.350 /maand)
+2025-04-18 21:52:40,277 - main - INFO - Completed scan of query URL (ID=1): 14 new, 14 total in 1.36s
+2025-04-18 21:52:40,277 - main - INFO - City-based scanning skipped
+2025-04-18 21:52:40,277 - main - INFO - Scan complete: 14 new listings from 14 total processed
+2025-04-18 21:52:40,277 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 21:52:40,282 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 21:52:40,282 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-18 21:52:42,505 - main - INFO - Scraper task cancelled

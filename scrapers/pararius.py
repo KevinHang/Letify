@@ -143,7 +143,7 @@ class ParariusScraper(BaseScraperStrategy):
                     subtitle_match = re.match(r'(\d{4}\s*[A-Z]{2})\s+([^(]+)(?:\s*\(([^)]+)\))?', subtitle_text)
                     if subtitle_match:
                         listing.postal_code = subtitle_match.group(1).strip()
-                        listing.city = subtitle_match.group(2).strip()
+                        listing.city = subtitle_match.group(2).strip().upper()
                         if len(subtitle_match.groups()) > 2 and subtitle_match.group(3):
                             listing.neighborhood = subtitle_match.group(3).strip()
                 

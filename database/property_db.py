@@ -208,6 +208,21 @@ class PropertyDatabase:
             logger.error(f"Error updating scan history: {e}")
             raise
     
+    def update_query_url_scan_time(self, query_url_id: int):
+        """Update the last scan time for a query URL."""
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                UPDATE query_urls
+                SET last_scan_time = NOW()
+                WHERE id = %s
+                """, (query_url_id,))
+                self.conn.commit()
+        except Exception as e:
+            self.conn.rollback()
+            logger.error(f"Error updating query URL scan time: {e}")
+            raise
+    
     def get_last_scan_time(self, source: str, city: str) -> Optional[datetime]:
         """Get the last scan time for a source and city."""
         try:
@@ -221,6 +236,111 @@ class PropertyDatabase:
         except Exception as e:
             logger.error(f"Error getting last scan time: {e}")
             return None
+    
+    def get_enabled_query_urls(self, sources: Optional[List[str]] = None) -> List[Dict[str, Any]]:
+        """
+        Get all enabled query URLs, optionally filtered by source.
+        
+        Args:
+            sources: Optional list of sources to filter by
+            
+        Returns:
+            List of dictionaries containing query URL information
+        """
+        try:
+            with self.conn.cursor(row_factory=dict_row) as cur:
+                if sources:
+                    cur.execute(
+                        "SELECT * FROM query_urls WHERE enabled = TRUE AND source = ANY(%s) ORDER BY source, id",
+                        (sources,)
+                    )
+                else:
+                    cur.execute(
+                        "SELECT * FROM query_urls WHERE enabled = TRUE ORDER BY source, id"
+                    )
+                return cur.fetchall()
+        except Exception as e:
+            logger.error(f"Error getting enabled query URLs: {e}")
+            return []
+    
+    def add_query_url(self, source: str, query_url: str, method: str = 'GET', enabled: bool = True, description: str = None) -> int:
+        """
+        Add a new query URL to the database.
+        
+        Args:
+            source: Source name (e.g., "funda")
+            query_url: URL to scrape
+            method: HTTP method (GET or POST)
+            enabled: Whether the URL is enabled for scraping
+            description: Optional description
+            
+        Returns:
+            ID of the newly created entry, or -1 on error
+        """
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                INSERT INTO query_urls (source, queryurl, method, enabled, description)
+                VALUES (%s, %s, %s, %s, %s)
+                ON CONFLICT (source, queryurl) DO UPDATE
+                SET method = EXCLUDED.method, enabled = EXCLUDED.enabled, description = EXCLUDED.description
+                RETURNING id
+                """, (source, query_url, method, enabled, description))
+                result = cur.fetchone()
+                self.conn.commit()
+                return result[0] if result else -1
+        except Exception as e:
+            self.conn.rollback()
+            logger.error(f"Error adding query URL: {e}")
+            return -1
+    
+    def toggle_query_url(self, query_url_id: int, enabled: bool) -> bool:
+        """
+        Enable or disable a query URL.
+        
+        Args:
+            query_url_id: ID of the query URL
+            enabled: Whether to enable or disable
+            
+        Returns:
+            True if successful, False otherwise
+        """
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                UPDATE query_urls
+                SET enabled = %s
+                WHERE id = %s
+                """, (enabled, query_url_id))
+                self.conn.commit()
+                return cur.rowcount > 0
+        except Exception as e:
+            self.conn.rollback()
+            logger.error(f"Error toggling query URL: {e}")
+            return False
+    
+    def delete_query_url(self, query_url_id: int) -> bool:
+        """
+        Delete a query URL.
+        
+        Args:
+            query_url_id: ID of the query URL
+            
+        Returns:
+            True if successful, False otherwise
+        """
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                DELETE FROM query_urls
+                WHERE id = %s
+                """, (query_url_id,))
+                self.conn.commit()
+                return cur.rowcount > 0
+        except Exception as e:
+            self.conn.rollback()
+            logger.error(f"Error deleting query URL: {e}")
+            return False
     
     def search_properties(self, 
                           city: Optional[str] = None,

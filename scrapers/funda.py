@@ -130,10 +130,10 @@ class FundaScraper(BaseScraperStrategy):
                     postal_city_match = re.match(r'(\d{4})\s*([A-Z]{2})\s+(.+)', postal_city_text)
                     if postal_city_match:
                         listing.postal_code = f"{postal_city_match.group(1)} {postal_city_match.group(2)}"
-                        listing.city = postal_city_match.group(3)
+                        listing.city = postal_city_match.group(3).upper()
                     else:
                         # Try to extract city only
-                        listing.city = postal_city_text
+                        listing.city = postal_city_text.upper()
                 
                 # Extract price
                 # First case is if there is only monthly price, second case is if it contains buying price and monthly rent
