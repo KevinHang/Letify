@@ -132,13 +132,11 @@ SITE_CONFIGS = {
     "funda": {
         "base_url": "https://www.funda.nl",
         "search_url_template": "https://www.funda.nl/en/zoeken/huur/?selected_area=[\"{city}\"]&publication_date=\"{days}\"&sort=\"date_down\"",
-        "listing_selector": ".search-result-content",
         "min_interval": 300,  # 5 minutes 
     },
     "pararius": {
         "base_url": "https://www.pararius.com",
         "search_url_template": "https://www.pararius.com/apartments/{city}",
-        "listing_selector": ".listing-search-item",
         "min_interval": 600,  # 10 minutes
     }
 }

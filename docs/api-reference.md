@@ -143,7 +143,6 @@ class BaseScraperStrategy(ABC):
         self.config = config
         self.base_url = config["base_url"]
         self.search_url_template = config["search_url_template"]
-        self.listing_selector = config["listing_selector"]
     
     @abstractmethod
     async def build_search_url(self, city: str, days: int = 1, **kwargs) -> str:
