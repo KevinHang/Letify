@@ -16739,3 +16739,476 @@
 2025-04-18 17:30:26,989 - main - INFO - Found 0 potential duplicate pairs
 2025-04-18 17:30:26,989 - main - INFO - Waiting 3600 seconds until next scan...
 2025-04-18 17:30:43,817 - main - INFO - Scraper task cancelled
+2025-04-18 20:15:41,455 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 20:15:41.455864
+2025-04-18 20:15:41,460 - __main__ - INFO - Starting scraper for sources: ['pararius', 'funda'], cities: ['amsterdam', 'utrecht', 'zeist', 'rotterdam', 'amstelveen', 'diemen', 'leiden', 'haarlem', 'amersfoort']
+2025-04-18 20:15:41,479 - database.migrations - INFO - Database initialized successfully
+2025-04-18 20:15:41,487 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-18 20:15:41,487 - main - INFO - Starting new scan cycle...
+2025-04-18 20:15:41,491 - main - INFO - Scanning pararius for amsterdam...
+2025-04-18 20:15:42,317 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 20:15:42,434 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-18 20:15:42,616 - main - INFO - Added new listing: Flat Bijlmerplein 858 E 16 (pararius - €949 per month)
+2025-04-18 20:15:42,618 - main - INFO - Added new listing: Flat Bijlmerplein 858 H 8 (pararius - €1,201 per month)
+2025-04-18 20:15:42,619 - main - INFO - Added new listing: Flat Wijttenbachstraat 24 A (pararius - €2,700 per month)
+2025-04-18 20:15:42,621 - main - INFO - Added new listing: Flat Kempenlaan (pararius - €2,300 per month)
+2025-04-18 20:15:42,652 - main - INFO - Completed scan of pararius for amsterdam: 4 new, 32 total in 1.16s
+2025-04-18 20:15:42,652 - main - INFO - Scanning pararius for utrecht...
+2025-04-18 20:15:43,848 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/utrecht?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 20:15:43,920 - main - INFO - Found 30 listings for pararius in utrecht
+2025-04-18 20:15:43,922 - main - INFO - Added new listing: Studio Cobradreef (pararius - €950 per month)
+2025-04-18 20:15:43,923 - main - INFO - Added new listing: Flat Dublinstraat (pararius - €2,650 per month)
+2025-04-18 20:15:43,924 - main - INFO - Added new listing: House Bloesemstraat (pararius - €2,450 per month)
+2025-04-18 20:15:43,924 - main - INFO - Added new listing: Flat Parkzichtlaan 67 (pararius - €2,250 per month)
+2025-04-18 20:15:43,925 - main - INFO - Added new listing: Flat Othellodreef (pararius - €1,250 per month)
+2025-04-18 20:15:43,926 - main - INFO - Added new listing: Flat Westerdijk (pararius - €2,700 per month)
+2025-04-18 20:15:43,927 - main - INFO - Added new listing: Flat Molengraaffplantsoen 17 (pararius - €2,100 per month)
+2025-04-18 20:15:43,927 - main - INFO - Added new listing: Flat Deken Roesstraat (pararius - €2,895 per month)
+2025-04-18 20:15:43,952 - main - INFO - Added new listing: Flat Pal Maleterstraat 65 (pararius - €1,650 per month)
+2025-04-18 20:15:43,953 - main - INFO - Added new listing: Flat Zambesidreef 121 (pararius - €1,695 per month)
+2025-04-18 20:15:43,954 - main - INFO - Added new listing: Studio Damstraat (pararius - €1,395 per month)
+2025-04-18 20:15:43,954 - main - INFO - Added new listing: Flat Van Humboldtstraat (pararius - €1,100 per month)
+2025-04-18 20:15:43,955 - main - INFO - Added new listing: Flat Idenburgstraat 38 (pararius - €2,000 per month)
+2025-04-18 20:15:43,956 - main - INFO - Added new listing: Flat Arthur van Schendelstraat (pararius - €2,295 per month)
+2025-04-18 20:15:43,956 - main - INFO - Added new listing: Flat Krugerstraat 12 BS (pararius - €895 per month)
+2025-04-18 20:15:43,957 - main - INFO - Added new listing: Flat Elisabeth Brugsmapromenade 34 (pararius - €2,200 per month)
+2025-04-18 20:15:43,958 - main - INFO - Added new listing: Flat Arthur van Schendelstraat (pararius - €2,250 per month)
+2025-04-18 20:15:43,958 - main - INFO - Added new listing: Flat Voorsterbeeklaan (pararius - €2,595 per month)
+2025-04-18 20:15:43,980 - main - INFO - Added new listing: Flat Amsterdamsestraatweg 869 C (pararius - €1,098 per month)
+2025-04-18 20:15:43,981 - main - INFO - Added new listing: Flat Herenweg (pararius - €1,995 per month)
+2025-04-18 20:15:43,982 - main - INFO - Added new listing: Flat Arthur van Schendelstraat (pararius - €2,175 per month)
+2025-04-18 20:15:43,983 - main - INFO - Added new listing: Flat Domstraat (pararius - €1,595 per month)
+2025-04-18 20:15:43,985 - main - INFO - Added new listing: Flat 2e Delistraat 1 BS (pararius - €2,525 per month)
+2025-04-18 20:15:43,986 - main - INFO - Added new listing: Flat Buurkerkhof (pararius - €950 per month)
+2025-04-18 20:15:43,987 - main - INFO - Added new listing: Flat Van Heuven Goedhartplein 757 (pararius - €1,380 per month)
+2025-04-18 20:15:43,987 - main - INFO - Added new listing: House W.J. Bossenbroekstraat (pararius - €2,050 per month)
+2025-04-18 20:15:43,988 - main - INFO - Added new listing: Flat Jan van Foreeststraat (pararius - €1,820 per month)
+2025-04-18 20:15:43,989 - main - INFO - Added new listing: Flat Gildstraat (pararius - €1,495 per month)
+2025-04-18 20:15:43,990 - main - INFO - Added new listing: Flat Oudenoord (pararius - €1,700 per month)
+2025-04-18 20:15:44,005 - main - INFO - Added new listing: Flat Leidseweg (pararius - €1,650 per month)
+2025-04-18 20:15:44,006 - main - INFO - Completed scan of pararius for utrecht: 30 new, 30 total in 1.35s
+2025-04-18 20:15:44,006 - main - INFO - Scanning pararius for zeist...
+2025-04-18 20:15:44,709 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/zeist?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 20:15:44,760 - main - INFO - Found 5 listings for pararius in zeist
+2025-04-18 20:15:44,762 - main - INFO - Added new listing: Flat Bergweg 25 B (pararius - €1,058 per month)
+2025-04-18 20:15:44,763 - main - INFO - Added new listing: Flat De Clomp 3272 (pararius - €1,300 per month)
+2025-04-18 20:15:44,764 - main - INFO - Added new listing: House Dijnselweg (pararius - €2,400 per month)
+2025-04-18 20:15:44,764 - main - INFO - Added new listing: Flat Molenweg (pararius - €1,437 per month)
+2025-04-18 20:15:44,765 - main - INFO - Added new listing: Flat Molenweg (pararius - €1,332 per month)
+2025-04-18 20:15:44,766 - main - INFO - Completed scan of pararius for zeist: 5 new, 5 total in 0.76s
+2025-04-18 20:15:44,766 - main - INFO - Scanning pararius for rotterdam...
+2025-04-18 20:15:45,681 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 20:15:45,737 - main - INFO - Found 30 listings for pararius in rotterdam
+2025-04-18 20:15:45,738 - main - INFO - Added new listing: Flat Nico Koomanskade (pararius - €3,499 per month)
+2025-04-18 20:15:45,741 - main - INFO - Added new listing: Flat Oudedijk (pararius - €1,750 per month)
+2025-04-18 20:15:45,741 - main - INFO - Added new listing: Flat Schieweg (pararius - €1,950 per month)
+2025-04-18 20:15:45,742 - main - INFO - Added new listing: Flat Wolphaertsbocht 238 C (pararius - €1,796 per month)
+2025-04-18 20:15:45,754 - main - INFO - Added new listing: Flat Geldersestraat (pararius - €2,245 per month)
+2025-04-18 20:15:45,755 - main - INFO - Added new listing: Flat Eendrachtsweg (pararius - €1,875 per month)
+2025-04-18 20:15:45,756 - main - INFO - Added new listing: Flat Hoogstraat (pararius - €1,995 per month)
+2025-04-18 20:15:45,756 - main - INFO - Added new listing: Flat Meeuwenstraat (pararius - €2,900 per month)
+2025-04-18 20:15:45,757 - main - INFO - Added new listing: Flat Mauritsstraat (pararius - €1,550 per month)
+2025-04-18 20:15:45,758 - main - INFO - Added new listing: Flat Beukelsweg (pararius - €2,300 per month)
+2025-04-18 20:15:45,759 - main - INFO - Added new listing: Flat Beukelsweg (pararius - €2,300 per month)
+2025-04-18 20:15:45,760 - main - INFO - Added new listing: Flat Schiedamsedijk (pararius - €3,900 per month)
+2025-04-18 20:15:45,760 - main - INFO - Added new listing: Room Hogenbanweg (pararius - €770 per month)
+2025-04-18 20:15:45,761 - main - INFO - Added new listing: Flat Herman Robbersstraat 106 C (pararius - €2,150 per month)
+2025-04-18 20:15:45,784 - main - INFO - Added new listing: Flat Korte Hoogstraat 11 D (pararius - €2,150 per month)
+2025-04-18 20:15:45,785 - main - INFO - Added new listing: Flat Polderlaan (pararius - €2,350 per month)
+2025-04-18 20:15:45,786 - main - INFO - Added new listing: Flat Posthoornstraat (pararius - €3,750 per month)
+2025-04-18 20:15:45,787 - main - INFO - Added new listing: Flat Bergweg (pararius - €2,245 per month)
+2025-04-18 20:15:45,787 - main - INFO - Added new listing: Flat Reyerdijk 74 (pararius - €741 per month)
+2025-04-18 20:15:45,788 - main - INFO - Added new listing: Flat Bethlehemstraat 28 B (pararius - €1,995 per month)
+2025-04-18 20:15:45,789 - main - INFO - Added new listing: Flat Katendrechtse Lagedijk (pararius - €927 per month)
+2025-04-18 20:15:45,789 - main - INFO - Added new listing: Flat Schiehavenkade (pararius - €1,940 per month)
+2025-04-18 20:15:45,790 - main - INFO - Added new listing: Flat Botersloot (pararius - €2,500 per month)
+2025-04-18 20:15:45,791 - main - INFO - Added new listing: Flat Baroniestraat (pararius - €1,045 per month)
+2025-04-18 20:15:45,791 - main - INFO - Added new listing: Flat Eendrachtsweg (pararius - €1,675 per month)
+2025-04-18 20:15:45,814 - main - INFO - Added new listing: Flat Brouwhuisstraat (pararius - €2,750 per month)
+2025-04-18 20:15:45,815 - main - INFO - Added new listing: Flat Westzeedijk 138 E (pararius - €1,370 per month)
+2025-04-18 20:15:45,816 - main - INFO - Added new listing: Flat Parklaan (pararius - €1,645 per month)
+2025-04-18 20:15:45,817 - main - INFO - Added new listing: Flat Mauritsweg (pararius - €1,795 per month)
+2025-04-18 20:15:45,817 - main - INFO - Added new listing: Flat Zuidplein 588 (pararius - €2,300 per month)
+2025-04-18 20:15:45,818 - main - INFO - Completed scan of pararius for rotterdam: 30 new, 30 total in 1.05s
+2025-04-18 20:15:45,819 - main - INFO - Scanning pararius for amstelveen...
+2025-04-18 20:15:47,216 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amstelveen?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 20:15:47,276 - main - INFO - Found 30 listings for pararius in amstelveen
+2025-04-18 20:15:47,278 - main - INFO - Added new listing: Flat Marne (pararius - €1,875 per month)
+2025-04-18 20:15:47,279 - main - INFO - Added new listing: House Urkerstraat (pararius - €3,800 per month)
+2025-04-18 20:15:47,281 - main - INFO - Added new listing: Flat Dignahoeve (pararius - €2,375 per month)
+2025-04-18 20:15:47,284 - main - INFO - Added new listing: Flat Felix de Nobelhof (pararius - €2,500 per month)
+2025-04-18 20:15:47,285 - main - INFO - Added new listing: Flat Praam (pararius - €1,950 per month)
+2025-04-18 20:15:47,286 - main - INFO - Added new listing: House Prinses Irenelaan (pararius - €9,750 per month)
+2025-04-18 20:15:47,287 - main - INFO - Added new listing: Flat Ringslang (pararius - €2,750 per month)
+2025-04-18 20:15:47,288 - main - INFO - Added new listing: Flat Wimbledonpark (pararius - €2,800 per month)
+2025-04-18 20:15:47,289 - main - INFO - Added new listing: House Da Costalaan (pararius - €2,650 per month)
+2025-04-18 20:15:47,289 - main - INFO - Added new listing: House Pilatus (pararius - €3,250 per month)
+2025-04-18 20:15:47,290 - main - INFO - Added new listing: House Simon Stevinstraat (pararius - €3,200 per month)
+2025-04-18 20:15:47,291 - main - INFO - Added new listing: House Brederode (pararius - €3,750 per month)
+2025-04-18 20:15:47,292 - main - INFO - Added new listing: House Korianderlaan (pararius - €2,950 per month)
+2025-04-18 20:15:47,293 - main - INFO - Added new listing: Flat Rosa Spierlaan (pararius - €2,350 per month)
+2025-04-18 20:15:47,294 - main - INFO - Added new listing: Flat Laan van de Helende Meesters 382 (pararius - €3,500 per month)
+2025-04-18 20:15:47,295 - main - INFO - Added new listing: House Poortwachter (pararius - €4,000 per month)
+2025-04-18 20:15:47,297 - main - INFO - Added new listing: Flat Asserring (pararius - €2,120 per month)
+2025-04-18 20:15:47,297 - main - INFO - Added new listing: Flat Meander 877 (pararius - €2,190 per month)
+2025-04-18 20:15:47,298 - main - INFO - Added new listing: House Schouwensezijweg 4 (pararius - €2,750 per month)
+2025-04-18 20:15:47,299 - main - INFO - Added new listing: House Marshallsingel (pararius - €3,650 per month)
+2025-04-18 20:15:47,299 - main - INFO - Added new listing: Flat Marie Baronlaan (pararius - €2,295 per month)
+2025-04-18 20:15:47,300 - main - INFO - Added new listing: Flat Goereesepad (pararius - €2,499 per month)
+2025-04-18 20:15:47,301 - main - INFO - Added new listing: House Emmakade (pararius - €5,250 per month)
+2025-04-18 20:15:47,302 - main - INFO - Added new listing: House Urkerstraat 17 (pararius - €3,800 per month)
+2025-04-18 20:15:47,302 - main - INFO - Added new listing: Flat Maimonideslaan (pararius - €2,650 per month)
+2025-04-18 20:15:47,303 - main - INFO - Added new listing: House Anne de Vrieslaan (pararius - €2,700 per month)
+2025-04-18 20:15:47,304 - main - INFO - Added new listing: House Camera Obscuralaan (pararius - €2,700 per month)
+2025-04-18 20:15:47,304 - main - INFO - Added new listing: House Legmeerdijk (pararius - €11,000 per month)
+2025-04-18 20:15:47,305 - main - INFO - Added new listing: House De Ruwiellaan (pararius - €4,950 per month)
+2025-04-18 20:15:47,306 - main - INFO - Added new listing: House Zilverschoonlaan (pararius - €3,150 per month)
+2025-04-18 20:15:47,306 - main - INFO - Completed scan of pararius for amstelveen: 30 new, 30 total in 1.49s
+2025-04-18 20:15:47,307 - main - INFO - Scanning pararius for diemen...
+2025-04-18 20:15:48,499 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/diemen?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 20:15:48,559 - main - INFO - Found 7 listings for pararius in diemen
+2025-04-18 20:15:48,563 - main - INFO - Added new listing: Flat Martin Luther Kinglaan 586 (pararius - €2,250 per month)
+2025-04-18 20:15:48,564 - main - INFO - Added new listing: Flat Hermelijnvlinder 9 (pararius - €1,775 per month)
+2025-04-18 20:15:48,565 - main - INFO - Added new listing: Flat Johan Coussetstraat 7 (pararius - €1,295 per month)
+2025-04-18 20:15:48,567 - main - INFO - Added new listing: House Stoelmanseiland (pararius - €2,650 per month)
+2025-04-18 20:15:48,568 - main - INFO - Added new listing: Flat Boomhazelaaroord (pararius - €2,400 per month)
+2025-04-18 20:15:48,570 - main - INFO - Added new listing: Flat Dalsteindreef (pararius - €1,099 per month)
+2025-04-18 20:15:48,571 - main - INFO - Added new listing: Flat Dalsteindreef (pararius - €1,484 per month)
+2025-04-18 20:15:48,572 - main - INFO - Completed scan of pararius for diemen: 7 new, 7 total in 1.26s
+2025-04-18 20:15:48,573 - main - INFO - Scanning pararius for leiden...
+2025-04-18 20:15:49,773 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/leiden?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 20:15:49,829 - main - INFO - Found 31 listings for pararius in leiden
+2025-04-18 20:15:49,830 - main - INFO - Added new listing: Flat Asserstraat (pararius - €2,150 per month)
+2025-04-18 20:15:49,831 - main - INFO - Added new listing: House Oude Rijn (pararius - €2,950 per month)
+2025-04-18 20:15:49,832 - main - INFO - Added new listing: Flat Eijmerspoelstraat (pararius - €1,890 per month)
+2025-04-18 20:15:49,832 - main - INFO - Added new listing: Flat Alfabetweg (pararius - €1,625 per month)
+2025-04-18 20:15:49,833 - main - INFO - Added new listing: Flat Boerhaavelaan (pararius - €1,750 per month)
+2025-04-18 20:15:49,834 - main - INFO - Added new listing: Flat Ananasweg 178 (pararius - €2,330 per month)
+2025-04-18 20:15:49,835 - main - INFO - Added new listing: Flat Stationsplein (pararius - €993 per month)
+2025-04-18 20:15:49,836 - main - INFO - Added new listing: Flat Kralendijkkade (pararius - €1,065 per month)
+2025-04-18 20:15:49,837 - main - INFO - Added new listing: Flat Kuiperssteeg (pararius - €2,100 per month)
+2025-04-18 20:15:49,839 - main - INFO - Added new listing: Flat Eschertoren 4 F (pararius - €1,750 per month)
+2025-04-18 20:15:49,840 - main - INFO - Added new listing: Flat Verbeekstraat 1 A 8 (pararius - €1,750 per month)
+2025-04-18 20:15:49,840 - main - INFO - Added new listing: Flat Telderskade (pararius - €1,850 per month)
+2025-04-18 20:15:49,841 - main - INFO - Added new listing: Flat Neptunuskade (pararius - €2,495 per month)
+2025-04-18 20:15:49,842 - main - INFO - Added new listing: House Witte Rozenstraat 35 (pararius - €2,250 per month)
+2025-04-18 20:15:49,843 - main - INFO - Added new listing: House Hartmanstraat (pararius - €2,375 per month)
+2025-04-18 20:15:49,843 - main - INFO - Added new listing: Flat Perzikweg 126 (pararius - €2,640 per month)
+2025-04-18 20:15:49,844 - main - INFO - Added new listing: House Sieboldstraat (pararius - €2,200 per month)
+2025-04-18 20:15:49,845 - main - INFO - Added new listing: Room Hogewoerd 128 AB (pararius - €992 per month)
+2025-04-18 20:15:49,846 - main - INFO - Added new listing: Room Gerecht (pararius - €860 per month)
+2025-04-18 20:15:49,847 - main - INFO - Added new listing: Flat Verbeekstraat 8 (pararius - €1,650 per month)
+2025-04-18 20:15:49,848 - main - INFO - Added new listing: Flat Verbeekstraat 1 B 10 (pararius - €2,100 per month)
+2025-04-18 20:15:49,849 - main - INFO - Added new listing: Flat Eschertoren 2 E (pararius - €1,700 per month)
+2025-04-18 20:15:49,850 - main - INFO - Added new listing: Flat Eschertoren 8 C (pararius - €1,750 per month)
+2025-04-18 20:15:49,850 - main - INFO - Added new listing: Flat Eschertoren 7 F (pararius - €1,750 per month)
+2025-04-18 20:15:49,851 - main - INFO - Added new listing: Flat Eschertoren 11 A (pararius - €1,750 per month)
+2025-04-18 20:15:49,852 - main - INFO - Added new listing: Flat Doezastraat 35 A (pararius - €1,895 per month)
+2025-04-18 20:15:49,853 - main - INFO - Added new listing: Room Medusastraat (pararius - €665 per month)
+2025-04-18 20:15:49,854 - main - INFO - Added new listing: Flat Langebrug (pararius - €3,350 per month)
+2025-04-18 20:15:49,854 - main - INFO - Added new listing: Room Hooigracht (pararius - €495 per month)
+2025-04-18 20:15:49,855 - main - INFO - Added new listing: Flat Morssingel (pararius - €1,800 per month)
+2025-04-18 20:15:49,856 - main - INFO - Completed scan of pararius for leiden: 30 new, 31 total in 1.28s
+2025-04-18 20:15:49,856 - main - INFO - Scanning pararius for haarlem...
+2025-04-18 20:15:51,108 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/haarlem?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 20:15:51,142 - main - INFO - Found 30 listings for pararius in haarlem
+2025-04-18 20:15:51,143 - main - INFO - Added new listing: Flat Floraplein (pararius - €2,595 per month)
+2025-04-18 20:15:51,144 - main - INFO - Added new listing: House Rijksstraatweg 282 (pararius - €2,875 per month)
+2025-04-18 20:15:51,145 - main - INFO - Added new listing: House Schoterstraat 19 (pararius - €3,000 per month)
+2025-04-18 20:15:51,145 - main - INFO - Added new listing: Flat Marsmanplein 190 (pararius - €1,865 per month)
+2025-04-18 20:15:51,146 - main - INFO - Added new listing: Flat Jansstraat 46 C 5 (pararius - €1,600 per month)
+2025-04-18 20:15:51,146 - main - INFO - Added new listing: Flat Donkere Spaarne (pararius - €1,790 per month)
+2025-04-18 20:15:51,147 - main - INFO - Added new listing: Flat Kenaustraat (pararius - €2,500 per month)
+2025-04-18 20:15:51,148 - main - INFO - Added new listing: Flat Nassaustraat (pararius - €3,250 per month)
+2025-04-18 20:15:51,149 - main - INFO - Added new listing: Flat Frankestraat 44 (pararius - €2,500 per month)
+2025-04-18 20:15:51,149 - main - INFO - Added new listing: House Ambachtstraat (pararius - €2,750 per month)
+2025-04-18 20:15:51,150 - main - INFO - Added new listing: House Karabiniersstraat (pararius - €3,895 per month)
+2025-04-18 20:15:51,150 - main - INFO - Added new listing: Flat Altenastraat (pararius - €1,850 per month)
+2025-04-18 20:15:51,151 - main - INFO - Added new listing: Flat Meeuwenstraat (pararius - €3,195 per month)
+2025-04-18 20:15:51,151 - main - INFO - Added new listing: Flat Marsmanplein (pararius - €2,000 per month)
+2025-04-18 20:15:51,152 - main - INFO - Added new listing: House Rockplein (pararius - €2,950 per month)
+2025-04-18 20:15:51,152 - main - INFO - Added new listing: Flat Klein Heiligland (pararius - €1,950 per month)
+2025-04-18 20:15:51,153 - main - INFO - Added new listing: House Kinderhuisvest 11 (pararius - €4,665 per month)
+2025-04-18 20:15:51,154 - main - INFO - Added new listing: Flat Kampervest (pararius - €2,000 per month)
+2025-04-18 20:15:51,154 - main - INFO - Added new listing: House Brouwersplein (pararius - €3,250 per month)
+2025-04-18 20:15:51,155 - main - INFO - Added new listing: House Garenkokerskade (pararius - €3,500 per month)
+2025-04-18 20:15:51,155 - main - INFO - Added new listing: Flat Nassauplein (pararius - €3,500 per month)
+2025-04-18 20:15:51,156 - main - INFO - Added new listing: Flat Spaarndamseweg (pararius - €2,350 per month)
+2025-04-18 20:15:51,156 - main - INFO - Added new listing: Flat Zadelmakerslaan 106 (pararius - €2,245 per month)
+2025-04-18 20:15:51,157 - main - INFO - Added new listing: Flat Frankestraat 37 C (pararius - €2,600 per month)
+2025-04-18 20:15:51,158 - main - INFO - Added new listing: Flat Staten Bolwerk (pararius - €3,500 per month)
+2025-04-18 20:15:51,159 - main - INFO - Added new listing: Flat Nassaulaan 8 RD (pararius - €2,665 per month)
+2025-04-18 20:15:51,160 - main - INFO - Added new listing: Flat Marsmanplein 152 (pararius - €1,865 per month)
+2025-04-18 20:15:51,160 - main - INFO - Added new listing: Flat Tugelastraat (pararius - €2,150 per month)
+2025-04-18 20:15:51,161 - main - INFO - Added new listing: Flat Verspronckweg 150 B 01 (pararius - €1,935 per month)
+2025-04-18 20:15:51,162 - main - INFO - Added new listing: Flat Essenstraat 22 (pararius - €2,495 per month)
+2025-04-18 20:15:51,162 - main - INFO - Completed scan of pararius for haarlem: 30 new, 30 total in 1.31s
+2025-04-18 20:15:51,163 - main - INFO - Scanning pararius for amersfoort...
+2025-04-18 20:15:51,929 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amersfoort?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 20:15:51,996 - main - INFO - Found 13 listings for pararius in amersfoort
+2025-04-18 20:15:52,003 - main - INFO - Added new listing: Room Puntenburgerlaan (pararius - €671 per month)
+2025-04-18 20:15:52,005 - main - INFO - Added new listing: Flat Everard Meysterweg (pararius - Price on request)
+2025-04-18 20:15:52,006 - main - INFO - Added new listing: Studio Stationsstraat (pararius - €972 per month)
+2025-04-18 20:15:52,007 - main - INFO - Added new listing: House Rietzangerstraat (pararius - €1,795 per month)
+2025-04-18 20:15:52,007 - main - INFO - Added new listing: Flat Zwanenhalssteeg (pararius - €1,154 per month)
+2025-04-18 20:15:52,008 - main - INFO - Added new listing: Flat Goudsbloemstraat (pararius - €629 per month)
+2025-04-18 20:15:52,009 - main - INFO - Added new listing: Flat Lambert Heijnricsstraat (pararius - €1,350 per month)
+2025-04-18 20:15:52,009 - main - INFO - Added new listing: Studio Softwareweg (pararius - €691 per month)
+2025-04-18 20:15:52,010 - main - INFO - Added new listing: Flat Arnhemseweg (pararius - €3,250 per month)
+2025-04-18 20:15:52,011 - main - INFO - Added new listing: House Bombardonstraat (pararius - €1,900 per month)
+2025-04-18 20:15:52,012 - main - INFO - Added new listing: Flat Lichtpenweg (pararius - €2,095 per month)
+2025-04-18 20:15:52,013 - main - INFO - Added new listing: House Arnhemseweg (pararius - €2,495 per month)
+2025-04-18 20:15:52,014 - main - INFO - Added new listing: Flat Utrechtseweg (pararius - €1,200 per month)
+2025-04-18 20:15:52,014 - main - INFO - Completed scan of pararius for amersfoort: 13 new, 13 total in 0.85s
+2025-04-18 20:15:52,015 - main - INFO - Scanning funda for amsterdam...
+2025-04-18 20:15:53,533 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 20:15:53,555 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-18 20:15:53,557 - main - INFO - Found 15 listings for funda in amsterdam
+2025-04-18 20:15:53,559 - main - INFO - Added new listing: 's-Gravendijkdreef 261 (funda - € 2.100 /maand)
+2025-04-18 20:15:53,559 - main - INFO - Added new listing: Solitudolaan 134 (funda - € 2.055 /maand)
+2025-04-18 20:15:53,560 - main - INFO - Added new listing: Wolbrantskerkweg 48 (funda - € 2.750 /maand)
+2025-04-18 20:15:53,561 - main - INFO - Added new listing: Nieuwe Nieuwstraat 18-C (funda - € 2.350 /maand)
+2025-04-18 20:15:53,561 - main - INFO - Added new listing: Ariana Nozemanstraat 72 (funda - € 3.300 /maand)
+2025-04-18 20:15:53,562 - main - INFO - Added new listing: Haarlemmermeerstraat 60-3 (funda - € 3.500 /maand)
+2025-04-18 20:15:53,563 - main - INFO - Added new listing: Sarphatipark 88-1 (funda - € 3.250 /maand)
+2025-04-18 20:15:53,563 - main - INFO - Added new listing: Sarphatipark 88-H (funda - € 5.950 /maand)
+2025-04-18 20:15:53,564 - main - INFO - Added new listing: Roerstraat 115-H (funda - € 5.500 /maand)
+2025-04-18 20:15:53,565 - main - INFO - Added new listing: Columbusplein 44-1 (funda - € 2.900 /maand)
+2025-04-18 20:15:53,566 - main - INFO - Added new listing: Ariana Nozemanstraat 164 (funda - € 3.400 /maand)
+2025-04-18 20:15:53,567 - main - INFO - Added new listing: Eerste Helmersstraat 165-2 (funda - € 4.250 /maand)
+2025-04-18 20:15:53,567 - main - INFO - Added new listing: Stadhouderskade 142-A (funda - € 4.500 /maand)
+2025-04-18 20:15:53,568 - main - INFO - Added new listing: Rozenstraat 46-1L (funda - € 2.650 /maand)
+2025-04-18 20:15:53,569 - main - INFO - Added new listing: Spuistraat 229-K (funda - € 2.350 /maand)
+2025-04-18 20:15:53,570 - main - INFO - Completed scan of funda for amsterdam: 15 new, 15 total in 1.55s
+2025-04-18 20:15:53,570 - main - INFO - Scanning funda for utrecht...
+2025-04-18 20:15:54,744 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22utrecht%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 20:15:54,780 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-18 20:15:54,782 - main - INFO - Found 15 listings for funda in utrecht
+2025-04-18 20:15:54,783 - main - INFO - Added new listing: Molengraaffplantsoen 17 (funda - € 2.100 /maand)
+2025-04-18 20:15:54,784 - main - INFO - Added new listing: Maliebaan 97-D (funda - € 2.250 /maand)
+2025-04-18 20:15:54,784 - main - INFO - Added new listing: Maliebaan 23-C (funda - € 2.950 /maand)
+2025-04-18 20:15:54,785 - main - INFO - Added new listing: 't Goylaan 87-a (funda - € 1.490 /maand)
+2025-04-18 20:15:54,786 - main - INFO - Added new listing: Elisabeth Brugsmapromenade 34 (funda - € 2.200 /maand)
+2025-04-18 20:15:54,787 - main - INFO - Added new listing: Arthur van Schendelstraat 153 (funda - € 2.250 /maand)
+2025-04-18 20:15:54,789 - main - INFO - Added new listing: Marnixlaan 22-A (funda - € 999 /maand)
+2025-04-18 20:15:54,789 - main - INFO - Added new listing: Hoola van Nootenstraat 321 (funda - € 3.500 /maand)
+2025-04-18 20:15:54,790 - main - INFO - Added new listing: Amsterdamsestraatweg 869-C (funda - € 1.098 /maand)
+2025-04-18 20:15:54,791 - main - INFO - Added new listing: Seychellen 56 (funda - € 2.395 /maand)
+2025-04-18 20:15:54,791 - main - INFO - Added new listing: Muntstraat 9-B (funda - € 2.450 /maand)
+2025-04-18 20:15:54,792 - main - INFO - Added new listing: Haroekoeplein 9 (funda - € 1.850 /maand)
+2025-04-18 20:15:54,794 - main - INFO - Added new listing: Heemstedelaan 55 (funda - € 1.735 /maand)
+2025-04-18 20:15:54,794 - main - INFO - Added new listing: Drift 1-B (funda - € 2.100 /maand)
+2025-04-18 20:15:54,795 - main - INFO - Added new listing: Justus van Effenstraat 6-BS (funda - € 2.650 /maand)
+2025-04-18 20:15:54,796 - main - INFO - Completed scan of funda for utrecht: 15 new, 15 total in 1.22s
+2025-04-18 20:15:54,796 - main - INFO - Scanning funda for zeist...
+2025-04-18 20:15:55,410 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22zeist%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 20:15:55,412 - utils.http - WARNING - Anti-bot pattern detected: 'Je bent bijna op de pagina die je zoekt'
+2025-04-18 20:15:55,412 - utils.http - WARNING - Anti-bot measures detected (retry 1/3) for https://www.funda.nl/zoeken/huur?selected_area=["zeist"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-18 20:15:55,413 - utils.http - INFO - Anti-bot retry 1/3 using Mobile Chrome Android profile for https://www.funda.nl/zoeken/huur?selected_area=["zeist"]&object_type=["house","apartment"]&sort="date_down", waiting 3.8 seconds...
+2025-04-18 20:16:00,532 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22zeist%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 20:16:00,553 - utils.http - INFO - Successfully bypassed anti-bot measures after 1 retries for https://www.funda.nl/zoeken/huur?selected_area=["zeist"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-18 20:16:00,556 - scrapers.funda - INFO - Found 10 listing elements to process
+2025-04-18 20:16:00,557 - main - INFO - Found 8 listings for funda in zeist
+2025-04-18 20:16:00,559 - main - INFO - Added new listing: Bergweg 25-B (funda - € 1.058 /maand)
+2025-04-18 20:16:00,560 - main - INFO - Added new listing: Prinses Marijkelaan 21 (funda - € 1.550 /maand)
+2025-04-18 20:16:00,561 - main - INFO - Added new listing: Dijnselweg 113 (funda - € 2.400 /maand)
+2025-04-18 20:16:00,561 - main - INFO - Added new listing: De Clomp 3272 (funda - € 1.300 /maand)
+2025-04-18 20:16:00,562 - main - INFO - Added new listing: Oude Arnhemseweg 65-A (funda - € 1.800 /maand)
+2025-04-18 20:16:00,563 - main - INFO - Added new listing: Molenweg 106 (funda - € 1.254 /maand)
+2025-04-18 20:16:00,564 - main - INFO - Added new listing: Molenweg 97 (funda - € 1.254 /maand)
+2025-04-18 20:16:00,565 - main - INFO - Added new listing: Molenweg 50-708 (funda - € 1.332 /maand)
+2025-04-18 20:16:00,565 - main - INFO - Completed scan of funda for zeist: 8 new, 8 total in 5.77s
+2025-04-18 20:16:00,565 - main - INFO - Scanning funda for rotterdam...
+2025-04-18 20:16:01,758 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22rotterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 20:16:01,783 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-18 20:16:01,785 - main - INFO - Found 15 listings for funda in rotterdam
+2025-04-18 20:16:01,787 - main - INFO - Added new listing: Hoogstraat 20-D (funda - € 1.995 /maand)
+2025-04-18 20:16:01,788 - main - INFO - Added new listing: Wolphaertsbocht 238-C (funda - € 1.796 /maand)
+2025-04-18 20:16:01,788 - main - INFO - Added new listing: Factorij 26 (funda - € 2.200 /maand)
+2025-04-18 20:16:01,789 - main - INFO - Added new listing: Kerstant van den Bergelaan 24-B (funda - € 2.750 /maand)
+2025-04-18 20:16:01,790 - main - INFO - Added new listing: Westzeedijk 138-E (funda - € 1.370 /maand)
+2025-04-18 20:16:01,791 - main - INFO - Added new listing: Godschalkstraat 142 (funda - € 1.284 /maand)
+2025-04-18 20:16:01,791 - main - INFO - Added new listing: Godschalkstraat 100 (funda - € 1.284 /maand)
+2025-04-18 20:16:01,792 - main - INFO - Added new listing: Godschalkstraat 118 (funda - € 1.284 /maand)
+2025-04-18 20:16:01,793 - main - INFO - Added new listing: Bergstraat 8-C (funda - € 2.250 /maand)
+2025-04-18 20:16:01,793 - main - INFO - Added new listing: Luzacstraat 7-A01 (funda - € 1.400 /maand)
+2025-04-18 20:16:01,794 - main - INFO - Added new listing: Boompjes 49-U (funda - € 3.350 /maand)
+2025-04-18 20:16:01,795 - main - INFO - Added new listing: Straatweg 44-C (funda - € 1.850 /maand)
+2025-04-18 20:16:01,795 - main - INFO - Added new listing: Kruisplein 436 (funda - € 2.450 /maand)
+2025-04-18 20:16:01,796 - main - INFO - Added new listing: Willem de Zwijgerstraat 8 (funda - Prijs op aanvraag)
+2025-04-18 20:16:01,797 - main - INFO - Added new listing: Wilgenplaslaan 198-C04 (funda - € 1.550 /maand)
+2025-04-18 20:16:01,797 - main - INFO - Completed scan of funda for rotterdam: 15 new, 15 total in 1.23s
+2025-04-18 20:16:01,797 - main - INFO - Scanning funda for amstelveen...
+2025-04-18 20:16:02,987 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amstelveen%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 20:16:03,016 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-18 20:16:03,019 - main - INFO - Found 15 listings for funda in amstelveen
+2025-04-18 20:16:03,020 - main - INFO - Added new listing: Marie Baronlaan 43 (funda - € 2.295 /maand)
+2025-04-18 20:16:03,021 - main - INFO - Added new listing: Felix de Nobelhof 27 (funda - € 2.500 /maand)
+2025-04-18 20:16:03,021 - main - INFO - Added new listing: Groenhof 115-F (funda - € 1.145 /maand)
+2025-04-18 20:16:03,022 - main - INFO - Added new listing: Ringslang 125 (funda - € 2.750 /maand)
+2025-04-18 20:16:03,023 - main - INFO - Added new listing: De Uitvlugt 21 (funda - € 1.995 /maand)
+2025-04-18 20:16:03,023 - main - INFO - Added new listing: Da Costalaan 64 (funda - € 2.650 /maand)
+2025-04-18 20:16:03,024 - main - INFO - Added new listing: Pilatus 2 (funda - € 3.250 /maand)
+2025-04-18 20:16:03,027 - main - INFO - Added new listing: Ringslang 57 (funda - € 2.000 /maand)
+2025-04-18 20:16:03,028 - main - INFO - Added new listing: Korianderlaan 73 (funda - € 2.950 /maand)
+2025-04-18 20:16:03,028 - main - INFO - Added new listing: Bosboom Toussaintlaan 19 (funda - € 2.850 /maand)
+2025-04-18 20:16:03,029 - main - INFO - Added new listing: Brederode 27 (funda - € 3.750 /maand)
+2025-04-18 20:16:03,030 - main - INFO - Added new listing: Amsterdamseweg 501-A (funda - € 3.900 /maand)
+2025-04-18 20:16:03,030 - main - INFO - Added new listing: Straat van Magelhaens 15 (funda - € 3.850 /maand)
+2025-04-18 20:16:03,031 - main - INFO - Added new listing: Groenhof 80 (funda - € 2.500 /maand)
+2025-04-18 20:16:03,032 - main - INFO - Added new listing: Asserring 188-G (funda - € 2.120 /maand)
+2025-04-18 20:16:03,032 - main - INFO - Completed scan of funda for amstelveen: 15 new, 15 total in 1.23s
+2025-04-18 20:16:03,032 - main - INFO - Scanning funda for diemen...
+2025-04-18 20:16:04,011 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22diemen%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 20:16:04,039 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-18 20:16:04,041 - main - INFO - Found 15 listings for funda in diemen
+2025-04-18 20:16:04,042 - main - INFO - Added new listing: Jan Wolkerslaan 665 (funda - € 1.940 /maand)
+2025-04-18 20:16:04,043 - main - INFO - Added new listing: Jan Wolkerslaan 413 (funda - € 1.960 /maand)
+2025-04-18 20:16:04,043 - main - INFO - Added new listing: Jan Wolkerslaan 429 (funda - € 2.834 /maand)
+2025-04-18 20:16:04,044 - main - INFO - Added new listing: Martin Luther Kinglaan 586 (funda - € 2.250 /maand)
+2025-04-18 20:16:04,044 - main - INFO - Added new listing: Hermelijnvlinder 9 (funda - € 1.775 /maand)
+2025-04-18 20:16:04,045 - main - INFO - Added new listing: Jan Wolkerslaan 249 (funda - € 1.830 /maand)
+2025-04-18 20:16:04,046 - main - INFO - Added new listing: Jan Wolkerslaan 357 (funda - € 1.975 /maand)
+2025-04-18 20:16:04,046 - main - INFO - Added new listing: Jan Wolkerslaan 679 (funda - € 2.110 /maand)
+2025-04-18 20:16:04,047 - main - INFO - Added new listing: Naarderzandpad 56 (funda - € 1.959 /maand)
+2025-04-18 20:16:04,048 - main - INFO - Added new listing: Jan Wolkerslaan 199 (funda - € 1.745 /maand)
+2025-04-18 20:16:04,048 - main - INFO - Added new listing: Jan Wolkerslaan 553 (funda - € 1.500 /maand)
+2025-04-18 20:16:04,049 - main - INFO - Added new listing: Jan Wolkerslaan 497 (funda - € 1.775 /maand)
+2025-04-18 20:16:04,050 - main - INFO - Added new listing: Jan Wolkerslaan 275 (funda - € 1.840 /maand)
+2025-04-18 20:16:04,050 - main - INFO - Added new listing: Jan Wolkerslaan 495 (funda - € 1.825 /maand)
+2025-04-18 20:16:04,051 - main - INFO - Added new listing: Tureluurweg 76 (funda - € 1.700 /maand)
+2025-04-18 20:16:04,051 - main - INFO - Completed scan of funda for diemen: 15 new, 15 total in 1.02s
+2025-04-18 20:16:04,052 - main - INFO - Scanning funda for leiden...
+2025-04-18 20:16:05,478 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22leiden%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 20:16:05,506 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-18 20:16:05,507 - main - INFO - Found 15 listings for funda in leiden
+2025-04-18 20:16:05,508 - main - INFO - Added new listing: Asserstraat 92 (funda - € 2.150 /maand)
+2025-04-18 20:16:05,509 - main - INFO - Added new listing: Musschenbroekstraat 10 (funda - € 2.500 /maand)
+2025-04-18 20:16:05,510 - main - INFO - Added new listing: Ananasweg 172 (funda - € 2.025 /maand)
+2025-04-18 20:16:05,511 - main - INFO - Added new listing: Perzikweg 42 (funda - € 1.775 /maand)
+2025-04-18 20:16:05,511 - main - INFO - Added new listing: Ananasweg 178 (funda - € 2.330 /maand)
+2025-04-18 20:16:05,512 - main - INFO - Added new listing: Eschertoren 4-F (funda - € 1.750 /maand)
+2025-04-18 20:16:05,513 - main - INFO - Added new listing: Verbeekstraat 1-A8 (funda - € 1.750 /maand)
+2025-04-18 20:16:05,513 - main - INFO - Added new listing: Neptunuskade 223 (funda - € 2.495 /maand)
+2025-04-18 20:16:05,514 - main - INFO - Added new listing: Witte Rozenstraat 35 (funda - € 2.250 /maand)
+2025-04-18 20:16:05,515 - main - INFO - Added new listing: Omegaplantsoen 29 (funda - € 1.058 /maand)
+2025-04-18 20:16:05,515 - main - INFO - Added new listing: Omegaplantsoen 183 (funda - € 1.663 /maand)
+2025-04-18 20:16:05,516 - main - INFO - Added new listing: Omegaplantsoen 155 (funda - € 1.058 /maand)
+2025-04-18 20:16:05,517 - main - INFO - Added new listing: Omegaplantsoen 9 (funda - € 1.105 /maand)
+2025-04-18 20:16:05,517 - main - INFO - Added new listing: Sieboldstraat 7 (funda - € 2.200 /maand)
+2025-04-18 20:16:05,518 - main - INFO - Added new listing: Perzikweg 126 (funda - € 2.640 /maand)
+2025-04-18 20:16:05,518 - main - INFO - Completed scan of funda for leiden: 15 new, 15 total in 1.47s
+2025-04-18 20:16:05,519 - main - INFO - Scanning funda for haarlem...
+2025-04-18 20:16:06,881 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22haarlem%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 20:16:06,907 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-18 20:16:06,908 - main - INFO - Found 15 listings for funda in haarlem
+2025-04-18 20:16:06,909 - main - INFO - Added new listing: Rijksstraatweg 282 (funda - € 2.875 /maand)
+2025-04-18 20:16:06,910 - main - INFO - Added new listing: Schoterstraat 19 (funda - € 3.000 /maand)
+2025-04-18 20:16:06,911 - main - INFO - Added new listing: Gedempte Oude Gracht 87-B (funda - € 2.550 /maand)
+2025-04-18 20:16:06,911 - main - INFO - Added new listing: Marsmanplein 190 (funda - € 1.865 /maand)
+2025-04-18 20:16:06,912 - main - INFO - Added new listing: Rijksstraatweg 275 (funda - € 1.450 /maand)
+2025-04-18 20:16:06,912 - main - INFO - Added new listing: Grote Houtstraat 154-RD (funda - € 2.500 /maand)
+2025-04-18 20:16:06,913 - main - INFO - Added new listing: Kenaustraat 28 (funda - € 2.500 /maand)
+2025-04-18 20:16:06,914 - main - INFO - Added new listing: Frankestraat 44 (funda - € 2.500 /maand)
+2025-04-18 20:16:06,914 - main - INFO - Added new listing: Amerikaweg 132 (funda - € 1.990 /maand)
+2025-04-18 20:16:06,915 - main - INFO - Added new listing: Marsmanplein 84 (funda - € 2.000 /maand)
+2025-04-18 20:16:06,916 - main - INFO - Added new listing: Rockplein 79 (funda - € 2.950 /maand)
+2025-04-18 20:16:06,916 - main - INFO - Added new listing: Klein Heiligland 73 (funda - € 1.950 /maand)
+2025-04-18 20:16:06,917 - main - INFO - Added new listing: Kinderhuisvest 11 (funda - € 4.665 /maand)
+2025-04-18 20:16:06,918 - main - INFO - Added new listing: Bellevuelaan 75 (funda - € 2.350 /maand)
+2025-04-18 20:16:06,918 - main - INFO - Added new listing: Professor Van der Waalsstraat 71 (funda - € 2.625 /maand)
+2025-04-18 20:16:06,919 - main - INFO - Completed scan of funda for haarlem: 15 new, 15 total in 1.40s
+2025-04-18 20:16:06,919 - main - INFO - Scanning funda for amersfoort...
+2025-04-18 20:16:07,637 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amersfoort%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 20:16:07,638 - utils.http - WARNING - Anti-bot pattern detected: 'Je bent bijna op de pagina die je zoekt'
+2025-04-18 20:16:07,638 - utils.http - WARNING - Anti-bot measures detected (retry 1/3) for https://www.funda.nl/zoeken/huur?selected_area=["amersfoort"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-18 20:16:07,639 - utils.http - INFO - Anti-bot retry 1/3 using Chrome macOS profile for https://www.funda.nl/zoeken/huur?selected_area=["amersfoort"]&object_type=["house","apartment"]&sort="date_down", waiting 3.9 seconds...
+2025-04-18 20:16:12,941 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amersfoort%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 20:16:12,963 - utils.http - INFO - Successfully bypassed anti-bot measures after 1 retries for https://www.funda.nl/zoeken/huur?selected_area=["amersfoort"]&object_type=["house","apartment"]&sort="date_down"
+2025-04-18 20:16:12,965 - scrapers.funda - INFO - Found 16 listing elements to process
+2025-04-18 20:16:12,966 - main - INFO - Found 13 listings for funda in amersfoort
+2025-04-18 20:16:12,968 - main - INFO - Added new listing: Piet Mondriaanlaan 359 (funda - € 1.435 /maand)
+2025-04-18 20:16:12,969 - main - INFO - Added new listing: Hellestraat 11-N (funda - € 1.300 /maand)
+2025-04-18 20:16:12,969 - main - INFO - Added new listing: Arnhemseweg 11 (funda - € 3.250 /maand)
+2025-04-18 20:16:12,970 - main - INFO - Added new listing: Weberstraat 34 (funda - € 1.600 /maand)
+2025-04-18 20:16:12,971 - main - INFO - Added new listing: Zuidsingel 3 (funda - € 2.495 /maand)
+2025-04-18 20:16:12,972 - main - INFO - Added new listing: Stevensweertstraat 4 (funda - € 1.500 /maand)
+2025-04-18 20:16:12,973 - main - INFO - Added new listing: Lambert Heijnricsstraat 26-H (funda - € 1.350 /maand)
+2025-04-18 20:16:12,973 - main - INFO - Added new listing: Forel 208 (funda - € 2.250 /maand)
+2025-04-18 20:16:12,974 - main - INFO - Added new listing: Bombardonstraat 173 (funda - € 1.900 /maand)
+2025-04-18 20:16:12,975 - main - INFO - Added new listing: Veldstraat 1 (funda - € 1.650 /maand)
+2025-04-18 20:16:12,975 - main - INFO - Added new listing: Pieter Jelles Troelstralaan 21 (funda - € 3.750 /maand)
+2025-04-18 20:16:12,976 - main - INFO - Added new listing: Piet Mondriaanplein 149 (funda - € 1.695 /maand)
+2025-04-18 20:16:12,976 - main - INFO - Added new listing: Karper 33 (funda - € 1.650 /maand)
+2025-04-18 20:16:12,977 - main - INFO - Completed scan of funda for amersfoort: 13 new, 13 total in 6.06s
+2025-04-18 20:16:12,977 - main - INFO - Scan complete: 305 new listings from 334 total processed
+2025-04-18 20:16:12,977 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 20:16:12,990 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 20:16:12,990 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-18 20:16:17,635 - main - INFO - Scraper task cancelled
+2025-04-18 20:32:18,845 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 20:32:18.845373
+2025-04-18 20:32:18,854 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-18 20:32:18,880 - database.migrations - INFO - Database initialized successfully
+2025-04-18 20:32:18,888 - __main__ - INFO - Running a single scan cycle
+2025-04-18 20:32:18,891 - main - INFO - Scanning funda for amsterdam...
+2025-04-18 20:32:20,276 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 20:32:20,302 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-18 20:32:20,303 - main - INFO - Found 15 listings for funda in amsterdam
+2025-04-18 20:32:20,463 - main - INFO - Completed scan of funda for amsterdam: 0 new, 15 total in 1.57s
+2025-04-18 20:32:20,464 - main - INFO - Scanning funda for rotterdam...
+2025-04-18 20:32:21,869 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22rotterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 20:32:21,894 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-18 20:32:21,896 - main - INFO - Found 15 listings for funda in rotterdam
+2025-04-18 20:32:21,907 - main - INFO - Completed scan of funda for rotterdam: 0 new, 15 total in 1.44s
+2025-04-18 20:32:21,907 - main - INFO - Scanning pararius for amsterdam...
+2025-04-18 20:32:22,773 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 20:32:22,835 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-18 20:32:22,858 - main - INFO - Completed scan of pararius for amsterdam: 0 new, 32 total in 0.95s
+2025-04-18 20:32:22,858 - main - INFO - Scanning pararius for rotterdam...
+2025-04-18 20:32:23,816 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 20:32:23,871 - main - INFO - Found 30 listings for pararius in rotterdam
+2025-04-18 20:32:23,873 - main - INFO - Added new listing: Flat Schiedamseweg (pararius - €1,850 per month)
+2025-04-18 20:32:23,902 - main - INFO - Completed scan of pararius for rotterdam: 1 new, 30 total in 1.04s
+2025-04-18 20:32:23,902 - main - INFO - Scan complete: 1 new listings from 92 total processed
+2025-04-18 20:32:23,902 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 20:32:23,913 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 20:35:25,422 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 20:35:25.422269
+2025-04-18 20:35:25,432 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam', 'rotterdam']
+2025-04-18 20:35:25,452 - database.migrations - INFO - Database initialized successfully
+2025-04-18 20:35:25,471 - __main__ - INFO - Running a single scan cycle
+2025-04-18 20:35:25,495 - main - INFO - Scanning funda for amsterdam...
+2025-04-18 20:35:26,297 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 20:35:26,333 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-18 20:35:26,336 - main - INFO - Found 15 listings for funda in amsterdam
+2025-04-18 20:35:27,445 - main - INFO - Completed scan of funda for amsterdam: 0 new, 15 total in 1.95s
+2025-04-18 20:35:27,446 - main - INFO - Scanning funda for rotterdam...
+2025-04-18 20:35:28,860 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22rotterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 20:35:28,903 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-18 20:35:28,905 - main - INFO - Found 15 listings for funda in rotterdam
+2025-04-18 20:35:28,920 - main - INFO - Completed scan of funda for rotterdam: 0 new, 15 total in 1.47s
+2025-04-18 20:35:28,921 - main - INFO - Scanning pararius for amsterdam...
+2025-04-18 20:35:30,038 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 20:35:30,121 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-18 20:35:30,149 - main - INFO - Completed scan of pararius for amsterdam: 0 new, 32 total in 1.23s
+2025-04-18 20:35:30,150 - main - INFO - Scanning pararius for rotterdam...
+2025-04-18 20:35:31,516 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/rotterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 20:35:31,548 - main - INFO - Found 30 listings for pararius in rotterdam
+2025-04-18 20:35:31,569 - main - INFO - Completed scan of pararius for rotterdam: 0 new, 30 total in 1.42s
+2025-04-18 20:35:31,569 - main - INFO - Scan complete: 0 new listings from 92 total processed
+2025-04-18 20:35:31,569 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 20:35:31,578 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 20:44:09,845 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 20:44:09.845304
+2025-04-18 20:44:09,855 - __main__ - INFO - Starting scraper for sources: ['funda', 'pararius'], cities: ['amsterdam']
+2025-04-18 20:44:09,871 - database.migrations - INFO - Database initialized successfully
+2025-04-18 20:44:09,875 - __main__ - INFO - Running a single scan cycle
+2025-04-18 20:44:09,878 - main - INFO - Scanning funda for amsterdam...
+2025-04-18 20:44:12,856 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 20:44:12,887 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-18 20:44:12,888 - main - INFO - Found 15 listings for funda in amsterdam
+2025-04-18 20:44:13,042 - main - INFO - Completed scan of funda for amsterdam: 0 new, 15 total in 3.16s
+2025-04-18 20:44:13,043 - main - INFO - Scanning pararius for amsterdam...
+2025-04-18 20:44:14,060 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 20:44:14,172 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-18 20:44:14,196 - main - INFO - Completed scan of pararius for amsterdam: 0 new, 32 total in 1.15s
+2025-04-18 20:44:14,196 - main - INFO - Scan complete: 0 new listings from 47 total processed
+2025-04-18 20:44:14,196 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 20:44:14,206 - main - INFO - Found 0 potential duplicate pairs

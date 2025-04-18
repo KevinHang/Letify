@@ -44,13 +44,11 @@ SITE_CONFIGS = {
     "funda": {
         "base_url": "https://www.funda.nl",
         "search_url_template": "https://www.funda.nl/zoeken/huur?selected_area=[\"{city}\"]&object_type=[\"house\",\"apartment\"]&sort=\"date_down\"",
-        "listing_selector": ".search-result-content",
         "min_interval": 10,  # TODO
     },
     "pararius": {
         "base_url": "https://www.pararius.com",
         "search_url_template": "https://www.pararius.com/apartments/{city}",
-        "listing_selector": ".listing-search-item",
         "min_interval": 10,  # TODO
     }
 }
