@@ -1,3 +1,9 @@
 .venv
 .env
 __pycache__
+.DS_Store
+realestate_scraper.log
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
