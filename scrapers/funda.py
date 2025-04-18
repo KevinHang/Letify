@@ -126,11 +126,11 @@ class FundaScraper(BaseScraperStrategy):
                 if postal_city_elem:
                     postal_city_text = postal_city_elem.text().strip()
                     
-                    # Pattern: "1017DX Amsterdam" or similar
-                    postal_city_match = re.match(r'(\d{4}[A-Z]{2})\s+(.+)', postal_city_text)
+                    # Handle both "1017DX Amsterdam" and "1017 DX Amsterdam"
+                    postal_city_match = re.match(r'(\d{4})\s*([A-Z]{2})\s+(.+)', postal_city_text)
                     if postal_city_match:
-                        listing.postal_code = postal_city_match.group(1)
-                        listing.city = postal_city_match.group(2)
+                        listing.postal_code = f"{postal_city_match.group(1)} {postal_city_match.group(2)}"
+                        listing.city = postal_city_match.group(3)
                     else:
                         # Try to extract city only
                         listing.city = postal_city_text

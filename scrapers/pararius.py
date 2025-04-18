@@ -183,10 +183,12 @@ class ParariusScraper(BaseScraperStrategy):
                 for feature in features_elems:
                     feature_text = feature.text().strip().lower()
                     
-                    # Extract surface area
-                    area_match = re.search(r'(\d+)\s*m²', feature_text)
-                    if area_match:
-                        listing.living_area = int(area_match.group(1))
+                    # Check if this is a surface area feature by class
+                    if feature.attributes.get("class") and "illustrated-features__item--surface-area" in feature.attributes.get("class"):
+                        # Extract just the number from the text
+                        area_match = re.search(r'(\d+)', feature_text)
+                        if area_match:
+                            listing.living_area = int(area_match.group(1))
                     
                     # Extract number of rooms
                     room_match = re.search(r'(\d+)\s+room', feature_text)
