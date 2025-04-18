@@ -16138,3 +16138,43 @@
 2025-04-18 15:58:18,202 - main - INFO - Found 0 potential duplicate pairs
 2025-04-18 15:58:18,202 - main - INFO - Waiting 3600 seconds until next scan...
 2025-04-18 15:58:21,608 - main - INFO - Scraper task cancelled
+2025-04-18 16:03:19,407 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 16:03:19.407649
+2025-04-18 16:03:19,413 - __main__ - INFO - Starting scraper for sources: ['pararius', 'funda'], cities: ['amsterdam']
+2025-04-18 16:03:19,432 - database.migrations - INFO - Database initialized successfully
+2025-04-18 16:03:19,436 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-18 16:03:19,436 - main - INFO - Starting new scan cycle...
+2025-04-18 16:03:19,439 - main - INFO - Scanning pararius for amsterdam...
+2025-04-18 16:03:20,252 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 16:03:20,319 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-18 16:03:20,371 - main - INFO - Completed scan of pararius for amsterdam: 0 new, 32 total in 0.93s
+2025-04-18 16:03:20,372 - main - INFO - Scanning funda for amsterdam...
+2025-04-18 16:03:21,724 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 16:03:21,757 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-18 16:03:21,759 - main - INFO - Found 15 listings for funda in amsterdam
+2025-04-18 16:03:21,761 - main - INFO - Added new listing: Ariana Nozemanstraat 72 (funda - € 3.300 /maand)
+2025-04-18 16:03:21,774 - main - INFO - Completed scan of funda for amsterdam: 1 new, 15 total in 1.40s
+2025-04-18 16:03:21,774 - main - INFO - Scan complete: 1 new listings from 47 total processed
+2025-04-18 16:03:21,774 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 16:03:21,784 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 16:03:21,784 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-18 16:03:29,121 - main - INFO - Scraper task cancelled
+2025-04-18 16:19:07,424 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 16:19:07.424691
+2025-04-18 16:19:07,429 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam']
+2025-04-18 16:19:07,451 - database.migrations - INFO - Database initialized successfully
+2025-04-18 16:19:07,456 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-18 16:19:07,456 - main - INFO - Starting new scan cycle...
+2025-04-18 16:19:07,461 - main - INFO - Scanning pararius for amsterdam...
+2025-04-18 16:19:08,815 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 16:19:08,845 - utils.http - WARNING - Anti-bot pattern detected: 'robot'
+2025-04-18 16:19:08,849 - utils.http - WARNING - Anti-bot measures detected (retry 1/1) for https://www.pararius.com/apartments/amsterdam?filters[since]=1
+2025-04-18 16:19:08,850 - utils.http - INFO - Anti-bot retry 1/1 using Mobile Chrome Android profile for https://www.pararius.com/apartments/amsterdam?filters[since]=1, waiting 3.1 seconds...
+2025-04-18 16:19:13,707 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 16:19:13,728 - utils.http - WARNING - Anti-bot pattern detected: 'robot'
+2025-04-18 16:19:13,731 - utils.http - ERROR - Anti-bot measures still detected after 1 retries for https://www.pararius.com/apartments/amsterdam?filters[since]=1
+2025-04-18 16:19:13,731 - utils.http - ERROR - Request error for https://www.pararius.com/apartments/amsterdam?filters[since]=1: Failed to bypass anti-bot measures after 1 retries
+2025-04-18 16:19:13,731 - main - ERROR - Error scanning pararius for amsterdam: Failed to bypass anti-bot measures after 1 retries
+2025-04-18 16:19:13,731 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-18 16:19:13,731 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 16:19:13,771 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 16:19:13,771 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-18 16:19:32,433 - main - INFO - Scraper task cancelled

@@ -483,15 +483,18 @@ class EnhancedHttpClient:
         # Track anti-bot retries and initialize session cookies
         antibot_retry_count = 0
         session_cookies = kwargs.pop("cookies", {})
+        response = None  # Initialize response variable
         
         # Keep trying until we exhaust anti-bot retries
-        while antibot_retry_count <= max_antibot_retries:
+        while antibot_retry_count < max_antibot_retries + 1:  # +1 to ensure we try exactly max_antibot_retries times
             # For first attempt or retries, select different browser profiles
             if antibot_retry_count == 0:
                 profile = self._get_browser_profile()
             else:
                 # Avoid using the same profile for retries
-                used_profiles = [p for p in self.BROWSER_PROFILES if p != profile]
+                used_profiles = [p for p in self.BROWSER_PROFILES if p["name"] != profile["name"]]
+                if not used_profiles:  # Fallback if somehow we don't have different profiles
+                    used_profiles = self.BROWSER_PROFILES
                 profile = random.choice(used_profiles)
                 
             headers = self._get_browser_headers(profile)
@@ -585,14 +588,22 @@ class EnhancedHttpClient:
                             self.session_history.pop(0)
                         
                         # Check for anti-bot measures if enabled
-                        if retry_anti_bot and antibot_retry_count < max_antibot_retries:
+                        if retry_anti_bot:
                             if self._detect_anti_bot(response):
                                 # Add Cloudflare-specific cookies if detected
                                 if "Cloudflare" in response.text.lower():
                                     session_cookies["__cf_chl"] = base64.urlsafe_b64encode(os.urandom(16)).decode('utf-8')[:22]
-                                logger.warning(f"Anti-bot measures detected (retry {antibot_retry_count}/{max_antibot_retries}) for {url}")
-                                antibot_retry_count += 1
-                                continue
+                                
+                                # If we still have retries left, continue
+                                if antibot_retry_count < max_antibot_retries:
+                                    logger.warning(f"Anti-bot measures detected (retry {antibot_retry_count + 1}/{max_antibot_retries}) for {url}")
+                                    antibot_retry_count += 1
+                                    continue
+                                else:
+                                    # We've exhausted retries but still hit anti-bot
+                                    logger.error(f"Anti-bot measures still detected after {max_antibot_retries} retries for {url}")
+                                    raise httpx.RequestError(f"Failed to bypass anti-bot measures after {max_antibot_retries} retries", 
+                                                           request=response.request)
                         
                         # Log success if retries were needed
                         if antibot_retry_count > 0:
@@ -602,13 +613,19 @@ class EnhancedHttpClient:
                     
                 except (httpx.RequestError, httpx.TimeoutException) as e:
                     logger.error(f"Request error for {url}: {e}")
+                    # Only continue retrying if we haven't exceeded max retries
                     if antibot_retry_count < max_antibot_retries:
                         antibot_retry_count += 1
                         continue
                     raise
         
-        # If retries are exhausted, raise the last exception
-        raise httpx.RequestError(f"Exceeded maximum anti-bot retries ({max_antibot_retries}) for {url}", request=response.request)
+        # This should not be reached due to the loop and exception conditions above
+        # but included as a safeguard
+        if response:
+            return response
+        
+        raise httpx.RequestError(f"Exceeded maximum anti-bot retries ({max_antibot_retries}) for {url}", 
+                               request=None)
     
     async def get_with_fallback(self, url: str, **kwargs) -> httpx.Response:
         """
