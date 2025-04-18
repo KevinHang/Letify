@@ -128,7 +128,6 @@ class EnhancedHttpClient:
         "https://www.bing.com/",
         "https://duckduckgo.com/",
         "https://www.yahoo.com/",
-        None,  # No referer
     ]
     
     # Anti-bot patterns

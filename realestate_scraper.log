@@ -16178,3 +16178,564 @@
 2025-04-18 16:19:13,771 - main - INFO - Found 0 potential duplicate pairs
 2025-04-18 16:19:13,771 - main - INFO - Waiting 3600 seconds until next scan...
 2025-04-18 16:19:32,433 - main - INFO - Scraper task cancelled
+2025-04-18 17:10:25,575 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 17:10:25.575548
+2025-04-18 17:10:25,580 - __main__ - INFO - Starting scraper for sources: ['pararius', 'funa'], cities: ['amsterdam']
+2025-04-18 17:10:25,599 - database.migrations - INFO - Database initialized successfully
+2025-04-18 17:10:25,603 - main - ERROR - Unsupported site: funa
+2025-04-18 17:10:25,603 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-18 17:10:25,603 - main - INFO - Starting new scan cycle...
+2025-04-18 17:10:25,606 - main - INFO - Scanning pararius for amsterdam...
+2025-04-18 17:10:26,788 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 17:10:26,900 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-18 17:10:26,935 - main - INFO - Added new listing: Flat Middenweg (pararius - €3,500 per month)
+2025-04-18 17:10:26,936 - main - INFO - Added new listing: Flat Leo Smitstraat (pararius - €5,250 per month)
+2025-04-18 17:10:26,937 - main - INFO - Added new listing: Flat Saxenburgerstraat (pararius - €2,875 per month)
+2025-04-18 17:10:26,937 - main - INFO - Added new listing: Flat Vondelstraat (pararius - €2,675 per month)
+2025-04-18 17:10:26,938 - main - INFO - Added new listing: Flat Paardekraalstraat (pararius - €2,250 per month)
+2025-04-18 17:10:26,939 - main - INFO - Added new listing: Flat Pieter Baststraat (pararius - €2,500 per month)
+2025-04-18 17:10:26,939 - main - INFO - Added new listing: Flat Sarphatipark (pararius - €2,850 per month)
+2025-04-18 17:10:26,940 - main - INFO - Added new listing: Flat Nieuwe Nieuwstraat 18 C (pararius - €2,350 per month)
+2025-04-18 17:10:26,941 - main - INFO - Added new listing: Flat Wijdesteeg (pararius - €3,750 per month)
+2025-04-18 17:10:26,942 - main - INFO - Added new listing: Flat 1e Kekerstraat 37 (pararius - €2,250 per month)
+2025-04-18 17:10:26,942 - main - INFO - Added new listing: Flat Prinsengracht (pararius - €3,000 per month)
+2025-04-18 17:10:26,943 - main - INFO - Added new listing: Flat Westlandgracht (pararius - €2,500 per month)
+2025-04-18 17:10:26,944 - main - INFO - Added new listing: Flat Columbusplein 44 1 (pararius - €2,900 per month)
+2025-04-18 17:10:26,944 - main - INFO - Added new listing: Flat Karthuizersdwarsstraat (pararius - €6,950 per month)
+2025-04-18 17:10:26,945 - main - INFO - Added new listing: Flat Bijlmerdreef (pararius - €3,000 per month)
+2025-04-18 17:10:26,946 - main - INFO - Added new listing: Flat Kribbestraat 23 H (pararius - €2,700 per month)
+2025-04-18 17:10:26,947 - main - INFO - Added new listing: Flat Tweede Helmersstraat (pararius - €2,500 per month)
+2025-04-18 17:10:26,947 - main - INFO - Added new listing: Flat Koningslaan (pararius - €4,700 per month)
+2025-04-18 17:10:26,948 - main - INFO - Added new listing: Flat Geldersekade (pararius - €3,000 per month)
+2025-04-18 17:10:26,948 - main - INFO - Added new listing: Flat Bilderdijkstraat (pararius - €3,300 per month)
+2025-04-18 17:10:26,949 - main - INFO - Added new listing: Flat Willem de Zwijgerlaan 83 H (pararius - €2,250 per month)
+2025-04-18 17:10:26,949 - main - INFO - Added new listing: Flat Ariana Nozemanstraat (pararius - €3,300 per month)
+2025-04-18 17:10:26,949 - main - INFO - Added new listing: Flat Van Eeghenstraat 31 B (pararius - €2,750 per month)
+2025-04-18 17:10:26,950 - main - INFO - Added new listing: House Radioweg 14 H (pararius - €2,650 per month)
+2025-04-18 17:10:26,950 - main - INFO - Added new listing: Flat Jisperveldstraat (pararius - €2,450 per month)
+2025-04-18 17:10:26,951 - main - INFO - Added new listing: Flat Rozenstraat (pararius - €2,650 per month)
+2025-04-18 17:10:26,952 - main - INFO - Added new listing: Flat Spuistraat (pararius - €2,350 per month)
+2025-04-18 17:10:26,953 - main - INFO - Added new listing: Flat Wolbrantskerkweg (pararius - €2,750 per month)
+2025-04-18 17:10:26,953 - main - INFO - Added new listing: Flat Henri Polaklaan (pararius - €3,200 per month)
+2025-04-18 17:10:26,954 - main - INFO - Added new listing: Flat Eerste Helmersstraat (pararius - €4,250 per month)
+2025-04-18 17:10:26,954 - main - INFO - Added new listing: Flat Ariana Nozemanstraat (pararius - €3,400 per month)
+2025-04-18 17:10:26,955 - main - INFO - Added new listing: Flat Spuistraat (pararius - €2,650 per month)
+2025-04-18 17:10:26,956 - main - INFO - Completed scan of pararius for amsterdam: 32 new, 32 total in 1.35s
+2025-04-18 17:10:26,956 - main - INFO - Scanning funa for amsterdam...
+2025-04-18 17:10:26,956 - main - ERROR - No scraper available for funa
+2025-04-18 17:10:26,956 - main - INFO - Scan complete: 32 new listings from 32 total processed
+2025-04-18 17:10:26,956 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 17:10:26,964 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 17:10:26,964 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-18 17:10:30,214 - main - INFO - Scraper task cancelled
+2025-04-18 17:10:33,928 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 17:10:33.928222
+2025-04-18 17:10:33,929 - __main__ - INFO - Starting scraper for sources: ['pararius', 'funda'], cities: ['amsterdam']
+2025-04-18 17:10:33,942 - database.migrations - INFO - Database initialized successfully
+2025-04-18 17:10:33,946 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-18 17:10:33,946 - main - INFO - Starting new scan cycle...
+2025-04-18 17:10:33,947 - main - INFO - Skipping pararius for amsterdam - not due yet
+2025-04-18 17:10:33,947 - main - INFO - Scanning funda for amsterdam...
+2025-04-18 17:10:35,270 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 17:10:35,298 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-18 17:10:35,300 - main - INFO - Found 15 listings for funda in amsterdam
+2025-04-18 17:10:35,334 - main - INFO - Added new listing: Ariana Nozemanstraat 72 (funda - € 3.300 /maand)
+2025-04-18 17:10:35,335 - main - INFO - Added new listing: Haarlemmermeerstraat 60-3 (funda - € 3.500 /maand)
+2025-04-18 17:10:35,336 - main - INFO - Added new listing: Sarphatipark 88-1 (funda - € 3.250 /maand)
+2025-04-18 17:10:35,336 - main - INFO - Added new listing: Sarphatipark 88-H (funda - € 5.950 /maand)
+2025-04-18 17:10:35,337 - main - INFO - Added new listing: Roerstraat 115-H (funda - € 5.500 /maand)
+2025-04-18 17:10:35,338 - main - INFO - Added new listing: Columbusplein 44-1 (funda - € 2.900 /maand)
+2025-04-18 17:10:35,338 - main - INFO - Added new listing: Ariana Nozemanstraat 164 (funda - € 3.400 /maand)
+2025-04-18 17:10:35,339 - main - INFO - Added new listing: Eerste Helmersstraat 165-2 (funda - € 4.250 /maand)
+2025-04-18 17:10:35,340 - main - INFO - Added new listing: Stadhouderskade 142-A (funda - € 4.500 /maand)
+2025-04-18 17:10:35,340 - main - INFO - Added new listing: Rozenstraat 46-1L (funda - € 2.650 /maand)
+2025-04-18 17:10:35,341 - main - INFO - Added new listing: Spuistraat 229-K (funda - € 2.350 /maand)
+2025-04-18 17:10:35,342 - main - INFO - Added new listing: Henri Polaklaan 13-B2 (funda - € 3.200 /maand)
+2025-04-18 17:10:35,343 - main - INFO - Added new listing: Geldersekade 11-H (funda - € 3.000 /maand)
+2025-04-18 17:10:35,343 - main - INFO - Added new listing: Krijn Taconiskade 217 (funda - € 3.500 /maand)
+2025-04-18 17:10:35,344 - main - INFO - Added new listing: Achtergracht 15-O (funda - € 3.000 /maand)
+2025-04-18 17:10:35,344 - main - INFO - Completed scan of funda for amsterdam: 15 new, 15 total in 1.40s
+2025-04-18 17:10:35,344 - main - INFO - Scan complete: 15 new listings from 15 total processed
+2025-04-18 17:10:35,344 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 17:10:35,346 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 17:10:35,346 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-18 17:15:13,979 - main - INFO - Scraper task cancelled
+2025-04-18 17:15:45,463 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 17:15:45.463153
+2025-04-18 17:15:45,471 - __main__ - INFO - Starting scraper for sources: ['pararius', 'funda'], cities: ['amsterdam']
+2025-04-18 17:15:45,491 - database.migrations - INFO - Database initialized successfully
+2025-04-18 17:15:45,494 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-18 17:15:45,494 - main - INFO - Starting new scan cycle...
+2025-04-18 17:15:45,498 - main - INFO - Scanning pararius for amsterdam...
+2025-04-18 17:15:46,411 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 17:15:46,483 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:15:46,483 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:15:46,483 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:15:46,483 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:15:46,483 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:15:46,484 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:15:46,484 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:15:46,484 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:15:46,484 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:15:46,484 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:15:46,484 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:15:46,484 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:15:46,484 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:15:46,484 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:15:46,484 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:15:46,484 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:15:46,485 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:15:46,485 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:15:46,485 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:15:46,485 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:15:46,485 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:15:46,485 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:15:46,485 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:15:46,486 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:15:46,486 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:15:46,486 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:15:46,486 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:15:46,486 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:15:46,486 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:15:46,486 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:15:46,486 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:15:46,487 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:15:46,487 - main - INFO - Found 0 listings for pararius in amsterdam
+2025-04-18 17:15:46,488 - main - INFO - Completed scan of pararius for amsterdam: 0 new, 0 total in 0.99s
+2025-04-18 17:15:46,489 - main - INFO - Scanning funda for amsterdam...
+2025-04-18 17:15:48,045 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 17:15:48,076 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-18 17:15:48,078 - main - INFO - Found 15 listings for funda in amsterdam
+2025-04-18 17:15:48,119 - main - INFO - Completed scan of funda for amsterdam: 0 new, 15 total in 1.63s
+2025-04-18 17:15:48,119 - main - INFO - Scan complete: 0 new listings from 15 total processed
+2025-04-18 17:15:48,119 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 17:15:48,126 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 17:15:48,126 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-18 17:16:21,002 - main - INFO - Scraper task cancelled
+2025-04-18 17:16:23,056 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 17:16:23.056142
+2025-04-18 17:16:23,058 - __main__ - INFO - Starting scraper for sources: ['pararius', 'funda'], cities: ['amsterdam']
+2025-04-18 17:16:23,077 - database.migrations - INFO - Database initialized successfully
+2025-04-18 17:16:23,081 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-18 17:16:23,081 - main - INFO - Starting new scan cycle...
+2025-04-18 17:16:23,084 - main - INFO - Scanning pararius for amsterdam...
+2025-04-18 17:16:24,457 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 17:16:24,526 - scrapers.pararius - ERROR - Error extracting listing from search page: argument of type 'selectolax.parser.Node' is not iterable
+2025-04-18 17:16:24,526 - scrapers.pararius - ERROR - Error extracting listing from search page: argument of type 'selectolax.parser.Node' is not iterable
+2025-04-18 17:16:24,526 - scrapers.pararius - ERROR - Error extracting listing from search page: argument of type 'selectolax.parser.Node' is not iterable
+2025-04-18 17:16:24,526 - scrapers.pararius - ERROR - Error extracting listing from search page: argument of type 'selectolax.parser.Node' is not iterable
+2025-04-18 17:16:24,527 - scrapers.pararius - ERROR - Error extracting listing from search page: argument of type 'selectolax.parser.Node' is not iterable
+2025-04-18 17:16:24,527 - scrapers.pararius - ERROR - Error extracting listing from search page: argument of type 'selectolax.parser.Node' is not iterable
+2025-04-18 17:16:24,527 - scrapers.pararius - ERROR - Error extracting listing from search page: argument of type 'selectolax.parser.Node' is not iterable
+2025-04-18 17:16:24,527 - scrapers.pararius - ERROR - Error extracting listing from search page: argument of type 'selectolax.parser.Node' is not iterable
+2025-04-18 17:16:24,527 - scrapers.pararius - ERROR - Error extracting listing from search page: argument of type 'selectolax.parser.Node' is not iterable
+2025-04-18 17:16:24,527 - scrapers.pararius - ERROR - Error extracting listing from search page: argument of type 'selectolax.parser.Node' is not iterable
+2025-04-18 17:16:24,527 - scrapers.pararius - ERROR - Error extracting listing from search page: argument of type 'selectolax.parser.Node' is not iterable
+2025-04-18 17:16:24,528 - scrapers.pararius - ERROR - Error extracting listing from search page: argument of type 'selectolax.parser.Node' is not iterable
+2025-04-18 17:16:24,528 - scrapers.pararius - ERROR - Error extracting listing from search page: argument of type 'selectolax.parser.Node' is not iterable
+2025-04-18 17:16:24,528 - scrapers.pararius - ERROR - Error extracting listing from search page: argument of type 'selectolax.parser.Node' is not iterable
+2025-04-18 17:16:24,528 - scrapers.pararius - ERROR - Error extracting listing from search page: argument of type 'selectolax.parser.Node' is not iterable
+2025-04-18 17:16:24,528 - scrapers.pararius - ERROR - Error extracting listing from search page: argument of type 'selectolax.parser.Node' is not iterable
+2025-04-18 17:16:24,528 - scrapers.pararius - ERROR - Error extracting listing from search page: argument of type 'selectolax.parser.Node' is not iterable
+2025-04-18 17:16:24,528 - scrapers.pararius - ERROR - Error extracting listing from search page: argument of type 'selectolax.parser.Node' is not iterable
+2025-04-18 17:16:24,528 - scrapers.pararius - ERROR - Error extracting listing from search page: argument of type 'selectolax.parser.Node' is not iterable
+2025-04-18 17:16:24,529 - scrapers.pararius - ERROR - Error extracting listing from search page: argument of type 'selectolax.parser.Node' is not iterable
+2025-04-18 17:16:24,529 - scrapers.pararius - ERROR - Error extracting listing from search page: argument of type 'selectolax.parser.Node' is not iterable
+2025-04-18 17:16:24,529 - scrapers.pararius - ERROR - Error extracting listing from search page: argument of type 'selectolax.parser.Node' is not iterable
+2025-04-18 17:16:24,529 - scrapers.pararius - ERROR - Error extracting listing from search page: argument of type 'selectolax.parser.Node' is not iterable
+2025-04-18 17:16:24,529 - scrapers.pararius - ERROR - Error extracting listing from search page: argument of type 'selectolax.parser.Node' is not iterable
+2025-04-18 17:16:24,529 - scrapers.pararius - ERROR - Error extracting listing from search page: argument of type 'selectolax.parser.Node' is not iterable
+2025-04-18 17:16:24,529 - scrapers.pararius - ERROR - Error extracting listing from search page: argument of type 'selectolax.parser.Node' is not iterable
+2025-04-18 17:16:24,529 - scrapers.pararius - ERROR - Error extracting listing from search page: argument of type 'selectolax.parser.Node' is not iterable
+2025-04-18 17:16:24,529 - scrapers.pararius - ERROR - Error extracting listing from search page: argument of type 'selectolax.parser.Node' is not iterable
+2025-04-18 17:16:24,530 - scrapers.pararius - ERROR - Error extracting listing from search page: argument of type 'selectolax.parser.Node' is not iterable
+2025-04-18 17:16:24,530 - scrapers.pararius - ERROR - Error extracting listing from search page: argument of type 'selectolax.parser.Node' is not iterable
+2025-04-18 17:16:24,530 - scrapers.pararius - ERROR - Error extracting listing from search page: argument of type 'selectolax.parser.Node' is not iterable
+2025-04-18 17:16:24,530 - scrapers.pararius - ERROR - Error extracting listing from search page: argument of type 'selectolax.parser.Node' is not iterable
+2025-04-18 17:16:24,530 - main - INFO - Found 0 listings for pararius in amsterdam
+2025-04-18 17:16:24,533 - main - INFO - Completed scan of pararius for amsterdam: 0 new, 0 total in 1.45s
+2025-04-18 17:16:24,533 - main - INFO - Scanning funda for amsterdam...
+2025-04-18 17:16:26,442 - httpx - INFO - HTTP Request: GET https://www.funda.nl/zoeken/huur?selected_area=[%22amsterdam%22]&object_type=[%22house%22,%22apartment%22]&sort=%22date_down%22 "HTTP/1.1 200 OK"
+2025-04-18 17:16:26,463 - scrapers.funda - INFO - Found 18 listing elements to process
+2025-04-18 17:16:26,465 - main - INFO - Found 15 listings for funda in amsterdam
+2025-04-18 17:16:26,508 - main - INFO - Completed scan of funda for amsterdam: 0 new, 15 total in 1.97s
+2025-04-18 17:16:26,508 - main - INFO - Scan complete: 0 new listings from 15 total processed
+2025-04-18 17:16:26,508 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 17:16:26,510 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 17:16:26,510 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-18 17:16:29,002 - main - INFO - Scraper task cancelled
+2025-04-18 17:17:32,974 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 17:17:32.974920
+2025-04-18 17:17:32,986 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam']
+2025-04-18 17:17:33,006 - database.migrations - INFO - Database initialized successfully
+2025-04-18 17:17:33,013 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-18 17:17:33,014 - main - INFO - Starting new scan cycle...
+2025-04-18 17:17:33,017 - main - INFO - Scanning pararius for amsterdam...
+2025-04-18 17:17:34,419 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 17:17:34,520 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:34,520 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:34,520 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:34,521 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:34,521 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:34,521 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:34,521 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:34,521 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:34,521 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:34,521 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:34,521 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:34,521 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:34,521 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:34,521 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:34,521 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:34,522 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:34,522 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:34,522 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:34,522 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:34,522 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:34,522 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:34,522 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:34,522 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:34,522 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:34,522 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:34,522 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:34,522 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:34,522 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:34,523 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:34,523 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:34,523 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:34,523 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:34,523 - main - INFO - Found 0 listings for pararius in amsterdam
+2025-04-18 17:17:34,524 - main - INFO - Completed scan of pararius for amsterdam: 0 new, 0 total in 1.51s
+2025-04-18 17:17:34,524 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-18 17:17:34,524 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 17:17:34,564 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 17:17:34,564 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-18 17:17:43,300 - main - INFO - Scraper task cancelled
+2025-04-18 17:17:45,330 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 17:17:45.330561
+2025-04-18 17:17:45,332 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam']
+2025-04-18 17:17:45,352 - database.migrations - INFO - Database initialized successfully
+2025-04-18 17:17:45,358 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-18 17:17:45,358 - main - INFO - Starting new scan cycle...
+2025-04-18 17:17:45,363 - main - INFO - Scanning pararius for amsterdam...
+2025-04-18 17:17:46,874 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 17:17:46,926 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:46,926 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:46,926 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:46,926 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:46,926 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:46,926 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:46,926 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:46,926 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:46,927 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:46,927 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:46,927 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:46,927 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:46,927 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:46,927 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:46,927 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:46,927 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:46,927 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:46,928 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:46,928 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:46,928 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:46,928 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:46,928 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:46,928 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:46,928 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:46,928 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:46,928 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:46,928 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:46,929 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:46,929 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:46,929 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:46,929 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:46,929 - scrapers.pararius - ERROR - Error extracting listing from search page: 'selectolax.parser.Node' object has no attribute 'get'
+2025-04-18 17:17:46,929 - main - INFO - Found 0 listings for pararius in amsterdam
+2025-04-18 17:17:46,931 - main - INFO - Completed scan of pararius for amsterdam: 0 new, 0 total in 1.57s
+2025-04-18 17:17:46,931 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-18 17:17:46,931 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 17:17:46,963 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 17:17:46,963 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-18 17:18:15,244 - main - INFO - Scraper task cancelled
+2025-04-18 17:18:17,166 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 17:18:17.166740
+2025-04-18 17:18:17,167 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam']
+2025-04-18 17:18:17,185 - database.migrations - INFO - Database initialized successfully
+2025-04-18 17:18:17,189 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-18 17:18:17,189 - main - INFO - Starting new scan cycle...
+2025-04-18 17:18:17,192 - main - INFO - Scanning pararius for amsterdam...
+2025-04-18 17:18:18,298 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 17:18:18,350 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-18 17:18:18,394 - main - INFO - Added new listing: Flat Willem de Zwijgerlaan 83 H (pararius - €2,250 per month)
+2025-04-18 17:18:18,400 - main - INFO - Completed scan of pararius for amsterdam: 1 new, 32 total in 1.21s
+2025-04-18 17:18:18,400 - main - INFO - Scan complete: 1 new listings from 32 total processed
+2025-04-18 17:18:18,400 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 17:18:18,402 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 17:18:18,402 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-18 17:19:23,600 - main - INFO - Scraper task cancelled
+2025-04-18 17:19:24,389 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 17:19:24.389099
+2025-04-18 17:19:24,390 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam']
+2025-04-18 17:19:24,404 - database.migrations - INFO - Database initialized successfully
+2025-04-18 17:19:24,408 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-18 17:19:24,408 - main - INFO - Starting new scan cycle...
+2025-04-18 17:19:24,411 - main - INFO - Scanning pararius for amsterdam...
+2025-04-18 17:19:25,675 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 17:19:25,740 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-18 17:19:25,781 - main - INFO - Added new listing: Flat Middenweg (pararius - €3,500 per month)
+2025-04-18 17:19:25,782 - main - INFO - Added new listing: Flat Leo Smitstraat (pararius - €5,250 per month)
+2025-04-18 17:19:25,783 - main - INFO - Added new listing: Flat Saxenburgerstraat (pararius - €2,875 per month)
+2025-04-18 17:19:25,784 - main - INFO - Added new listing: Flat Vondelstraat (pararius - €2,675 per month)
+2025-04-18 17:19:25,785 - main - INFO - Added new listing: Flat Paardekraalstraat (pararius - €2,250 per month)
+2025-04-18 17:19:25,786 - main - INFO - Added new listing: Flat Pieter Baststraat (pararius - €2,500 per month)
+2025-04-18 17:19:25,787 - main - INFO - Added new listing: Flat Sarphatipark (pararius - €2,850 per month)
+2025-04-18 17:19:25,788 - main - INFO - Added new listing: Flat Nieuwe Nieuwstraat 18 C (pararius - €2,350 per month)
+2025-04-18 17:19:25,789 - main - INFO - Added new listing: Flat Wijdesteeg (pararius - €3,750 per month)
+2025-04-18 17:19:25,790 - main - INFO - Added new listing: Flat 1e Kekerstraat 37 (pararius - €2,250 per month)
+2025-04-18 17:19:25,791 - main - INFO - Added new listing: Flat Prinsengracht (pararius - €3,000 per month)
+2025-04-18 17:19:25,791 - main - INFO - Added new listing: Flat Westlandgracht (pararius - €2,500 per month)
+2025-04-18 17:19:25,792 - main - INFO - Added new listing: Flat Columbusplein 44 1 (pararius - €2,900 per month)
+2025-04-18 17:19:25,793 - main - INFO - Added new listing: Flat Karthuizersdwarsstraat (pararius - €6,950 per month)
+2025-04-18 17:19:25,793 - main - INFO - Added new listing: Flat Bijlmerdreef (pararius - €3,000 per month)
+2025-04-18 17:19:25,794 - main - INFO - Added new listing: Flat Kribbestraat 23 H (pararius - €2,700 per month)
+2025-04-18 17:19:25,795 - main - INFO - Added new listing: Flat Tweede Helmersstraat (pararius - €2,500 per month)
+2025-04-18 17:19:25,796 - main - INFO - Added new listing: Flat Koningslaan (pararius - €4,700 per month)
+2025-04-18 17:19:25,796 - main - INFO - Added new listing: Flat Geldersekade (pararius - €3,000 per month)
+2025-04-18 17:19:25,797 - main - INFO - Added new listing: Flat Bilderdijkstraat (pararius - €3,300 per month)
+2025-04-18 17:19:25,798 - main - INFO - Added new listing: Flat Willem de Zwijgerlaan 83 H (pararius - €2,250 per month)
+2025-04-18 17:19:25,799 - main - INFO - Added new listing: Flat Ariana Nozemanstraat (pararius - €3,300 per month)
+2025-04-18 17:19:25,799 - main - INFO - Added new listing: Flat Van Eeghenstraat 31 B (pararius - €2,750 per month)
+2025-04-18 17:19:25,800 - main - INFO - Added new listing: House Radioweg 14 H (pararius - €2,650 per month)
+2025-04-18 17:19:25,801 - main - INFO - Added new listing: Flat Jisperveldstraat (pararius - €2,450 per month)
+2025-04-18 17:19:25,801 - main - INFO - Added new listing: Flat Rozenstraat (pararius - €2,650 per month)
+2025-04-18 17:19:25,802 - main - INFO - Added new listing: Flat Spuistraat (pararius - €2,350 per month)
+2025-04-18 17:19:25,803 - main - INFO - Added new listing: Flat Wolbrantskerkweg (pararius - €2,750 per month)
+2025-04-18 17:19:25,803 - main - INFO - Added new listing: Flat Henri Polaklaan (pararius - €3,200 per month)
+2025-04-18 17:19:25,804 - main - INFO - Added new listing: Flat Eerste Helmersstraat (pararius - €4,250 per month)
+2025-04-18 17:19:25,805 - main - INFO - Added new listing: Flat Ariana Nozemanstraat (pararius - €3,400 per month)
+2025-04-18 17:19:25,805 - main - INFO - Added new listing: Flat Spuistraat (pararius - €2,650 per month)
+2025-04-18 17:19:25,806 - main - INFO - Completed scan of pararius for amsterdam: 32 new, 32 total in 1.39s
+2025-04-18 17:19:25,806 - main - INFO - Scan complete: 32 new listings from 32 total processed
+2025-04-18 17:19:25,806 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 17:19:25,809 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 17:19:25,809 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-18 17:20:35,891 - main - INFO - Scraper task cancelled
+2025-04-18 17:20:37,623 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 17:20:37.623207
+2025-04-18 17:20:37,634 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam']
+2025-04-18 17:20:37,781 - database.migrations - INFO - Database initialized successfully
+2025-04-18 17:20:37,805 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-18 17:20:37,805 - main - INFO - Starting new scan cycle...
+2025-04-18 17:20:37,811 - main - INFO - Scanning pararius for amsterdam...
+2025-04-18 17:20:38,817 - main - ERROR - Error scanning pararius for amsterdam: Header value must be str or bytes, not <class 'NoneType'>
+2025-04-18 17:20:38,819 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-18 17:20:38,819 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 17:20:38,917 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 17:20:38,918 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-18 17:20:47,692 - main - INFO - Scraper task cancelled
+2025-04-18 17:20:48,899 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 17:20:48.899395
+2025-04-18 17:20:48,900 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam']
+2025-04-18 17:20:48,916 - database.migrations - INFO - Database initialized successfully
+2025-04-18 17:20:48,919 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-18 17:20:48,919 - main - INFO - Starting new scan cycle...
+2025-04-18 17:20:48,921 - main - INFO - Scanning pararius for amsterdam...
+2025-04-18 17:20:49,421 - main - ERROR - Error scanning pararius for amsterdam: Header value must be str or bytes, not <class 'NoneType'>
+2025-04-18 17:20:49,422 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-18 17:20:49,422 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 17:20:49,453 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 17:20:49,453 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-18 17:20:56,602 - main - INFO - Scraper task cancelled
+2025-04-18 17:20:58,569 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 17:20:58.569874
+2025-04-18 17:20:58,570 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam']
+2025-04-18 17:20:58,586 - database.migrations - INFO - Database initialized successfully
+2025-04-18 17:20:58,591 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-18 17:20:58,593 - main - INFO - Starting new scan cycle...
+2025-04-18 17:20:58,595 - main - INFO - Scanning pararius for amsterdam...
+2025-04-18 17:21:00,027 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 17:21:00,086 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-18 17:21:00,138 - main - INFO - Completed scan of pararius for amsterdam: 0 new, 32 total in 1.54s
+2025-04-18 17:21:00,138 - main - INFO - Scan complete: 0 new listings from 32 total processed
+2025-04-18 17:21:00,138 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 17:21:00,139 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 17:21:00,139 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-18 17:21:07,210 - main - INFO - Scraper task cancelled
+2025-04-18 17:21:22,986 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 17:21:22.986889
+2025-04-18 17:21:22,997 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam']
+2025-04-18 17:21:23,013 - database.migrations - INFO - Database initialized successfully
+2025-04-18 17:21:23,017 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-18 17:21:23,017 - main - INFO - Starting new scan cycle...
+2025-04-18 17:21:23,020 - main - INFO - Scanning pararius for amsterdam...
+2025-04-18 17:21:24,156 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 17:21:24,265 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-18 17:21:24,311 - main - INFO - Completed scan of pararius for amsterdam: 0 new, 32 total in 1.29s
+2025-04-18 17:21:24,311 - main - INFO - Scan complete: 0 new listings from 32 total processed
+2025-04-18 17:21:24,312 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 17:21:24,319 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 17:21:24,319 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-18 17:21:26,231 - main - INFO - Scraper task cancelled
+2025-04-18 17:21:36,827 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 17:21:36.827015
+2025-04-18 17:21:36,827 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam']
+2025-04-18 17:21:36,846 - database.migrations - INFO - Database initialized successfully
+2025-04-18 17:21:36,850 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-18 17:21:36,850 - main - INFO - Starting new scan cycle...
+2025-04-18 17:21:36,853 - main - INFO - Scanning pararius for amsterdam...
+2025-04-18 17:21:38,428 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 17:21:38,492 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-18 17:21:38,543 - main - INFO - Completed scan of pararius for amsterdam: 0 new, 32 total in 1.69s
+2025-04-18 17:21:38,543 - main - INFO - Scan complete: 0 new listings from 32 total processed
+2025-04-18 17:21:38,543 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 17:21:38,549 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 17:21:38,549 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-18 17:22:31,804 - main - INFO - Scraper task cancelled
+2025-04-18 17:22:33,595 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 17:22:33.595515
+2025-04-18 17:22:33,596 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam']
+2025-04-18 17:22:33,613 - database.migrations - INFO - Database initialized successfully
+2025-04-18 17:22:33,618 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-18 17:22:33,618 - main - INFO - Starting new scan cycle...
+2025-04-18 17:22:33,621 - main - INFO - Scanning pararius for amsterdam...
+2025-04-18 17:22:34,751 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 17:22:34,819 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-18 17:22:34,869 - main - INFO - Completed scan of pararius for amsterdam: 0 new, 32 total in 1.25s
+2025-04-18 17:22:34,869 - main - INFO - Scan complete: 0 new listings from 32 total processed
+2025-04-18 17:22:34,869 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 17:22:34,871 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 17:22:34,871 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-18 17:22:55,362 - main - INFO - Scraper task cancelled
+2025-04-18 17:22:57,109 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 17:22:57.109829
+2025-04-18 17:22:57,111 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam']
+2025-04-18 17:22:57,130 - database.migrations - INFO - Database initialized successfully
+2025-04-18 17:22:57,134 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-18 17:22:57,134 - main - INFO - Starting new scan cycle...
+2025-04-18 17:22:57,137 - main - INFO - Scanning pararius for amsterdam...
+2025-04-18 17:22:58,161 - main - ERROR - Error scanning pararius for amsterdam: Header value must be str or bytes, not <class 'NoneType'>
+2025-04-18 17:22:58,163 - main - INFO - Scan complete: 0 new listings from 0 total processed
+2025-04-18 17:22:58,163 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 17:22:58,196 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 17:22:58,197 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-18 17:23:03,947 - main - INFO - Scraper task cancelled
+2025-04-18 17:23:06,084 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 17:23:06.084485
+2025-04-18 17:23:06,085 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam']
+2025-04-18 17:23:06,100 - database.migrations - INFO - Database initialized successfully
+2025-04-18 17:23:06,105 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-18 17:23:06,105 - main - INFO - Starting new scan cycle...
+2025-04-18 17:23:06,108 - main - INFO - Scanning pararius for amsterdam...
+2025-04-18 17:23:07,551 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 17:23:07,601 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-18 17:23:07,651 - main - INFO - Completed scan of pararius for amsterdam: 0 new, 32 total in 1.54s
+2025-04-18 17:23:07,651 - main - INFO - Scan complete: 0 new listings from 32 total processed
+2025-04-18 17:23:07,651 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 17:23:07,653 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 17:23:07,653 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-18 17:23:31,346 - main - INFO - Scraper task cancelled
+2025-04-18 17:23:33,244 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 17:23:33.244449
+2025-04-18 17:23:33,245 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam']
+2025-04-18 17:23:33,263 - database.migrations - INFO - Database initialized successfully
+2025-04-18 17:23:33,266 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-18 17:23:33,266 - main - INFO - Starting new scan cycle...
+2025-04-18 17:23:33,269 - main - INFO - Scanning pararius for amsterdam...
+2025-04-18 17:23:34,266 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 17:23:34,328 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-18 17:23:34,375 - main - INFO - Completed scan of pararius for amsterdam: 0 new, 32 total in 1.11s
+2025-04-18 17:23:34,375 - main - INFO - Scan complete: 0 new listings from 32 total processed
+2025-04-18 17:23:34,375 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 17:23:34,377 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 17:23:34,377 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-18 17:23:59,651 - main - INFO - Scraper task cancelled
+2025-04-18 17:24:34,889 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 17:24:34.889499
+2025-04-18 17:24:34,897 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam']
+2025-04-18 17:24:34,921 - database.migrations - INFO - Database initialized successfully
+2025-04-18 17:24:34,926 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-18 17:24:34,926 - main - INFO - Starting new scan cycle...
+2025-04-18 17:24:34,928 - main - INFO - Scanning pararius for amsterdam...
+2025-04-18 17:24:36,216 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 17:24:36,320 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-18 17:24:36,352 - main - INFO - Added new listing: Flat Leo Smitstraat (pararius - €5,250 per month)
+2025-04-18 17:24:36,353 - main - INFO - Added new listing: Flat Middenweg (pararius - €3,500 per month)
+2025-04-18 17:24:36,354 - main - INFO - Added new listing: Flat Saxenburgerstraat (pararius - €2,875 per month)
+2025-04-18 17:24:36,354 - main - INFO - Added new listing: Flat Vondelstraat (pararius - €2,675 per month)
+2025-04-18 17:24:36,355 - main - INFO - Added new listing: Flat Paardekraalstraat (pararius - €2,250 per month)
+2025-04-18 17:24:36,356 - main - INFO - Added new listing: Flat Pieter Baststraat (pararius - €2,500 per month)
+2025-04-18 17:24:36,357 - main - INFO - Added new listing: Flat Sarphatipark (pararius - €2,850 per month)
+2025-04-18 17:24:36,358 - main - INFO - Added new listing: Flat Nieuwe Nieuwstraat 18 C (pararius - €2,350 per month)
+2025-04-18 17:24:36,359 - main - INFO - Added new listing: Flat Wijdesteeg (pararius - €3,750 per month)
+2025-04-18 17:24:36,360 - main - INFO - Added new listing: Flat 1e Kekerstraat 37 (pararius - €2,250 per month)
+2025-04-18 17:24:36,360 - main - INFO - Added new listing: Flat Prinsengracht (pararius - €3,000 per month)
+2025-04-18 17:24:36,361 - main - INFO - Added new listing: Flat Westlandgracht (pararius - €2,500 per month)
+2025-04-18 17:24:36,362 - main - INFO - Added new listing: Flat Columbusplein 44 1 (pararius - €2,900 per month)
+2025-04-18 17:24:36,362 - main - INFO - Added new listing: Flat Karthuizersdwarsstraat (pararius - €6,950 per month)
+2025-04-18 17:24:36,363 - main - INFO - Added new listing: Flat Bijlmerdreef (pararius - €3,000 per month)
+2025-04-18 17:24:36,363 - main - INFO - Added new listing: Flat Kribbestraat 23 H (pararius - €2,700 per month)
+2025-04-18 17:24:36,364 - main - INFO - Added new listing: Flat Tweede Helmersstraat (pararius - €2,500 per month)
+2025-04-18 17:24:36,365 - main - INFO - Added new listing: Flat Koningslaan (pararius - €4,700 per month)
+2025-04-18 17:24:36,365 - main - INFO - Added new listing: Flat Geldersekade (pararius - €3,000 per month)
+2025-04-18 17:24:36,366 - main - INFO - Added new listing: Flat Bilderdijkstraat (pararius - €3,300 per month)
+2025-04-18 17:24:36,367 - main - INFO - Added new listing: Flat Willem de Zwijgerlaan 83 H (pararius - €2,250 per month)
+2025-04-18 17:24:36,367 - main - INFO - Added new listing: Flat Ariana Nozemanstraat (pararius - €3,300 per month)
+2025-04-18 17:24:36,368 - main - INFO - Added new listing: Flat Van Eeghenstraat 31 B (pararius - €2,750 per month)
+2025-04-18 17:24:36,369 - main - INFO - Added new listing: House Radioweg 14 H (pararius - €2,650 per month)
+2025-04-18 17:24:36,369 - main - INFO - Added new listing: Flat Jisperveldstraat (pararius - €2,450 per month)
+2025-04-18 17:24:36,370 - main - INFO - Added new listing: Flat Rozenstraat (pararius - €2,650 per month)
+2025-04-18 17:24:36,371 - main - INFO - Added new listing: Flat Spuistraat (pararius - €2,350 per month)
+2025-04-18 17:24:36,371 - main - INFO - Added new listing: Flat Wolbrantskerkweg (pararius - €2,750 per month)
+2025-04-18 17:24:36,372 - main - INFO - Added new listing: Flat Henri Polaklaan (pararius - €3,200 per month)
+2025-04-18 17:24:36,372 - main - INFO - Added new listing: Flat Eerste Helmersstraat (pararius - €4,250 per month)
+2025-04-18 17:24:36,373 - main - INFO - Added new listing: Flat Ariana Nozemanstraat (pararius - €3,400 per month)
+2025-04-18 17:24:36,373 - main - INFO - Added new listing: Flat Spuistraat (pararius - €2,650 per month)
+2025-04-18 17:24:36,374 - main - INFO - Completed scan of pararius for amsterdam: 32 new, 32 total in 1.45s
+2025-04-18 17:24:36,374 - main - INFO - Scan complete: 32 new listings from 32 total processed
+2025-04-18 17:24:36,374 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 17:24:36,381 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 17:24:36,381 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-18 17:24:49,658 - main - INFO - Scraper task cancelled
+2025-04-18 17:24:59,503 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 17:24:59.503924
+2025-04-18 17:24:59,504 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam']
+2025-04-18 17:24:59,523 - database.migrations - INFO - Database initialized successfully
+2025-04-18 17:24:59,528 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-18 17:24:59,528 - main - INFO - Starting new scan cycle...
+2025-04-18 17:24:59,531 - main - INFO - Scanning pararius for amsterdam...
+2025-04-18 17:25:01,181 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 17:25:01,246 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-18 17:25:01,280 - main - INFO - Added new listing: Flat Middenweg (pararius - €3,500 per month)
+2025-04-18 17:25:01,281 - main - INFO - Added new listing: Flat Leo Smitstraat (pararius - €5,250 per month)
+2025-04-18 17:25:01,282 - main - INFO - Added new listing: Flat Saxenburgerstraat (pararius - €2,875 per month)
+2025-04-18 17:25:01,283 - main - INFO - Added new listing: Flat Vondelstraat (pararius - €2,675 per month)
+2025-04-18 17:25:01,284 - main - INFO - Added new listing: Flat Paardekraalstraat (pararius - €2,250 per month)
+2025-04-18 17:25:01,285 - main - INFO - Added new listing: Flat Pieter Baststraat (pararius - €2,500 per month)
+2025-04-18 17:25:01,285 - main - INFO - Added new listing: Flat Sarphatipark (pararius - €2,850 per month)
+2025-04-18 17:25:01,286 - main - INFO - Added new listing: Flat Nieuwe Nieuwstraat 18 C (pararius - €2,350 per month)
+2025-04-18 17:25:01,287 - main - INFO - Added new listing: Flat Wijdesteeg (pararius - €3,750 per month)
+2025-04-18 17:25:01,288 - main - INFO - Added new listing: Flat 1e Kekerstraat 37 (pararius - €2,250 per month)
+2025-04-18 17:25:01,289 - main - INFO - Added new listing: Flat Prinsengracht (pararius - €3,000 per month)
+2025-04-18 17:25:01,289 - main - INFO - Added new listing: Flat Westlandgracht (pararius - €2,500 per month)
+2025-04-18 17:25:01,290 - main - INFO - Added new listing: Flat Columbusplein 44 1 (pararius - €2,900 per month)
+2025-04-18 17:25:01,290 - main - INFO - Added new listing: Flat Karthuizersdwarsstraat (pararius - €6,950 per month)
+2025-04-18 17:25:01,291 - main - INFO - Added new listing: Flat Bijlmerdreef (pararius - €3,000 per month)
+2025-04-18 17:25:01,292 - main - INFO - Added new listing: Flat Kribbestraat 23 H (pararius - €2,700 per month)
+2025-04-18 17:25:01,293 - main - INFO - Added new listing: Flat Tweede Helmersstraat (pararius - €2,500 per month)
+2025-04-18 17:25:01,293 - main - INFO - Added new listing: Flat Koningslaan (pararius - €4,700 per month)
+2025-04-18 17:25:01,294 - main - INFO - Added new listing: Flat Geldersekade (pararius - €3,000 per month)
+2025-04-18 17:25:01,294 - main - INFO - Added new listing: Flat Bilderdijkstraat (pararius - €3,300 per month)
+2025-04-18 17:25:01,295 - main - INFO - Added new listing: Flat Willem de Zwijgerlaan 83 H (pararius - €2,250 per month)
+2025-04-18 17:25:01,296 - main - INFO - Added new listing: Flat Ariana Nozemanstraat (pararius - €3,300 per month)
+2025-04-18 17:25:01,296 - main - INFO - Added new listing: Flat Van Eeghenstraat 31 B (pararius - €2,750 per month)
+2025-04-18 17:25:01,297 - main - INFO - Added new listing: House Radioweg 14 H (pararius - €2,650 per month)
+2025-04-18 17:25:01,298 - main - INFO - Added new listing: Flat Jisperveldstraat (pararius - €2,450 per month)
+2025-04-18 17:25:01,298 - main - INFO - Added new listing: Flat Rozenstraat (pararius - €2,650 per month)
+2025-04-18 17:25:01,299 - main - INFO - Added new listing: Flat Spuistraat (pararius - €2,350 per month)
+2025-04-18 17:25:01,299 - main - INFO - Added new listing: Flat Wolbrantskerkweg (pararius - €2,750 per month)
+2025-04-18 17:25:01,300 - main - INFO - Added new listing: Flat Henri Polaklaan (pararius - €3,200 per month)
+2025-04-18 17:25:01,301 - main - INFO - Added new listing: Flat Eerste Helmersstraat (pararius - €4,250 per month)
+2025-04-18 17:25:01,301 - main - INFO - Added new listing: Flat Ariana Nozemanstraat (pararius - €3,400 per month)
+2025-04-18 17:25:01,302 - main - INFO - Added new listing: Flat Spuistraat (pararius - €2,650 per month)
+2025-04-18 17:25:01,303 - main - INFO - Completed scan of pararius for amsterdam: 32 new, 32 total in 1.77s
+2025-04-18 17:25:01,303 - main - INFO - Scan complete: 32 new listings from 32 total processed
+2025-04-18 17:25:01,303 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 17:25:01,305 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 17:25:01,305 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-18 17:26:44,916 - main - INFO - Scraper task cancelled
+2025-04-18 17:30:25,284 - __main__ - INFO - Starting Dutch Real Estate Scraper at 2025-04-18 17:30:25.284907
+2025-04-18 17:30:25,323 - __main__ - INFO - Starting scraper for sources: ['pararius'], cities: ['amsterdam']
+2025-04-18 17:30:25,350 - database.migrations - INFO - Database initialized successfully
+2025-04-18 17:30:25,355 - __main__ - INFO - Running continuous scanning with 3600s interval
+2025-04-18 17:30:25,355 - main - INFO - Starting new scan cycle...
+2025-04-18 17:30:25,357 - main - INFO - Scanning pararius for amsterdam...
+2025-04-18 17:30:26,758 - httpx - INFO - HTTP Request: GET https://www.pararius.com/apartments/amsterdam?filters[since]=1 "HTTP/1.1 200 OK"
+2025-04-18 17:30:26,845 - main - INFO - Found 32 listings for pararius in amsterdam
+2025-04-18 17:30:26,975 - main - INFO - Completed scan of pararius for amsterdam: 0 new, 32 total in 1.62s
+2025-04-18 17:30:26,979 - main - INFO - Scan complete: 0 new listings from 32 total processed
+2025-04-18 17:30:26,979 - main - INFO - Detecting potential duplicate listings...
+2025-04-18 17:30:26,989 - main - INFO - Found 0 potential duplicate pairs
+2025-04-18 17:30:26,989 - main - INFO - Waiting 3600 seconds until next scan...
+2025-04-18 17:30:43,817 - main - INFO - Scraper task cancelled
