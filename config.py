@@ -32,6 +32,7 @@ DEFAULT_SCAN_INTERVAL = int(os.getenv("DEFAULT_SCAN_INTERVAL", "3600"))  # 1 hou
 MAX_RESULTS_PER_SCAN = int(os.getenv("MAX_RESULTS_PER_SCAN", "100"))
 MAX_CONCURRENT_REQUESTS = int(os.getenv("MAX_CONCURRENT_REQUESTS", "5"))
 HTTP_TIMEOUT = float(os.getenv("HTTP_TIMEOUT", "30.0"))  # seconds
+STOP_AFTER_NO_RESULT = os.getenv("STOP_AFTER_NO_RESULT", "True").lower() == "true"
 
 # Default cities to scrape if none specified
 DEFAULT_CITIES = os.getenv("DEFAULT_CITIES", "amsterdam,rotterdam,utrecht,den-haag,eindhoven").split(",")
