@@ -251,12 +251,12 @@ class PropertyDatabase:
             with self.conn.cursor(row_factory=dict_row) as cur:
                 if sources:
                     cur.execute(
-                        "SELECT * FROM query_urls WHERE enabled = TRUE AND source = ANY(%s) ORDER BY source, id",
+                        "SELECT * FROM query_urls WHERE enabled = TRUE AND source = ANY(%s) ORDER BY id ASC",
                         (sources,)
                     )
                 else:
                     cur.execute(
-                        "SELECT * FROM query_urls WHERE enabled = TRUE ORDER BY source, id"
+                        "SELECT * FROM query_urls WHERE enabled = TRUE ORDER BY id ASC"
                     )
                 return cur.fetchall()
         except Exception as e:

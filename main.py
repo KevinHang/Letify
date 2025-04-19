@@ -15,7 +15,8 @@ from config import (
     DEFAULT_SCAN_INTERVAL,
     MAX_RESULTS_PER_SCAN,
     MAX_CONCURRENT_REQUESTS,
-    USE_PROXIES
+    USE_PROXIES,
+    STOP_AFTER_NO_RESULT,
 )
 from database.migrations import initialize_db
 from database.property_db import PropertyDatabase
@@ -38,6 +39,7 @@ class RealEstateScraper:
                  max_results_per_scan: int = MAX_RESULTS_PER_SCAN,
                  max_concurrent_requests: int = MAX_CONCURRENT_REQUESTS,
                  use_proxies: bool = USE_PROXIES,
+                 stop_after_no_result: bool = STOP_AFTER_NO_RESULT,
                  skip_cities: bool = False,
                  skip_query_urls: bool = False):
         """
@@ -53,6 +55,7 @@ class RealEstateScraper:
             use_proxies: Whether to use proxies for HTTP requests
             skip_cities: Whether to skip city-based scanning
             skip_query_urls: Whether to skip query URL scanning
+            stop_after_no_result: For each source stop scanning of next pages if current page has no result
         """
         self.sources = sources
         self.cities = cities
@@ -60,6 +63,7 @@ class RealEstateScraper:
         self.max_results_per_scan = max_results_per_scan
         self.skip_cities = skip_cities
         self.skip_query_urls = skip_query_urls
+        self.stop_after_no_result = stop_after_no_result
         
         # Initialize database
         initialize_db(db_connection_string)
@@ -240,6 +244,7 @@ class RealEstateScraper:
         """Run a single scan based on configured scan modes."""
         total_new = 0
         total_processed = 0
+        first_query_scan = True
         
         # Log proxy status if enabled
         if self.proxy_manager.enabled:
@@ -279,6 +284,15 @@ class RealEstateScraper:
                             new_count, total_count = await self.scan_query_url(query_url)
                             total_new += new_count
                             total_processed += total_count
+
+                            if self.stop_after_no_result and first_query_scan and total_count == 0:
+                                logger.info(f"First scan of query URL (ID={query_url['id']}) has failed with no result. Strong indication that HTML structure has changed!")
+                                break
+                            elif self.stop_after_no_result and not first_query_scan and total_count == 0:
+                                logger.info(f"Scan of query URL (ID={query_url['id']}) has succeeded with no result. Has reached end of pagination. Ending scan for this source...")
+                                break
+
+                            first_query_scan = False
                         except Exception as e:
                             logger.error(f"Error in scan of query URL (ID={query_url['id']}): {e}")
             else:
