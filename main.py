@@ -312,25 +312,23 @@ class RealEstateScraper:
                                 total_new += new_count
                                 total_processed += total_count
                                 
-                                # Special handling for Pararius
-                                if source.lower() == "pararius":
-                                    # If the final url from response does not match original url then pagniation has ended
-                                    if original_url != final_url:
+                                # If its the first scan and it returns 0, then strong indication the HTML structure has changed
+                                if first_scan_by_source[source] and total_count == 0:
+                                    logger.info(f"First scan of {source} query URL (ID={query_url['id']}) has failed with no result. Strong indication that HTML structure has changed!")
+
+                                if self.stop_after_no_result:
+                                    # Special handling for Pararius
+                                    if source.lower() == "pararius" and original_url != final_url:
                                         logger.info(f"Pagination has ended for {source}: URL {original_url} redirected to non-paginated URL {final_url}")
                                         sources_to_skip.add(source)
                                         continue
-                                else:
-                                    # Default logic for Funda and other sources
-                                    if self.stop_after_no_result and total_count == 0:
-                                        # If first scan has no results, HTML structure may have changed
-                                        if first_scan_by_source[source]:
-                                            logger.info(f"First scan of {source} query URL (ID={query_url['id']}) has failed with no result. Strong indication that HTML structure has changed!")
-                                        else:
-                                            logger.info(f"Scan of {source} query URL (ID={query_url['id']}) has succeeded with no result. Has reached end of pagination. Ending scan for this source...")
-                                        
+                                    elif total_count == 0:
+                                        # Default logic for Funda and other sources
+                                        if not first_scan_by_source[source]:
+                                            logger.info(f"Scan of {source} query URL (ID={query_url['id']}) has succeeded with no result. Has reached end of pagination. Ending scan for this source.")
                                         sources_to_skip.add(source)
                                         continue
-                                
+
                                 # Update first scan status
                                 first_scan_by_source[source] = False
                                 
