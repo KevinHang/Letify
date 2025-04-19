@@ -82,7 +82,7 @@ class RealEstateScraper:
             except ValueError as e:
                 logger.error(f"{e}")
     
-    async def scan_query_url(self, query_url: Dict[str, Any]) -> Tuple[int, int]:
+    async def scan_query_url(self, query_url: Dict[str, Any]) -> Tuple[int, int, str]:
         """
         Scan a specific URL for listings.
         
@@ -90,7 +90,7 @@ class RealEstateScraper:
             query_url: Dictionary containing query URL information
             
         Returns:
-            Tuple of (new listings count, total listings count)
+            Tuple of (new listings count, total listings count, http_status, final_url)
         """
         source = query_url['source']
         url = query_url['queryurl']
@@ -100,11 +100,12 @@ class RealEstateScraper:
         scraper = self.scrapers.get(source)
         if not scraper:
             logger.error(f"No scraper available for {source}")
-            return 0, 0
+            return 0, 0, 0, ""
         
         start_time = time.time()
         new_listings = 0
         total_listings = 0
+        final_url = ""
         
         try:
             # Get a proxy from the proxy manager if enabled
@@ -118,6 +119,10 @@ class RealEstateScraper:
                         await self.proxy_manager.report_success(proxy, time.time() - start_time)
                 else:
                     response = await self.http_client.get(url)
+                
+                # Store the final URL after redirects
+                final_url = str(response.url)
+                
             except Exception as e:
                 if proxy:
                     await self.proxy_manager.report_failure(proxy, e)
@@ -159,11 +164,11 @@ class RealEstateScraper:
             self.db.update_query_url_scan_time(query_id)
             
             logger.info(f"Completed scan of query URL (ID={query_id}): {new_listings} new, {total_listings} total in {duration:.2f}s")
-            return new_listings, total_listings
+            return new_listings, total_listings, final_url
             
         except Exception as e:
             logger.error(f"Error scanning query URL (ID={query_id}): {e}")
-            return 0, 0
+            return 0, 0, ""
     
     async def scan_source_city(self, source: str, city: str, days: int = 1) -> Tuple[int, int]:
         """
@@ -244,7 +249,8 @@ class RealEstateScraper:
         """Run a single scan based on configured scan modes."""
         total_new = 0
         total_processed = 0
-        first_query_scan = True
+        first_scan_by_source = {}  # Track first scan status per source
+        sources_to_skip = set()    # Track sources that should be skipped
         
         # Log proxy status if enabled
         if self.proxy_manager.enabled:
@@ -257,49 +263,84 @@ class RealEstateScraper:
             if query_urls:
                 logger.info(f"Found {len(query_urls)} enabled query URLs to scan")
                 
-                for query_url in query_urls:
-                    # Check if the query URL is for an enabled source
-                    if query_url['source'] not in self.sources:
+                # Group query URLs by source for better tracking
+                query_urls_by_source = {}
+                for url in query_urls:
+                    source = url['source']
+                    if source not in query_urls_by_source:
+                        query_urls_by_source[source] = []
+                    query_urls_by_source[source].append(url)
+                
+                # Initialize trackers for each source
+                for source in self.sources:
+                    first_scan_by_source[source] = True
+                
+                # Process each source's URLs
+                for source in self.sources:
+                    if source not in query_urls_by_source:
                         continue
                     
-                    # Check if it's time to scan this query URL again
-                    last_scan_time = query_url.get('last_scan_time')
-                    source_min_interval = SITE_CONFIGS.get(query_url['source'], {}).get("min_interval", self.interval)
-                    
-                    should_scan = True
-                    if last_scan_time is not None:
-                        # Ensure we're working with an offset-aware datetime for now
-                        if last_scan_time.tzinfo is None:
-                            last_scan_time = last_scan_time.replace(tzinfo=timezone.utc)
-                        # Get current time as offset-aware
-                        current_time = datetime.now(timezone.utc)
-                        time_since_last_scan = (current_time - last_scan_time).total_seconds()
-                        if time_since_last_scan < source_min_interval:
-                            logger.info(f"Skipping query URL (ID={query_url['id']}) - not due yet")
-                            should_scan = False
-                    
-                    if should_scan:
-                        try:
-                            # Scan this query URL
-                            new_count, total_count = await self.scan_query_url(query_url)
-                            total_new += new_count
-                            total_processed += total_count
-
-                            if self.stop_after_no_result and first_query_scan and total_count == 0:
-                                logger.info(f"First scan of query URL (ID={query_url['id']}) has failed with no result. Strong indication that HTML structure has changed!")
-                                break
-                            elif self.stop_after_no_result and not first_query_scan and total_count == 0:
-                                logger.info(f"Scan of query URL (ID={query_url['id']}) has succeeded with no result. Has reached end of pagination. Ending scan for this source...")
-                                break
-
-                            first_query_scan = False
-                        except Exception as e:
-                            logger.error(f"Error in scan of query URL (ID={query_url['id']}): {e}")
+                    # Process each URL for this source
+                    for query_url in query_urls_by_source[source]:
+                        original_url = query_url['queryurl']
+                        
+                        # Skip if source is in the skip list
+                        if source in sources_to_skip:
+                            logger.info(f"Skipping query URL (ID={query_url['id']}) - source {source} marked for skipping")
+                            continue
+                        
+                        # Check if it's time to scan this query URL again
+                        last_scan_time = query_url.get('last_scan_time')
+                        source_min_interval = SITE_CONFIGS.get(source, {}).get("min_interval", self.interval)
+                        
+                        should_scan = True
+                        if last_scan_time is not None:
+                            # Ensure we're working with an offset-aware datetime for now
+                            if last_scan_time.tzinfo is None:
+                                last_scan_time = last_scan_time.replace(tzinfo=timezone.utc)
+                            # Get current time as offset-aware
+                            current_time = datetime.now(timezone.utc)
+                            time_since_last_scan = (current_time - last_scan_time).total_seconds()
+                            if time_since_last_scan < source_min_interval:
+                                logger.info(f"Skipping query URL (ID={query_url['id']}) - not due yet")
+                                should_scan = False
+                        
+                        if should_scan:
+                            try:
+                                # Scan this query URL
+                                new_count, total_count, final_url = await self.scan_query_url(query_url)
+                                total_new += new_count
+                                total_processed += total_count
+                                
+                                # Special handling for Pararius
+                                if source.lower() == "pararius":
+                                    # If the final url from response does not match original url then pagniation has ended
+                                    if original_url != final_url:
+                                        logger.info(f"Pagination has ended for {source}: URL {original_url} redirected to non-paginated URL {final_url}")
+                                        sources_to_skip.add(source)
+                                        continue
+                                else:
+                                    # Default logic for Funda and other sources
+                                    if self.stop_after_no_result and total_count == 0:
+                                        # If first scan has no results, HTML structure may have changed
+                                        if first_scan_by_source[source]:
+                                            logger.info(f"First scan of {source} query URL (ID={query_url['id']}) has failed with no result. Strong indication that HTML structure has changed!")
+                                        else:
+                                            logger.info(f"Scan of {source} query URL (ID={query_url['id']}) has succeeded with no result. Has reached end of pagination. Ending scan for this source...")
+                                        
+                                        sources_to_skip.add(source)
+                                        continue
+                                
+                                # Update first scan status
+                                first_scan_by_source[source] = False
+                                
+                            except Exception as e:
+                                logger.error(f"Error in scan of query URL (ID={query_url['id']}): {e}")
             else:
                 logger.info("No enabled query URLs found in database")
         else:
             logger.info("Query URL scanning skipped")
-        
+            
         # Then scan city-based searches if not skipped
         if not self.skip_cities:
             for source in self.sources:
