@@ -83,7 +83,6 @@ class FundaScraper(BaseScraperStrategy):
             listing_elements = parser.css("div.border-b.pb-3")
             
         if not listing_elements:
-            logger.warning("No listing elements found in the HTML. Check if the page structure has changed.")
             return []
             
         logger.info(f"Found {len(listing_elements)} listing elements to process")
