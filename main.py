@@ -312,9 +312,15 @@ class RealEstateScraper:
                                 total_new += new_count
                                 total_processed += total_count
                                 
+                                if first_scan_by_source[source] and new_count == 0 and total_count != 0:
+                                    logger.info(f"First scan of {source} query URL (ID={query_url['id']}) resultes in no new listings. Skipping new pages of this source.")
+                                    sources_to_skip.add(source)
+                                    continue
                                 # If its the first scan and it returns 0, then strong indication the HTML structure has changed
-                                if first_scan_by_source[source] and total_count == 0:
+                                elif first_scan_by_source[source] and total_count == 0:
                                     logger.info(f"First scan of {source} query URL (ID={query_url['id']}) has failed with no result. Strong indication that HTML structure has changed!")
+                                    sources_to_skip.add(source)
+                                    continue
 
                                 if self.stop_after_no_result:
                                     # Special handling for Pararius
