@@ -3660,3 +3660,37 @@ TypeError: a coroutine was expected, got None
 2025-04-20 21:06:48,796 - main - INFO - Detecting potential duplicate listings...
 2025-04-20 21:06:48,805 - main - INFO - Found 0 potential duplicate pairs
 2025-04-20 21:06:48,805 - main - INFO - Waiting 500 seconds until next scan...
+2025-04-20 21:15:08,793 - main - INFO - Starting new scan cycle...
+2025-04-20 21:15:08,810 - main - INFO - Found 20 enabled query URLs to scan
+2025-04-20 21:15:08,811 - main - INFO - Scanning specific funda URL (ID=1): https://www.funda.nl/zoeken/huur?object_type=["house","apartment"]&publication_date="1"&sort="date_down"
+2025-04-20 21:15:09,596 - scrapers.funda - INFO - Found 5 listing elements to process
+2025-04-20 21:15:09,596 - main - INFO - Found 4 listings for funda from specific URL
+2025-04-20 21:15:09,607 - main - INFO - Completed scan of query URL (ID=1): 0 new, 4 total in 0.79s
+2025-04-20 21:15:09,607 - main - INFO - First scan of funda query URL (ID=1) resulted in no new listings. Skipping new pages of this source.
+2025-04-20 21:15:09,607 - main - INFO - Skipping query URL (ID=2) - source funda marked for skipping
+2025-04-20 21:15:09,607 - main - INFO - Skipping query URL (ID=3) - source funda marked for skipping
+2025-04-20 21:15:09,607 - main - INFO - Skipping query URL (ID=4) - source funda marked for skipping
+2025-04-20 21:15:09,607 - main - INFO - Skipping query URL (ID=5) - source funda marked for skipping
+2025-04-20 21:15:09,607 - main - INFO - Skipping query URL (ID=6) - source funda marked for skipping
+2025-04-20 21:15:09,607 - main - INFO - Skipping query URL (ID=7) - source funda marked for skipping
+2025-04-20 21:15:09,607 - main - INFO - Skipping query URL (ID=8) - source funda marked for skipping
+2025-04-20 21:15:09,607 - main - INFO - Skipping query URL (ID=9) - source funda marked for skipping
+2025-04-20 21:15:09,607 - main - INFO - Skipping query URL (ID=10) - source funda marked for skipping
+2025-04-20 21:15:09,607 - main - INFO - Scanning specific pararius URL (ID=11): https://www.pararius.com/apartments/nederland/since-1
+2025-04-20 21:15:10,756 - main - INFO - Found 4 listings for pararius from specific URL
+2025-04-20 21:15:10,765 - main - INFO - Completed scan of query URL (ID=11): 0 new, 4 total in 1.16s
+2025-04-20 21:15:10,765 - main - INFO - First scan of pararius query URL (ID=11) resulted in no new listings. Skipping new pages of this source.
+2025-04-20 21:15:10,765 - main - INFO - Skipping query URL (ID=12) - source pararius marked for skipping
+2025-04-20 21:15:10,765 - main - INFO - Skipping query URL (ID=13) - source pararius marked for skipping
+2025-04-20 21:15:10,765 - main - INFO - Skipping query URL (ID=14) - source pararius marked for skipping
+2025-04-20 21:15:10,765 - main - INFO - Skipping query URL (ID=15) - source pararius marked for skipping
+2025-04-20 21:15:10,765 - main - INFO - Skipping query URL (ID=16) - source pararius marked for skipping
+2025-04-20 21:15:10,765 - main - INFO - Skipping query URL (ID=17) - source pararius marked for skipping
+2025-04-20 21:15:10,765 - main - INFO - Skipping query URL (ID=18) - source pararius marked for skipping
+2025-04-20 21:15:10,765 - main - INFO - Skipping query URL (ID=19) - source pararius marked for skipping
+2025-04-20 21:15:10,765 - main - INFO - Skipping query URL (ID=20) - source pararius marked for skipping
+2025-04-20 21:15:10,765 - main - INFO - City-based scanning skipped
+2025-04-20 21:15:10,765 - main - INFO - Scan complete: 0 new listings from 8 total processed
+2025-04-20 21:15:10,765 - main - INFO - Detecting potential duplicate listings...
+2025-04-20 21:15:10,767 - main - INFO - Found 0 potential duplicate pairs
+2025-04-20 21:15:10,767 - main - INFO - Waiting 500 seconds until next scan...

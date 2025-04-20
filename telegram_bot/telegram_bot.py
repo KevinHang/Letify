@@ -130,7 +130,7 @@ class TelegramRealEstateBot:
         
         # Welcome message
         welcome_text = (
-            f"👋 Hello {user.first_name}! Welcome to the Dutch Real Estate Bot.\n\n"
+            f"👋 Hello {user.first_name}! Welcome to the Letify Bot.\n\n"
             f"I can notify you about new property listings that match your preferences.\n\n"
             f"Use /preferences to set your search criteria\n"
             f"Use /subscribe to start receiving notifications\n"
