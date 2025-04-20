@@ -26,13 +26,13 @@ class TelegramDatabase:
                 cur.execute("""
                 INSERT INTO telegram_users 
                     (user_id, username, first_name, last_name, is_admin, is_active, last_active) 
-                VALUES (%s, %s, %s, %s, %s, TRUE, NOW())
+                VALUES (%s, %s, %s, %s, %s, FALSE, NOW())
                 ON CONFLICT (user_id) DO UPDATE 
                 SET 
                     username = EXCLUDED.username,
                     first_name = EXCLUDED.first_name,
                     last_name = EXCLUDED.last_name,
-                    is_active = TRUE,
+                    is_active = FALSE,
                     last_active = NOW()
                 """, (user_id, username, first_name, last_name, is_admin))
                 self.conn.commit()
