@@ -516,7 +516,7 @@ class TelegramRealEstateBot:
         if not context.args:
             await update.message.reply_text(
                 "📍 Please provide cities separated by commas.\n"
-                "Example: /set_cities Amsterdam, Rotterdam"
+                "Example: /cities Amsterdam, Rotterdam"
             )
             return
             
@@ -552,7 +552,7 @@ class TelegramRealEstateBot:
         if not context.args:
             await update.message.reply_text(
                 "💰 Please provide a minimum price in EUR.\n"
-                "Example: /set_min_price 1000"
+                "Example: /minprice 1000"
             )
             return
         
@@ -591,7 +591,7 @@ class TelegramRealEstateBot:
         if not context.args:
             await update.message.reply_text(
                 "💰 Please provide a maximum price in EUR, or 0 for no limit.\n"
-                "Example: /set_max_price 2000"
+                "Example: /maxprice 2000"
             )
             return
         
@@ -630,7 +630,7 @@ class TelegramRealEstateBot:
         if not context.args:
             await update.message.reply_text(
                 "🚪 Please provide a minimum number of rooms.\n"
-                "Example: /set_min_rooms 2"
+                "Example: /minrooms 2"
             )
             return
         
@@ -669,7 +669,7 @@ class TelegramRealEstateBot:
         if not context.args:
             await update.message.reply_text(
                 "🚪 Please provide a maximum number of rooms, or 0 for no limit.\n"
-                "Example: /set_max_rooms 4"
+                "Example: /maxrooms 4"
             )
             return
         
@@ -709,7 +709,7 @@ class TelegramRealEstateBot:
         if not context.args:
             await update.message.reply_text(
                 "📏 Please provide a minimum area in m².\n"
-                "Example: /set_min_area 50"
+                "Example: /minarea 50"
             )
             return
         
@@ -748,7 +748,7 @@ class TelegramRealEstateBot:
         if not context.args:
             await update.message.reply_text(
                 "📏 Please provide a maximum area in m², or 0 for no limit.\n"
-                "Example: /set_max_area 100"
+                "Example: /maxarea 100"
             )
             return
         
@@ -789,7 +789,7 @@ class TelegramRealEstateBot:
             property_types_text = ", ".join(PROPERTY_TYPES)
             await update.message.reply_text(
                 f"🏢 Please provide a property type. Available options: {property_types_text}\n"
-                "Example: /set_property_type apartment"
+                "Example: /type apartment"
             )
             return
         
