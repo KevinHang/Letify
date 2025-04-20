@@ -81,7 +81,11 @@ class TelegramIntegration:
     
     async def stop(self):
         """Stop the Telegram bot and notification manager."""
+        # Stop the bot application
         await self.bot.application.stop()
+        # Stop the notification manager (assuming it has a stop method)
+        if hasattr(self.notification_manager, 'stop'):
+            await self.notification_manager.stop()
         logger.info("Telegram integration stopped")
 
 async def main():
@@ -118,8 +122,20 @@ async def main():
         logger.error(f"Error in Telegram main loop: {e}")
     finally:
         logger.info("Shutting down Telegram integration...")
+        # Cancel the tasks explicitly
+        bot_task.cancel()
+        notification_task.cancel()
+        
+        # Stop the integration (bot and notification manager)
         await integration.stop()
-        await asyncio.gather(bot_task, notification_task, return_exceptions=True)
+        
+        # Wait for tasks to finish or handle cancellation
+        try:
+            await asyncio.gather(bot_task, notification_task, return_exceptions=True)
+        except asyncio.CancelledError:
+            logger.info("Tasks cancelled successfully")
+        finally:
+            logger.info("Shutdown complete")
 
 if __name__ == "__main__":
     asyncio.run(main())
