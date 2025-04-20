@@ -14,6 +14,20 @@ import random
 # Load environment variables from .env file if present
 load_dotenv()
 
+# Telegram bot settings
+ENABLE_TELEGRAM = os.getenv("ENABLE_TELEGRAM", "True").lower() == "true"
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
+
+# Parse admin user IDs from environment
+_admin_ids_str = os.getenv("TELEGRAM_ADMIN_USER_IDS", "")
+TELEGRAM_ADMIN_USER_IDS = [int(uid.strip()) for uid in _admin_ids_str.split(",") if uid.strip().isdigit()]
+
+# Notification settings
+NOTIFICATION_INTERVAL = int(os.getenv("NOTIFICATION_INTERVAL", "300"))  # 5 minutes in seconds
+MAX_NOTIFICATIONS_PER_USER_PER_DAY = int(os.getenv("MAX_NOTIFICATIONS_PER_USER_PER_DAY", "20"))
+NOTIFICATION_BATCH_SIZE = int(os.getenv("NOTIFICATION_BATCH_SIZE", "50"))
+NOTIFICATION_RETRY_ATTEMPTS = int(os.getenv("NOTIFICATION_RETRY_ATTEMPTS", "3"))
+
 # Database configuration
 DB_CONFIG = {
     "host": os.getenv("DB_HOST", "localhost"),

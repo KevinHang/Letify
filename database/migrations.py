@@ -140,3 +140,91 @@ def initialize_db(connection_string: str):
         raise
     finally:
         conn.close()
+
+def initialize_telegram_db(connection_string: str):
+    """Create Telegram-related tables and indexes if they don't exist."""
+    conn = get_connection(connection_string)
+    
+    try:
+        with conn.cursor() as cur:
+            # Create telegram_users table
+            cur.execute("""
+            CREATE TABLE IF NOT EXISTS telegram_users (
+                id SERIAL PRIMARY KEY,
+                user_id BIGINT UNIQUE NOT NULL,
+                username TEXT,
+                first_name TEXT,
+                last_name TEXT,
+                is_active BOOLEAN DEFAULT TRUE,
+                is_admin BOOLEAN DEFAULT FALSE,
+                notification_enabled BOOLEAN DEFAULT TRUE,
+                date_joined TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+                last_active TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+            )
+            """)
+            
+            # Create user_preferences table with cities as TEXT[]
+            cur.execute("""
+            CREATE TABLE IF NOT EXISTS user_preferences (
+                id SERIAL PRIMARY KEY,
+                user_id BIGINT NOT NULL REFERENCES telegram_users(user_id) ON DELETE CASCADE,
+                cities TEXT[],  -- Changed from city TEXT to cities TEXT[]
+                min_price INTEGER,
+                max_price INTEGER,
+                min_rooms INTEGER,
+                max_rooms INTEGER,
+                property_type TEXT,
+                min_area INTEGER,
+                max_area INTEGER,
+                neighborhood TEXT,
+                created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+                updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+                UNIQUE (user_id)
+            )
+            """)
+            
+            # Create notification_history table
+            cur.execute("""
+            CREATE TABLE IF NOT EXISTS notification_history (
+                id SERIAL PRIMARY KEY,
+                user_id BIGINT NOT NULL REFERENCES telegram_users(user_id) ON DELETE CASCADE,
+                property_id INTEGER NOT NULL REFERENCES properties(id) ON DELETE CASCADE,
+                sent_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+                was_read BOOLEAN DEFAULT FALSE,
+                user_reaction TEXT,
+                UNIQUE (user_id, property_id)
+            )
+            """)
+            
+            # Create notification_queue table
+            cur.execute("""
+            CREATE TABLE IF NOT EXISTS notification_queue (
+                id SERIAL PRIMARY KEY,
+                user_id BIGINT NOT NULL REFERENCES telegram_users(user_id) ON DELETE CASCADE,
+                property_id INTEGER NOT NULL REFERENCES properties(id) ON DELETE CASCADE,
+                created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+                status TEXT DEFAULT 'pending',
+                attempts INTEGER DEFAULT 0,
+                last_attempt TIMESTAMP WITH TIME ZONE,
+                UNIQUE (user_id, property_id)
+            )
+            """)
+            
+            # Create indexes
+            cur.execute("CREATE INDEX IF NOT EXISTS idx_users_user_id ON telegram_users(user_id)")
+            cur.execute("CREATE INDEX IF NOT EXISTS idx_users_is_active ON telegram_users(is_active)")
+            cur.execute("CREATE INDEX IF NOT EXISTS idx_preferences_user_id ON user_preferences(user_id)")
+            cur.execute("CREATE INDEX IF NOT EXISTS idx_notification_history_user_id ON notification_history(user_id)")
+            cur.execute("CREATE INDEX IF NOT EXISTS idx_notification_history_property_id ON notification_history(property_id)")
+            cur.execute("CREATE INDEX IF NOT EXISTS idx_notification_queue_user_id ON notification_queue(user_id)")
+            cur.execute("CREATE INDEX IF NOT EXISTS idx_notification_queue_status ON notification_queue(status)")
+            
+            conn.commit()
+            logger.info("Telegram database tables initialized successfully")
+            
+    except Exception as e:
+        conn.rollback()
+        logger.error(f"Error initializing Telegram database: {e}")
+        raise
+    finally:
+        conn.close()

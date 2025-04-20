@@ -515,3 +515,26 @@ class PropertyDatabase:
             self.conn.rollback()
             logger.error(f"Error recording duplicate pair: {e}")
             raise
+        
+    def get_property_id_by_source_id(self, source: str, source_id: str) -> Optional[int]:
+        """
+        Get property ID from source and source_id.
+        
+        Args:
+            source: Source name (e.g., "funda")
+            source_id: Source-specific ID
+            
+        Returns:
+            Property ID if found, None otherwise
+        """
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute(
+                    "SELECT id FROM properties WHERE source = %s AND source_id = %s",
+                    (source, source_id)
+                )
+                result = cur.fetchone()
+                return result[0] if result else None
+        except Exception as e:
+            logger.error(f"Error getting property ID for {source}/{source_id}: {e}")
+            return None

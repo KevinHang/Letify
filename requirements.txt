@@ -40,3 +40,5 @@ brotli>=1.0.9
 httpx>=0.24.0
 httpx-socks>=0.7.0  # For SOCKS proxy support
 tenacity>=8.2.2
+
+python-telegram-bot>=20.0
