@@ -3,10 +3,9 @@ Enhanced HTTP client utility with robust compression handling and browser emulat
 """
 
 import asyncio
-import logging
 import random
 import time
-from typing import Optional, Dict, Any, List, Union
+from typing import Optional, Dict, Any, List
 from urllib.parse import urlparse
 import uuid
 import base64
@@ -14,12 +13,15 @@ import hashlib
 import os
 
 import httpx
-from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 
 from config import HTTP_TIMEOUT, USE_PROXIES, PROXY_LIST
+from utils.logging_config import configure_logging
 
-logger = logging.getLogger(__name__)
-
+# Use a child logger of the scraper logger
+logger = configure_logging(
+    name="realestate_scraper.http_client", 
+    log_file="logs/scraper.log"
+)
 
 class EnhancedHttpClient:
     """HTTP client with enhanced decompression, browser emulation, and proxy support"""

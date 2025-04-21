@@ -8,3 +8,7 @@ __pycache__/
 *.pyo
 *.pyd
 scraper.log
+telegram_bot.log
+# Ignore logs
+logs/
+*.log

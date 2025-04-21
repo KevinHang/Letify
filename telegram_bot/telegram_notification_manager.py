@@ -1,16 +1,13 @@
 import asyncio
-import logging
 import time
 from datetime import datetime
-from typing import List, Dict, Any, Optional
+from typing import Dict, Any
 import random
 
 import telegram
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 
 from config import (
-    TELEGRAM_BOT_TOKEN,
-    DB_CONNECTION_STRING,
     MAX_NOTIFICATIONS_PER_USER_PER_DAY,
     NOTIFICATION_BATCH_SIZE,
     NOTIFICATION_RETRY_ATTEMPTS
@@ -18,12 +15,10 @@ from config import (
 from database.property_db import PropertyDatabase
 from database.telegram_db import TelegramDatabase
 from utils.formatting import format_listing_message
+from utils.logging_config import get_telegram_logger
 
-# Setup logging
-logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
-)
-logger = logging.getLogger(__name__)
+# Use a child logger of the telegram logger
+logger = get_telegram_logger("notification_manager")
 
 class TelegramNotificationManager:
     """Manager for sending property notifications to Telegram users"""
@@ -166,7 +161,7 @@ class TelegramNotificationManager:
             notifications = self.telegram_db.get_pending_notifications(batch_size)
             
             if not notifications:
-                logger.info("No pending notifications to process")
+                logger.debug("No pending notifications to process")
                 return stats
             
             logger.info(f"Processing {len(notifications)} pending notifications")
@@ -270,7 +265,7 @@ class TelegramNotificationManager:
             stats = await self.process_notification_queue()
             duration = time.time() - start_time
             
-            logger.info(f"Notification run completed in {duration:.2f}s: "
+            logger.debug(f"Notification run completed in {duration:.2f}s: "
                         f"{stats['notifications_sent']} sent, {stats['notifications_failed']} failed")
             
             # Clean up old notifications
@@ -301,7 +296,7 @@ class TelegramNotificationManager:
             while not stop_event.is_set():
                 await self.run_once()
                 
-                logger.info(f"Waiting {interval} seconds until next notification run...")
+                logger.debug(f"Waiting {interval} seconds until next notification run...")
                 try:
                     await asyncio.wait_for(stop_event.wait(), timeout=interval)
                 except asyncio.TimeoutError:

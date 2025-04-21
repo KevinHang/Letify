@@ -12,6 +12,10 @@ from selectolax.parser import HTMLParser
 
 from models.property import PropertyListing, PropertyType, InteriorType
 from scrapers.base import BaseScraperStrategy
+from utils.logging_config import get_scraper_logger
+
+# Use a child logger of the telegram logger
+logger = get_scraper_logger("pararius_scraper")
 
 
 class ParariusScraper(BaseScraperStrategy):
@@ -225,8 +229,6 @@ class ParariusScraper(BaseScraperStrategy):
                 
             except Exception as e:
                 # Log error and continue with next listing
-                import logging
-                logger = logging.getLogger(__name__)
                 logger.error(f"Error extracting listing from search page: {e}")
                 continue
         

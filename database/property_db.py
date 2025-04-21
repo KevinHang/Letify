@@ -3,7 +3,6 @@ Property database operations.
 """
 
 import json
-import logging
 from datetime import datetime
 from typing import List, Dict, Any, Optional, Tuple
 
@@ -12,8 +11,10 @@ from psycopg.rows import dict_row
 from pgvector.psycopg import register_vector
 
 from models.property import PropertyListing
+from utils.logging_config import get_scraper_logger
 
-logger = logging.getLogger(__name__)
+# Use a child logger of the telegram logger
+logger = get_scraper_logger("property_db")
 
 
 class PropertyDatabase:

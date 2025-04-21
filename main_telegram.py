@@ -4,7 +4,6 @@ Responsible for running the Telegram bot and processing notification queue.
 """
 
 import asyncio
-import logging
 import sys
 from typing import List
 
@@ -18,21 +17,10 @@ from database.migrations import initialize_telegram_db
 from database.telegram_db import TelegramDatabase
 from telegram_bot.telegram_bot import TelegramRealEstateBot
 from telegram_bot.telegram_notification_manager import TelegramNotificationManager
+from utils.logging_config import configure_telegram_logging
 
-# Setup logging
-logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", 
-    level=logging.INFO,
-    handlers=[
-        logging.StreamHandler(sys.stdout),
-        logging.FileHandler("telegram.log")
-    ]
-)
-logger = logging.getLogger(__name__)
-
-# Suppress httpx and telegram logs to avoid /getUpdates spam
-logging.getLogger("httpx").setLevel(logging.WARNING)
-logging.getLogger("telegram").setLevel(logging.WARNING)
+# Set up logging
+logger = configure_telegram_logging()
 
 class TelegramIntegration:
     """Integration class for Telegram bot and notification manager."""

@@ -5,10 +5,8 @@ Responsible for scraping real estate listings and queuing notifications in the d
 
 import asyncio
 import argparse
-import logging
-import sys
 import time
-from typing import List, Dict, Any, Optional, Set, Tuple
+from typing import List, Dict, Any, Tuple
 from datetime import datetime, timezone
 
 from config import (
@@ -28,17 +26,10 @@ from database.telegram_db import TelegramDatabase
 from scrapers.factory import RealEstateScraperFactory
 from utils.http import EnhancedHttpClient
 from utils.proxy_manager import ProxyManager
+from utils.logging_config import configure_scraper_logging
 
-# Setup logging
-logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", 
-    level=logging.INFO,
-    handlers=[
-        logging.StreamHandler(sys.stdout),
-        logging.FileHandler("scraper.log")
-    ]
-)
-logger = logging.getLogger(__name__)
+# Set up logging
+logger = configure_scraper_logging()
 
 class RealEstateScraper:
     """Main scraper class orchestrating the scraping process"""

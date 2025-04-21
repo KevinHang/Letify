@@ -2,13 +2,14 @@
 Telegram user database operations.
 """
 
-import logging
 from typing import List, Dict, Any, Optional, Tuple
 
 import psycopg
 from psycopg.rows import dict_row
+from utils.logging_config import get_scraper_logger
 
-logger = logging.getLogger(__name__)
+# Use a child logger of the telegram logger
+logger = get_scraper_logger("telegram_db")
 
 class TelegramDatabase:
     """Database handler for Telegram users and notifications"""

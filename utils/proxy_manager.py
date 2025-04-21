@@ -23,7 +23,7 @@ from config import (
     get_formatted_proxy_list
 )
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger(__name__) # TODO add to logging_config if we decide to use proxy in the future
 
 
 class ProxyManager:

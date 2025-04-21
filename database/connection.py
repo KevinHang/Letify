@@ -2,11 +2,12 @@
 Database connection management.
 """
 
-import logging
 import psycopg
 from pgvector.psycopg import register_vector
+from utils.logging_config import get_scraper_logger
 
-logger = logging.getLogger(__name__)
+# Use a child logger of the telegram logger
+logger = get_scraper_logger("connection")
 
 
 def get_connection(connection_string: str):

@@ -2,10 +2,11 @@
 Database initialization and migrations.
 """
 
-import logging
 from .connection import get_connection
+from utils.logging_config import get_scraper_logger
 
-logger = logging.getLogger(__name__)
+# Use a child logger of the telegram logger
+logger = get_scraper_logger("migrations_db")
 
 
 def initialize_db(connection_string: str):

@@ -3,11 +3,9 @@ Telegram Bot for Dutch Real Estate Scraper - Refactored Implementation with Dire
 """
 
 import asyncio
-import logging
-from typing import Dict, Any, List, Optional
+from typing import List
 from datetime import datetime
 
-import telegram
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, KeyboardButton
 from telegram.constants import ParseMode
 from telegram.ext import (
@@ -18,18 +16,11 @@ from telegram.ext import (
 from config import TELEGRAM_BOT_TOKEN, TELEGRAM_ADMIN_USER_IDS, DB_CONNECTION_STRING
 from database.property_db import PropertyDatabase
 from database.telegram_db import TelegramDatabase
-from utils.formatting import format_listing_message, format_currency
+from utils.formatting import format_currency
+from utils.logging_config import get_telegram_logger
 
-# Setup logging
-logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", 
-    level=logging.INFO
-)
-logger = logging.getLogger(__name__)
-
-# Suppress httpx and telegram logs to avoid /getUpdates spam
-logging.getLogger("httpx").setLevel(logging.WARNING)
-logging.getLogger("telegram").setLevel(logging.WARNING)
+# Use a child logger of the telegram logger
+logger = get_telegram_logger("bot")
 
 # Initialize databases
 property_db = PropertyDatabase(DB_CONNECTION_STRING)

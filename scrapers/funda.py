@@ -13,9 +13,10 @@ from selectolax.parser import HTMLParser
 
 from models.property import PropertyListing, PropertyType
 from scrapers.base import BaseScraperStrategy
+from utils.logging_config import get_scraper_logger
 
-
-logger = logging.getLogger(__name__)
+# Use a child logger of the telegram logger
+logger = get_scraper_logger("funda_scraper")
 
 
 class FundaScraper(BaseScraperStrategy):
@@ -84,8 +85,6 @@ class FundaScraper(BaseScraperStrategy):
             
         if not listing_elements:
             return []
-            
-        logger.info(f"Found {len(listing_elements)} listing elements to process")
         
         for card in listing_elements:
             try:

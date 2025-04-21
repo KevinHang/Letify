@@ -3,7 +3,6 @@ Integration between Dutch Real Estate Scraper and Telegram notification system.
 """
 
 import asyncio
-import logging
 from typing import List, Dict, Any, Optional, Set
 
 from config import (
@@ -16,12 +15,10 @@ from database.migrations import initialize_telegram_db
 from database.telegram_db import TelegramDatabase
 from telegram_bot.telegram_bot import TelegramRealEstateBot
 from telegram_bot.telegram_notification_manager import TelegramNotificationManager
+from utils.logging_config import get_telegram_logger
 
-# Setup logging
-logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
-)
-logger = logging.getLogger(__name__)
+# Use a child logger of the telegram logger
+logger = get_telegram_logger("integration")
 
 
 class TelegramIntegration:

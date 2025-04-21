@@ -9,6 +9,7 @@ import argparse
 import asyncio
 import logging
 from datetime import datetime
+from utils.logging_config import configure_cli_logging
 
 from config import (
     DB_CONNECTION_STRING,
@@ -30,20 +31,8 @@ from database.telegram_db import TelegramDatabase
 from database.migrations import initialize_telegram_db
 import telegram
 
-def configure_logging(log_level=logging.INFO):
-    """Configure logging for the application."""
-    log_format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-    logging.basicConfig(
-        level=log_level,
-        format=log_format,
-        handlers=[
-            logging.FileHandler("realestate_scraper.log"),
-            logging.StreamHandler()
-        ]
-    )
-    # Suppress httpx and telegram logs to avoid /getUpdates spam
-    logging.getLogger("httpx").setLevel(logging.WARNING)
-    logging.getLogger("telegram").setLevel(logging.WARNING)
+# Set up logging
+logger = configure_cli_logging()
 
 def parse_args():
     """Parse command line arguments."""
@@ -132,18 +121,21 @@ async def send_telegram_message(bot, user_id, message):
         await bot.send_message(chat_id=user_id, text=message)
         return True
     except Exception as e:
-        logging.getLogger(__name__).error(f"Failed to send message to user {user_id}: {e}")
+        logger.error(f"Failed to send message to user {user_id}: {e}")
         return False
 
 async def main():
     """Main entry point for the CLI."""
     args = parse_args()
     
-    # Configure logging
-    log_level = logging.DEBUG if args.debug else logging.INFO
-    configure_logging(log_level)
-    
-    logger = logging.getLogger(__name__)
+    # Set up logging initially with default level
+    logger = configure_cli_logging()
+
+    # Adjust log level if debug flag is set
+    if args.debug:
+        logger.setLevel(logging.DEBUG)
+        logger.debug("Debug logging enabled")
+
     logger.info(f"Starting Dutch Real Estate Scraper CLI at {datetime.now()}")
     
     # Initialize databases
