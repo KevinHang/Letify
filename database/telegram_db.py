@@ -27,13 +27,13 @@ class TelegramDatabase:
                 cur.execute("""
                 INSERT INTO telegram_users 
                     (user_id, username, first_name, last_name, is_admin, is_active, last_active) 
-                VALUES (%s, %s, %s, %s, %s, FALSE, NOW())
+                VALUES (%s, %s, %s, %s, %s, TRUE, NOW())
                 ON CONFLICT (user_id) DO UPDATE 
                 SET 
                     username = EXCLUDED.username,
                     first_name = EXCLUDED.first_name,
                     last_name = EXCLUDED.last_name,
-                    is_active = FALSE,
+                    is_active = TRUE,
                     last_active = NOW()
                 """, (user_id, username, first_name, last_name, is_admin))
                 self.conn.commit()
@@ -357,7 +357,7 @@ class TelegramDatabase:
                 
                 count = cur.rowcount
                 self.conn.commit()
-                logger.info(f"Queued property_id {property_id} for {count} users")
+                logger.debug(f"Queued property_id {property_id} for {count} users")
                 return count
         except Exception as e:
             self.conn.rollback()
