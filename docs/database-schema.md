@@ -67,7 +67,6 @@ CREATE TABLE IF NOT EXISTS properties (
 - `source_id`: ID of the property in the source website
 - `property_hash`: Unique hash for property deduplication
 - `coordinates`: JSON object with lat/lng values
-- `location`: PostGIS geography point for spatial queries
 - `images`: JSONB array of image URLs
 - `features`: JSONB object of additional property features
 
@@ -159,7 +158,6 @@ CREATE INDEX IF NOT EXISTS idx_properties_location ON properties USING GIST(loca
 
 ### Special Types Used
 
-- `GEOGRAPHY(POINT)`: PostGIS data type for storing geographic coordinates
 - `JSONB`: PostgreSQL binary JSON format for efficient storage of structured data
 
 ### Enums Used in Code

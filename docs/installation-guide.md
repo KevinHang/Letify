@@ -12,7 +12,7 @@ Before you begin, ensure you have the following installed:
 
 2. **PostgreSQL 12+**
    - [Download PostgreSQL](https://www.postgresql.org/download/)
-   - Required extensions: PostGIS, fuzzystrmatch
+   - Required extensions:
    - Verify with: `psql --version`
 
 3. **Git** (for cloning the repository)
@@ -61,11 +61,7 @@ createdb -U postgres realestate
 ### Enable Required Extensions
 
 ```bash
-# For Linux/macOS
-psql -d realestate -c "CREATE EXTENSION postgis; CREATE EXTENSION vector; CREATE EXTENSION fuzzystrmatch;"
 
-# If you need to specify credentials
-psql -U postgres -d realestate -c "CREATE EXTENSION postgis; CREATE EXTENSION vector; CREATE EXTENSION fuzzystrmatch;"
 ```
 
 ### Create User and Set Permissions (Optional)
@@ -162,10 +158,6 @@ effective_io_concurrency = 200     # Higher for SSDs
 # Logging for debugging (disable in production)
 log_min_duration_statement = 200   # Log queries taking longer than 200ms
 ```
-
-### PostGIS Configuration
-
-If you'll be doing extensive geospatial queries:
 
 ```
 # Add to postgresql.conf
