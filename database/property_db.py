@@ -8,7 +8,6 @@ from typing import List, Dict, Any, Optional, Tuple
 
 import psycopg
 from psycopg.rows import dict_row
-from pgvector.psycopg import register_vector
 
 from models.property import PropertyListing
 from utils.logging_config import get_scraper_logger

@@ -3,7 +3,6 @@ Database connection management.
 """
 
 import psycopg
-from pgvector.psycopg import register_vector
 from utils.logging_config import get_scraper_logger
 
 # Use a child logger of the telegram logger
