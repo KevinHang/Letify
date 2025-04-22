@@ -69,9 +69,6 @@ class PropertyListing:
     energy_label: Optional[str] = None
     interior: Optional[InteriorType] = None
     
-    # Location details
-    coordinates: Dict[str, float] = field(default_factory=dict)
-    
     # Dates
     date_listed: Optional[str] = None
     date_available: Optional[str] = None

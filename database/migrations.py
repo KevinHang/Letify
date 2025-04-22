@@ -48,8 +48,6 @@ def initialize_db(connection_string: str):
                 construction_year INTEGER,
                 energy_label TEXT,
                 interior TEXT,
-                coordinates JSONB,
-                location GEOGRAPHY(POINT),
                 date_listed TEXT,
                 date_available TEXT,
                 date_scraped TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
@@ -117,9 +115,6 @@ def initialize_db(connection_string: str):
             # Create index for query_urls
             cur.execute("CREATE INDEX IF NOT EXISTS idx_query_urls_source ON query_urls(source)")
             cur.execute("CREATE INDEX IF NOT EXISTS idx_query_urls_enabled ON query_urls(enabled)")
-            
-            # Create spatial index for location
-            cur.execute("CREATE INDEX IF NOT EXISTS idx_properties_location ON properties USING GIST(location)")
             
             # Create index on property_hash for deduplication
             cur.execute("CREATE INDEX IF NOT EXISTS idx_properties_property_hash ON properties(property_hash)")

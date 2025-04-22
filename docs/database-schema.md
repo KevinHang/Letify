@@ -49,8 +49,6 @@ CREATE TABLE IF NOT EXISTS properties (
     construction_year INTEGER,
     energy_label TEXT,
     interior TEXT,
-    coordinates JSONB,
-    location GEOGRAPHY(POINT),
     date_listed TEXT,
     date_available TEXT,
     date_scraped TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
@@ -66,7 +64,6 @@ CREATE TABLE IF NOT EXISTS properties (
 - `source`: Source website (e.g., "funda", "pararius")
 - `source_id`: ID of the property in the source website
 - `property_hash`: Unique hash for property deduplication
-- `coordinates`: JSON object with lat/lng values
 - `images`: JSONB array of image URLs
 - `features`: JSONB object of additional property features
 
@@ -148,11 +145,6 @@ CREATE INDEX IF NOT EXISTS idx_properties_date_scraped ON properties(date_scrape
 CREATE INDEX IF NOT EXISTS idx_properties_property_hash ON properties(property_hash);
 ```
 
-### Spatial Index
-
-```sql
-CREATE INDEX IF NOT EXISTS idx_properties_location ON properties USING GIST(location);
-```
 
 ## Data Types
 
