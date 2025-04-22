@@ -1,9 +1,9 @@
 version: '3.8'
 
 services:
-  # PostgreSQL database with PostGIS and pgvector extensions
+  # PostgreSQL database with PostGIS extension
   postgres:
-    image: postgis/postgis:15-3.3
+    image: postgres:15-alpine
     platform: linux/arm64/v8
     container_name: realestate-db
     restart: unless-stopped
