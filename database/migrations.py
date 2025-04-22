@@ -15,6 +15,10 @@ def initialize_db(connection_string: str):
     
     try:
         with conn.cursor() as cur:
+
+            # Enable fuzzystrmatch extension
+            cur.execute("CREATE EXTENSION IF NOT EXISTS fuzzystrmatch;")
+            
             # Create properties table
             cur.execute("""
             CREATE TABLE IF NOT EXISTS properties (
