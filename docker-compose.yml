@@ -3,7 +3,7 @@ version: '3.8'
 services:
   # PostgreSQL database with PostGIS (ARM compatible)
   db:
-    image: postgis/postgis:15-3.4-arm64
+    image: postgis/postgis:15-3.4
     container_name: realestate-db
     restart: unless-stopped
     environment:
@@ -22,9 +22,7 @@ services:
 
   # Real Estate Scraper service
   scraper:
-    build:
-      context: .
-      platform: linux/arm64
+    build: .
     container_name: realestate-scraper
     restart: unless-stopped
     depends_on:
@@ -43,9 +41,7 @@ services:
 
   # Telegram Bot service
   telegram_bot:
-    build:
-      context: .
-      platform: linux/arm64
+    build: .
     container_name: realestate-telegram-bot
     restart: unless-stopped
     depends_on:
