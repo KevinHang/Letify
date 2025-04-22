@@ -1,9 +1,11 @@
-version: '3.9'
+version: '3.8'
 
 services:
-  # PostgreSQL database with PostGIS (ARM compatible)
+  # PostgreSQL database with custom extensions for ARM
   db:
-    image: postgres:15-alpine
+    build:
+      context: ./postgres
+      dockerfile: Dockerfile
     container_name: realestate-db
     restart: unless-stopped
     environment:
@@ -12,7 +14,6 @@ services:
       POSTGRES_PASSWORD: postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./init-postgis.sql:/docker-entrypoint-initdb.d/init-postgis.sql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
