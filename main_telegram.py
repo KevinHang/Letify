@@ -6,6 +6,7 @@ Responsible for running the Telegram bot and processing notification queue.
 import asyncio
 import sys
 from typing import List
+from database.migrations import initialize_db
 
 from config import (
     TELEGRAM_BOT_TOKEN,
@@ -38,7 +39,10 @@ class TelegramIntegration:
         self.bot_token = bot_token
         self.admin_ids = admin_ids or []
         
-        initialize_telegram_db(connection_string)
+        # Initialize both database schemas
+        initialize_db(connection_string)  # Creates properties, query_urls, etc.
+        initialize_telegram_db(connection_string)  # Creates notification_history, etc.
+        
         self.telegram_db = TelegramDatabase(connection_string)
         self.bot = TelegramRealEstateBot(bot_token, admin_ids)
         self.notification_manager = TelegramNotificationManager(bot_token, connection_string)

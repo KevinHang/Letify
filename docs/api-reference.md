@@ -217,14 +217,6 @@ class PropertyDatabase:
         """Search for properties with specified filters."""
         # ...
     
-    def search_properties_by_location(self, 
-                                      lat: float, 
-                                      lng: float, 
-                                      radius_km: float = 1.0,
-                                      limit: int = 100) -> List[Dict[str, Any]]:
-        """Search for properties within a radius of a geographic point."""
-        # ...
-    
     def find_potential_duplicates(self, threshold: float = 0.8) -> List[Dict[str, Any]]:
         """Find potential duplicate properties across different sources."""
         # ...

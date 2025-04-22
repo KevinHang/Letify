@@ -41,11 +41,6 @@ class PropertyDatabase:
                 )
                 result = cur.fetchone()
                 
-                # Prepare location point if coordinates exist
-                location_point = None
-                if listing.coordinates and "lat" in listing.coordinates and "lng" in listing.coordinates:
-                    location_point = f"POINT({listing.coordinates['lng']} {listing.coordinates['lat']})"
-                
                 if result:
                     # Update existing listing
                     property_id = result[0]
@@ -78,8 +73,6 @@ class PropertyDatabase:
                         construction_year = %s,
                         energy_label = %s,
                         interior = %s,
-                        coordinates = %s,
-                        location = ST_GeographyFromText(%s),
                         date_listed = %s,
                         date_available = %s,
                         date_scraped = %s,
@@ -114,8 +107,6 @@ class PropertyDatabase:
                         listing.construction_year,
                         listing.energy_label,
                         listing.interior.value if listing.interior else None,
-                        json.dumps(listing.coordinates) if listing.coordinates else None,
-                        location_point,
                         listing.date_listed,
                         listing.date_available,
                         datetime.now(),
@@ -131,13 +122,13 @@ class PropertyDatabase:
                         source, source_id, property_hash, url, title, address, postal_code, city, neighborhood,
                         price, price_numeric, price_period, service_costs, description, property_type, offering_type,
                         living_area, plot_area, volume, rooms, bedrooms, bathrooms, floors, balcony, garden, parking,
-                        construction_year, energy_label, interior, coordinates, location, date_listed, date_available,
+                        construction_year, energy_label, interior, date_listed, date_available,
                         date_scraped, images, features
                     ) VALUES (
                         %s, %s, %s, %s, %s, %s, %s, %s, %s,
                         %s, %s, %s, %s, %s, %s, %s,
                         %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                        %s, %s, %s, %s, ST_GeographyFromText(%s), %s, %s,
+                        %s, %s, %s, %s, %s, %s,
                         %s, %s, %s
                     )
                     """, (
@@ -170,8 +161,6 @@ class PropertyDatabase:
                         listing.construction_year,
                         listing.energy_label,
                         listing.interior.value if listing.interior else None,
-                        json.dumps(listing.coordinates) if listing.coordinates else None,
-                        location_point,
                         listing.date_listed,
                         listing.date_available,
                         datetime.now(),
@@ -415,34 +404,6 @@ class PropertyDatabase:
             logger.error(f"Error searching properties: {e}")
             return []
     
-    def search_properties_by_location(self, 
-                                      lat: float, 
-                                      lng: float, 
-                                      radius_km: float = 1.0,
-                                      limit: int = 100) -> List[Dict[str, Any]]:
-        """
-        Search for properties within a radius of a geographic point.
-        Returns a list of property listings ordered by distance.
-        """
-        query = """
-        SELECT *, 
-               ST_Distance(location, ST_GeographyFromText(%s)) as distance
-        FROM properties 
-        WHERE ST_DWithin(location, ST_GeographyFromText(%s), %s)
-        ORDER BY distance
-        LIMIT %s
-        """
-        point = f"POINT({lng} {lat})"
-        params = [point, point, radius_km * 1000, limit]  # Convert km to meters
-        
-        try:
-            with self.conn.cursor(row_factory=dict_row) as cur:
-                cur.execute(query, params)
-                return cur.fetchall()
-        except Exception as e:
-            logger.error(f"Error searching properties by location: {e}")
-            return []
-    
     def find_potential_duplicates(self, threshold: float = 0.8) -> List[Dict[str, Any]]:
         """
         Find potential duplicate properties across different sources 
@@ -462,23 +423,17 @@ class PropertyDatabase:
             a.living_area as area_1,
             b.living_area as area_2,
             a.price_numeric as price_1,
-            b.price_numeric as price_2,
-            ST_Distance(a.location, b.location) as distance_meters
+            b.price_numeric as price_2
         FROM 
             properties a
         JOIN 
             properties b 
         ON 
-            a.source < b.source  -- Ensure each pair is only returned once
+            a.source < b.source
             AND a.property_hash = b.property_hash
-            AND (
-                (a.location IS NOT NULL AND b.location IS NOT NULL AND 
-                 ST_DWithin(a.location, b.location, 100))  -- Within 100 meters
-                OR
-                (a.address IS NOT NULL AND b.address IS NOT NULL AND 
-                 levenshtein(lower(a.address), lower(b.address)) / 
-                 GREATEST(length(a.address), length(b.address)) < %s)
-            )
+            AND (a.address IS NOT NULL AND b.address IS NOT NULL AND 
+                levenshtein(lower(a.address), lower(b.address)) / 
+                GREATEST(length(a.address), length(b.address), 1) < %s)
         ORDER BY a.property_hash
         """
         
