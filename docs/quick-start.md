@@ -5,7 +5,6 @@ This guide will help you get up and running with the Dutch Real Estate Scraper i
 ## Prerequisites
 
 - Python 3.8 or higher
-- PostgreSQL 12 or higher with PostGIS extension
 - Git (for cloning the repository)
 
 ## 1. Clone and Install
@@ -33,9 +32,6 @@ pip install -r requirements.txt
 ```bash
 # Create a PostgreSQL database
 createdb realestate
-
-# Enable required extensions
-psql -d realestate -c "CREATE EXTENSION postgis; CREATE EXTENSION vector; CREATE EXTENSION fuzzystrmatch;"
 ```
 
 ## 3. Configure Environment

@@ -51,22 +51,9 @@ This comprehensive guide will walk you through setting up and using the Dutch Re
 
 ## 2. Database Setup
 
-The scraper uses PostgreSQL with PostGIS (for geospatial queries)
-
 ### PostgreSQL Installation
 
 If you haven't installed PostgreSQL yet:
-
-- **Linux**:
-  ```bash
-  sudo apt update
-  sudo apt install postgresql postgresql-contrib postgis
-  ```
-
-- **macOS** (using Homebrew):
-  ```bash
-  brew install postgresql postgis
-  ```
 
 - **Windows**: Download and install from [PostgreSQL website](https://www.postgresql.org/download/windows/)
 
@@ -76,12 +63,6 @@ If you haven't installed PostgreSQL yet:
 
    ```bash
    createdb realestate
-   ```
-
-2. **Enable required extensions**:
-
-   ```bash
-   psql -d realestate -c "CREATE EXTENSION postgis; CREATE EXTENSION vector; CREATE EXTENSION fuzzystrmatch;"
    ```
 
 3. **Create a database user** (optional):

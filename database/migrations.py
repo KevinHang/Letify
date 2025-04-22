@@ -15,13 +15,6 @@ def initialize_db(connection_string: str):
     
     try:
         with conn.cursor() as cur:
-            # Enable vector extension for similarity search
-            cur.execute("CREATE EXTENSION IF NOT EXISTS vector")
-            # Enable postgis for geospatial queries
-            cur.execute("CREATE EXTENSION IF NOT EXISTS postgis")
-            # Enable levenshtein for text similarity
-            cur.execute("CREATE EXTENSION IF NOT EXISTS fuzzystrmatch")
-            
             # Create properties table
             cur.execute("""
             CREATE TABLE IF NOT EXISTS properties (
