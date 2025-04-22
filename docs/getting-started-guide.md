@@ -20,7 +20,6 @@ This comprehensive guide will walk you through setting up and using the Dutch Re
 ### Prerequisites
 
 - Python 3.8 or higher
-- PostgreSQL 12 or higher with PostGIS and pgvector extensions
 - Git (for cloning the repository)
 
 ### Step-by-Step Installation
@@ -52,7 +51,7 @@ This comprehensive guide will walk you through setting up and using the Dutch Re
 
 ## 2. Database Setup
 
-The scraper uses PostgreSQL with PostGIS (for geospatial queries) and pgvector (for similarity searches).
+The scraper uses PostgreSQL with PostGIS (for geospatial queries)
 
 ### PostgreSQL Installation
 

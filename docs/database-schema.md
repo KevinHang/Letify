@@ -163,7 +163,6 @@ CREATE INDEX IF NOT EXISTS idx_properties_location ON properties USING GIST(loca
 
 - `GEOGRAPHY(POINT)`: PostGIS data type for storing geographic coordinates
 - `JSONB`: PostgreSQL binary JSON format for efficient storage of structured data
-- `vector(384)`: pgvector type for storing embedding vectors for similarity search
 
 ### Enums Used in Code
 

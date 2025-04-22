@@ -12,7 +12,7 @@ Before you begin, ensure you have the following installed:
 
 2. **PostgreSQL 12+**
    - [Download PostgreSQL](https://www.postgresql.org/download/)
-   - Required extensions: PostGIS, pgvector, fuzzystrmatch
+   - Required extensions: PostGIS, fuzzystrmatch
    - Verify with: `psql --version`
 
 3. **Git** (for cloning the repository)
@@ -202,22 +202,6 @@ Once you've completed the installation and configuration:
 
 ### Common Installation Issues
 
-#### PostgreSQL Extension Installation
-
-If you encounter errors installing PostGIS or pgvector:
-
-```bash
-# For Ubuntu/Debian
-sudo apt-get install postgresql-12-postgis-3 postgresql-12-postgis-3-scripts
-sudo apt-get install postgresql-server-dev-12
-git clone https://github.com/pgvector/pgvector.git
-cd pgvector
-make
-sudo make install
-cd ..
-rm -rf pgvector
-```
-
 #### Python Dependency Issues
 
 If you encounter issues with the dependencies:
@@ -233,7 +217,6 @@ sudo apt-get install python3-dev libpq-dev
 # macOS (with Homebrew)
 brew install postgresql
 brew services start postgresql
-brew install pgvector
 
 pip install -e .
 
