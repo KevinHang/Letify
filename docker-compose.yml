@@ -1,9 +1,9 @@
 version: '3.8'
 
 services:
-  # PostgreSQL database with PostGIS extension
+  # PostgreSQL database
   postgres:
-    image: postgres:15-alpine
+    image: postgres:15
     platform: linux/arm64/v8
     container_name: realestate-db
     restart: unless-stopped
@@ -21,6 +21,13 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    # Install PostGIS and other extensions
+    command: >
+      bash -c "
+        apt-get update &&
+        apt-get install -y postgis postgresql-15-postgis-3 &&
+        docker-entrypoint.sh postgres
+      "
 
   # Real Estate Scraper
   scraper:
