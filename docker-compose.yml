@@ -1,9 +1,10 @@
-version: '3.8'
+version: '3.9'
 
 services:
   # PostgreSQL database with PostGIS (ARM compatible)
   db:
-    image: postgis/postgis:15-3.4
+    image: ghcr.io/baosystems/postgis:15-3.3
+    platform: linux/arm64
     container_name: realestate-db
     restart: unless-stopped
     environment:
