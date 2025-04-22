@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  # PostgreSQL database
+  # PostgreSQL database with required extensions
   postgres:
     image: postgres:15
     platform: linux/arm64/v8
@@ -21,19 +21,13 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-    # Install PostGIS and other extensions
-    command: >
-      bash -c "
-        apt-get update &&
-        apt-get install -y postgis postgresql-15-postgis-3 &&
-        docker-entrypoint.sh postgres
-      "
 
   # Real Estate Scraper
   scraper:
     build:
       context: .
       dockerfile: Dockerfile
+    platform: linux/arm64/v8
     container_name: realestate-scraper
     restart: unless-stopped
     depends_on:
@@ -41,8 +35,12 @@ services:
         condition: service_healthy
     volumes:
       - ./logs:/app/logs
-    env_file:
-      - .env
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=realestate
+      - DB_USER=postgres
+      - DB_PASSWORD=${DB_PASSWORD:-postgres}
     command: python -m cli --query-scan --sources funda,pararius
     logging:
       driver: "json-file"
@@ -55,6 +53,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    platform: linux/arm64/v8
     container_name: realestate-telegram
     restart: unless-stopped
     depends_on:
@@ -62,8 +61,14 @@ services:
         condition: service_healthy
     volumes:
       - ./logs:/app/logs
-    env_file:
-      - .env
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=realestate
+      - DB_USER=postgres
+      - DB_PASSWORD=${DB_PASSWORD:-postgres}
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN:-your_bot_token_here}
+      - TELEGRAM_ADMIN_USER_IDS=${TELEGRAM_ADMIN_USER_IDS:-123456789}
     command: python -m main_telegram
     logging:
       driver: "json-file"

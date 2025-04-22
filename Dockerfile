@@ -31,19 +31,11 @@ RUN pip install --upgrade pip && \
 # Copy application code
 COPY . .
 
-# Create logs directory
-RUN mkdir -p logs
-
-# Create a non-root user and change permissions
-RUN groupadd -r scraper && \
-    useradd -r -g scraper -d /app -s /bin/bash scraper && \
-    chown -R scraper:scraper /app
-
-# Switch to non-root user
-USER scraper
+# Create logs directory with proper permissions
+RUN mkdir -p logs && chmod 777 logs
 
 # Set Python path
 ENV PYTHONPATH=/app
 
-# Set default command
+# Default command
 CMD ["python", "-m", "cli", "--help"]

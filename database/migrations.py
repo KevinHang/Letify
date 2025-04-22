@@ -15,12 +15,23 @@ def initialize_db(connection_string: str):
     
     try:
         with conn.cursor() as cur:
-            # Enable vector extension for similarity search
-            cur.execute("CREATE EXTENSION IF NOT EXISTS vector")
-            # Enable postgis for geospatial queries
-            cur.execute("CREATE EXTENSION IF NOT EXISTS postgis")
+            # Enable vector extension for similarity search - make it optional
+            try:
+                cur.execute("CREATE EXTENSION IF NOT EXISTS vector")
+            except Exception as e:
+                logger.warning(f"Vector extension not available: {e}. Vector search will be disabled.")
+            
+            # Enable postgis for geospatial queries - make it optional
+            try:
+                cur.execute("CREATE EXTENSION IF NOT EXISTS postgis")
+            except Exception as e:
+                logger.warning(f"PostGIS extension not available: {e}. Geospatial features will be limited.")
+            
             # Enable levenshtein for text similarity
-            cur.execute("CREATE EXTENSION IF NOT EXISTS fuzzystrmatch")
+            try:
+                cur.execute("CREATE EXTENSION IF NOT EXISTS fuzzystrmatch")
+            except Exception as e:
+                logger.warning(f"Fuzzystrmatch extension not available: {e}. Text similarity features will be limited.")
             
             # Create properties table
             cur.execute("""
@@ -127,7 +138,10 @@ def initialize_db(connection_string: str):
             cur.execute("CREATE INDEX IF NOT EXISTS idx_query_urls_enabled ON query_urls(enabled)")
             
             # Create spatial index for location
-            cur.execute("CREATE INDEX IF NOT EXISTS idx_properties_location ON properties USING GIST(location)")
+            try:
+                cur.execute("CREATE INDEX IF NOT EXISTS idx_properties_location ON properties USING GIST(location)")
+            except Exception as e:
+                logger.warning(f"Could not create spatial index: {e}. This is expected if PostGIS is not available.")
             
             # Create index on property_hash for deduplication
             cur.execute("CREATE INDEX IF NOT EXISTS idx_properties_property_hash ON properties(property_hash)")
@@ -144,6 +158,9 @@ def initialize_db(connection_string: str):
 
 def initialize_telegram_db(connection_string: str):
     """Create Telegram-related tables and indexes if they don't exist."""
+    # Initialize main DB first to ensure properties table exists
+    initialize_db(connection_string)
+    
     conn = get_connection(connection_string)
     
     try:
