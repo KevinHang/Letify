@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  # PostgreSQL database with PostGIS (ARM compatible)
+  db:
+    image: postgis/postgis:15-3.4-arm64
+    container_name: realestate-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: realestate
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "5432:5432"
+
+  # Real Estate Scraper service
+  scraper:
+    build:
+      context: .
+      platform: linux/arm64
+    container_name: realestate-scraper
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./logs:/app/logs
+      - ./.env:/app/.env
+    command: python -m cli --query-scan --sources funda,pararius
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=realestate
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+
+  # Telegram Bot service
+  telegram_bot:
+    build:
+      context: .
+      platform: linux/arm64
+    container_name: realestate-telegram-bot
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./logs:/app/logs
+      - ./.env:/app/.env
+    command: python -m main_telegram
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=realestate
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+
+volumes:
+  postgres_data:
+    name: realestate_postgres_data
