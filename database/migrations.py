@@ -62,7 +62,6 @@ def initialize_db(connection_string: str):
                 date_scraped TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
                 images JSONB,
                 features JSONB,
-                description_embedding vector(384),
                 UNIQUE (source, source_id)
             )
             """)

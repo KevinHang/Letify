@@ -56,7 +56,6 @@ CREATE TABLE IF NOT EXISTS properties (
     date_scraped TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     images JSONB,
     features JSONB,
-    description_embedding vector(384),
     UNIQUE (source, source_id)
 );
 ```
@@ -71,7 +70,6 @@ CREATE TABLE IF NOT EXISTS properties (
 - `location`: PostGIS geography point for spatial queries
 - `images`: JSONB array of image URLs
 - `features`: JSONB object of additional property features
-- `description_embedding`: Vector for similarity search
 
 ## Scan History Table
 
