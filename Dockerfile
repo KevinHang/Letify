@@ -1,12 +1,15 @@
 FROM python:3.11-slim
 
+# Set architecture labels
+ARG ARCH="arm64"
+LABEL architecture=${ARCH}
+
 # Install dependencies for psycopg and other libraries
 RUN apt-get update && apt-get install -y \
     gcc \
     postgresql-client \
     libpq-dev \
     python3-dev \
-    build-essential \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 

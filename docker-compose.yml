@@ -1,11 +1,10 @@
-version: '3.8'
+version: '3.9'
 
 services:
-  # PostgreSQL database with custom extensions for ARM
   db:
     build:
-      context: ./postgres
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: Dockerfile.db
     container_name: realestate-db
     restart: unless-stopped
     environment:
@@ -22,30 +21,14 @@ services:
     ports:
       - "5432:5432"
 
-  # Database initialization service
-  db-init:
-    build: .
-    container_name: realestate-db-init
-    depends_on:
-      db:
-        condition: service_healthy
-    environment:
-      - DB_HOST=db
-      - DB_PORT=5432
-      - DB_NAME=realestate
-      - DB_USER=postgres
-      - DB_PASSWORD=postgres
-    command: python init_db.py
-    restart: on-failure
-
   # Real Estate Scraper service
   scraper:
     build: .
     container_name: realestate-scraper
     restart: unless-stopped
     depends_on:
-      db-init:
-        condition: service_completed_successfully
+      db:
+        condition: service_healthy
     volumes:
       - ./logs:/app/logs
       - ./.env:/app/.env
@@ -63,8 +46,8 @@ services:
     container_name: realestate-telegram-bot
     restart: unless-stopped
     depends_on:
-      db-init:
-        condition: service_completed_successfully
+      db:
+        condition: service_healthy
     volumes:
       - ./logs:/app/logs
       - ./.env:/app/.env
