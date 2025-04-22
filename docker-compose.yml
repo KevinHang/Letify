@@ -3,7 +3,6 @@ version: '3.8'
 services:
   postgres:
     image: postgis/postgis:14-3.3-alpine  # Alpine variant for better ARM support
-    platform: linux/arm64/v8
     environment:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USER}
@@ -17,7 +16,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-    platform: linux/arm64  # Explicitly specify ARM architecture
+    platform: linux/arm64/v8  # Explicitly specify ARM architecture
 
   scraper:
     build:
