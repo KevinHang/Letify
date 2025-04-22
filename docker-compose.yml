@@ -4,6 +4,7 @@ services:
   # PostgreSQL database with PostGIS and pgvector extensions
   postgres:
     image: postgis/postgis:15-3.3
+    platform: linux/arm64/v8
     container_name: realestate-db
     restart: unless-stopped
     volumes:
