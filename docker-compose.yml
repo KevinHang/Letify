@@ -3,8 +3,7 @@ version: '3.9'
 services:
   # PostgreSQL database with PostGIS (ARM compatible)
   db:
-    image: ghcr.io/baosystems/postgis:15-3.3
-    platform: linux/arm64
+    image: postgres:15-alpine
     container_name: realestate-db
     restart: unless-stopped
     environment:
@@ -13,6 +12,7 @@ services:
       POSTGRES_PASSWORD: postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./init-postgis.sql:/docker-entrypoint-initdb.d/init-postgis.sql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
@@ -21,14 +21,30 @@ services:
     ports:
       - "5432:5432"
 
+  # Database initialization service
+  db-init:
+    build: .
+    container_name: realestate-db-init
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=realestate
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+    command: python init_db.py
+    restart: on-failure
+
   # Real Estate Scraper service
   scraper:
     build: .
     container_name: realestate-scraper
     restart: unless-stopped
     depends_on:
-      db:
-        condition: service_healthy
+      db-init:
+        condition: service_completed_successfully
     volumes:
       - ./logs:/app/logs
       - ./.env:/app/.env
@@ -46,8 +62,8 @@ services:
     container_name: realestate-telegram-bot
     restart: unless-stopped
     depends_on:
-      db:
-        condition: service_healthy
+      db-init:
+        condition: service_completed_successfully
     volumes:
       - ./logs:/app/logs
       - ./.env:/app/.env
