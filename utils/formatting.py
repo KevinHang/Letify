@@ -141,6 +141,7 @@ def format_listing_message(property_data: Dict[str, Any]) -> str:
     # Dates
     date_listed = format_date(property_data.get('date_listed', '') or '')
     date_available = format_date(property_data.get('date_available', '') or '')
+    availability_period = format_date(property_data.get('availability_period', '') or '')
     
     # Energy label
     energy_label = property_data.get('energy_label', 'N/A') or 'N/A'
@@ -181,6 +182,8 @@ def format_listing_message(property_data: Dict[str, Any]) -> str:
         message += f"• Listed on: {date_listed}\n"
     if date_available != "N/A":
         message += f"• Available from: {date_available}\n"
+    if availability_period != "N/A":
+        message += f"• Availability period: {availability_period}\n"
     
     # Add description if available
     if description:

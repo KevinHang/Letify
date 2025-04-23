@@ -51,6 +51,7 @@ CREATE TABLE IF NOT EXISTS properties (
     interior TEXT,
     date_listed TEXT,
     date_available TEXT,
+    availability_period TEXT,
     date_scraped TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     images JSONB,
     features JSONB,
