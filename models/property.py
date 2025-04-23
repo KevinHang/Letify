@@ -72,6 +72,7 @@ class PropertyListing:
     # Dates
     date_listed: Optional[str] = None
     date_available: Optional[str] = None
+    availability_period: Optional[str] = None
     date_scraped: str = field(default_factory=lambda: datetime.now().isoformat())
     
     # Media

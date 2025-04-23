@@ -75,6 +75,7 @@ class PropertyDatabase:
                         interior = %s,
                         date_listed = %s,
                         date_available = %s,
+                        availability_period = %s,
                         date_scraped = %s,
                         images = %s,
                         features = %s
@@ -109,6 +110,7 @@ class PropertyDatabase:
                         listing.interior.value if listing.interior else None,
                         listing.date_listed,
                         listing.date_available,
+                        listing.availability_period,
                         datetime.now(),
                         json.dumps(listing.images),
                         json.dumps(listing.features),
@@ -122,13 +124,13 @@ class PropertyDatabase:
                         source, source_id, property_hash, url, title, address, postal_code, city, neighborhood,
                         price, price_numeric, price_period, service_costs, description, property_type, offering_type,
                         living_area, plot_area, volume, rooms, bedrooms, bathrooms, floors, balcony, garden, parking,
-                        construction_year, energy_label, interior, date_listed, date_available,
+                        construction_year, energy_label, interior, date_listed, date_available, availability_period,
                         date_scraped, images, features
                     ) VALUES (
                         %s, %s, %s, %s, %s, %s, %s, %s, %s,
                         %s, %s, %s, %s, %s, %s, %s,
                         %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                        %s, %s, %s, %s, %s,
+                        %s, %s, %s, %s, %s, %s,
                         %s, %s, %s
                     )
                     """, (
@@ -163,6 +165,7 @@ class PropertyDatabase:
                         listing.interior.value if listing.interior else None,
                         listing.date_listed,
                         listing.date_available,
+                        listing.availability_period,
                         datetime.now(),
                         json.dumps(listing.images),
                         json.dumps(listing.features)

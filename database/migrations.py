@@ -18,7 +18,7 @@ def initialize_db(connection_string: str):
 
             # Enable fuzzystrmatch extension
             cur.execute("CREATE EXTENSION IF NOT EXISTS fuzzystrmatch;")
-            
+
             # Create properties table
             cur.execute("""
             CREATE TABLE IF NOT EXISTS properties (
@@ -54,6 +54,7 @@ def initialize_db(connection_string: str):
                 interior TEXT,
                 date_listed TEXT,
                 date_available TEXT,
+                availability_period TEXT,
                 date_scraped TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
                 images JSONB,
                 features JSONB,
