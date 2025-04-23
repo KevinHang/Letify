@@ -289,6 +289,11 @@ class RealEstateScraper:
                                     sources_to_skip.add(source)
                                     continue
 
+                                if not first_scan_by_source[source] and new_count == 0 and total_count != 0:
+                                    logger.info(f"Scan {query_url['id']} of {source} query URL (ID={query_url['id']}) resulted in no new listings. Skipping new pages of this source.")
+                                    sources_to_skip.add(source)
+                                    continue
+
                                 if self.stop_after_no_result:
                                     if source.lower() == "pararius" and original_url != final_url:
                                         logger.info(f"Pagination ended for {source}: URL {original_url} redirected to {final_url}")
