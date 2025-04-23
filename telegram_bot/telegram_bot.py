@@ -13,9 +13,10 @@ from telegram.ext import (
     ConversationHandler, filters, ContextTypes
 )
 
-from config import TELEGRAM_BOT_TOKEN, TELEGRAM_ADMIN_USER_IDS, DB_CONNECTION_STRING
+from config import DB_CONNECTION_STRING, ALL_CITIES
 from database.property_db import PropertyDatabase
 from database.telegram_db import TelegramDatabase
+from utils.utils import suggest_city
 from utils.formatting import format_currency
 from utils.logging_config import get_telegram_logger
 
@@ -67,6 +68,7 @@ class TelegramRealEstateBot:
         self.application.add_handler(CommandHandler("stats", self.stats_command))
         
         # Simplified preference setting commands
+        # TODO add /addcity, /removecity
         self.application.add_handler(CommandHandler("cities", self.set_cities_command))
         self.application.add_handler(CommandHandler("minprice", self.set_min_price_command))
         self.application.add_handler(CommandHandler("maxprice", self.set_max_price_command))
@@ -506,7 +508,7 @@ class TelegramRealEstateBot:
         # Get the command arguments
         if not context.args:
             await update.message.reply_text(
-                "📍 Please provide cities separated by commas.\n"
+                "📍 Please provide cities separated by commas (case-insensitive).\n"
                 "Example: /cities Amsterdam, Rotterdam"
             )
             return
@@ -514,6 +516,15 @@ class TelegramRealEstateBot:
         # Parse cities from arguments
         cities_input = ' '.join(context.args)
         cities = [city.strip().upper() for city in cities_input.split(',') if city.strip()]
+
+        for city in cities:
+            if city not in ALL_CITIES:
+                suggestion = suggest_city(city)
+                if len(suggestion) > 0:
+                    await update.message.reply_text(f"❌ City {city} does not exist! Did you mean {suggestion[0]}?")
+                else: 
+                    await update.message.reply_text(f"❌ City {city} does not exist!")
+                return
         
         if not cities:
             await update.message.reply_text("❌ Invalid input. Please enter valid cities (e.g., Amsterdam, Rotterdam).")
