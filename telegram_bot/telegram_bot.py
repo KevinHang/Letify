@@ -215,7 +215,7 @@ class TelegramRealEstateBot:
             if preferences.get('neighborhood'):
                 status_text += f"🏙️ Neighborhood: {preferences.get('neighborhood')}\n"
             if preferences.get('property_type'):
-                status_text += f"🏢 Property type: {preferences.get('property_type')}\n"
+                status_text += f"🏢 Property type: {', '.join(preferences.get('property_type'))}\n"
             if preferences.get('min_price') is not None:
                 status_text += f"💰 Min price: {format_currency(preferences.get('min_price'))}\n"
             if preferences.get('max_price') is not None:
@@ -454,7 +454,6 @@ class TelegramRealEstateBot:
         
         # Get current preferences to show their values
         preferences = telegram_db.get_user_preferences(user_id)
-        
         # Format current values for display
         cities = ', '.join(preferences.get('cities', [])) if preferences and preferences.get('cities') else "Not set"
         min_price = format_currency(preferences.get('min_price')) if preferences and preferences.get('min_price') is not None else "Not set"
@@ -475,7 +474,8 @@ class TelegramRealEstateBot:
         if preferences and preferences.get('max_area') == 0:
             max_area = "No limit"
             
-        property_type = preferences.get('property_type') if preferences and preferences.get('property_type') else "Not set"
+        # Handle property_type as a list for display
+        property_type = ', '.join(preferences.get('property_type', [])) if preferences and preferences.get('property_type') else "Not set"
         
         # Create the preferences menu text with simplified commands
         preferences_text = (
@@ -496,7 +496,7 @@ class TelegramRealEstateBot:
             "/maxrooms 4 - Set the maximum number of rooms (use 0 for no limit)\n"
             "/minarea 50 - Set the minimum area in m²\n"
             "/maxarea 100 - Set the maximum area in m² (use 0 for no limit)\n"
-            "/type apartment - Set the property type (options: apartment, house, room, studio, any)\n"
+            "/type apartment, house - Set property type(s) (options: apartment, house, room, studio, any)\n"
         )
         
         await update.message.reply_text(preferences_text)
@@ -788,22 +788,26 @@ class TelegramRealEstateBot:
         
         # Get the command arguments
         if not context.args:
-            property_types_text = ", ".join(PROPERTY_TYPES)
             await update.message.reply_text(
-                f"🏢 Please provide a property type. Available options: {property_types_text}\n"
-                "Example: /type apartment"
+                "🏢 Please provide property types separated by commas (case-insensitive).\n"
+                "Example: /type apartment, house\n"
+                "Use 'any' to match all property types"
             )
             return
+            
+        # Parse property types from arguments - exactly like cities
+        types_input = ' '.join(context.args)
+        property_types = [prop_type.strip().upper() for prop_type in types_input.split(',') if prop_type.strip()]
         
-        # Parse property type from arguments
-        property_type = context.args[0].strip().lower()
+        # Similar validation as cities
+        for prop_type in property_types:
+            if prop_type not in [pt.upper() for pt in PROPERTY_TYPES]:
+                property_types_text = ", ".join(PROPERTY_TYPES)
+                await update.message.reply_text(f"❌ Property type {prop_type} is not valid! Allowed types: {property_types_text}")
+                return
         
-        # Check if valid property type
-        if property_type not in PROPERTY_TYPES:
-            property_types_text = ", ".join(PROPERTY_TYPES)
-            await update.message.reply_text(
-                f"❌ Invalid property type. Available options: {property_types_text}"
-            )
+        if not property_types:
+            await update.message.reply_text("❌ Invalid input. Please enter valid property types.")
             return
         
         # Get existing preferences
@@ -811,15 +815,14 @@ class TelegramRealEstateBot:
         if not preferences:
             preferences = {}
         
-        # Update property type in preferences
-        preferences['property_type'] = None if property_type == "any" else property_type
+        # Update property types in preferences
+        preferences['property_type'] = property_types
         
         # Save back to database
         success = telegram_db.set_user_preferences(user_id, preferences)
         
         if success:
-            display_value = "Any" if property_type == "any" else property_type.capitalize()
-            await update.message.reply_text(f"✅ Property type set to: {display_value}")
+            await update.message.reply_text(f"✅ Property types set to: {', '.join(property_types)}")
         else:
             await update.message.reply_text("❌ Error saving preferences. Please try again.")
 

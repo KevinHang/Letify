@@ -156,17 +156,16 @@ def initialize_telegram_db(connection_string: str):
             )
             """)
             
-            # Create user_preferences table with cities as TEXT[]
             cur.execute("""
             CREATE TABLE IF NOT EXISTS user_preferences (
                 id SERIAL PRIMARY KEY,
                 user_id BIGINT NOT NULL REFERENCES telegram_users(user_id) ON DELETE CASCADE,
-                cities TEXT[],  -- Changed from city TEXT to cities TEXT[]
+                cities TEXT[],
                 min_price INTEGER,
                 max_price INTEGER,
                 min_rooms INTEGER,
                 max_rooms INTEGER,
-                property_type TEXT,
+                property_type TEXT[],
                 min_area INTEGER,
                 max_area INTEGER,
                 neighborhood TEXT,
@@ -175,6 +174,10 @@ def initialize_telegram_db(connection_string: str):
                 UNIQUE (user_id)
             )
             """)
+            
+            # Run this to change type to text[]
+            # ALTER TABLE user_preferences
+            # ALTER COLUMN property_type TYPE text[] USING array[property_type];
             
             # Create notification_history table
             cur.execute("""

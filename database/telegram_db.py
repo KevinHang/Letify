@@ -141,14 +141,14 @@ class TelegramDatabase:
     
     def set_user_preferences(self, user_id: int, preferences: Dict[str, Any]) -> bool:
         """
-        Set a user's property preferences, ensuring cities are stored as uppercase.
+        Set a user's property preferences
         """
         cities = [city.strip().upper() for city in preferences.get('cities', []) if city.strip()] if preferences.get('cities') else None
         min_price = preferences.get('min_price')
         max_price = preferences.get('max_price')
         min_rooms = preferences.get('min_rooms')
         max_rooms = preferences.get('max_rooms')
-        property_type = preferences.get('property_type')
+        property_type = [prop_type.strip().upper() for prop_type in preferences.get('property_type', []) if prop_type.strip()] if preferences.get('property_type') else None
         min_area = preferences.get('min_area')
         max_area = preferences.get('max_area')
         neighborhood = preferences.get('neighborhood')
@@ -325,6 +325,7 @@ class TelegramDatabase:
                     return 0
                 
                 # Match with user preferences, checking if property city is in user's cities array
+                # Cities cannot be none in order to receive listings
                 cur.execute("""
                 INSERT INTO notification_queue (user_id, property_id, created_at, status)
                 SELECT tu.user_id, %s, NOW(), 'pending'
@@ -337,7 +338,7 @@ class TelegramDatabase:
                 AND (up.max_price IS NULL OR %s <= up.max_price OR up.max_price = 0)
                 AND (up.min_rooms IS NULL OR %s >= up.min_rooms)
                 AND (up.max_rooms IS NULL OR %s <= up.max_rooms OR up.max_rooms = 0)
-                AND (up.property_type IS NULL OR %s = up.property_type)
+                AND (up.property_type IS NULL OR %s = ANY(up.property_type) OR 'ANY' = ANY(up.property_type))
                 AND (up.min_area IS NULL OR %s >= up.min_area)
                 AND (up.max_area IS NULL OR %s <= up.max_area OR up.max_area = 0)
                 AND (up.neighborhood IS NULL OR %s ILIKE CONCAT('%%', up.neighborhood, '%%'))
@@ -349,7 +350,7 @@ class TelegramDatabase:
                     property_row[11],         # price_numeric
                     property_row[20],         # rooms (corrected to match schema)
                     property_row[20],         # rooms (corrected to match schema)
-                    property_row[15],         # property_type (e.g., "room", "apartment")
+                    property_row[15].upper(), # property_type (e.g., "ROOM", "APARTMENT")
                     property_row[17],         # living_area (corrected to match schema)
                     property_row[17],         # living_area (corrected to match schema)
                     property_row[9]           # neighborhood

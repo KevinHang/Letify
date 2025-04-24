@@ -17,10 +17,10 @@ class OfferingType(str, Enum):
 
 class PropertyType(str, Enum):
     """Type of property"""
-    APARTMENT = "apartment"
-    HOUSE = "house"
-    ROOM = "room"
-    STUDIO = "studio"
+    APARTMENT = "APARTMENT"
+    HOUSE = "HOUSE"
+    ROOM = "ROOM"
+    STUDIO = "STUDIO"
 
 
 class InteriorType(str, Enum):

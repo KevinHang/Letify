@@ -102,10 +102,10 @@ class OfferingType(str, Enum):
     SALE = "sale"
 
 class PropertyType(str, Enum):
-    APARTMENT = "apartment"
-    HOUSE = "house"
-    ROOM = "room"
-    STUDIO = "studio"
+    APARTMENT = "APARTMENT"
+    HOUSE = "HOUSE"
+    ROOM = "ROOM"
+    STUDIO = "STUDIO"
 
 class InteriorType(str, Enum):
     SHELL = "shell"
