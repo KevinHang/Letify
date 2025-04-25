@@ -115,7 +115,7 @@ def format_listing_message(property_data: Dict[str, Any]) -> str:
     if neighborhood and isinstance(neighborhood, str) and neighborhood not in address:
         location_parts.append(neighborhood)
     if city and isinstance(city, str) and city not in address and (not neighborhood or city not in neighborhood):
-        location_parts.append(city)
+        location_parts.append(city.title())
     location = ", ".join(location_parts) or "Unknown Location"
     
     # Price info
@@ -125,8 +125,8 @@ def format_listing_message(property_data: Dict[str, Any]) -> str:
         price = format_currency(price_numeric)
     
     # Property details
-    property_type = property_data.get('property_type', 'Not specified') or 'Not specified'
-    offering_type = property_data.get('offering_type', 'Not specified') or 'Not specified'
+    property_type = property_data.get('property_type', 'Not specified').capitalize() or 'Not specified'
+    offering_type = property_data.get('offering_type', 'Not specified').capitalize() or 'Not specified'
     
     # Size and rooms
     living_area = property_data.get('living_area', 0) or 0
@@ -167,11 +167,10 @@ def format_listing_message(property_data: Dict[str, Any]) -> str:
     
     # Create message with HTML formatting
     message = (
-        f"<b>🏠 {title}</b>\n\n"
-        f"📍 <b>Location:</b> {location}\n"
-        f"💰 <b>Price:</b> {price}\n\n"
+        f"🏠 <b>{location}</b>\n"
+        f"💰 <b>€{int(price_numeric)}/m</b>\n\n"
         f"<b>Details:</b>\n"
-        f"• Type: {property_type} ({offering_type})\n"
+        f"• Type: {property_type}\n"
         f"• Size: {living_area_str}\n"
         f"• Rooms: {rooms_str} (Bedrooms: {bedrooms_str})\n"
         f"• Energy label: {energy_label}\n"

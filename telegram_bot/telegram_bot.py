@@ -140,14 +140,14 @@ class TelegramRealEstateBot:
         
         elif state == MENU_STATES['preferences']:
             preferences = telegram_db.get_user_preferences(user_id) or {}
-            cities = ', '.join(preferences.get('cities', [])) if preferences.get('cities') else "Not set"
+            cities = ', '.join([city.title() for city in (preferences.get('cities', []))]) if preferences.get('cities') else "Not set"
             min_price = format_currency(preferences.get('min_price')) if preferences.get('min_price') is not None else "Not set"
             max_price = "No limit" if preferences.get('max_price') == 0 else format_currency(preferences.get('max_price')) if preferences.get('max_price') is not None else "Not set"
             min_rooms = str(preferences.get('min_rooms')) if preferences.get('min_rooms') is not None else "Not set"
             max_rooms = "No limit" if preferences.get('max_rooms') == 0 else str(preferences.get('max_rooms')) if preferences.get('max_rooms') is not None else "Not set"
             min_area = f"{preferences.get('min_area')} m²" if preferences.get('min_area') is not None else "Not set"
             max_area = "No limit" if preferences.get('max_area') == 0 else f"{preferences.get('max_area')} m²" if preferences.get('max_area') is not None else "Not set"
-            property_type = ', '.join(preferences.get('property_type', [])) if preferences.get('property_type') else "Not set"
+            property_type = ', '.join([pref.capitalize() for pref in (preferences.get('property_type', []))]) if preferences.get('property_type') else "Not set"
             
             menu_text = (
                 "⚙️ Preferences Menu\n\n"
@@ -171,13 +171,12 @@ class TelegramRealEstateBot:
         elif state == MENU_STATES['cities']:
             preferences = telegram_db.get_user_preferences(user_id) or {}
             cities = preferences.get('cities', []) or []
-            cities_text = ', '.join([city.capitalize() for city in cities]) if cities else "No cities selected"
+            cities_text = ', '.join([city.title() for city in cities]) if cities else "No cities selected"
             
             menu_text = (
                 "📍 Cities Menu\n\n"
                 f"Current cities: {cities_text}\n\n"
                 "Enter a city name to add, or use buttons to remove existing cities.\n"
-                "Available cities: Amsterdam, Rotterdam, etc."
             )
             keyboard = []
             for city in cities:
@@ -185,7 +184,7 @@ class TelegramRealEstateBot:
                 if len(callback_data.encode('utf-8')) > 64:
                     logger.warning(f"Callback data too long for city {city}: {callback_data}")
                     continue
-                keyboard.append([InlineKeyboardButton(f"Remove {city.capitalize()}", callback_data=callback_data)])
+                keyboard.append([InlineKeyboardButton(f"Remove {city.title()}", callback_data=callback_data)])
             keyboard.append([InlineKeyboardButton("↩ Return", callback_data=f"menu:{MENU_STATES['preferences']}:{menu_id}")])
             return menu_text, keyboard
         
@@ -284,7 +283,7 @@ class TelegramRealEstateBot:
                 if preferences:
                     menu_text += "🏠 Property preferences:\n"
                     if preferences.get('cities'):
-                        menu_text += f"📍 Cities: {', '.join([city.capitalize() for city in (preferences.get('cities', []))])}\n"
+                        menu_text += f"📍 Cities: {', '.join([city.title() for city in (preferences.get('cities', []))])}\n"
                     if preferences.get('neighborhood'):
                         menu_text += f"🏙️ Neighborhood: {preferences.get('neighborhood')}\n"
                     if preferences.get('property_type'):
@@ -477,8 +476,8 @@ class TelegramRealEstateBot:
             if city_input not in ALL_CITIES:
                 suggestion = suggest_city(city_input)
                 error_message = (
-                    f"❌ City {city_input} does not exist! Did you mean {suggestion[0]}?"
-                    if suggestion else f"❌ City {city_input} does not exist!"
+                    f'❌ City "{city_input.title()}" does not exist! Do you mean "{suggestion[0].title()}"?'
+                    if suggestion else f"❌ City '{city_input.title()}' does not exist!"
                 )
                 await update.message.reply_text(error_message)
                 try:
