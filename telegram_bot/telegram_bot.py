@@ -1,16 +1,12 @@
-"""
-Telegram Bot for Dutch Real Estate Scraper - Refactored Implementation with Direct Command Preferences
-"""
-
 import asyncio
 from typing import List
 from datetime import datetime
+import uuid
 
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, KeyboardButton
-from telegram.constants import ParseMode
 from telegram.ext import (
     Application, CommandHandler, MessageHandler, CallbackQueryHandler,
-    ConversationHandler, filters, ContextTypes
+    filters, ContextTypes
 )
 
 from config import DB_CONNECTION_STRING, ALL_CITIES
@@ -20,21 +16,31 @@ from utils.utils import suggest_city
 from utils.formatting import format_currency
 from utils.logging_config import get_telegram_logger
 
-# Use a child logger of the telegram logger
 logger = get_telegram_logger("bot")
 
 # Initialize databases
 property_db = PropertyDatabase(DB_CONNECTION_STRING)
 telegram_db = TelegramDatabase(DB_CONNECTION_STRING)
 
-# Only conversation state we need is for admin commands
-ADMIN_COMMAND = 0
+# Menu states (for callback data and input context)
+MENU_STATES = {
+    'main': 'main',
+    'preferences': 'prefs',
+    'cities': 'cities',
+    'price': 'price',
+    'rooms': 'rooms',
+    'area': 'area',
+    'type': 'type',
+    'status': 'status',
+    'help': 'help',
+    'subscriptions': 'subs'
+}
 
 # Property types
 PROPERTY_TYPES = ["apartment", "house", "room", "studio", "any"]
 
 class TelegramRealEstateBot:
-    """Telegram bot for Dutch Real Estate Scraper"""
+    """Telegram bot for Dutch Real Estate Scraper with stateless menu system"""
     
     def __init__(self, token: str, admin_ids: List[int] = None):
         """Initialize the bot with token and admin user IDs"""
@@ -43,76 +49,706 @@ class TelegramRealEstateBot:
         if not token:
             raise ValueError("Telegram Bot Token is empty or not set properly")
         
-        # Create the application
         self.application = Application.builder().token(token).build()
-        
-        # Set up command handlers
         self.setup_handlers()
-    
+        logger.info("Loaded TelegramRealEstateBot v5 with fixed Property Types toggle (2025-04-25)")
+
     def setup_handlers(self):
         """Set up command and message handlers"""
         logger.info("Setting up bot handlers")
         
         # Basic command handlers
         self.application.add_handler(CommandHandler("start", self.start_command))
-        self.application.add_handler(CommandHandler("help", self.help_command))
-        self.application.add_handler(CommandHandler("subscribe", self.subscribe_command))
-        self.application.add_handler(CommandHandler("unsubscribe", self.unsubscribe_command))
-        self.application.add_handler(CommandHandler("status", self.status_command))
+        self.application.add_handler(CommandHandler("menu", self.menu_command))
+        self.application.add_handler(CommandHandler("cancel", self.cancel_command))
         self.application.add_handler(CommandHandler("debug", self.debug_command))
-        self.application.add_handler(CommandHandler("preferences", self.preferences_command))
         
         # Admin command handlers
         self.application.add_handler(CommandHandler("admin", self.admin_command))
+        self.application.add_handler(CommandHandler("makeadmin", self.makeadmin_command))
+        self.application.add_handler(CommandHandler("removeadmin", self.removeadmin_command))
+        self.application.add_handler(CommandHandler("listusers", self.listusers_command))
+        self.application.add_handler(CommandHandler("listadmins", self.listadmins_command))
+        self.application.add_handler(CommandHandler("cleanqueue", self.cleanqueue_command))
         self.application.add_handler(CommandHandler("broadcast", self.broadcast_command))
         self.application.add_handler(CommandHandler("stats", self.stats_command))
         
-        # Simplified preference setting commands
-        # TODO add /addcity, /removecity
-        self.application.add_handler(CommandHandler("cities", self.set_cities_command))
-        self.application.add_handler(CommandHandler("minprice", self.set_min_price_command))
-        self.application.add_handler(CommandHandler("maxprice", self.set_max_price_command))
-        self.application.add_handler(CommandHandler("minrooms", self.set_min_rooms_command))
-        self.application.add_handler(CommandHandler("maxrooms", self.set_max_rooms_command))
-        self.application.add_handler(CommandHandler("minarea", self.set_min_area_command))
-        self.application.add_handler(CommandHandler("maxarea", self.set_max_area_command))
-        self.application.add_handler(CommandHandler("type", self.set_property_type_command))
-        
-        # Create a separate conversation handler for admin commands
-        admin_conv_handler = ConversationHandler(
-            entry_points=[CommandHandler("admin", self.admin_command)],
-            states={
-                ADMIN_COMMAND: [
-                    MessageHandler(filters.TEXT & ~filters.COMMAND, self.process_admin_command)
-                ],
-            },
-            fallbacks=[CommandHandler("cancel", self.cancel_admin)],
-            name="admin_conversation",
-            persistent=False,
-        )
-        self.application.add_handler(admin_conv_handler)
+        # Menu interaction handlers
+        self.application.add_handler(CallbackQueryHandler(self.handle_menu_callback, pattern="^menu:"))
+        self.application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, self.handle_message))
         
         # Handle property reactions
         self.application.add_handler(CallbackQueryHandler(self.property_reaction_handler))
-        
-        # Handle regular text messages
-        self.application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, self.handle_message))
         
         # Error handler
         self.application.add_error_handler(self.error_handler)
         
         logger.info("Handlers set up successfully")
 
+    # ===== Menu System =====
+    
+    async def menu_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+        """Open a new main navigation menu"""
+        user_id = update.effective_user.id
+        telegram_db.update_user_activity(user_id)
+        
+        # Create a shortened menu ID (first 8 chars of UUID)
+        full_menu_id = str(uuid.uuid4())
+        menu_id = full_menu_id[:8]
+        context.user_data['latest_menu_id'] = menu_id
+        context.user_data['current_state'] = MENU_STATES['main']
+        logger.debug(f"Opening new menu for user {user_id}: {menu_id}")
+        
+        await self.show_menu(update, context, MENU_STATES['main'], menu_id)
+
+    async def show_menu(self, update: Update, context: ContextTypes.DEFAULT_TYPE, state: str, menu_id: str) -> None:
+        """Display a menu based on the current state"""
+        user_id = update.effective_user.id
+        menu_text, keyboard = self.build_menu(state, menu_id, user_id)
+        
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        message = None
+        
+        if update.callback_query:
+            try:
+                message = await update.callback_query.edit_message_text(menu_text, reply_markup=reply_markup)
+            except Exception as e:
+                logger.error(f"Error editing menu message for user {user_id}: {e}")
+                message = await update.callback_query.message.reply_text(menu_text, reply_markup=reply_markup)
+        else:
+            message = await update.message.reply_text(menu_text, reply_markup=reply_markup)
+        
+        # Store the message ID for future edits
+        context.user_data['current_menu_message_id'] = message.message_id
+        context.user_data['current_menu_chat_id'] = message.chat_id
+        context.user_data['current_state'] = state
+        context.user_data['latest_menu_id'] = menu_id
+
+    def build_menu(self, state: str, menu_id: str, user_id: int) -> tuple[str, List[List[InlineKeyboardButton]]]:
+        """Build menu text and keyboard based on state"""
+        logger.debug(f"Building menu for user {user_id}, state: {state}")
+        if state == MENU_STATES['main']:
+            menu_text = "📋 Main Menu\n\nSelect an option:"
+            keyboard = [
+                [InlineKeyboardButton("⚙️ Preferences", callback_data=f"menu:{MENU_STATES['preferences']}:{menu_id}")],
+                [InlineKeyboardButton("🔔 Subscriptions", callback_data=f"menu:{MENU_STATES['subscriptions']}:{menu_id}")],
+                [InlineKeyboardButton("📊 Status", callback_data=f"menu:{MENU_STATES['status']}:{menu_id}")],
+                [InlineKeyboardButton("❓ Help", callback_data=f"menu:{MENU_STATES['help']}:{menu_id}")],
+                [InlineKeyboardButton("✅ Done", callback_data=f"menu:done:{menu_id}")]
+            ]
+            return menu_text, keyboard
+        
+        elif state == MENU_STATES['preferences']:
+            preferences = telegram_db.get_user_preferences(user_id) or {}
+            cities = ', '.join(preferences.get('cities', [])) if preferences.get('cities') else "Not set"
+            min_price = format_currency(preferences.get('min_price')) if preferences.get('min_price') is not None else "Not set"
+            max_price = "No limit" if preferences.get('max_price') == 0 else format_currency(preferences.get('max_price')) if preferences.get('max_price') is not None else "Not set"
+            min_rooms = str(preferences.get('min_rooms')) if preferences.get('min_rooms') is not None else "Not set"
+            max_rooms = "No limit" if preferences.get('max_rooms') == 0 else str(preferences.get('max_rooms')) if preferences.get('max_rooms') is not None else "Not set"
+            min_area = f"{preferences.get('min_area')} m²" if preferences.get('min_area') is not None else "Not set"
+            max_area = "No limit" if preferences.get('max_area') == 0 else f"{preferences.get('max_area')} m²" if preferences.get('max_area') is not None else "Not set"
+            property_type = ', '.join(preferences.get('property_type', [])) if preferences.get('property_type') else "Not set"
+            
+            menu_text = (
+                "⚙️ Preferences Menu\n\n"
+                f"📍 Cities: {cities}\n"
+                f"💰 Price Range: {min_price} - {max_price}\n"
+                f"🚪 Rooms: {min_rooms} - {max_rooms}\n"
+                f"📏 Area: {min_area} - {max_area}\n"
+                f"🏢 Property Types: {property_type}\n\n"
+                "Select an option to modify:"
+            )
+            keyboard = [
+                [InlineKeyboardButton("📍 Cities", callback_data=f"menu:{MENU_STATES['cities']}:{menu_id}")],
+                [InlineKeyboardButton("💰 Price Range", callback_data=f"menu:{MENU_STATES['price']}:{menu_id}")],
+                [InlineKeyboardButton("🚪 Rooms", callback_data=f"menu:{MENU_STATES['rooms']}:{menu_id}")],
+                [InlineKeyboardButton("📏 Area", callback_data=f"menu:{MENU_STATES['area']}:{menu_id}")],
+                [InlineKeyboardButton("🏢 Property Types", callback_data=f"menu:{MENU_STATES['type']}:{menu_id}")],
+                [InlineKeyboardButton("↩ Return", callback_data=f"menu:{MENU_STATES['main']}:{menu_id}")]
+            ]
+            return menu_text, keyboard
+        
+        elif state == MENU_STATES['cities']:
+            preferences = telegram_db.get_user_preferences(user_id) or {}
+            cities = preferences.get('cities', []) or []
+            cities_text = ', '.join([city.capitalize() for city in cities]) if cities else "No cities selected"
+            
+            menu_text = (
+                "📍 Cities Menu\n\n"
+                f"Current cities: {cities_text}\n\n"
+                "Enter a city name to add, or use buttons to remove existing cities.\n"
+                "Available cities: Amsterdam, Rotterdam, etc."
+            )
+            keyboard = []
+            for city in cities:
+                callback_data = f"menu:city_rm:{city}:{menu_id}"
+                if len(callback_data.encode('utf-8')) > 64:
+                    logger.warning(f"Callback data too long for city {city}: {callback_data}")
+                    continue
+                keyboard.append([InlineKeyboardButton(f"Remove {city.capitalize()}", callback_data=callback_data)])
+            keyboard.append([InlineKeyboardButton("↩ Return", callback_data=f"menu:{MENU_STATES['preferences']}:{menu_id}")])
+            return menu_text, keyboard
+        
+        elif state == MENU_STATES['price']:
+            preferences = telegram_db.get_user_preferences(user_id) or {}
+            min_price = format_currency(preferences.get('min_price')) if preferences.get('min_price') is not None else "Not set"
+            max_price = "No limit" if preferences.get('max_price') == 0 else format_currency(preferences.get('max_price')) if preferences.get('max_price') is not None else "Not set"
+            
+            menu_text = (
+                "💰 Price Range Menu\n\n"
+                f"Current minimum: {min_price}\n"
+                f"Current maximum: {max_price}\n\n"
+                "Enter a number to set minimum or maximum price (in EUR).\n"
+                "Format: 'min 1000' or 'max 2000' (use 0 for no maximum)"
+            )
+            keyboard = [[InlineKeyboardButton("↩ Return", callback_data=f"menu:{MENU_STATES['preferences']}:{menu_id}")]]
+            return menu_text, keyboard
+        
+        elif state == MENU_STATES['rooms']:
+            preferences = telegram_db.get_user_preferences(user_id) or {}
+            min_rooms = str(preferences.get('min_rooms')) if preferences.get('min_rooms') is not None else "Not set"
+            max_rooms = "No limit" if preferences.get('max_rooms') == 0 else str(preferences.get('max_rooms')) if preferences.get('max_rooms') is not None else "Not set"
+            
+            menu_text = (
+                "🚪 Rooms Menu\n\n"
+                f"Current minimum: {min_rooms}\n"
+                f"Current maximum: {max_rooms}\n\n"
+                "Enter a number to set minimum or maximum rooms.\n"
+                "Format: 'min 2' or 'max 4' (use 0 for no maximum)"
+            )
+            keyboard = [[InlineKeyboardButton("↩ Return", callback_data=f"menu:{MENU_STATES['preferences']}:{menu_id}")]]
+            return menu_text, keyboard
+        
+        elif state == MENU_STATES['area']:
+            preferences = telegram_db.get_user_preferences(user_id) or {}
+            min_area = f"{preferences.get('min_area')} m²" if preferences.get('min_area') is not None else "Not set"
+            max_area = "No limit" if preferences.get('max_area') == 0 else f"{preferences.get('max_area')} m²" if preferences.get('max_area') is not None else "Not set"
+            
+            menu_text = (
+                "📏 Area Menu\n\n"
+                f"Current minimum: {min_area}\n"
+                f"Current maximum: {max_area}\n\n"
+                "Enter a number to set minimum or maximum area (in m²).\n"
+                "Format: 'min 50' or 'max 100' (use 0 for no maximum)"
+            )
+            keyboard = [[InlineKeyboardButton("↩ Return", callback_data=f"menu:{MENU_STATES['preferences']}:{menu_id}")]]
+            return menu_text, keyboard
+        
+        elif state == MENU_STATES['type']:
+            preferences = telegram_db.get_user_preferences(user_id) or {}
+            types = list(set(preferences.get('property_type', []) or []))  # Ensure no duplicates
+            logger.debug(f"Building Property Types menu for user {user_id}, types: {types}")
+            
+            menu_text = (
+                "🏢 Property Types\n\n"
+                "Select or deselect property types."
+            )
+            keyboard = []
+            for type_ in PROPERTY_TYPES:
+                callback_data = f"menu:type_toggle:{type_}:{menu_id}"
+                if len(callback_data.encode('utf-8')) > 64:
+                    logger.warning(f"Callback data too long for type {type_}: {callback_data}")
+                    continue
+                button_text = f"✅ {type_.capitalize()}" if type_.upper() in types else type_.capitalize()
+                keyboard.append([InlineKeyboardButton(button_text, callback_data=callback_data)])
+                logger.debug(f"Built button for type {type_}: {button_text}")
+            keyboard.append([InlineKeyboardButton("↩ Return", callback_data=f"menu:{MENU_STATES['preferences']}:{menu_id}")])
+            return menu_text, keyboard
+        
+        elif state == MENU_STATES['subscriptions']:
+            user = telegram_db.get_user(user_id)
+            status = "Enabled" if user and user.get('notification_enabled') else "Disabled"
+            menu_text = (
+                "🔔 Subscriptions Menu\n\n"
+                f"Current status: {status}\n\n"
+                "Select an option:"
+            )
+            keyboard = [
+                [InlineKeyboardButton("✅ Subscribe", callback_data=f"menu:sub:{menu_id}")],
+                [InlineKeyboardButton("❌ Unsubscribe", callback_data=f"menu:unsub:{menu_id}")],
+                [InlineKeyboardButton("↩ Return", callback_data=f"menu:{MENU_STATES['main']}:{menu_id}")]
+            ]
+            return menu_text, keyboard
+        
+        elif state == MENU_STATES['status']:
+            user = telegram_db.get_user(user_id)
+            preferences = telegram_db.get_user_preferences(user_id)
+            if not user:
+                menu_text = "❌ User not found in database. Please use /start to register."
+            else:
+                menu_text = "📊 Your current settings:\n\n"
+                menu_text += f"👤 User: {user.get('first_name', '')}\n"
+                menu_text += f"🔔 Notifications: {'Enabled' if user.get('notification_enabled') else 'Disabled'}\n"
+                menu_text += f"👑 Admin: {'Yes' if user.get('is_admin') else 'No'}\n\n"
+                
+                if preferences:
+                    menu_text += "🏠 Property preferences:\n"
+                    if preferences.get('cities'):
+                        menu_text += f"📍 Cities: {', '.join([city.capitalize() for city in (preferences.get('cities', []))])}\n"
+                    if preferences.get('neighborhood'):
+                        menu_text += f"🏙️ Neighborhood: {preferences.get('neighborhood')}\n"
+                    if preferences.get('property_type'):
+                        menu_text += f"🏢 Property type: {', '.join([pref.capitalize() for pref in (preferences.get('property_type', []))])}\n"
+                    if preferences.get('min_price') is not None:
+                        menu_text += f"💰 Min price: {format_currency(preferences.get('min_price'))}\n"
+                    if preferences.get('max_price') is not None:
+                        menu_text += f"💰 Max price: {'No limit' if preferences.get('max_price') == 0 else format_currency(preferences.get('max_price'))}\n"
+                    if preferences.get('min_rooms') is not None:
+                        menu_text += f"🚪 Min rooms: {preferences.get('min_rooms')}\n"
+                    if preferences.get('max_rooms') is not None:
+                        menu_text += f"🚪 Max rooms: {'No limit' if preferences.get('max_rooms') == 0 else preferences.get('max_rooms')}\n"
+                    if preferences.get('min_area') is not None:
+                        menu_text += f"📏 Min area: {preferences.get('min_area')} m²\n"
+                    if preferences.get('max_area') is not None:
+                        max_area = preferences.get('max_area')
+                        menu_text += f"📏 Max area: {'No limit' if max_area == 0 else f'{max_area} m²'}\n"
+                    menu_text += f"\nLast updated: {preferences.get('updated_at').strftime('%Y-%m-%d %H:%M:%S')}"
+                else:
+                    menu_text += "🏠 No property preferences set. Use the Preferences menu to set them."
+            
+            keyboard = [[InlineKeyboardButton("↩ Return", callback_data=f"menu:{MENU_STATES['main']}:{menu_id}")]]
+            return menu_text, keyboard
+        
+        elif state == MENU_STATES['help']:
+            user = telegram_db.get_user(user_id)
+            menu_text = (
+                "📋 Available commands:\n\n"
+                "/start - Start the bot and see welcome message\n"
+                "/menu - Open the main navigation menu\n"
+                "/cancel - Close the current menu\n"
+                "/debug - Show debug information\n\n"
+            )
+            if user and user.get('is_admin'):
+                menu_text += (
+                    "👑 Admin commands:\n\n"
+                    "/admin - Show admin command help\n"
+                    "/makeadmin <user_id> - Make a user an admin\n"
+                    "/removeadmin <user_id> - Remove admin status\n"
+                    "/listusers - List all active users\n"
+                    "/listadmins - List all admin users\n"
+                    "/cleanqueue - Clean old notifications\n"
+                    "/broadcast <message> - Send a message to all users\n"
+                    "/stats - Show bot statistics\n"
+                )
+            keyboard = [[InlineKeyboardButton("↩ Return", callback_data=f"menu:{MENU_STATES['main']}:{menu_id}")]]
+            return menu_text, keyboard
+        
+        return "Unknown menu state.", [[]]
+
+    async def handle_menu_callback(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+        """Handle menu callback queries"""
+        query = update.callback_query
+        await query.answer()
+        
+        user_id = query.from_user.id
+        parts = query.data.split(':')
+        if len(parts) < 3:
+            await query.edit_message_text("❌ Invalid callback data.")
+            return
+        
+        action = parts[1]
+        
+        # Handle actions with extra parameters (city_rm, type_toggle)
+        if action in ['city_rm', 'type_toggle']:
+            if len(parts) != 4:
+                await query.edit_message_text("❌ Invalid callback data for action.")
+                return
+            item, menu_id = parts[2], parts[3]
+        else:
+            menu_id = parts[2]
+        
+        # Validate menu ID
+        latest_menu_id = context.user_data.get('latest_menu_id')
+        if menu_id != latest_menu_id:
+            logger.debug(f"Callback for menu {menu_id} is outdated for user {user_id}")
+            await query.edit_message_text("❌ This menu is outdated. Use /menu to open a new one.")
+            return
+        
+        if action == 'done':
+            await query.edit_message_text("✅ Menu closed. Use /menu to open a new one.")
+            context.user_data.pop('latest_menu_id', None)
+            context.user_data.pop('current_state', None)
+            context.user_data.pop('current_menu_message_id', None)
+            context.user_data.pop('current_menu_chat_id', None)
+            logger.debug(f"Closed menu for user {user_id}: {menu_id}")
+            return
+        
+        if action in MENU_STATES.values():
+            await self.show_menu(update, context, action, menu_id)
+            return
+        
+        # Handle specific actions
+        preferences = telegram_db.get_user_preferences(user_id) or {}
+        
+        if action == 'city_rm':
+            preferences['cities'] = [c for c in preferences.get('cities', []) if c != item]
+            telegram_db.set_user_preferences(user_id, preferences)
+            await self.show_menu(update, context, MENU_STATES['cities'], menu_id)
+        
+        elif action == 'type_toggle':
+            types = list(set(t.lower() for t in preferences.get('property_type', []) or []))  # Normalize to lowercase
+            old_types = types.copy()  # Store for comparison
+            item = item.lower()  # Normalize item
+            logger.debug(f"Type toggle for user {user_id}: item={item}, current_types={types}")
+            
+            # Toggle logic
+            if item in types:
+                types.remove(item)
+                logger.debug(f"Deselected {item}, new_types={types}")
+            else:
+                if item == 'any':
+                    types = ['any']
+                    logger.debug(f"Selected 'any', cleared others, new_types={types}")
+                else:
+                    types = [t for t in types if t != 'any']
+                    types.append(item)
+                    logger.debug(f"Selected {item}, removed 'any', new_types={types}")
+            
+            # Skip if no change
+            if sorted(types) == sorted(old_types):
+                logger.debug(f"No change in types for user {user_id}: {types}, skipping update")
+                return
+            
+            # Update preferences and menu
+            preferences['property_type'] = list(set(types))
+            telegram_db.set_user_preferences(user_id, preferences)
+            logger.debug(f"Updated preferences for user {user_id}: property_type={types}")
+            await self.show_menu(update, context, MENU_STATES['type'], menu_id)
+        
+        elif action == 'sub':
+            success = telegram_db.toggle_notifications(user_id, True)
+            menu_text = (
+                "🔔 Subscriptions Menu\n\n" +
+                ("Successfully subscribed to property notifications!" if success
+                 else "❌ Something went wrong. Please try again later.") +
+                "\n\nSelect an option:"
+            )
+            keyboard = [
+                [InlineKeyboardButton("✅ Subscribe", callback_data=f"menu:sub:{menu_id}")],
+                [InlineKeyboardButton("❌ Unsubscribe", callback_data=f"menu:unsub:{menu_id}")],
+                [InlineKeyboardButton("↩ Return", callback_data=f"menu:{MENU_STATES['main']}:{menu_id}")]
+            ]
+            await query.edit_message_text(menu_text, reply_markup=InlineKeyboardMarkup(keyboard))
+        
+        elif action == 'unsub':
+            success = telegram_db.toggle_notifications(user_id, False)
+            menu_text = (
+                "🔔 Subscriptions Menu\n\n" +
+                ("Successfully unsubscribed from property notifications." if success
+                 else "❌ Something went wrong. Please try again later.") +
+                "\n\nSelect an option:"
+            )
+            keyboard = [
+                [InlineKeyboardButton("✅ Subscribe", callback_data=f"menu:sub:{menu_id}")],
+                [InlineKeyboardButton("❌ Unsubscribe", callback_data=f"menu:unsub:{menu_id}")],
+                [InlineKeyboardButton("↩ Return", callback_data=f"menu:{MENU_STATES['main']}:{menu_id}")]
+            ]
+            await query.edit_message_text(menu_text, reply_markup=InlineKeyboardMarkup(keyboard))
+
+    async def handle_message(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+        """Handle text messages for menu inputs or general messages"""
+        user_id = update.effective_user.id
+        telegram_db.update_user_activity(user_id)
+        
+        message_text = update.message.text.lower().strip()
+        
+        if message_text == "📋 open menu":
+            return await self.menu_command(update, context)
+        
+        current_state = context.user_data.get('current_state')
+        menu_id = context.user_data.get('latest_menu_id')
+        message_id = context.user_data.get('current_menu_message_id')
+        chat_id = context.user_data.get('current_menu_chat_id')
+        
+        if not current_state or not menu_id or not message_id or not chat_id:
+            await update.message.reply_text("No active menu. Use /menu to open one.")
+            return
+        
+        preferences = telegram_db.get_user_preferences(user_id) or {}
+        
+        # Store input message details for deletion
+        input_chat_id = update.message.chat_id
+        input_message_id = update.message.message_id
+        
+        if current_state == MENU_STATES['cities']:
+            city_input = update.message.text.strip().upper()
+            cities = preferences.get('cities', []) or []
+            
+            if city_input not in ALL_CITIES:
+                suggestion = suggest_city(city_input)
+                error_message = (
+                    f"❌ City {city_input} does not exist! Did you mean {suggestion[0]}?"
+                    if suggestion else f"❌ City {city_input} does not exist!"
+                )
+                await update.message.reply_text(error_message)
+                try:
+                    await context.bot.delete_message(chat_id=input_chat_id, message_id=input_message_id)
+                except Exception as e:
+                    logger.warning(f"Failed to delete city input message for user {user_id}: {e}")
+                return
+            
+            if city_input in cities:
+                logger.debug(f"City {city_input} already in preferences for user {user_id}, skipping menu update")
+                try:
+                    await context.bot.delete_message(chat_id=input_chat_id, message_id=input_message_id)
+                except Exception as e:
+                    logger.warning(f"Failed to delete city input message for user {user_id}: {e}")
+                return
+            
+            cities.append(city_input)
+            preferences['cities'] = cities
+            telegram_db.set_user_preferences(user_id, preferences)
+            
+            # Update the existing menu
+            menu_text, keyboard = self.build_menu(MENU_STATES['cities'], menu_id, user_id)
+            try:
+                await context.bot.edit_message_text(
+                    chat_id=chat_id,
+                    message_id=message_id,
+                    text=menu_text,
+                    reply_markup=InlineKeyboardMarkup(keyboard)
+                )
+            except Exception as e:
+                logger.error(f"Error editing cities menu for user {user_id}: {e}")
+                # Send a new message and update stored IDs
+                new_message = await context.bot.send_message(
+                    chat_id=chat_id,
+                    text=menu_text,
+                    reply_markup=InlineKeyboardMarkup(keyboard)
+                )
+                context.user_data['current_menu_message_id'] = new_message.message_id
+                context.user_data['current_menu_chat_id'] = new_message.chat_id
+            
+            # Delete the user's input message
+            try:
+                await context.bot.delete_message(chat_id=input_chat_id, message_id=input_message_id)
+            except Exception as e:
+                logger.warning(f"Failed to delete city input message for user {user_id}: {e}")
+        
+        elif current_state == MENU_STATES['price']:
+            try:
+                parts = message_text.split()
+                if len(parts) != 2 or parts[0] not in ['min', 'max']:
+                    raise ValueError("Invalid format")
+                
+                value = int(parts[1].replace('.', '').replace(',', ''))
+                if value < 0:
+                    raise ValueError("Price cannot be negative")
+                
+                # Check if the value is already set
+                if parts[0] == 'min' and preferences.get('min_price') == value:
+                    logger.debug(f"Min price {value} already set for user {user_id}, skipping menu update")
+                    try:
+                        await context.bot.delete_message(chat_id=input_chat_id, message_id=input_message_id)
+                    except Exception as e:
+                        logger.warning(f"Failed to delete price input message for user {user_id}: {e}")
+                    return
+                if parts[0] == 'max' and preferences.get('max_price') == value:
+                    logger.debug(f"Max price {value} already set for user {user_id}, skipping menu update")
+                    try:
+                        await context.bot.delete_message(chat_id=input_chat_id, message_id=input_message_id)
+                    except Exception as e:
+                        logger.warning(f"Failed to delete price input message for user {user_id}: {e}")
+                    return
+                
+                if parts[0] == 'min':
+                    preferences['min_price'] = value
+                else:
+                    preferences['max_price'] = value
+                
+                telegram_db.set_user_preferences(user_id, preferences)
+                menu_text, keyboard = self.build_menu(MENU_STATES['price'], menu_id, user_id)
+                try:
+                    await context.bot.edit_message_text(
+                        chat_id=chat_id,
+                        message_id=message_id,
+                        text=menu_text,
+                        reply_markup=InlineKeyboardMarkup(keyboard)
+                    )
+                except Exception as e:
+                    logger.error(f"Error editing price menu for user {user_id}: {e}")
+                    new_message = await context.bot.send_message(
+                        chat_id=chat_id,
+                        text=menu_text,
+                        reply_markup=InlineKeyboardMarkup(keyboard)
+                    )
+                    context.user_data['current_menu_message_id'] = new_message.message_id
+                    context.user_data['current_menu_chat_id'] = new_message.chat_id
+                
+                # Delete the user's input message
+                try:
+                    await context.bot.delete_message(chat_id=input_chat_id, message_id=input_message_id)
+                except Exception as e:
+                    logger.warning(f"Failed to delete price input message for user {user_id}: {e}")
+            
+            except ValueError:
+                await update.message.reply_text("❌ Invalid input. Use format: 'min 1000' or 'max 2000'")
+                try:
+                    await context.bot.delete_message(chat_id=input_chat_id, message_id=input_message_id)
+                except Exception as e:
+                    logger.warning(f"Failed to delete price input message for user {user_id}: {e}")
+        
+        elif current_state == MENU_STATES['rooms']:
+            try:
+                parts = message_text.split()
+                if len(parts) != 2 or parts[0] not in ['min', 'max']:
+                    raise ValueError("Invalid format")
+                
+                value = int(parts[1])
+                if value < 0:
+                    raise ValueError("Rooms cannot be negative")
+                
+                # Check if the value is already set
+                if parts[0] == 'min' and preferences.get('min_rooms') == value:
+                    logger.debug(f"Min rooms {value} already set for user {user_id}, skipping menu update")
+                    try:
+                        await context.bot.delete_message(chat_id=input_chat_id, message_id=input_message_id)
+                    except Exception as e:
+                        logger.warning(f"Failed to delete rooms input message for user {user_id}: {e}")
+                    return
+                if parts[0] == 'max' and preferences.get('max_rooms') == value:
+                    logger.debug(f"Max rooms {value} already set for user {user_id}, skipping menu update")
+                    try:
+                        await context.bot.delete_message(chat_id=input_chat_id, message_id=input_message_id)
+                    except Exception as e:
+                        logger.warning(f"Failed to delete rooms input message for user {user_id}: {e}")
+                    return
+                
+                if parts[0] == 'min':
+                    preferences['min_rooms'] = value
+                else:
+                    preferences['max_rooms'] = value
+                
+                telegram_db.set_user_preferences(user_id, preferences)
+                menu_text, keyboard = self.build_menu(MENU_STATES['rooms'], menu_id, user_id)
+                try:
+                    await context.bot.edit_message_text(
+                        chat_id=chat_id,
+                        message_id=message_id,
+                        text=menu_text,
+                        reply_markup=InlineKeyboardMarkup(keyboard)
+                    )
+                except Exception as e:
+                    logger.error(f"Error editing rooms menu for user {user_id}: {e}")
+                    new_message = await context.bot.send_message(
+                        chat_id=chat_id,
+                        text=menu_text,
+                        reply_markup=InlineKeyboardMarkup(keyboard)
+                    )
+                    context.user_data['current_menu_message_id'] = new_message.message_id
+                    context.user_data['current_menu_chat_id'] = new_message.chat_id
+                
+                # Delete the user's input message
+                try:
+                    await context.bot.delete_message(chat_id=input_chat_id, message_id=input_message_id)
+                except Exception as e:
+                    logger.warning(f"Failed to delete rooms input message for user {user_id}: {e}")
+            
+            except ValueError:
+                await update.message.reply_text("❌ Invalid input. Use format: 'min 2' or 'max 4'")
+                try:
+                    await context.bot.delete_message(chat_id=input_chat_id, message_id=input_message_id)
+                except Exception as e:
+                    logger.warning(f"Failed to delete rooms input message for user {user_id}: {e}")
+        
+        elif current_state == MENU_STATES['area']:
+            try:
+                parts = message_text.split()
+                if len(parts) != 2 or parts[0] not in ['min', 'max']:
+                    raise ValueError("Invalid format")
+                
+                value = int(parts[1])
+                if value < 0:
+                    raise ValueError("Area cannot be negative")
+                
+                # Check if the value is already set
+                if parts[0] == 'min' and preferences.get('min_area') == value:
+                    logger.debug(f"Min area {value} already set for user {user_id}, skipping menu update")
+                    try:
+                        await context.bot.delete_message(chat_id=input_chat_id, message_id=input_message_id)
+                    except Exception as e:
+                        logger.warning(f"Failed to delete area input message for user {user_id}: {e}")
+                    return
+                if parts[0] == 'max' and preferences.get('max_area') == value:
+                    logger.debug(f"Max area {value} already set for user {user_id}, skipping menu update")
+                    try:
+                        await context.bot.delete_message(chat_id=input_chat_id, message_id=input_message_id)
+                    except Exception as e:
+                        logger.warning(f"Failed to delete area input message for user {user_id}: {e}")
+                    return
+                
+                if parts[0] == 'min':
+                    preferences['min_area'] = value
+                else:
+                    preferences['max_area'] = value
+                
+                telegram_db.set_user_preferences(user_id, preferences)
+                menu_text, keyboard = self.build_menu(MENU_STATES['area'], menu_id, user_id)
+                try:
+                    await context.bot.edit_message_text(
+                        chat_id=chat_id,
+                        message_id=message_id,
+                        text=menu_text,
+                        reply_markup=InlineKeyboardMarkup(keyboard)
+                    )
+                except Exception as e:
+                    logger.error(f"Error editing area menu for user {user_id}: {e}")
+                    new_message = await context.bot.send_message(
+                        chat_id=chat_id,
+                        text=menu_text,
+                        reply_markup=InlineKeyboardMarkup(keyboard)
+                    )
+                    context.user_data['current_menu_message_id'] = new_message.message_id
+                    context.user_data['current_menu_chat_id'] = new_message.chat_id
+                
+                # Delete the user's input message
+                try:
+                    await context.bot.delete_message(chat_id=input_chat_id, message_id=input_message_id)
+                except Exception as e:
+                    logger.warning(f"Failed to delete area input message for user {user_id}: {e}")
+            
+            except ValueError:
+                await update.message.reply_text("❌ Invalid input. Use format: 'min 50' or 'max 100'")
+                try:
+                    await context.bot.delete_message(chat_id=input_chat_id, message_id=input_message_id)
+                except Exception as e:
+                    logger.warning(f"Failed to delete area input message for user {user_id}: {e}")
+        
+        elif current_state == MENU_STATES['type']:
+            # Ignore text input for property types; use buttons instead
+            await update.message.reply_text(
+                "Please use the buttons to select property types."
+            )
+            try:
+                await context.bot.delete_message(chat_id=input_chat_id, message_id=input_message_id)
+            except Exception as e:
+                logger.warning(f"Failed to delete type input message for user {user_id}: {e}")
+        
+        else:
+            await update.message.reply_text("Please use the menu buttons or /menu to open a new one.")
+
+    async def cancel_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+        """Cancel the current menu"""
+        user_id = update.effective_user.id
+        telegram_db.update_user_activity(user_id)
+        
+        if 'latest_menu_id' in context.user_data:
+            logger.info(f"Closing menu for user {user_id}: {context.user_data['latest_menu_id']}")
+            context.user_data.pop('latest_menu_id', None)
+            context.user_data.pop('current_state', None)
+            context.user_data.pop('current_menu_message_id', None)
+            context.user_data.pop('current_menu_chat_id', None)
+        
+        await update.message.reply_text("✅ Menu closed. Use /menu to open a new one.")
+
     # ===== Base Commands =====
     
     async def start_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-        """Handle the /start command."""
+        """Handle the /start command"""
         user = update.effective_user
         user_id = user.id
         is_admin = user_id in self.admin_ids
-        logger.info(f"User {user_id} started the bot")
         
-        # Register user in the database
         telegram_db.register_user(
             user_id=user_id,
             username=user.username,
@@ -121,121 +757,22 @@ class TelegramRealEstateBot:
             is_admin=is_admin
         )
         
-        # Welcome message
         welcome_text = (
             f"👋 Hello {user.first_name}! Welcome to the Letify Bot.\n\n"
             f"I can notify you about new property listings that match your preferences.\n\n"
-            f"Use /preferences to set your search criteria\n"
-            f"Use /subscribe to start receiving notifications\n"
-            f"Use /unsubscribe to stop receiving notifications\n"
-            f"Use /status to check your current settings\n"
-            f"Use /help to see all available commands"
+            f"Use /menu to access all features and settings\n"
+            f"Use /debug to see bot debug information"
         )
         
-        # Quick reply keyboard
         keyboard = [
-            [KeyboardButton("⚙️ Set Preferences"), KeyboardButton("📊 My Status")],
-            [KeyboardButton("✅ Subscribe"), KeyboardButton("❌ Unsubscribe")],
-            [KeyboardButton("❓ Help")]
+            [KeyboardButton("📋 Open Menu")]
         ]
         reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True)
         
         await update.message.reply_text(welcome_text, reply_markup=reply_markup)
 
-    async def help_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-        """Handle the /help command."""
-        user_id = update.effective_user.id
-        telegram_db.update_user_activity(user_id)
-        
-        help_text = (
-            "📋 Available commands:\n\n"
-            "/start - Start the bot and see welcome message\n"
-            "/help - Show this help message\n"
-            "/preferences - View and set your property search preferences\n"
-            "/subscribe - Start receiving notifications\n"
-            "/unsubscribe - Stop receiving notifications\n"
-            "/status - Check your current settings\n\n"
-        )
-        
-        # Add admin commands if user is an admin
-        user = telegram_db.get_user(user_id)
-        if user and user.get('is_admin'):
-            help_text += (
-                "👑 Admin commands:\n\n"
-                "/admin - Access admin functions\n"
-                "/broadcast - Send a message to all users\n"
-                "/stats - Show bot statistics\n"
-            )
-            
-        await update.message.reply_text(help_text)
-
-    async def subscribe_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-        """Handle the /subscribe command."""
-        user_id = update.effective_user.id
-        telegram_db.update_user_activity(user_id)
-        
-        success = telegram_db.toggle_notifications(user_id, True)
-        if success:
-            await update.message.reply_text("✅ You've successfully subscribed to property notifications!")
-        else:
-            await update.message.reply_text("❌ Something went wrong. Please try again later.")
-
-    async def unsubscribe_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-        """Handle the /unsubscribe command."""
-        user_id = update.effective_user.id
-        telegram_db.update_user_activity(user_id)
-        
-        success = telegram_db.toggle_notifications(user_id, False)
-        if success:
-            await update.message.reply_text("✅ You've successfully unsubscribed from property notifications.")
-        else:
-            await update.message.reply_text("❌ Something went wrong. Please try again later.")
-
-    async def status_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-        """Handle the /status command."""
-        user_id = update.effective_user.id
-        telegram_db.update_user_activity(user_id)
-        
-        user = telegram_db.get_user(user_id)
-        preferences = telegram_db.get_user_preferences(user_id)
-        
-        if not user:
-            await update.message.reply_text("❌ User not found in database. Please use /start to register.")
-            return
-            
-        status_text = "📊 Your current settings:\n\n"
-        status_text += f"👤 User: {user.get('first_name', '')}\n"
-        status_text += f"🔔 Notifications: {'Enabled' if user.get('notification_enabled') else 'Disabled'}\n"
-        status_text += f"👑 Admin: {'Yes' if user.get('is_admin') else 'No'}\n\n"
-        
-        if preferences:
-            status_text += "🏠 Property preferences:\n"
-            if preferences.get('cities'):
-                status_text += f"📍 Cities: {', '.join(preferences.get('cities'))}\n"
-            if preferences.get('neighborhood'):
-                status_text += f"🏙️ Neighborhood: {preferences.get('neighborhood')}\n"
-            if preferences.get('property_type'):
-                status_text += f"🏢 Property type: {', '.join(preferences.get('property_type'))}\n"
-            if preferences.get('min_price') is not None:
-                status_text += f"💰 Min price: {format_currency(preferences.get('min_price'))}\n"
-            if preferences.get('max_price') is not None:
-                status_text += f"💰 Max price: {'No limit' if preferences.get('max_price') == 0 else format_currency(preferences.get('max_price'))}\n"
-            if preferences.get('min_rooms') is not None:
-                status_text += f"🚪 Min rooms: {preferences.get('min_rooms')}\n"
-            if preferences.get('max_rooms') is not None:
-                status_text += f"🚪 Max rooms: {'No limit' if preferences.get('max_rooms') == 0 else preferences.get('max_rooms')}\n"
-            if preferences.get('min_area') is not None:
-                status_text += f"📏 Min area: {preferences.get('min_area')} m²\n"
-            if preferences.get('max_area') is not None:
-                status_text += f"📏 Max area: {'No limit' if preferences.get('max_area') == 0 else preferences.get('max_area')} m²\n"
-            status_text += f"\nLast updated: {preferences.get('updated_at').strftime('%Y-%m-%d %H:%M:%S')}"
-        else:
-            status_text += "🏠 No property preferences set. Use /preferences to set them."
-            
-        await update.message.reply_text(status_text)
-
     async def debug_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-        """Debug command to inspect bot state."""
+        """Debug command to inspect bot state"""
         user_id = update.effective_user.id
         telegram_db.update_user_activity(user_id)
         
@@ -243,116 +780,148 @@ class TelegramRealEstateBot:
             f"🛠 Debug Info\n\n"
             f"User ID: {user_id}\n"
             f"Bot Active: {self.application.running}\n"
+            f"Latest Menu ID: {context.user_data.get('latest_menu_id', 'None')}\n"
+            f"Current State: {context.user_data.get('current_state', 'None')}\n"
+            f"Current Menu Message ID: {context.user_data.get('current_menu_message_id', 'None')}\n"
+            f"Current Menu Chat ID: {context.user_data.get('current_menu_chat_id', 'None')}\n"
         )
         
         await update.message.reply_text(debug_text)
 
     # ===== Admin Commands =====
     
-    async def admin_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
-        """Handle the /admin command."""
+    async def admin_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+        """Handle the /admin command"""
         user_id = update.effective_user.id
         telegram_db.update_user_activity(user_id)
         
         user = telegram_db.get_user(user_id)
         if not user or not user.get('is_admin'):
             await update.message.reply_text("❌ You do not have permission to use admin commands.")
-            return ConversationHandler.END
+            return
             
         admin_text = (
-            "👑 Admin Menu\n\n"
+            "👑 Admin Commands\n\n"
             "Available commands:\n"
-            "/broadcast - Send message to all users\n"
-            "/stats - Show bot statistics\n\n"
-            "Or use one of these functions:\n"
-            "- makeadmin [user_id] - Make a user an admin\n"
-            "- removeadmin [user_id] - Remove admin status\n"
-            "- listusers - List all active users\n"
-            "- listadmins - List all admin users\n"
-            "- cleanqueue - Clean old notifications\n\n"
-            "Type /cancel to exit admin mode."
+            "/makeadmin <user_id> - Make a user an admin\n"
+            "/removeadmin <user_id> - Remove admin status\n"
+            "/listusers - List all active users\n"
+            "/listadmins - List all admin users\n"
+            "/cleanqueue - Clean old notifications\n"
+            "/broadcast <message> - Send a message to all users\n"
+            "/stats - Show bot statistics\n"
+            "/cancel - Cancel current operation\n"
         )
         
         await update.message.reply_text(admin_text)
-        return ADMIN_COMMAND
 
-    async def cancel_admin(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
-        """Cancel the admin conversation."""
-        await update.message.reply_text("Admin mode exited.")
-        return ConversationHandler.END
-
-    async def process_admin_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
-        """Process admin commands."""
+    async def makeadmin_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+        """Handle the /makeadmin command"""
         user_id = update.effective_user.id
-        user = telegram_db.get_user(user_id)
+        telegram_db.update_user_activity(user_id)
         
+        user = telegram_db.get_user(user_id)
         if not user or not user.get('is_admin'):
             await update.message.reply_text("❌ You do not have permission to use admin commands.")
-            return ConversationHandler.END
-            
-        command_text = update.message.text.strip()
-        command_parts = command_text.split()
+            return
         
-        if not command_parts:
-            await update.message.reply_text("❌ Invalid command. Use /admin to see available commands.")
-            return ConversationHandler.END
-            
-        command = command_parts[0].lower()
+        if not context.args:
+            await update.message.reply_text("❌ Please provide a user ID. Usage: /makeadmin <user_id>")
+            return
         
-        if command == "makeadmin" and len(command_parts) > 1:
-            try:
-                target_user_id = int(command_parts[1])
-                success = telegram_db.set_admin_status(target_user_id, True)
-                await update.message.reply_text(f"✅ User {target_user_id} is now an admin." if success else f"❌ Failed to make user {target_user_id} an admin.")
-            except ValueError:
-                await update.message.reply_text("❌ Invalid user ID. Please provide a numeric ID.")
-                
-        elif command == "removeadmin" and len(command_parts) > 1:
-            try:
-                target_user_id = int(command_parts[1])
-                success = telegram_db.set_admin_status(target_user_id, False)
-                await update.message.reply_text(f"✅ Admin status removed from user {target_user_id}." if success else f"❌ Failed to remove admin status from user {target_user_id}.")
-            except ValueError:
-                await update.message.reply_text("❌ Invalid user ID. Please provide a numeric ID.")
-                
-        elif command == "listusers":
-            users = telegram_db.get_active_users()
-            if users:
-                user_text = "👥 Active users:\n\n"
-                for i, u in enumerate(users, 1):
-                    user_text += f"{i}. ID: {u['user_id']}, Name: {u['first_name']} {u['last_name'] or ''}"
-                    if u['username']:
-                        user_text += f" (@{u['username']})"
-                    user_text += f" - Notifications: {'Enabled' if u['notification_enabled'] else 'Disabled'}\n"
-                await update.message.reply_text(user_text)
-            else:
-                await update.message.reply_text("❌ No active users found.")
-                
-        elif command == "listadmins":
-            admins = telegram_db.get_admin_users()
-            if admins:
-                admin_text = "👑 Admin users:\n\n"
-                for i, a in enumerate(admins, 1):
-                    admin_text += f"{i}. ID: {a['user_id']}, Name: {a['first_name']} {a['last_name'] or ''}"
-                    if a['username']:
-                        admin_text += f" (@{a['username']})"
-                    admin_text += f" - Active: {'Yes' if a['is_active'] else 'No'}\n"
-                await update.message.reply_text(admin_text)
-            else:
-                await update.message.reply_text("❌ No admin users found.")
-                
-        elif command == "cleanqueue":
-            count = telegram_db.clean_old_notifications()
-            await update.message.reply_text(f"✅ Cleaned {count} old notifications from the queue.")
-            
+        try:
+            target_user_id = int(context.args[0])
+            success = telegram_db.set_admin_status(target_user_id, True)
+            await update.message.reply_text(
+                f"✅ User {target_user_id} is now an admin." if success
+                else f"❌ Failed to make user {target_user_id} an admin."
+            )
+        except ValueError:
+            await update.message.reply_text("❌ Invalid user ID. Please provide a numeric ID.")
+
+    async def removeadmin_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+        """Handle the /removeadmin command"""
+        user_id = update.effective_user.id
+        telegram_db.update_user_activity(user_id)
+        
+        user = telegram_db.get_user(user_id)
+        if not user or not user.get('is_admin'):
+            await update.message.reply_text("❌ You do not have permission to use admin commands.")
+            return
+        
+        if not context.args:
+            await update.message.reply_text("❌ Please provide a user ID. Usage: /removeadmin <user_id>")
+            return
+        
+        try:
+            target_user_id = int(context.args[0])
+            success = telegram_db.set_admin_status(target_user_id, False)
+            await update.message.reply_text(
+                f"✅ Admin status removed from user {target_user_id}." if success
+                else f"❌ Failed to remove admin status from user {target_user_id}."
+            )
+        except ValueError:
+            await update.message.reply_text("❌ Invalid user ID. Please provide a numeric ID.")
+
+    async def listusers_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+        """Handle the /listusers command"""
+        user_id = update.effective_user.id
+        telegram_db.update_user_activity(user_id)
+        
+        user = telegram_db.get_user(user_id)
+        if not user or not user.get('is_admin'):
+            await update.message.reply_text("❌ You do not have permission to use admin commands.")
+            return
+        
+        users = telegram_db.get_active_users()
+        if users:
+            user_text = "👥 Active users:\n\n"
+            for i, u in enumerate(users, 1):
+                user_text += f"{i}. ID: {u['user_id']}, Name: {u['first_name']} {u['last_name'] or ''}"
+                if u['username']:
+                    user_text += f" (@{u['username']})"
+                user_text += f" - Notifications: {'Enabled' if u['notification_enabled'] else 'Disabled'}\n"
+            await update.message.reply_text(user_text)
         else:
-            await update.message.reply_text("❌ Unknown command. Use /admin to see available commands.")
-            
-        # Stay in admin mode
-        return ADMIN_COMMAND
+            await update.message.reply_text("❌ No active users found.")
+
+    async def listadmins_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+        """Handle the /listadmins command"""
+        user_id = update.effective_user.id
+        telegram_db.update_user_activity(user_id)
+        
+        user = telegram_db.get_user(user_id)
+        if not user or not user.get('is_admin'):
+            await update.message.reply_text("❌ You do not have permission to use admin commands.")
+            return
+        
+        admins = telegram_db.get_admin_users()
+        if admins:
+            admin_text = "👑 Admin users:\n\n"
+            for i, a in enumerate(admins, 1):
+                admin_text += f"{i}. ID: {a['user_id']}, Name: {a['first_name']} {a['last_name'] or ''}"
+                if a['username']:
+                    admin_text += f" (@{a['username']})"
+                admin_text += f" - Active: {'Yes' if a['is_active'] else 'No'}\n"
+            await update.message.reply_text(admin_text)
+        else:
+            await update.message.reply_text("❌ No admin users found.")
+
+    async def cleanqueue_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+        """Handle the /cleanqueue command"""
+        user_id = update.effective_user.id
+        telegram_db.update_user_activity(user_id)
+        
+        user = telegram_db.get_user(user_id)
+        if not user or not user.get('is_admin'):
+            await update.message.reply_text("❌ You do not have permission to use admin commands.")
+            return
+        
+        count = telegram_db.clean_old_notifications()
+        await update.message.reply_text(f"✅ Cleaned {count} old notifications from the queue.")
 
     async def broadcast_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-        """Handle the /broadcast command."""
+        """Handle the /broadcast command"""
         user_id = update.effective_user.id
         telegram_db.update_user_activity(user_id)
         
@@ -394,7 +963,7 @@ class TelegramRealEstateBot:
         await update.message.reply_text(confirm_text, reply_markup=reply_markup)
 
     async def stats_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-        """Handle the /stats command."""
+        """Handle the /stats command"""
         user_id = update.effective_user.id
         telegram_db.update_user_activity(user_id)
         
@@ -444,392 +1013,10 @@ class TelegramRealEstateBot:
             logger.error(f"Error getting stats: {e}")
             await update.message.reply_text("❌ Error getting statistics. Please try again later.")
 
-    # ===== Preferences Commands =====
-    
-    async def preferences_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-        """Handle the /preferences command - shows a list of available preference commands."""
-        user_id = update.effective_user.id
-        telegram_db.update_user_activity(user_id)
-        logger.info(f"Preferences command called by user_id: {user_id}")
-        
-        # Get current preferences to show their values
-        preferences = telegram_db.get_user_preferences(user_id)
-        # Format current values for display
-        cities = ', '.join(preferences.get('cities', [])) if preferences and preferences.get('cities') else "Not set"
-        min_price = format_currency(preferences.get('min_price')) if preferences and preferences.get('min_price') is not None else "Not set"
-        max_price = format_currency(preferences.get('max_price')) if preferences and preferences.get('max_price') is not None else "Not set"
-        
-        if preferences and preferences.get('max_price') == 0:
-            max_price = "No limit"
-            
-        min_rooms = str(preferences.get('min_rooms')) if preferences and preferences.get('min_rooms') is not None else "Not set"
-        max_rooms = str(preferences.get('max_rooms')) if preferences and preferences.get('max_rooms') is not None else "Not set"
-        
-        if preferences and preferences.get('max_rooms') == 0:
-            max_rooms = "No limit"
-            
-        min_area = f"{preferences.get('min_area')} m²" if preferences and preferences.get('min_area') is not None else "Not set"
-        max_area = f"{preferences.get('max_area')} m²" if preferences and preferences.get('max_area') is not None else "Not set"
-        
-        if preferences and preferences.get('max_area') == 0:
-            max_area = "No limit"
-            
-        # Handle property_type as a list for display
-        property_type = ', '.join(preferences.get('property_type', [])) if preferences and preferences.get('property_type') else "Not set"
-        
-        # Create the preferences menu text with simplified commands
-        preferences_text = (
-            "⚙️ Property Preferences\n\n"
-            f"📍 Cities: {cities}\n"
-            f"💰 Min price: {min_price}\n"
-            f"💰 Max price: {max_price}\n"
-            f"🚪 Min rooms: {min_rooms}\n"
-            f"🚪 Max rooms: {max_rooms}\n"
-            f"📏 Min area: {min_area}\n"
-            f"📏 Max area: {max_area}\n"
-            f"🏢 Property type: {property_type}\n\n"
-            "Use these commands to update preferences:\n\n"
-            "/cities Amsterdam, Rotterdam - Set your cities of interest\n"
-            "/minprice 1000 - Set the minimum price\n"
-            "/maxprice 2000 - Set the maximum price (use 0 for no limit)\n"
-            "/minrooms 2 - Set the minimum number of rooms\n"
-            "/maxrooms 4 - Set the maximum number of rooms (use 0 for no limit)\n"
-            "/minarea 50 - Set the minimum area in m²\n"
-            "/maxarea 100 - Set the maximum area in m² (use 0 for no limit)\n"
-            "/type apartment, house - Set property type(s) (options: apartment, house, room, studio, any)\n"
-        )
-        
-        await update.message.reply_text(preferences_text)
-
-    async def set_cities_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-        """Command to set cities preference directly."""
-        user_id = update.effective_user.id
-        
-        # Get the command arguments
-        if not context.args:
-            await update.message.reply_text(
-                "📍 Please provide cities separated by commas (case-insensitive).\n"
-                "Example: /cities Amsterdam, Rotterdam"
-            )
-            return
-            
-        # Parse cities from arguments
-        cities_input = ' '.join(context.args)
-        cities = [city.strip().upper() for city in cities_input.split(',') if city.strip()]
-
-        for city in cities:
-            if city not in ALL_CITIES:
-                suggestion = suggest_city(city)
-                if len(suggestion) > 0:
-                    await update.message.reply_text(f"❌ City {city} does not exist! Did you mean {suggestion[0]}?")
-                else: 
-                    await update.message.reply_text(f"❌ City {city} does not exist!")
-                return
-        
-        if not cities:
-            await update.message.reply_text("❌ Invalid input. Please enter valid cities (e.g., Amsterdam, Rotterdam).")
-            return
-        
-        # Get existing preferences
-        preferences = telegram_db.get_user_preferences(user_id)
-        if not preferences:
-            preferences = {}
-        
-        # Update cities in preferences
-        preferences['cities'] = cities
-        
-        # Save back to database
-        success = telegram_db.set_user_preferences(user_id, preferences)
-        
-        if success:
-            await update.message.reply_text(f"✅ Cities set to: {', '.join(cities)}")
-        else:
-            await update.message.reply_text("❌ Error saving preferences. Please try again.")
-
-    async def set_min_price_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-        """Command to set minimum price preference directly."""
-        user_id = update.effective_user.id
-        
-        # Get the command arguments
-        if not context.args:
-            await update.message.reply_text(
-                "💰 Please provide a minimum price in EUR.\n"
-                "Example: /minprice 1000"
-            )
-            return
-        
-        # Parse price from arguments
-        try:
-            min_price = int(''.join(context.args).replace('.', '').replace(',', ''))
-            
-            if min_price < 0:
-                await update.message.reply_text("❌ Price cannot be negative. Please enter a valid price.")
-                return
-            
-            # Get existing preferences
-            preferences = telegram_db.get_user_preferences(user_id)
-            if not preferences:
-                preferences = {}
-            
-            # Update min price in preferences
-            preferences['min_price'] = min_price
-            
-            # Save back to database
-            success = telegram_db.set_user_preferences(user_id, preferences)
-            
-            if success:
-                await update.message.reply_text(f"✅ Minimum price set to: {format_currency(min_price)}")
-            else:
-                await update.message.reply_text("❌ Error saving preferences. Please try again.")
-                
-        except ValueError:
-            await update.message.reply_text("❌ Invalid input. Please enter a valid price (numbers only).")
-
-    async def set_max_price_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-        """Command to set maximum price preference directly."""
-        user_id = update.effective_user.id
-        
-        # Get the command arguments
-        if not context.args:
-            await update.message.reply_text(
-                "💰 Please provide a maximum price in EUR, or 0 for no limit.\n"
-                "Example: /maxprice 2000"
-            )
-            return
-        
-        # Parse price from arguments
-        try:
-            max_price = int(''.join(context.args).replace('.', '').replace(',', ''))
-            
-            if max_price < 0:
-                await update.message.reply_text("❌ Price cannot be negative. Please enter a valid price.")
-                return
-            
-            # Get existing preferences
-            preferences = telegram_db.get_user_preferences(user_id)
-            if not preferences:
-                preferences = {}
-            
-            # Update max price in preferences
-            preferences['max_price'] = max_price
-            
-            # Save back to database
-            success = telegram_db.set_user_preferences(user_id, preferences)
-            
-            if success:
-                display_value = "No limit" if max_price == 0 else format_currency(max_price)
-                await update.message.reply_text(f"✅ Maximum price set to: {display_value}")
-            else:
-                await update.message.reply_text("❌ Error saving preferences. Please try again.")
-        except ValueError:
-                    await update.message.reply_text("❌ Invalid input. Please enter a valid price (numbers only).")
-
-    async def set_min_rooms_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-        """Command to set minimum rooms preference directly."""
-        user_id = update.effective_user.id
-        
-        # Get the command arguments
-        if not context.args:
-            await update.message.reply_text(
-                "🚪 Please provide a minimum number of rooms.\n"
-                "Example: /minrooms 2"
-            )
-            return
-        
-        # Parse rooms from arguments
-        try:
-            min_rooms = int(context.args[0].strip())
-            
-            if min_rooms < 0:
-                await update.message.reply_text("❌ Number of rooms cannot be negative. Please enter a valid number.")
-                return
-            
-            # Get existing preferences
-            preferences = telegram_db.get_user_preferences(user_id)
-            if not preferences:
-                preferences = {}
-            
-            # Update min rooms in preferences
-            preferences['min_rooms'] = min_rooms
-            
-            # Save back to database
-            success = telegram_db.set_user_preferences(user_id, preferences)
-            
-            if success:
-                await update.message.reply_text(f"✅ Minimum rooms set to: {min_rooms}")
-            else:
-                await update.message.reply_text("❌ Error saving preferences. Please try again.")
-                
-        except ValueError:
-            await update.message.reply_text("❌ Invalid input. Please enter a valid number of rooms.")
-
-    async def set_max_rooms_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-        """Command to set maximum rooms preference directly."""
-        user_id = update.effective_user.id
-        
-        # Get the command arguments
-        if not context.args:
-            await update.message.reply_text(
-                "🚪 Please provide a maximum number of rooms, or 0 for no limit.\n"
-                "Example: /maxrooms 4"
-            )
-            return
-        
-        # Parse rooms from arguments
-        try:
-            max_rooms = int(context.args[0].strip())
-            
-            if max_rooms < 0:
-                await update.message.reply_text("❌ Number of rooms cannot be negative. Please enter a valid number.")
-                return
-            
-            # Get existing preferences
-            preferences = telegram_db.get_user_preferences(user_id)
-            if not preferences:
-                preferences = {}
-            
-            # Update max rooms in preferences
-            preferences['max_rooms'] = max_rooms
-            
-            # Save back to database
-            success = telegram_db.set_user_preferences(user_id, preferences)
-            
-            if success:
-                display_value = "No limit" if max_rooms == 0 else str(max_rooms)
-                await update.message.reply_text(f"✅ Maximum rooms set to: {display_value}")
-            else:
-                await update.message.reply_text("❌ Error saving preferences. Please try again.")
-                
-        except ValueError:
-            await update.message.reply_text("❌ Invalid input. Please enter a valid number of rooms.")
-
-    async def set_min_area_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-        """Command to set minimum area preference directly."""
-        user_id = update.effective_user.id
-        
-        # Get the command arguments
-        if not context.args:
-            await update.message.reply_text(
-                "📏 Please provide a minimum area in m².\n"
-                "Example: /minarea 50"
-            )
-            return
-        
-        # Parse area from arguments
-        try:
-            min_area = int(''.join(context.args).replace('.', '').replace(',', ''))
-            
-            if min_area < 0:
-                await update.message.reply_text("❌ Area cannot be negative. Please enter a valid area.")
-                return
-            
-            # Get existing preferences
-            preferences = telegram_db.get_user_preferences(user_id)
-            if not preferences:
-                preferences = {}
-            
-            # Update min area in preferences
-            preferences['min_area'] = min_area
-            
-            # Save back to database
-            success = telegram_db.set_user_preferences(user_id, preferences)
-            
-            if success:
-                await update.message.reply_text(f"✅ Minimum area set to: {min_area} m²")
-            else:
-                await update.message.reply_text("❌ Error saving preferences. Please try again.")
-                
-        except ValueError:
-            await update.message.reply_text("❌ Invalid input. Please enter a valid area (numbers only).")
-
-    async def set_max_area_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-        """Command to set maximum area preference directly."""
-        user_id = update.effective_user.id
-        
-        # Get the command arguments
-        if not context.args:
-            await update.message.reply_text(
-                "📏 Please provide a maximum area in m², or 0 for no limit.\n"
-                "Example: /maxarea 100"
-            )
-            return
-        
-        # Parse area from arguments
-        try:
-            max_area = int(''.join(context.args).replace('.', '').replace(',', ''))
-            
-            if max_area < 0:
-                await update.message.reply_text("❌ Area cannot be negative. Please enter a valid area.")
-                return
-            
-            # Get existing preferences
-            preferences = telegram_db.get_user_preferences(user_id)
-            if not preferences:
-                preferences = {}
-            
-            # Update max area in preferences
-            preferences['max_area'] = max_area
-            
-            # Save back to database
-            success = telegram_db.set_user_preferences(user_id, preferences)
-            
-            if success:
-                display_value = "No limit" if max_area == 0 else f"{max_area} m²"
-                await update.message.reply_text(f"✅ Maximum area set to: {display_value}")
-            else:
-                await update.message.reply_text("❌ Error saving preferences. Please try again.")
-                
-        except ValueError:
-            await update.message.reply_text("❌ Invalid input. Please enter a valid area (numbers only).")
-
-    async def set_property_type_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-        """Command to set property type preference directly."""
-        user_id = update.effective_user.id
-        
-        # Get the command arguments
-        if not context.args:
-            await update.message.reply_text(
-                "🏢 Please provide property types separated by commas (case-insensitive).\n"
-                "Example: /type apartment, house\n"
-                "Use 'any' to match all property types"
-            )
-            return
-            
-        # Parse property types from arguments - exactly like cities
-        types_input = ' '.join(context.args)
-        property_types = [prop_type.strip().upper() for prop_type in types_input.split(',') if prop_type.strip()]
-        
-        # Similar validation as cities
-        for prop_type in property_types:
-            if prop_type not in [pt.upper() for pt in PROPERTY_TYPES]:
-                property_types_text = ", ".join(PROPERTY_TYPES)
-                await update.message.reply_text(f"❌ Property type {prop_type} is not valid! Allowed types: {property_types_text}")
-                return
-        
-        if not property_types:
-            await update.message.reply_text("❌ Invalid input. Please enter valid property types.")
-            return
-        
-        # Get existing preferences
-        preferences = telegram_db.get_user_preferences(user_id)
-        if not preferences:
-            preferences = {}
-        
-        # Update property types in preferences
-        preferences['property_type'] = property_types
-        
-        # Save back to database
-        success = telegram_db.set_user_preferences(user_id, preferences)
-        
-        if success:
-            await update.message.reply_text(f"✅ Property types set to: {', '.join(property_types)}")
-        else:
-            await update.message.reply_text("❌ Error saving preferences. Please try again.")
-
     # ===== Property Reactions =====
 
     async def property_reaction_handler(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-        """Handle reactions to property notifications."""
+        """Handle reactions to property notifications"""
         query = update.callback_query
         await query.answer()
         
@@ -863,7 +1050,7 @@ class TelegramRealEstateBot:
         await query.edit_message_reply_markup(reply_markup=reply_markup)
 
     async def handle_broadcast_confirmation(self, query, context, parts):
-        """Handle broadcast confirmation buttons."""
+        """Handle broadcast confirmation buttons"""
         if len(parts) < 3:
             await query.edit_message_text("❌ Invalid broadcast confirmation.")
             return
@@ -882,73 +1069,39 @@ class TelegramRealEstateBot:
             
             if not broadcast_message:
                 await query.edit_message_text("❌ Broadcast message not found.")
-                return
-                
-            success_count = 0
-            for user in active_users:
-                try:
-                    await context.bot.send_message(
-                        chat_id=user['user_id'],
-                        text=f"📢 Broadcast message from administrator:\n\n{broadcast_message}"
-                    )
-                    success_count += 1
-                except Exception as e:
-                    logger.error(f"Error sending broadcast to user {user['user_id']}: {e}")
-                    
-            await query.edit_message_text(f"✅ Broadcast sent to {success_count} of {len(active_users)} users.")
+            else:
+                success_count = 0
+                for user in active_users:
+                    try:
+                        await context.bot.send_message(
+                            chat_id=user['user_id'],
+                            text=f"📢 Broadcast message from administrator:\n\n{broadcast_message}"
+                        )
+                        success_count += 1
+                    except Exception as e:
+                        logger.error(f"Error sending broadcast to user {user['user_id']}: {e}")
+                await query.edit_message_text(f"✅ Broadcast sent to {success_count} of {len(active_users)} users.")
         else:
             await query.edit_message_text("❌ Broadcast cancelled.")
             
         if 'broadcast_message' in context.user_data:
             del context.user_data['broadcast_message']
 
-    # ===== General Message Handler =====
-
-    async def handle_message(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-        """Handle regular text messages that are not commands."""
-        user_id = update.effective_user.id
-        telegram_db.update_user_activity(user_id)
-        
-        message_text = update.message.text.lower()
-        
-        # Handle custom keyboard button presses
-        if message_text == "⚙️ set preferences":
-            return await self.preferences_command(update, context)
-        elif message_text == "📊 my status":
-            return await self.status_command(update, context)
-        elif message_text == "✅ subscribe":
-            return await self.subscribe_command(update, context)
-        elif message_text == "❌ unsubscribe":
-            return await self.unsubscribe_command(update, context)
-        elif message_text == "❓ help":
-            return await self.help_command(update, context)
-            
-        # Default response for unrecognized messages - use safe send
-        await self.safe_send_message(update, context, "I didn't understand that. Use /help to see available commands.")
-
     # ===== Error Handler =====
 
     async def error_handler(self, update: object, context: ContextTypes.DEFAULT_TYPE) -> None:
-        """Handle errors in the dispatcher."""
-        logger.error(f"Exception while handling an update: {context.error}")
+        """Handle errors in the dispatcher"""
+        logger.error(f"Exception while handling an update: {context.error}", exc_info=context.error)
         
-        # First, log the complete error with traceback
-        logger.error("Error details:", exc_info=context.error)
-        
-        # Safe way to extract user_id
         user_id = None
         if update and hasattr(update, 'effective_user') and update.effective_user:
             user_id = update.effective_user.id
         
-        # Notify admins
         error_text = f"⚠️ Error: {context.error}"
-        
         if user_id:
             error_text += f"\nUser ID: {user_id}"
-        
         if hasattr(context, 'chat_data') and context.chat_data:
             error_text += f"\nChat data: {str(context.chat_data)[:100]}..."
-        
         if hasattr(context, 'user_data') and context.user_data:
             error_text += f"\nUser data: {str(context.user_data)[:100]}..."
         
@@ -959,12 +1112,10 @@ class TelegramRealEstateBot:
             except Exception as e:
                 logger.error(f"Error sending error notification to admin {admin['user_id']}: {e}")
         
-        # Safely notify the user
         try:
             if update and hasattr(update, 'effective_chat') and update.effective_chat:
-                chat_id = update.effective_chat.id
                 await context.bot.send_message(
-                    chat_id=chat_id,
+                    chat_id=update.effective_chat.id,
                     text="Sorry, something went wrong. Please try again later."
                 )
         except Exception as e:
@@ -973,7 +1124,7 @@ class TelegramRealEstateBot:
     # ===== Bot Runner =====
 
     async def run(self):
-        """Start the bot."""
+        """Start the bot"""
         try:
             await self.application.initialize()
             await self.application.start()
@@ -984,7 +1135,6 @@ class TelegramRealEstateBot:
             )
             logger.info("Bot started successfully!")
             
-            # Keep the bot running
             while True:
                 await asyncio.sleep(3600)
                 
@@ -999,44 +1149,30 @@ class TelegramRealEstateBot:
             logger.info("Bot stopped successfully.")
 
     async def safe_send_message(self, update: Update, context: ContextTypes.DEFAULT_TYPE, text: str) -> None:
-        """Safely send a message, falling back to different methods if one fails."""
+        """Safely send a message, falling back to different methods if one fails"""
         chat_id = None
         
         try:
-            # First try: Use reply_text on the message if available
             if hasattr(update, 'message') and update.message:
                 await update.message.reply_text(text)
                 return
-                
-            # Second try: Use callback_query.message.reply_text if this is a callback
             if hasattr(update, 'callback_query') and update.callback_query and update.callback_query.message:
                 await update.callback_query.message.reply_text(text)
                 return
-                
-            # Third try: Use effective_message.reply_text
             if hasattr(update, 'effective_message') and update.effective_message:
                 await update.effective_message.reply_text(text)
                 return
-                
-            # Fourth try: Use effective_chat.id with context.bot.send_message
             if hasattr(update, 'effective_chat') and update.effective_chat:
                 chat_id = update.effective_chat.id
                 await context.bot.send_message(chat_id=chat_id, text=text)
                 return
-                
-            # Fifth try: If we can get user_id, try to send a direct message
             if hasattr(update, 'effective_user') and update.effective_user:
-                user_id = update.effective_user.id
-                await context.bot.send_message(chat_id=user_id, text=text)
+                await context.bot.send_message(chat_id=update.effective_user.id, text=text)
                 return
-                
-            # Final fallback: Log that we couldn't send the message
             logger.error(f"Could not send message: {text[:50]}...")
             
         except Exception as e:
             logger.error(f"Error sending message: {e}")
-            
-            # Last resort fallback if we have a chat_id
             if chat_id:
                 try:
                     await context.bot.send_message(chat_id=chat_id, text=text)
