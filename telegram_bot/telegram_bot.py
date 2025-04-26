@@ -33,7 +33,7 @@ MENU_STATES = {
     'type': 'type',
     'status': 'status',
     'help': 'help',
-    'subscriptions': 'subs'
+    'subscription': 'subs'
 }
 
 # Property types
@@ -131,7 +131,7 @@ class TelegramRealEstateBot:
             menu_text = "📋 Main Menu\n\nSelect an option:"
             keyboard = [
                 [InlineKeyboardButton("⚙️ Preferences", callback_data=f"menu:{MENU_STATES['preferences']}:{menu_id}")],
-                [InlineKeyboardButton("🔔 Subscriptions", callback_data=f"menu:{MENU_STATES['subscriptions']}:{menu_id}")],
+                [InlineKeyboardButton("🔔 Subscription", callback_data=f"menu:{MENU_STATES['subscription']}:{menu_id}")],
                 [InlineKeyboardButton("📊 Status", callback_data=f"menu:{MENU_STATES['status']}:{menu_id}")],
                 [InlineKeyboardButton("❓ Help", callback_data=f"menu:{MENU_STATES['help']}:{menu_id}")],
                 [InlineKeyboardButton("✅ Done", callback_data=f"menu:done:{menu_id}")]
@@ -254,12 +254,12 @@ class TelegramRealEstateBot:
             keyboard.append([InlineKeyboardButton("↩ Return", callback_data=f"menu:{MENU_STATES['preferences']}:{menu_id}")])
             return menu_text, keyboard
         
-        elif state == MENU_STATES['subscriptions']:
+        elif state == MENU_STATES['subscription']:
             user = telegram_db.get_user(user_id)
-            status = "Enabled" if user and user.get('notification_enabled') else "Disabled"
+            status = "Enabled ✅ " if user and user.get('notification_enabled') else "Disabled ❌"
             menu_text = (
-                "🔔 Subscriptions Menu\n\n"
-                f"Current status: {status}\n\n"
+                "🔔 Subscription Menu\n\n"
+                f"Receive notifications: {status}\n\n"
                 "Select an option:"
             )
             keyboard = [
@@ -415,10 +415,14 @@ class TelegramRealEstateBot:
             await self.show_menu(update, context, MENU_STATES['type'], menu_id)
         
         elif action == 'sub':
+            user = telegram_db.get_user(user_id)
+            if user and user.get('notification_enabled'):
+                logger.debug(f"User {user_id} already subscribed, skipping update")
+                return
             success = telegram_db.toggle_notifications(user_id, True)
             menu_text = (
-                "🔔 Subscriptions Menu\n\n" +
-                ("Successfully subscribed to property notifications!" if success
+                "🔔 Subscription Menu\n\n" +
+                ("Receive notifications: Enabled ✅" if success
                  else "❌ Something went wrong. Please try again later.") +
                 "\n\nSelect an option:"
             )
@@ -430,10 +434,14 @@ class TelegramRealEstateBot:
             await query.edit_message_text(menu_text, reply_markup=InlineKeyboardMarkup(keyboard))
         
         elif action == 'unsub':
+            user = telegram_db.get_user(user_id)
+            if user and not user.get('notification_enabled'):
+                logger.debug(f"User {user_id} already unsubscribed, skipping update")
+                return
             success = telegram_db.toggle_notifications(user_id, False)
             menu_text = (
-                "🔔 Subscriptions Menu\n\n" +
-                ("Successfully unsubscribed from property notifications." if success
+                "🔔 Subscription Menu\n\n" +
+                ("Receive notifications: Disabled ❌" if success
                  else "❌ Something went wrong. Please try again later.") +
                 "\n\nSelect an option:"
             )
