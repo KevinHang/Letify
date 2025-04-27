@@ -102,6 +102,7 @@ def initialize_db(connection_string: str):
                 enabled BOOLEAN DEFAULT false NOT NULL,
                 last_scan_time TIMESTAMP WITH TIME ZONE,
                 description TEXT,
+                request_body JSONB,
                 UNIQUE (source, queryurl)
             )
             """)
@@ -174,7 +175,7 @@ def initialize_telegram_db(connection_string: str):
                 UNIQUE (user_id)
             )
             """)
-            
+
             # Run this to change type to text[]
             # ALTER TABLE user_preferences
             # ALTER COLUMN property_type TYPE text[] USING array[property_type];

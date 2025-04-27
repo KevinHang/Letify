@@ -65,6 +65,11 @@ SITE_CONFIGS = {
         "base_url": "https://www.pararius.com",
         "search_url_template": "https://www.pararius.com/apartments/{city}",
         "min_interval": 10,  # TODO
+    },
+    "vesteda": {
+        "base_url": "https://www.vesteda.com",
+        "search_url_template": "https://www.vesteda.com/nl/woning-zoeken?placeType=0&sortType=1&radius=20&s=&sc=woning&latitude=0&longitude=0&filters=0&priceFrom=500&priceTo=9999",
+        "min_interval": 10,  # TODO
     }
 }
 
