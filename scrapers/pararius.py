@@ -151,11 +151,21 @@ class ParariusScraper(BaseScraperStrategy):
                         if len(subtitle_match.groups()) > 2 and subtitle_match.group(3):
                             listing.neighborhood = subtitle_match.group(3).strip()
                 
-                # Extract price
-                price_elem = listing_item.css_first(".listing-search-item__price")
-                if price_elem:
-                    price_text = price_elem.text().strip()
-                    listing.price = price_text
+                    # Extract price
+                    price_elem = listing_item.css_first(".listing-search-item__price")
+
+                    if price_elem:
+                        price_text = price_elem.text().strip()
+                        # We don't want listings that have no price
+                        if price_text == "Price on request":
+                            continue
+                        
+                        # Apply regex to extract price up to "month" if it exists
+                        price_match = re.search(r'(.+?per\s*month)', price_text, re.IGNORECASE)
+                        if price_match:
+                            listing.price = price_match.group(1).strip()
+                        else:
+                            listing.price = price_text  # Use original text if "per month" pattern not found
                     
                     # Extract numeric price 
                     price_match = re.search(r'€\s*([\d\.,]+)', price_text)
