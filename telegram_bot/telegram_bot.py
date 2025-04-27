@@ -1108,9 +1108,11 @@ class TelegramRealEstateBot:
         if user_id:
             error_text += f"\nUser ID: {user_id}"
         if hasattr(context, 'chat_data') and context.chat_data:
-            error_text += f"\nChat data: {str(context.chat_data)[:100]}..."
+            error_text += f"\nChat data: {str(context.chat_data)}"
         if hasattr(context, 'user_data') and context.user_data:
-            error_text += f"\nUser data: {str(context.user_data)[:100]}..."
+            error_text += f"\nUser data: {str(context.user_data)}"
+
+        logger.error(f"Exception while handling an update (extended): {error_text}")
         
         admin_users = telegram_db.get_admin_users()
         for admin in admin_users:
