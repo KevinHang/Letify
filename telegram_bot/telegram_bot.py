@@ -111,12 +111,12 @@ class TelegramRealEstateBot:
         
         if update.callback_query:
             try:
-                message = await update.callback_query.edit_message_text(menu_text, reply_markup=reply_markup)
+                message = await update.callback_query.edit_message_text(menu_text, reply_markup=reply_markup, parse_mode="HTML")
             except Exception as e:
                 logger.error(f"Error editing menu message for user {user_id}: {e}")
-                message = await update.callback_query.message.reply_text(menu_text, reply_markup=reply_markup)
+                message = await update.callback_query.message.reply_text(menu_text, reply_markup=reply_markup, parse_mode="HTML")
         else:
-            message = await update.message.reply_text(menu_text, reply_markup=reply_markup)
+            message = await update.message.reply_text(menu_text, reply_markup=reply_markup, parse_mode="HTML")
         
         # Store the message ID for future edits
         context.user_data['current_menu_message_id'] = message.message_id
@@ -128,13 +128,20 @@ class TelegramRealEstateBot:
         """Build menu text and keyboard based on state"""
         logger.debug(f"Building menu for user {user_id}, state: {state}")
         if state == MENU_STATES['main']:
-            menu_text = "📋 Main Menu\n\nSelect an option:"
+
+            menu_text = (
+                "🏡 Thanks for using the Letify Bot!\n\n"
+                
+                "🏠 <b>Rental Preferences:</b> Set preferences to find your ideal home\n"
+                "🔔 <b>Settings:</b> Manage your notifications\n"
+                "📊 <b>Status:</b> Check your current status\n"
+                "❓ <b>Help:</b> Get help with the available commands\n"
+                "❎ <b>Close Menu:</b> Close the current menu\n"
+            )
             keyboard = [
-                [InlineKeyboardButton("⚙️ Preferences", callback_data=f"menu:{MENU_STATES['preferences']}:{menu_id}")],
-                [InlineKeyboardButton("🔔 Subscription", callback_data=f"menu:{MENU_STATES['subscription']}:{menu_id}")],
-                [InlineKeyboardButton("📊 Status", callback_data=f"menu:{MENU_STATES['status']}:{menu_id}")],
-                [InlineKeyboardButton("❓ Help", callback_data=f"menu:{MENU_STATES['help']}:{menu_id}")],
-                [InlineKeyboardButton("✅ Done", callback_data=f"menu:done:{menu_id}")]
+                [InlineKeyboardButton("🏠 Rental Preferences", callback_data=f"menu:{MENU_STATES['preferences']}:{menu_id}")],
+                [InlineKeyboardButton("🔔 Settings", callback_data=f"menu:{MENU_STATES['subscription']}:{menu_id}"), InlineKeyboardButton("📊 Status", callback_data=f"menu:{MENU_STATES['status']}:{menu_id}")],
+                [InlineKeyboardButton("❓ Help", callback_data=f"menu:{MENU_STATES['help']}:{menu_id}"), InlineKeyboardButton("❎ Close Menu", callback_data=f"menu:done:{menu_id}")],
             ]
             return menu_text, keyboard
         
@@ -314,19 +321,19 @@ class TelegramRealEstateBot:
                 "📋 Available commands:\n\n"
                 "/start - Start the bot and see welcome message\n"
                 "/menu - Open the main navigation menu\n"
-                "/cancel - Close the current menu\n"
-                "/debug - Show debug information\n\n"
+                "/cancel - Close the current menu\n\n"
             )
             if user and user.get('is_admin'):
                 menu_text += (
                     "👑 Admin commands:\n\n"
                     "/admin - Show admin command help\n"
-                    "/makeadmin <user_id> - Make a user an admin\n"
-                    "/removeadmin <user_id> - Remove admin status\n"
+                    "/makeadmin 'user_id' - Make a user an admin\n"
+                    "/removeadmin 'user_id' - Remove admin status\n"
                     "/listusers - List all active users\n"
                     "/listadmins - List all admin users\n"
                     "/cleanqueue - Clean old notifications\n"
-                    "/broadcast <message> - Send a message to all users\n"
+                    "/broadcast 'message' - Send a message to all users\n"
+                    "/debug - Show debug information\n"
                     "/stats - Show bot statistics\n"
                 )
             keyboard = [[InlineKeyboardButton("↩ Return", callback_data=f"menu:{MENU_STATES['main']}:{menu_id}")]]
@@ -740,7 +747,7 @@ class TelegramRealEstateBot:
         telegram_db.update_user_activity(user_id)
         
         if 'latest_menu_id' in context.user_data:
-            logger.info(f"Closing menu for user {user_id}: {context.user_data['latest_menu_id']}")
+            logger.debug(f"Closing menu for user {user_id}: {context.user_data['latest_menu_id']}")
             context.user_data.pop('latest_menu_id', None)
             context.user_data.pop('current_state', None)
             context.user_data.pop('current_menu_message_id', None)
@@ -767,8 +774,7 @@ class TelegramRealEstateBot:
         welcome_text = (
             f"👋 Hello {user.first_name}! Welcome to the Letify Bot.\n\n"
             f"I can notify you about new property listings that match your preferences.\n\n"
-            f"Use /menu to access all features and settings\n"
-            f"Use /debug to see bot debug information"
+            f"Use /menu to access all features and settings"
         )
         
         keyboard = [
@@ -782,6 +788,11 @@ class TelegramRealEstateBot:
         """Debug command to inspect bot state"""
         user_id = update.effective_user.id
         telegram_db.update_user_activity(user_id)
+
+        user = telegram_db.get_user(user_id)
+        if not user or not user.get('is_admin'):
+            await update.message.reply_text("❌ You do not have permission to use admin commands.")
+            return
         
         debug_text = (
             f"🛠 Debug Info\n\n"
@@ -817,6 +828,7 @@ class TelegramRealEstateBot:
             "/cleanqueue - Clean old notifications\n"
             "/broadcast <message> - Send a message to all users\n"
             "/stats - Show bot statistics\n"
+            "/debug - See bot debug information\n"
             "/cancel - Cancel current operation\n"
         )
         
