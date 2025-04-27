@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: realestate_scraper
-    command: python -m cli --query-scan --sources funda,pararius
+    command: python -m cli --query-scan --sources funda,pararius,vesteda
     env_file:
       - .env
     volumes:
