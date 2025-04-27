@@ -466,8 +466,8 @@ class TelegramRealEstateBot:
         
         message_text = update.message.text.lower().strip()
         
-        if message_text == "📋 open menu":
-            return await self.menu_command(update, context)
+        # if message_text == "Custom Message":
+        #     return await self.menu_command(update, context)
         
         current_state = context.user_data.get('current_state')
         menu_id = context.user_data.get('latest_menu_id')
@@ -777,12 +777,7 @@ class TelegramRealEstateBot:
             f"Use /menu to access all features and settings"
         )
         
-        keyboard = [
-            [KeyboardButton("📋 Open Menu")]
-        ]
-        reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True)
-        
-        await update.message.reply_text(welcome_text, reply_markup=reply_markup)
+        await update.message.reply_text(welcome_text)
 
     async def debug_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         """Debug command to inspect bot state"""
