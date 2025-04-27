@@ -99,6 +99,7 @@ class RealEstateScraper:
         source = query_url['source']
         url = query_url['queryurl']
         query_id = query_url['id']
+        query_method = query_url['method']
         
         logger.info(f"Scanning specific {source} URL (ID={query_id}): {url}")
         scraper = self.scrapers.get(source)
@@ -115,7 +116,11 @@ class RealEstateScraper:
         try:
             proxy = await self.proxy_manager.get_proxy() if self.proxy_manager.enabled else None
             try:
-                response = await self.http_client.get(url)
+                if query_method == "GET":
+                    response = await self.http_client.make_request(url)
+                elif query_method == "POST":
+                    request_body = query_url['request_body']
+                    response = await self.http_client.make_request(url=url, method=query_method, request_body=request_body)
                 if proxy and response.status_code == 200:
                     await self.proxy_manager.report_success(proxy, time.time() - start_time)
                 final_url = str(response.url)

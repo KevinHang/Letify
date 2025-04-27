@@ -465,9 +465,9 @@ class EnhancedHttpClient:
         
         return False
         
-    async def get(self, url: str, retry_anti_bot: bool = True, max_antibot_retries: int = 3, **kwargs) -> httpx.Response:
+    async def make_request(self, url: str, retry_anti_bot: bool = True, max_antibot_retries: int = 3, method: str = "GET", request_body: dict = None, **kwargs) -> httpx.Response:
         """
-        Make an HTTP GET request with advanced handling for compressed responses and anti-bot measures
+        Make an HTTP GET or POST request with advanced handling for compressed responses and anti-bot measures
         
         Args:
             url: URL to request
@@ -548,7 +548,10 @@ class EnhancedHttpClient:
                         await asyncio.sleep(random.uniform(0.3, 1.0) * (1 + antibot_retry_count * 0.5))
                         
                         # Make the request
-                        response = await client.get(url, headers=headers, cookies=cookies, **kwargs)
+                        if method == "GET":
+                            response = await client.get(url, headers=headers, cookies=cookies, **kwargs)
+                        elif method == "POST":
+                            response = await client.post(url, headers=headers, cookies=cookies, json=request_body, **kwargs)
                         
                         # Check for too many redirects
                         if len(response.history) > 10:

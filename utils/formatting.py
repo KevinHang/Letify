@@ -146,35 +146,78 @@ def format_listing_message(property_data: Dict[str, Any]) -> str:
     # Energy label
     energy_label = property_data.get('energy_label', 'N/A') or 'N/A'
     
-    # Additional features
-    features = []
+    # Additional extras
+    extras = []
     if property_data.get('balcony'):
-        features.append("Balcony")
+        extras.append("Balcony")
     if property_data.get('garden'):
-        features.append("Garden")
+        extras.append("Garden")
     if property_data.get('parking'):
-        features.append("Parking")
-    
+        extras.append("Parking")
+
+    # Requirements
+    requirements = property_data.get('features')
+    requirements_parts = []
+
+    if requirements:
+        all_req_keys = set()
+        for item in requirements:
+            all_req_keys.update(item.keys())
+        
+        # Helper function to get value for a specific key
+        def get_value_for_key(data_array, key):
+            for item in data_array:
+                if key in item:
+                    return item[key]
+            return None
+        
+        # Check for age requirements
+        if 'age_requirement' in all_req_keys:
+            requirements_parts.append(f"• Age requirement: {get_value_for_key(requirements, 'age_requirement')}")
+        
+        # Check for key profession requirement
+        if 'key_profession_requirement' in all_req_keys:
+            requirements_parts.append(f"• Profession: {get_value_for_key(requirements, 'key_profession_requirement')}")
+
     # Description (truncated)
     description = property_data.get('description', '') or ''
     if description:
         description = clean_html(description)
         description = truncate_text(description, 200)
-    
+
     # URL
     url = property_data.get('url', '') or ''
     source = property_data.get('source', '').capitalize() or ''
-    
+
+    # Custom
+    rooms_part = ""
+    if rooms and bedrooms:
+        rooms_part = f"• Rooms: {rooms_str} (Bedrooms: {bedrooms_str})\n"
+    elif rooms and not bedrooms:
+        rooms_part = f"• Rooms: {rooms_str}\n"
+    elif not rooms and bedrooms:
+        rooms_part = f"• Bedrooms: {bedrooms_str}\n"
+
+    neighborhood_part = f"• Neighborhood: {neighborhood}\n" if neighborhood else ""
+    energy_label_part = f"• Energy label: {energy_label}\n" if energy_label != "N/A" else ""
+
     # Create message with HTML formatting
     message = (
         f"🏠 <b>{location}</b>\n"
-        f"💰 <b>€{int(price_numeric)}/m</b>\n\n"
+        f"💰 <b>€{int(price_numeric)} per month</b>\n\n"
         f"<b>Details:</b>\n"
+        f"{neighborhood_part}"
         f"• Type: {property_type}\n"
         f"• Size: {living_area_str}\n"
-        f"• Rooms: {rooms_str} (Bedrooms: {bedrooms_str})\n"
-        f"• Energy label: {energy_label}\n"
+        f"{rooms_part}"
+        f"{energy_label_part}"
     )
+
+    # Add requirements section if we have any
+    if requirements_parts:
+        message += f"\n<b>Requirements:</b>\n"
+        for req in requirements_parts:
+            message += f"{req}\n"
     
     # Add dates if available
     if date_listed != "N/A":

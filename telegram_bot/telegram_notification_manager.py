@@ -279,7 +279,7 @@ class TelegramNotificationManager:
             logger.error(f"Error in notification run: {e}")
             return {"error": str(e)}
     
-    async def run_continuously(self, interval: int = 60, stop_event=None):
+    async def run_continuously(self, interval: int = 30, stop_event=None):
         """
         Process the notification queue continuously with the specified interval.
         

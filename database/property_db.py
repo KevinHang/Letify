@@ -255,7 +255,7 @@ class PropertyDatabase:
             logger.error(f"Error getting enabled query URLs: {e}")
             return []
     
-    def add_query_url(self, source: str, query_url: str, method: str = 'GET', enabled: bool = True, description: str = None) -> int:
+    def add_query_url(self, source: str, query_url: str, method: str = 'GET', enabled: bool = True, description: str = None, request_body: dict = None) -> int:
         """
         Add a new query URL to the database.
         
@@ -265,6 +265,7 @@ class PropertyDatabase:
             method: HTTP method (GET or POST)
             enabled: Whether the URL is enabled for scraping
             description: Optional description
+            request_body: Body of the request
             
         Returns:
             ID of the newly created entry, or -1 on error
@@ -273,11 +274,11 @@ class PropertyDatabase:
             with self.conn.cursor() as cur:
                 cur.execute("""
                 INSERT INTO query_urls (source, queryurl, method, enabled, description)
-                VALUES (%s, %s, %s, %s, %s)
+                VALUES (%s, %s, %s, %s, %s, %s)
                 ON CONFLICT (source, queryurl) DO UPDATE
-                SET method = EXCLUDED.method, enabled = EXCLUDED.enabled, description = EXCLUDED.description
+                SET method = EXCLUDED.method, enabled = EXCLUDED.enabled, description = EXCLUDED.description, request_body =  EXCLUDED.request_body
                 RETURNING id
-                """, (source, query_url, method, enabled, description))
+                """, (source, query_url, method, enabled, description, json.dumps(request_body)))
                 result = cur.fetchone()
                 self.conn.commit()
                 return result[0] if result else -1
