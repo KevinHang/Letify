@@ -132,7 +132,14 @@ class VestedaScraper(BaseScraperStrategy):
                     listing.title = full_address
                     
                     # Extract postal code and city
-                    listing.postal_code = item.get("postalCode", "")
+                    postal_code = item.get("postalCode", "")
+                    if postal_code:
+                        # Insert a space between numbers and letters in the postal code
+                        formatted_postal_code = re.sub(r'(\d+)([A-Za-z]+)', r'\1 \2', postal_code)
+                        listing.postal_code = formatted_postal_code
+                    else:
+                        listing.postal_code = ""
+                    
                     listing.city = item.get("city", "")
                     
                     # Extract neighborhood/district
