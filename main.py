@@ -120,7 +120,8 @@ class RealEstateScraper:
                     response = await self.http_client.make_request(url)
                 elif query_method == "POST":
                     request_body = query_url['request_body']
-                    response = await self.http_client.make_request(url=url, method=query_method, request_body=request_body)
+                    custom_headers = query_url['custom_headers']
+                    response = await self.http_client.make_request(url=url, method=query_method, request_body=request_body, custom_headers=custom_headers)
                 if proxy and response.status_code == 200:
                     await self.proxy_manager.report_success(proxy, time.time() - start_time)
                 final_url = str(response.url)

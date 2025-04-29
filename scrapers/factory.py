@@ -9,6 +9,7 @@ from scrapers.base import BaseScraperStrategy
 from scrapers.funda import FundaScraper
 from scrapers.pararius import ParariusScraper
 from scrapers.vesteda import VestedaScraper
+from scrapers.rebo import REBOScraper
 
 
 class RealEstateScraperFactory:
@@ -28,6 +29,8 @@ class RealEstateScraperFactory:
             return ParariusScraper(site_name, SITE_CONFIGS[site_name])
         elif site_name == "vesteda":
             return VestedaScraper(site_name, SITE_CONFIGS[site_name])
+        elif site_name == "rebo":
+            return REBOScraper(site_name, SITE_CONFIGS[site_name])
         else:
             raise ValueError(f"No scraper implementation for site: {site_name}")
 

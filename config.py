@@ -68,7 +68,12 @@ SITE_CONFIGS = {
     },
     "vesteda": {
         "base_url": "https://www.vesteda.com",
-        "search_url_template": "https://www.vesteda.com/nl/woning-zoeken?placeType=0&sortType=1&radius=20&s=&sc=woning&latitude=0&longitude=0&filters=0&priceFrom=500&priceTo=9999",
+        "search_url_template": "", # TODO
+        "min_interval": 10,  # TODO
+    },
+    "rebo": {
+        "base_url": "https://www.rebogroep.nl",
+        "search_url_template": "", # TODO
         "min_interval": 10,  # TODO
     }
 }

@@ -131,9 +131,8 @@ def format_listing_message(property_data: Dict[str, Any]) -> str:
     property_type = property_data.get('property_type', 'Not specified').capitalize() or 'Not specified'
     offering_type = property_data.get('offering_type', 'Not specified').capitalize() or 'Not specified'
     
-    # Size and rooms
+    # Rooms
     living_area = property_data.get('living_area', 0) or 0
-    living_area_str = f"{living_area} m²" if living_area else "N/A"
     
     rooms = property_data.get('rooms', 0) or 0
     rooms_str = f"{rooms}" if rooms else "N/A"
@@ -192,6 +191,18 @@ def format_listing_message(property_data: Dict[str, Any]) -> str:
     url = property_data.get('url', '') or ''
     source = property_data.get('source', '').capitalize() or ''
 
+    # Create message with HTML formatting
+    message = (
+        f"🏠 <b>{location}</b>\n"
+        f"💰 <b>€{int(price_numeric)} per month</b>\n\n"
+        f"<b>Details:</b>\n"
+        f"• Type: {property_type}\n"
+    )
+
+    living_area_str = f"{living_area} m²" if living_area else ""
+    if living_area_str:
+        message += f"• Size: {living_area_str}\n"
+
     # Custom
     rooms_part = ""
     if rooms and bedrooms:
@@ -201,18 +212,13 @@ def format_listing_message(property_data: Dict[str, Any]) -> str:
     elif not rooms and bedrooms:
         rooms_part = f"• Bedrooms: {bedrooms_str}\n"
 
+    if rooms_part:
+        message += f"{rooms_part}"
+
     energy_label_part = f"• Energy label: {energy_label}\n" if energy_label != "N/A" else ""
 
-    # Create message with HTML formatting
-    message = (
-        f"🏠 <b>{location}</b>\n"
-        f"💰 <b>€{int(price_numeric)} per month</b>\n\n"
-        f"<b>Details:</b>\n"
-        f"• Type: {property_type}\n"
-        f"• Size: {living_area_str}\n"
-        f"{rooms_part}"
-        f"{energy_label_part}"
-    )
+    if energy_label_part:
+        message += f"{energy_label_part}"
 
     # Add requirements section if we have any
     if requirements_parts:
@@ -221,8 +227,6 @@ def format_listing_message(property_data: Dict[str, Any]) -> str:
             message += f"{req}\n"
     
     # Add dates if available
-    if date_listed != "N/A":
-        message += f"• Listed on: {date_listed}\n"
     if date_available != "N/A":
         message += f"• Available from: {date_available}\n"
     if availability_period != "N/A":

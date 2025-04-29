@@ -103,7 +103,7 @@ def initialize_db(connection_string: str):
                 last_scan_time TIMESTAMP WITH TIME ZONE,
                 description TEXT,
                 request_body JSONB,
-                UNIQUE (source, queryurl)
+                custom_headers JSONB
             )
             """)
             

@@ -514,9 +514,10 @@ class EnhancedHttpClient:
                 })
             
             # Apply any custom headers from kwargs
-            if "headers" in kwargs:
-                custom_headers = kwargs.pop("headers")
-                headers.update(custom_headers)
+            if "custom_headers" in kwargs:
+                custom_headers = kwargs.pop("custom_headers")
+                if custom_headers is not None:
+                    headers.update(custom_headers)
             
             # Set referer from session history if available
             if self.session_history:
