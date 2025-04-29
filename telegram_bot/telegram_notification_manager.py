@@ -271,7 +271,8 @@ class TelegramNotificationManager:
             # Clean up old notifications
             if random.random() < 0.1:  # 10% chance to run cleanup
                 cleaned = self.telegram_db.clean_old_notifications(30)
-                logger.info(f"Cleaned up {cleaned} old notifications")
+                if cleaned > 0:
+                    logger.info(f"Cleaned up {cleaned} old notifications")
             
             return stats
         
