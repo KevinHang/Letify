@@ -2,6 +2,7 @@
 Telegram user database operations.
 """
 
+from datetime import datetime
 from typing import List, Dict, Any, Optional, Tuple
 
 import psycopg
@@ -57,6 +58,29 @@ class TelegramDatabase:
             self.conn.rollback()
             logger.error(f"Error updating user activity: {e}")
             return False
+        
+    def get_user_last_active(self, user_id: int) -> Optional[datetime]:
+        """
+        Get the timestamp of when a user was last active.
+        
+        Args:
+            user_id (int): The Telegram user ID
+            
+        Returns:
+            Optional[datetime]: The last_active timestamp or None if user not found or error occurs
+        """
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                SELECT last_active
+                FROM telegram_users
+                WHERE user_id = %s
+                """, (user_id,))
+                result = cur.fetchone()
+                return result[0] if result else None
+        except Exception as e:
+            logger.error(f"Error retrieving user last_active: {e}")
+            return None
     
     def toggle_user_active(self, user_id: int, is_active: bool) -> bool:
         try:

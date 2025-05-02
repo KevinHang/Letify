@@ -1,6 +1,6 @@
 import asyncio
 from typing import List
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 import uuid
 
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, KeyboardButton
@@ -135,8 +135,10 @@ class TelegramRealEstateBot:
                 "🏠 <b>Rental Preferences:</b> Set preferences to find your ideal home\n"
                 "🔔 <b>Settings:</b> Manage your notifications\n"
                 "📊 <b>Status:</b> Check your current status\n"
-                "❓ <b>Help:</b> Get help with the available commands\n"
-                "❎ <b>Close Menu:</b> Close the current menu\n"
+                "❓ <b>Help:</b> Show available commands\n"
+                "❎ <b>Close Menu:</b> Close the current menu\n\n"
+
+                "<em>Please close the menu once done 🌎 \nInactive menus expire after 1 hour ⏳</em>"
             )
             keyboard = [
                 [InlineKeyboardButton("🏠 Rental Preferences", callback_data=f"menu:{MENU_STATES['preferences']}:{menu_id}")],
@@ -352,6 +354,19 @@ class TelegramRealEstateBot:
             await query.edit_message_text("❌ Invalid callback data.")
             return
         
+        last_active = telegram_db.get_user_last_active(user_id)
+
+        # Check if last active time is more than 1 hour ago
+        if last_active:
+            current_time = datetime.now(timezone.utc)
+            time_difference = current_time - last_active
+            
+            if time_difference > timedelta(hours=1):
+                await query.edit_message_text(
+                    "⚠️ Your menu was opened more than 1 hour ago. Please use /menu to open a new menu."
+                )
+                return
+        
         action = parts[1]
         
         # Handle actions with extra parameters (city_rm, type_toggle)
@@ -369,6 +384,8 @@ class TelegramRealEstateBot:
             logger.debug(f"Callback for menu {menu_id} is outdated for user {user_id}")
             await query.edit_message_text("❌ This menu is outdated. Use /menu to open a new one.")
             return
+        
+        telegram_db.update_user_activity(user_id)
         
         if action == 'done':
             await query.edit_message_text("✅ Menu closed. Use /menu to open a new one.")
