@@ -186,7 +186,7 @@ class TelegramRealEstateBot:
             menu_text = (
                 "📍 Cities Menu\n\n"
                 f"Current cities: {cities_text}\n\n"
-                "Enter a city name to add, or use buttons to remove existing cities.\n"
+                "<b>Enter a city name to add, or use buttons to remove existing cities</b>\n"
             )
             keyboard = []
             for city in cities:
@@ -525,7 +525,7 @@ class TelegramRealEstateBot:
             if city_input not in ALL_CITIES:
                 suggestion = suggest_city(city_input)
                 error_message = (
-                    f'❌ City "{city_input.title()}" does not exist! Do you mean "{suggestion[0].title()}"?'
+                    f'❌ City <b>{city_input.title()}</b> does not exist! Do you mean <b>{suggestion[0].title()}</b>?'
                     if suggestion else f"❌ City '{city_input.title()}' does not exist!"
                 )
                 error_message += "\n\n<em>This message will be auto-deleted in 10 seconds ⏳</em>"
