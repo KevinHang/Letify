@@ -418,6 +418,11 @@ class TelegramRealEstateBot:
         if action == 'city_rm':
             preferences['cities'] = [c for c in preferences.get('cities', []) if c != item]
             telegram_db.set_user_preferences(user_id, preferences)
+            confirmation = await query.message.reply_text(
+                f"✅ City <b>{item.title()}</b> removed.\n\n<em>This message will be auto-deleted in 5 seconds ⏳</em>",
+                parse_mode="HTML"
+            )
+            asyncio.create_task(self.delete_message_later(confirmation.chat_id, confirmation.message_id))
             await self.show_menu(update, context, MENU_STATES['cities'], menu_id)
         
         elif action == 'type_toggle':
@@ -495,16 +500,16 @@ class TelegramRealEstateBot:
         
         message_text = update.message.text.lower().strip()
         
-        # if message_text == "Custom Message":
-        #     return await self.menu_command(update, context)
-        
         current_state = context.user_data.get('current_state')
         menu_id = context.user_data.get('latest_menu_id')
         message_id = context.user_data.get('current_menu_message_id')
         chat_id = context.user_data.get('current_menu_chat_id')
         
         if not current_state or not menu_id or not message_id or not chat_id:
-            await update.message.reply_text("No active menu. Use /menu to open one.")
+            message = await update.message.reply_text(
+                "No active menu. Use /menu to open one.",
+                parse_mode="HTML"
+            )
             return
         
         preferences = telegram_db.get_user_preferences(user_id) or {}
@@ -523,7 +528,9 @@ class TelegramRealEstateBot:
                     f'❌ City "{city_input.title()}" does not exist! Do you mean "{suggestion[0].title()}"?'
                     if suggestion else f"❌ City '{city_input.title()}' does not exist!"
                 )
-                await update.message.reply_text(error_message)
+                error_message += "\n\n<em>This message will be auto-deleted in 10 seconds ⏳</em>"
+                message = await update.message.reply_text(error_message, parse_mode="HTML")
+                asyncio.create_task(self.delete_message_later(message.chat_id, message.message_id, 15))
                 try:
                     await context.bot.delete_message(chat_id=input_chat_id, message_id=input_message_id)
                 except Exception as e:
@@ -541,6 +548,13 @@ class TelegramRealEstateBot:
             cities.append(city_input)
             preferences['cities'] = cities
             telegram_db.set_user_preferences(user_id, preferences)
+            
+            # Send confirmation message
+            confirmation = await update.message.reply_text(
+                f"✅ City <b>{city_input.title()}</b> added.\n\n<em>This message will be auto-deleted in 5 seconds ⏳</em>",
+                parse_mode="HTML"
+            )
+            asyncio.create_task(self.delete_message_later(confirmation.chat_id, confirmation.message_id))
             
             # Update the existing menu
             menu_text, keyboard = self.build_menu(MENU_STATES['cities'], menu_id, user_id)
@@ -600,6 +614,14 @@ class TelegramRealEstateBot:
                     preferences['max_price'] = value
                 
                 telegram_db.set_user_preferences(user_id, preferences)
+                
+                # Send confirmation message
+                confirmation = await update.message.reply_text(
+                    f"✅ {'Minimum' if parts[0] == 'min' else 'Maximum'} price set to {format_currency(value)}.\n\n<em>This message will be auto-deleted in 5 seconds ⏳</em>",
+                    parse_mode="HTML"
+                )
+                asyncio.create_task(self.delete_message_later(confirmation.chat_id, confirmation.message_id))
+                
                 menu_text, keyboard = self.build_menu(MENU_STATES['price'], menu_id, user_id)
                 try:
                     await context.bot.edit_message_text(
@@ -625,7 +647,11 @@ class TelegramRealEstateBot:
                     logger.warning(f"Failed to delete price input message for user {user_id}: {e}")
             
             except ValueError:
-                await update.message.reply_text("❌ Invalid input. Use format: 'min 1000' or 'max 2000'")
+                message = await update.message.reply_text(
+                    "❌ Invalid input. Use format: 'min 1000' or 'max 2000'\n\n<em>This message will be auto-deleted in 5 seconds ⏳</em>",
+                    parse_mode="HTML"
+                )
+                asyncio.create_task(self.delete_message_later(message.chat_id, message.message_id))
                 try:
                     await context.bot.delete_message(chat_id=input_chat_id, message_id=input_message_id)
                 except Exception as e:
@@ -663,6 +689,14 @@ class TelegramRealEstateBot:
                     preferences['max_rooms'] = value
                 
                 telegram_db.set_user_preferences(user_id, preferences)
+                
+                # Send confirmation message
+                confirmation = await update.message.reply_text(
+                    f"✅ {'Minimum' if parts[0] == 'min' else 'Maximum'} rooms set to {value}.\n\n<em>This message will be auto-deleted in 5 seconds ⏳</em>",
+                    parse_mode="HTML"
+                )
+                asyncio.create_task(self.delete_message_later(confirmation.chat_id, confirmation.message_id))
+                
                 menu_text, keyboard = self.build_menu(MENU_STATES['rooms'], menu_id, user_id)
                 try:
                     await context.bot.edit_message_text(
@@ -688,7 +722,11 @@ class TelegramRealEstateBot:
                     logger.warning(f"Failed to delete rooms input message for user {user_id}: {e}")
             
             except ValueError:
-                await update.message.reply_text("❌ Invalid input. Use format: 'min 2' or 'max 4'")
+                message = await update.message.reply_text(
+                    "❌ Invalid input. Use format: 'min 2' or 'max 4'\n\n<em>This message will be auto-deleted in 5 seconds ⏳</em>",
+                    parse_mode="HTML"
+                )
+                asyncio.create_task(self.delete_message_later(message.chat_id, message.message_id))
                 try:
                     await context.bot.delete_message(chat_id=input_chat_id, message_id=input_message_id)
                 except Exception as e:
@@ -726,6 +764,14 @@ class TelegramRealEstateBot:
                     preferences['max_area'] = value
                 
                 telegram_db.set_user_preferences(user_id, preferences)
+                
+                # Send confirmation message
+                confirmation = await update.message.reply_text(
+                    f"✅ {'Minimum' if parts[0] == 'min' else 'Maximum'} area set to {value} m².\n\n<em>This message will be auto-deleted in 5 seconds ⏳</em>",
+                    parse_mode="HTML"
+                )
+                asyncio.create_task(self.delete_message_later(confirmation.chat_id, confirmation.message_id))
+                
                 menu_text, keyboard = self.build_menu(MENU_STATES['area'], menu_id, user_id)
                 try:
                     await context.bot.edit_message_text(
@@ -751,7 +797,11 @@ class TelegramRealEstateBot:
                     logger.warning(f"Failed to delete area input message for user {user_id}: {e}")
             
             except ValueError:
-                await update.message.reply_text("❌ Invalid input. Use format: 'min 50' or 'max 100'")
+                message = await update.message.reply_text(
+                    "❌ Invalid input. Use format: 'min 50' or 'max 100'\n\n<em>This message will be auto-deleted in 5 seconds ⏳</em>",
+                    parse_mode="HTML"
+                )
+                asyncio.create_task(self.delete_message_later(message.chat_id, message.message_id))
                 try:
                     await context.bot.delete_message(chat_id=input_chat_id, message_id=input_message_id)
                 except Exception as e:
@@ -759,16 +809,21 @@ class TelegramRealEstateBot:
         
         elif current_state == MENU_STATES['type']:
             # Ignore text input for property types; use buttons instead
-            await update.message.reply_text(
-                "Please use the buttons to select property types."
+            message = await update.message.reply_text(
+                "Please use the buttons to select property types.\n\n<em>This message will be auto-deleted in 5 seconds ⏳</em>",
+                parse_mode="HTML"
             )
+            asyncio.create_task(self.delete_message_later(message.chat_id, message.message_id))
             try:
                 await context.bot.delete_message(chat_id=input_chat_id, message_id=input_message_id)
             except Exception as e:
                 logger.warning(f"Failed to delete type input message for user {user_id}: {e}")
         
         else:
-            await update.message.reply_text("Please use the menu buttons or /menu to open a new one.")
+            message = await update.message.reply_text(
+                "Please use the menu buttons or /menu to open a new one.",
+                parse_mode="HTML"
+            )
 
     async def cancel_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         """Cancel the current menu"""
@@ -783,6 +838,22 @@ class TelegramRealEstateBot:
             context.user_data.pop('current_menu_chat_id', None)
         
         await update.message.reply_text("✅ Menu closed. Use /menu to open a new one.")
+
+    async def delete_message_later(self, chat_id: int, message_id: int, delay_seconds: int = 5):
+        """
+        Deletes a message after a specified delay.
+        
+        Args:
+            chat_id (int): The chat ID where the message is located
+            message_id (int): The ID of the message to delete
+            delay_seconds (int, optional): Delay in seconds before deletion. Defaults to 5.
+        """
+        try:
+            await asyncio.sleep(delay_seconds)
+            await self.application.bot.delete_message(chat_id=chat_id, message_id=message_id)
+            logger.debug(f"Successfully deleted message {message_id} in chat {chat_id} after {delay_seconds}s")
+        except Exception as e:
+            logger.error(f"Error deleting message {message_id} in chat {chat_id}: {e}")
 
     # ===== Base Commands =====
     
