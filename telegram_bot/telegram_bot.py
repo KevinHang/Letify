@@ -38,6 +38,7 @@ MENU_STATES = {
 
 # Property types
 PROPERTY_TYPES = ["apartment", "house", "room", "studio", "any"]
+UPDATING_CONTENT = "Updating content..."
 
 class TelegramRealEstateBot:
     """Telegram bot for Dutch Real Estate Scraper with stateless menu system"""
@@ -349,7 +350,7 @@ class TelegramRealEstateBot:
         await query.answer()
         
         user_id = query.from_user.id
-        logger.info(f"Menu callback for user: {user_id}, menu id: {context.user_data.get('latest_menu_id')}")
+        
         parts = query.data.split(':')
         if len(parts) < 3:
             await query.edit_message_text("❌ Invalid callback data.")
@@ -357,16 +358,23 @@ class TelegramRealEstateBot:
         
         last_active = telegram_db.get_user_last_active(user_id)
 
-        # Check if last active time is more than 1 hour ago
         if last_active:
             current_time = datetime.now(timezone.utc)
             time_difference = current_time - last_active
             
-            if time_difference > timedelta(hours=1):
+            # Check if last active time is more than 8 hours ago, close menu
+            if time_difference > timedelta(hours=8):
                 await query.edit_message_text(
-                    "⚠️ Your menu was opened more than 1 hour ago. Please use /menu to open a new menu."
+                    "⚠️ Your menu was opened more than 8 hours ago. Please use /menu to open a new menu."
                 )
+                message = await context.bot.send_message(chat_id=update.effective_user.id, text=UPDATING_CONTENT, disable_notification=True)
+                await context.bot.delete_message(message.chat_id, message.message_id)
+                telegram_db.update_user_activity(user_id)
                 return
+            # Check if last active time is more than 15 minutes ago, refresh context
+            elif time_difference > timedelta(minutes=15):
+                message = await context.bot.send_message(chat_id=update.effective_user.id, text=UPDATING_CONTENT, disable_notification=True)
+                await context.bot.delete_message(message.chat_id, message.message_id)
         
         action = parts[1]
         
@@ -383,7 +391,10 @@ class TelegramRealEstateBot:
         latest_menu_id = context.user_data.get('latest_menu_id')
         if menu_id != latest_menu_id:
             logger.debug(f"Callback for menu {menu_id} is outdated for user {user_id}")
-            await query.edit_message_text("❌ This menu is outdated. Use /menu to open a new one.")
+            await query.edit_message_text("⚠️ This menu is outdated. Use /menu to open a new one.")
+            message = await context.bot.send_message(chat_id=update.effective_user.id, text=UPDATING_CONTENT, disable_notification=True)
+            await context.bot.delete_message(message.chat_id, message.message_id)
+            telegram_db.update_user_activity(user_id)
             return
         
         telegram_db.update_user_activity(user_id)
