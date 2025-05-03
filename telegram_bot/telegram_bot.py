@@ -38,7 +38,7 @@ MENU_STATES = {
 
 # Property types
 PROPERTY_TYPES = ["apartment", "house", "room", "studio", "any"]
-UPDATING_CONTENT = "Updating content..."
+UPDATING_CONTENT = "🤖 Updating content..."
 
 class TelegramRealEstateBot:
     """Telegram bot for Dutch Real Estate Scraper with stateless menu system"""
@@ -139,7 +139,7 @@ class TelegramRealEstateBot:
                 "❓ <b>Help:</b> Show available commands\n"
                 "❎ <b>Close Menu:</b> Close the current menu\n\n"
 
-                "<em>Please close the menu once done 🌎 \nInactive menus expire after 1 hour ⏳</em>"
+                "<em>Please close the menu once done 🌎</em>"
             )
             keyboard = [
                 [InlineKeyboardButton("🏠 Rental Preferences", callback_data=f"menu:{MENU_STATES['preferences']}:{menu_id}")],
