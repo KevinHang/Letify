@@ -563,7 +563,8 @@ class TelegramRealEstateBot:
                     chat_id=chat_id,
                     message_id=message_id,
                     text=menu_text,
-                    reply_markup=InlineKeyboardMarkup(keyboard)
+                    reply_markup=InlineKeyboardMarkup(keyboard),
+                    parse_mode="HTML"
                 )
             except Exception as e:
                 logger.error(f"Error editing cities menu for user {user_id}: {e}")
