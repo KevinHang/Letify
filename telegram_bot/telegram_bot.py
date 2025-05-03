@@ -349,6 +349,7 @@ class TelegramRealEstateBot:
         await query.answer()
         
         user_id = query.from_user.id
+        logger.info(f"Menu callback for user: {user_id}, menu id: {context.user_data.get('latest_menu_id')}")
         parts = query.data.split(':')
         if len(parts) < 3:
             await query.edit_message_text("❌ Invalid callback data.")
