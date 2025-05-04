@@ -117,11 +117,11 @@ class RealEstateScraper:
             proxy = await self.proxy_manager.get_proxy() if self.proxy_manager.enabled else None
             try:
                 if query_method == "GET":
-                    response = await self.http_client.make_request(url)
+                    response = await self.http_client.make_request(url=url, source=source)
                 elif query_method == "POST":
                     request_body = query_url['request_body']
                     custom_headers = query_url['custom_headers']
-                    response = await self.http_client.make_request(url=url, method=query_method, request_body=request_body, custom_headers=custom_headers)
+                    response = await self.http_client.make_request(url=url, method=query_method, request_body=request_body, custom_headers=custom_headers, source=source)
                 if proxy and response.status_code == 200:
                     await self.proxy_manager.report_success(proxy, time.time() - start_time)
                 final_url = str(response.url)
@@ -129,7 +129,6 @@ class RealEstateScraper:
                 if proxy:
                     await self.proxy_manager.report_failure(proxy, e)
                 raise
-            
             listings = await scraper.parse_search_page(response.text)
             total_listings = len(listings)
             logger.info(f"Found {total_listings} listings for {source} from specific URL")
@@ -201,7 +200,7 @@ class RealEstateScraper:
                 if proxy:
                     await self.proxy_manager.report_failure(proxy, e)
                 raise
-            
+
             listings = await scraper.parse_search_page(response.text)
             total_listings = len(listings)
             logger.info(f"Found {total_listings} listings for {source} in {city}")

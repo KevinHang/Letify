@@ -350,6 +350,7 @@ class TelegramDatabase:
                 
                 # Match with user preferences, checking if property city is in user's cities array
                 # Cities cannot be none in order to receive listings
+                # For rooms we always return True if rooms is Null (kamernet for example)
                 cur.execute("""
                 INSERT INTO notification_queue (user_id, property_id, created_at, status)
                 SELECT tu.user_id, %s, NOW(), 'pending'
@@ -360,11 +361,11 @@ class TelegramDatabase:
                 AND (up.cities IS NULL OR %s = ANY(up.cities))
                 AND (up.min_price IS NULL OR %s >= up.min_price)
                 AND (up.max_price IS NULL OR %s <= up.max_price OR up.max_price = 0)
-                AND (up.min_rooms IS NULL OR %s >= up.min_rooms)
-                AND (up.max_rooms IS NULL OR %s <= up.max_rooms OR up.max_rooms = 0)
+                AND (up.min_rooms IS NULL OR %s::int IS NULL OR %s >= up.min_rooms)
+                AND (up.max_rooms IS NULL OR %s::int IS NULL OR %s <= up.max_rooms OR up.max_rooms = 0)
                 AND (up.property_type IS NULL OR %s = ANY(up.property_type) OR 'ANY' = ANY(up.property_type))
-                AND (up.min_area IS NULL OR %s >= up.min_area)
-                AND (up.max_area IS NULL OR %s <= up.max_area OR up.max_area = 0)
+                AND (up.min_area IS NULL OR %s::int IS NULL OR %s >= up.min_area)
+                AND (up.max_area IS NULL OR %s::int IS NULL OR %s <= up.max_area OR up.max_area = 0)
                 AND (up.neighborhood IS NULL OR %s ILIKE CONCAT('%%', up.neighborhood, '%%'))
                 ON CONFLICT (user_id, property_id) DO NOTHING
                 """, (
@@ -372,11 +373,15 @@ class TelegramDatabase:
                     property_row[8].upper(),  # city
                     property_row[11],         # price_numeric
                     property_row[11],         # price_numeric
-                    property_row[20],         # rooms (corrected to match schema)
-                    property_row[20],         # rooms (corrected to match schema)
-                    property_row[15].upper(), # property_type (e.g., "ROOM", "APARTMENT")
-                    property_row[17],         # living_area (corrected to match schema)
-                    property_row[17],         # living_area (corrected to match schema)
+                    property_row[20],         # rooms 
+                    property_row[20],         # rooms (IS NULL check)
+                    property_row[20],         # rooms
+                    property_row[20],         # rooms (IS NULL check)
+                    property_row[15].upper(), # property_type
+                    property_row[17],         # living_area
+                    property_row[17],         # living_area
+                    property_row[17],         # living_area
+                    property_row[17],         # living_area
                     property_row[9]           # neighborhood
                 ))
                 

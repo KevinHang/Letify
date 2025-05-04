@@ -437,7 +437,7 @@ class EnhancedHttpClient:
         
         return None
     
-    def _detect_anti_bot(self, response: httpx.Response) -> bool:
+    def _detect_anti_bot(self, response: httpx.Response, source: str) -> bool:
         """
         Detect anti-bot measures in a response
         
@@ -452,8 +452,13 @@ class EnhancedHttpClient:
             logger.warning(f"Possible anti-bot response: HTTP {response.status_code}")
             return True
         
+        # Source specific exceptions:
+        anti_bot_patterns = self.ANTI_BOT_PATTERNS
+        if source == "kamernet":
+            anti_bot_patterns = [pattern for pattern in anti_bot_patterns if pattern != "captcha"]
+        
         # Check for anti-bot patterns in the response text
-        for pattern in self.ANTI_BOT_PATTERNS:
+        for pattern in anti_bot_patterns:
             if pattern.lower() in response.text.lower():
                 logger.warning(f"Anti-bot pattern detected: '{pattern}'")
                 return True
@@ -465,7 +470,7 @@ class EnhancedHttpClient:
         
         return False
         
-    async def make_request(self, url: str, retry_anti_bot: bool = True, max_antibot_retries: int = 3, method: str = "GET", request_body: dict = None, **kwargs) -> httpx.Response:
+    async def make_request(self, url: str, source: str, retry_anti_bot: bool = True, max_antibot_retries: int = 3, method: str = "GET", request_body: dict = None, **kwargs) -> httpx.Response:
         """
         Make an HTTP GET or POST request with advanced handling for compressed responses and anti-bot measures
         
@@ -594,7 +599,7 @@ class EnhancedHttpClient:
                         
                         # Check for anti-bot measures if enabled
                         if retry_anti_bot:
-                            if self._detect_anti_bot(response):
+                            if self._detect_anti_bot(response, source):
                                 # Add Cloudflare-specific cookies if detected
                                 if "Cloudflare" in response.text.lower():
                                     session_cookies["__cf_chl"] = base64.urlsafe_b64encode(os.urandom(16)).decode('utf-8')[:22]
@@ -623,7 +628,6 @@ class EnhancedHttpClient:
                         antibot_retry_count += 1
                         continue
                     raise
-        
         # This should not be reached due to the loop and exception conditions above
         # but included as a safeguard
         if response:

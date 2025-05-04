@@ -100,6 +100,9 @@ class VestedaScraper(BaseScraperStrategy):
             
             # We're only interested in "today" properties based on requirements
             today_objects = data.get("results", {}).get("objects", {}).get("today", [])
+            # There are not always listing for today, fallback to week to avoid "HTML structure may have changed!" warning
+            if not today_objects:
+                today_objects = data.get("results", {}).get("objects", {}).get("week", [])
             
             if not today_objects:
                 return []
@@ -140,7 +143,7 @@ class VestedaScraper(BaseScraperStrategy):
                     else:
                         listing.postal_code = ""
                     
-                    listing.city = item.get("city", "")
+                    listing.city = item.get("city", "").upper()
                     
                     # Extract neighborhood/district
                     listing.neighborhood = item.get("district", "")
@@ -159,6 +162,7 @@ class VestedaScraper(BaseScraperStrategy):
                     bedrooms = item.get("numberOfBedRooms")
                     if bedrooms is not None:
                         listing.bedrooms = bedrooms
+                        listing.rooms = bedrooms
                     
                     # Map property type
                     entity_subtype_label = item.get("entitysubtypelabel")

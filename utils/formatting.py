@@ -139,6 +139,8 @@ def format_listing_message(property_data: Dict[str, Any]) -> str:
     
     bedrooms = property_data.get('bedrooms', 0) or 0
     bedrooms_str = f"{bedrooms}" if bedrooms else "N/A"
+
+    interior = property_data.get('interior', 'N/A') or 'N/A'
     
     # Dates
     date_listed = format_date(property_data.get('date_listed', '') or '')
@@ -147,6 +149,10 @@ def format_listing_message(property_data: Dict[str, Any]) -> str:
     
     # Energy label
     energy_label = property_data.get('energy_label', 'N/A') or 'N/A'
+
+    # Contrusction year
+    construction_year = property_data.get('construction_year', 0) or 0
+    construction_year_str = f"{construction_year}" if construction_year else "N/A"
     
     # Additional extras
     extras = []
@@ -180,6 +186,12 @@ def format_listing_message(property_data: Dict[str, Any]) -> str:
         # Check for key profession requirement
         if 'key_profession_requirement' in all_req_keys:
             requirements_parts.append(f"• Profession: {get_value_for_key(requirements, 'key_profession_requirement')}")
+
+        if 'utilities_included' in all_req_keys:
+            requirements_parts.append(f"• Utilities included: {get_value_for_key(requirements, 'utilities_included')}")
+
+        if 'student_housing' in all_req_keys:
+            requirements_parts.append(f"• Student housing: {get_value_for_key(requirements, 'student_housing')}")
 
     # Description (truncated)
     description = property_data.get('description', '') or ''
@@ -215,26 +227,36 @@ def format_listing_message(property_data: Dict[str, Any]) -> str:
     if rooms_part:
         message += f"{rooms_part}"
 
+    interior_part = f"• Interior: {interior.title()}\n" if interior != "N/A" else ""
+
+    if interior_part:
+        message += f"{interior_part}"
+
     energy_label_part = f"• Energy label: {energy_label}\n" if energy_label != "N/A" else ""
 
     if energy_label_part:
         message += f"{energy_label_part}"
 
-    # Add requirements section if we have any
-    if requirements_parts:
-        message += f"\n<b>Requirements:</b>\n"
-        for req in requirements_parts:
-            message += f"{req}\n"
+    construction_year_part = f"• Construction year: {construction_year_str}\n" if construction_year_str != "N/A" else ""
+
+    if construction_year_part:
+        message += f"{construction_year_part}"
     
     # Add dates if available
     if date_available != "N/A":
         message += f"• Available from: {date_available}\n"
     if availability_period != "N/A":
         message += f"• Availability period: {availability_period}\n"
+
+    # Add requirements section if we have any
+    if requirements_parts:
+        message += f"\n<b>Additional information:</b>\n"
+        for req in requirements_parts:
+            message += f"{req}\n"
     
     # Add description if available
-    if description:
-        message += f"\n<i>{description}</i>\n"
+    # if description:
+    #     message += f"\n<i>{description}</i>\n"
     
     # Add source info
     if source and url:

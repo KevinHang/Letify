@@ -75,6 +75,11 @@ SITE_CONFIGS = {
         "base_url": "https://www.rebogroep.nl",
         "search_url_template": "", # TODO
         "min_interval": 10,  # TODO
+    },
+    "kamernet": {
+        "base_url": "https://www.kamernet.nl",
+        "search_url_template": "", # TODO
+        "min_interval": 10,  # TODO
     }
 }
 
