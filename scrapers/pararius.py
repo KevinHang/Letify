@@ -203,14 +203,18 @@ class ParariusScraper(BaseScraperStrategy):
                         area_match = re.search(r'(\d+)', feature_text)
                         if area_match:
                             listing.living_area = int(area_match.group(1))
+
+                    # Get construction year
+                    if feature.attributes.get("class") and "illustrated-features__item--construction-period" in feature.attributes.get("class"):
+                        # Extract just the construction year
+                        area_match = re.search(r'(\d+)', feature_text)
+                        if area_match:
+                            listing.construction_year = int(area_match.group(1))
                     
                     # Extract number of rooms
                     room_match = re.search(r'(\d+)\s+room', feature_text)
                     if room_match:
                         listing.rooms = int(room_match.group(1))
-                        # Estimate bedrooms if not specified
-                        if listing.rooms > 1:
-                            listing.bedrooms = listing.rooms - 1
                     
                     # Extract interior type
                     if "shell" in feature_text:
