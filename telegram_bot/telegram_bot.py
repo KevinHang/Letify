@@ -362,10 +362,10 @@ class TelegramRealEstateBot:
             current_time = datetime.now(timezone.utc)
             time_difference = current_time - last_active
             
-            # Check if last active time is more than 6 hours ago, close menu
-            if time_difference > timedelta(hours=6):
+            # Check if last active time is more than 8 hours ago, close menu
+            if time_difference > timedelta(hours=8):
                 await query.edit_message_text(
-                    "⚠️ Your menu was opened more than 6 hours ago. Please use /menu to open a new menu."
+                    "⚠️ Your menu was opened more than 8 hours ago. Please use /menu to open a new menu."
                 )
                 message = await context.bot.send_message(chat_id=update.effective_user.id, text=UPDATING_CONTENT, disable_notification=True)
                 await context.bot.delete_message(message.chat_id, message.message_id)
