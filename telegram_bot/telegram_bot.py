@@ -105,6 +105,11 @@ class TelegramRealEstateBot:
 
     async def show_menu(self, update: Update, context: ContextTypes.DEFAULT_TYPE, state: str, menu_id: str) -> None:
         """Display a menu based on the current state"""
+
+        # Edge case where current state is same as new state (e.g. handle quick double-tap bug)
+        if context.user_data.get('current_state', '') == state and state != 'main':
+            return
+
         user_id = update.effective_user.id
         menu_text, keyboard = self.build_menu(state, menu_id, user_id)
         
@@ -115,7 +120,7 @@ class TelegramRealEstateBot:
             try:
                 message = await update.callback_query.edit_message_text(menu_text, reply_markup=reply_markup, parse_mode="HTML")
             except Exception as e:
-                logger.error(f"Error editing menu message for user {user_id}: {e}")
+                logger.error(f"Error editing menu message for user {user_id} at state {state}: {e}")
                 message = await update.callback_query.message.reply_text(menu_text, reply_markup=reply_markup, parse_mode="HTML")
         else:
             message = await update.message.reply_text(menu_text, reply_markup=reply_markup, parse_mode="HTML")
