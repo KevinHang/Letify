@@ -33,7 +33,8 @@ MENU_STATES = {
     'type': 'type',
     'status': 'status',
     'help': 'help',
-    'subscription': 'subs'
+    'subscription': 'subs',
+    'faq': 'faq'
 }
 
 # Property types
@@ -129,22 +130,21 @@ class TelegramRealEstateBot:
         """Build menu text and keyboard based on state"""
         logger.debug(f"Building menu for user {user_id}, state: {state}")
         if state == MENU_STATES['main']:
-
             menu_text = (
                 "🏡 Thanks for using the Letify Bot!\n\n"
-                
                 "🏠 <b>Rental Preferences:</b> Set preferences to find your ideal home\n"
                 "🔔 <b>Settings:</b> Manage your notifications\n"
                 "📊 <b>Status:</b> Check your current status\n"
                 "❓ <b>Help:</b> Show available commands\n"
+                "📚 <b>FAQ:</b> Learn more about Letify Bot\n"
                 "❎ <b>Close Menu:</b> Close the current menu\n\n"
-
                 "<em>Please close the menu once done 🌎</em>"
             )
             keyboard = [
                 [InlineKeyboardButton("🏠 Rental Preferences", callback_data=f"menu:{MENU_STATES['preferences']}:{menu_id}")],
                 [InlineKeyboardButton("🔔 Settings", callback_data=f"menu:{MENU_STATES['subscription']}:{menu_id}"), InlineKeyboardButton("📊 Status", callback_data=f"menu:{MENU_STATES['status']}:{menu_id}")],
-                [InlineKeyboardButton("❓ Help", callback_data=f"menu:{MENU_STATES['help']}:{menu_id}"), InlineKeyboardButton("❎ Close Menu", callback_data=f"menu:done:{menu_id}")],
+                [InlineKeyboardButton("❓ Help", callback_data=f"menu:{MENU_STATES['help']}:{menu_id}"), InlineKeyboardButton("📚 FAQ", callback_data=f"menu:{MENU_STATES['faq']}:{menu_id}")],
+                [InlineKeyboardButton("❎ Close Menu", callback_data=f"menu:done:{menu_id}")]
             ]
             return menu_text, keyboard
         
@@ -323,8 +323,8 @@ class TelegramRealEstateBot:
             menu_text = (
                 "📋 Available commands:\n\n"
                 "/start - Start the bot and see welcome message\n"
-                "/menu - Open the main navigation menu\n"
-                "/cancel - Close the current menu\n\n"
+                "/menu - Open the main navigation menu\n\n"
+                # "/cancel - Close the current menu\n\n"
             )
             if user and user.get('is_admin'):
                 menu_text += (
@@ -339,6 +339,36 @@ class TelegramRealEstateBot:
                     "/debug - Show debug information\n"
                     "/stats - Show bot statistics\n"
                 )
+            keyboard = [[InlineKeyboardButton("↩ Return", callback_data=f"menu:{MENU_STATES['main']}:{menu_id}")]]
+            return menu_text, keyboard
+        
+        elif state == MENU_STATES['faq']:
+            menu_text = (
+                "📚 Frequently Asked Questions\n\n"
+                "<b>How does the rental finding work?</b>\n"
+                "Letify Bot scans trusted Dutch rental websites every 5 minutes. Set at least one city and enable notifications to receive listings. Price, area, and room preferences are optional. Listings matching your criteria are sent with key details so you can act quickly.\n\n"
+
+                "<b>Why is Letify Bot free?</b>\n"
+                "As a solo developer, I believe everyone deserves fair housing opportunities without financial barriers. Unlike paid services with high fees, Letify Bot focuses on helping people find homes, not profiting from their search.\n\n"
+                
+                "<b>How does Letify Bot differ from competitors?</b>\n"
+                "Many services exploit the urgency of house-hunting in the Netherlands' competitive market. Letify Bot doesn't hide essential features behind paywalls or sell your data. We're transparent, user-focused, and deliver timely rental listings.\n\n"
+                
+                "<b>What inspired Letify Bot?</b>\n"
+                "Letify Bot was inspired by some other community efforts but is coded completely from scratch. This new implementation fixes several shortcomings of existing solutions, offering improved reliability, better matching algorithms, and enhanced user experience while maintaining simplicity and accessibility.\n\n"
+                
+                "<b>What data does Letify Bot store?</b>\n"
+                "Letify Bot only stores your preference choices (cities, price range, etc.) which are necessary to match you with relevant listings. No personal data, search history, or usage patterns are collected or stored. Your privacy is a priority!\n\n"
+                
+                "<b>When will Letify Bot be open source?</b>\n"
+                "I'm prioritizing stability and security before open-sourcing. My focus is protecting user data and maintaining reliability. It's on my roadmap, but I need to refine the codebase and build community support first.\n\n"
+                
+                "<b>Why am I not seeing many listings?</b>\n"
+                "This could be due to limited properties matching your preferences in the competitive Dutch market. Try broadening your price range, area, or room requirements. Remember, at least one city must be set and notifications enabled.\n\n"
+                
+                "<b>How can I share feedback?</b>\n"
+                "I welcome all suggestions and questions! Contact me directly at @wifbeliever on Telegram. Your input helps improve Letify Bot for everyone."
+            )
             keyboard = [[InlineKeyboardButton("↩ Return", callback_data=f"menu:{MENU_STATES['main']}:{menu_id}")]]
             return menu_text, keyboard
         
@@ -925,7 +955,7 @@ class TelegramRealEstateBot:
             "/broadcast <message> - Send a message to all users\n"
             "/stats - Show bot statistics\n"
             "/debug - See bot debug information\n"
-            "/cancel - Cancel current operation\n"
+            # "/cancel - Cancel current operation\n"
         )
         
         await update.message.reply_text(admin_text)
