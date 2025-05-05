@@ -297,8 +297,6 @@ class TelegramRealEstateBot:
                 menu_text = "📊 Your current settings:\n\n"
                 menu_text += f"👤 User: {user.get('first_name', '')}\n"
                 menu_text += f"🔔 Notifications: {'Enabled' if user.get('notification_enabled') else 'Disabled'}\n"
-                menu_text += f"📋 Reaction Text: {user.get('reaction_text', 'Not set')}\n"
-                menu_text += f"👑 Admin: {'Yes' if user.get('is_admin') else 'No'}\n\n"
                 
                 if preferences:
                     menu_text += "🏠 Property preferences:\n"
