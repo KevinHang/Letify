@@ -884,6 +884,18 @@ class TelegramRealEstateBot:
                     logger.warning(f"Failed to delete reaction text input message for user {user_id}: {e}")
                 return
             
+            if len(reaction_text) >= 5000:
+                message = await update.message.reply_text(
+                    "❌ Reaction text is too long (cannot be above 5000 characters).\n\n<em>This message will be auto-deleted in 5 seconds ⏳</em>",
+                    parse_mode="HTML"
+                )
+                asyncio.create_task(self.delete_message_later(message.chat_id, message.message_id))
+                try:
+                    await context.bot.delete_message(chat_id=input_chat_id, message_id=input_message_id)
+                except Exception as e:
+                    logger.warning(f"Failed to delete reaction text input message for user {user_id}: {e}")
+                return
+            
             try:
                 # Get user's current reaction text
                 user = telegram_db.get_user(user_id)
