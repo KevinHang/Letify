@@ -1010,9 +1010,9 @@ class TelegramRealEstateBot:
         welcome_text = (
             f"👋 Hello {user.first_name}! Welcome to the Letify Bot.\n\n"
             f"I can notify you about new property listings that match your preferences.\n\n"
+            f"Set at least one city in the preferences to start receiving notifications. Other preferences such as price and rooms are optional. "
+            f"You can set a custom reaction text in the menu to quickly copy a message for each listing.\n\n"
             f"Use /menu to access all features and settings.\n"
-            f"You can set a custom reaction text in the menu to quickly copy a message for each listing. "
-            f"The default is: '{default_reaction_text}'"
         )
         
         await update.message.reply_text(welcome_text)
