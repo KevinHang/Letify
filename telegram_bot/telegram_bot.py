@@ -377,6 +377,8 @@ class TelegramRealEstateBot:
         elif state == MENU_STATES['reaction_text']:
             user = telegram_db.get_user(user_id)
             current_reaction_text = user.get('reaction_text', 'Not set') if user else 'Not set'
+            if not current_reaction_text:
+                current_reaction_text = 'Not set'
             menu_text = (
                 "📋 Reaction Text Menu\n\n"
                 "Current reaction text:\n"
