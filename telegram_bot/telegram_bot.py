@@ -406,8 +406,8 @@ class TelegramRealEstateBot:
                 await context.bot.delete_message(message.chat_id, message.message_id)
                 telegram_db.update_user_activity(user_id)
                 return
-            # Check if last active time is more than 15 minutes ago, refresh context
-            elif time_difference > timedelta(minutes=15):
+            # Check if last active time is more than 5 minutes ago, refresh context
+            elif time_difference > timedelta(minutes=5):
                 message = await context.bot.send_message(chat_id=update.effective_user.id, text=UPDATING_CONTENT, disable_notification=True)
                 await context.bot.delete_message(message.chat_id, message.message_id)
         
