@@ -664,10 +664,15 @@ class TelegramRealEstateBot:
                     preferences['max_price'] = value
                 
                 telegram_db.set_user_preferences(user_id, preferences)
+
+                if parts[0] == 'max' and value == 0:
+                    set_value = 'no limit'
+                else:
+                    set_value = format_currency(value)
                 
                 # Send confirmation message
                 confirmation = await update.message.reply_text(
-                    f"✅ {'Minimum' if parts[0] == 'min' else 'Maximum'} price set to {format_currency(value)}.\n\n<em>This message will be auto-deleted in 5 seconds ⏳</em>",
+                    f"✅ {'Minimum' if parts[0] == 'min' else 'Maximum'} price set to {set_value}.\n\n<em>This message will be auto-deleted in 5 seconds ⏳</em>",
                     parse_mode="HTML"
                 )
                 asyncio.create_task(self.delete_message_later(confirmation.chat_id, confirmation.message_id))
@@ -739,10 +744,15 @@ class TelegramRealEstateBot:
                     preferences['max_rooms'] = value
                 
                 telegram_db.set_user_preferences(user_id, preferences)
+
+                if parts[0] == 'max' and value == 0:
+                    set_value = 'no limit'
+                else:
+                    set_value = value
                 
                 # Send confirmation message
                 confirmation = await update.message.reply_text(
-                    f"✅ {'Minimum' if parts[0] == 'min' else 'Maximum'} rooms set to {value}.\n\n<em>This message will be auto-deleted in 5 seconds ⏳</em>",
+                    f"✅ {'Minimum' if parts[0] == 'min' else 'Maximum'} rooms set to {set_value}.\n\n<em>This message will be auto-deleted in 5 seconds ⏳</em>",
                     parse_mode="HTML"
                 )
                 asyncio.create_task(self.delete_message_later(confirmation.chat_id, confirmation.message_id))
@@ -814,10 +824,15 @@ class TelegramRealEstateBot:
                     preferences['max_area'] = value
                 
                 telegram_db.set_user_preferences(user_id, preferences)
+
+                if parts[0] == 'max' and value == 0:
+                    set_value = 'no limit'
+                else:
+                    set_value = f"{value}  m²"
                 
                 # Send confirmation message
                 confirmation = await update.message.reply_text(
-                    f"✅ {'Minimum' if parts[0] == 'min' else 'Maximum'} area set to {value} m².\n\n<em>This message will be auto-deleted in 5 seconds ⏳</em>",
+                    f"✅ {'Minimum' if parts[0] == 'min' else 'Maximum'} area set to {set_value}.\n\n<em>This message will be auto-deleted in 5 seconds ⏳</em>",
                     parse_mode="HTML"
                 )
                 asyncio.create_task(self.delete_message_later(confirmation.chat_id, confirmation.message_id))
