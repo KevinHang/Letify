@@ -11,6 +11,7 @@ from scrapers.pararius import ParariusScraper
 from scrapers.vesteda import VestedaScraper
 from scrapers.rebo import REBOScraper
 from scrapers.kamernet import KamernetScraper
+from scrapers.woningnet import WoningNetScraper
 
 
 class RealEstateScraperFactory:
@@ -34,6 +35,8 @@ class RealEstateScraperFactory:
             return REBOScraper(site_name, SITE_CONFIGS[site_name])
         elif site_name == "kamernet":
             return KamernetScraper(site_name, SITE_CONFIGS[site_name])
+        elif site_name in ["regioamsterdam", "regioutrecht", "regiogroningen", "regiogooienvecht", "regioalmere", "regiomiddenholland", "regioeemvallei", "regiobovengroningen", "regiowoonkeus", "regiowoongaard", "regiohuiswaarts"]:
+            return WoningNetScraper(site_name, SITE_CONFIGS[site_name])
         else:
             raise ValueError(f"No scraper implementation for site: {site_name}")
 

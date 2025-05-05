@@ -80,6 +80,72 @@ SITE_CONFIGS = {
         "base_url": "https://www.kamernet.nl",
         "search_url_template": "", # TODO
         "min_interval": 10,  # TODO
+    },
+    "regioamsterdam": {
+        "base_url": "https://www.mijndak.nl",
+        "search_url_template": "", # TODO
+        "min_interval": 10,  # TODO
+        "source_name": "regioamsterdam"
+    },
+    "regioutrecht": {
+        "base_url": "https://www.mijndak.nl",
+        "search_url_template": "", # TODO
+        "min_interval": 10,  # TODO
+        "source_name": "regioutrecht"
+    },
+    "regiogroningen": {
+        "base_url": "https://www.mijndak.nl",
+        "search_url_template": "", # TODO
+        "min_interval": 10,  # TODO
+        "source_name": "regiogroningen"
+    },
+    "regiogooienvecht": {
+        "base_url": "https://www.mijndak.nl",
+        "search_url_template": "", # TODO
+        "min_interval": 10,  # TODO
+        "source_name": "regiogooienvecht"
+    },
+    "regioalmere": {
+        "base_url": "https://www.mijndak.nl",
+        "search_url_template": "", # TODO
+        "min_interval": 10,  # TODO
+        "source_name": "regioalmere"
+    },
+    "regiomiddenholland": {
+        "base_url": "https://www.mijndak.nl",
+        "search_url_template": "", # TODO
+        "min_interval": 10,  # TODO
+        "source_name": "regiomiddenholland"
+    },
+    "regioeemvallei": {
+        "base_url": "https://www.mijndak.nl",
+        "search_url_template": "", # TODO
+        "min_interval": 10,  # TODO
+        "source_name": "regioeemvallei"
+    },
+    "regiobovengroningen": {
+        "base_url": "https://www.mijndak.nl",
+        "search_url_template": "", # TODO
+        "min_interval": 10,  # TODO
+        "source_name": "regiobovengroningen"
+    },
+    "regiowoonkeus": {
+        "base_url": "https://www.mijndak.nl",
+        "search_url_template": "", # TODO
+        "min_interval": 10,  # TODO
+        "source_name": "regiowoonkeus"
+    },
+    "regiowoongaard": {
+        "base_url": "https://www.mijndak.nl",
+        "search_url_template": "", # TODO
+        "min_interval": 10,  # TODO
+        "source_name": "regiowoongaard"
+    },
+    "regiohuiswaarts": {
+        "base_url": "https://www.mijndak.nl",
+        "search_url_template": "", # TODO
+        "min_interval": 10,  # TODO
+        "source_name": "regiohuiswaarts"
     }
 }
 

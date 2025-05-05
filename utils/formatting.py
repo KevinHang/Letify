@@ -150,6 +150,9 @@ def format_listing_message(property_data: Dict[str, Any]) -> str:
     # Energy label
     energy_label = property_data.get('energy_label', 'N/A') or 'N/A'
 
+    # Service costs
+    service_costs = property_data.get('service_costs', 0) or 0
+
     # Contrusction year
     construction_year = property_data.get('construction_year', 0) or 0
     construction_year_str = f"{construction_year}" if construction_year else "N/A"
@@ -190,8 +193,23 @@ def format_listing_message(property_data: Dict[str, Any]) -> str:
         if 'utilities_included' in all_req_keys:
             requirements_parts.append(f"• Utilities included: {get_value_for_key(requirements, 'utilities_included')}")
 
+        if 'has_lift' in all_req_keys:
+            requirements_parts.append(f"• Has lift: {get_value_for_key(requirements, 'has_lift')}")
+
+        if 'floor' in all_req_keys:
+            requirements_parts.append(f"• Floor: {get_value_for_key(requirements, 'floor')}")
+
         if 'student_housing' in all_req_keys:
             requirements_parts.append(f"• Student housing: {get_value_for_key(requirements, 'student_housing')}")
+
+        if 'target_group' in all_req_keys:
+            requirements_parts.append(f"• Target group: {get_value_for_key(requirements, 'target_group')}")
+
+        if 'contract_type' in all_req_keys:
+            requirements_parts.append(f"• Contract type: {get_value_for_key(requirements, 'contract_type')}")
+
+        if 'publication_module' in all_req_keys:
+            requirements_parts.append(f"• Module: {get_value_for_key(requirements, 'publication_module')}")
 
     # Description (truncated)
     description = property_data.get('description', '') or ''
@@ -202,6 +220,13 @@ def format_listing_message(property_data: Dict[str, Any]) -> str:
     # URL
     url = property_data.get('url', '') or ''
     source = property_data.get('source', '').capitalize() or ''
+
+    # Handle Regio source names
+    if "Regio" in source:
+        # Find where "regio" ends
+        split_point = len("Regio")
+        # Split and capitalize appropriately
+        source = source[:split_point].capitalize() + " " + source[split_point:].capitalize()
 
     # Create message with HTML formatting
     message = (
@@ -226,6 +251,11 @@ def format_listing_message(property_data: Dict[str, Any]) -> str:
 
     if rooms_part:
         message += f"{rooms_part}"
+
+    service_costs_part = f"• Service costs: €{service_costs} per month\n" if service_costs != 0 else ""
+
+    if service_costs_part:
+        message += f"{service_costs_part}"
 
     interior_part = f"• Interior: {interior.title()}\n" if interior != "N/A" else ""
 
