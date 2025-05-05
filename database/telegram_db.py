@@ -22,13 +22,13 @@ class TelegramDatabase:
     
     def register_user(self, user_id: int, username: Optional[str] = None, 
                      first_name: Optional[str] = None, last_name: Optional[str] = None, 
-                     is_admin: bool = False) -> bool:
+                     is_admin: bool = False, reaction_text: Optional[str] = None) -> bool:
         try:
             with self.conn.cursor() as cur:
                 cur.execute("""
                 INSERT INTO telegram_users 
-                    (user_id, username, first_name, last_name, is_admin, is_active, last_active) 
-                VALUES (%s, %s, %s, %s, %s, TRUE, NOW())
+                    (user_id, username, first_name, last_name, is_admin, is_active, last_active, reaction_text) 
+                VALUES (%s, %s, %s, %s, %s, TRUE, NOW(), %s)
                 ON CONFLICT (user_id) DO UPDATE 
                 SET 
                     username = EXCLUDED.username,
@@ -36,7 +36,7 @@ class TelegramDatabase:
                     last_name = EXCLUDED.last_name,
                     is_active = TRUE,
                     last_active = NOW()
-                """, (user_id, username, first_name, last_name, is_admin))
+                """, (user_id, username, first_name, last_name, is_admin, reaction_text))
                 self.conn.commit()
                 return True
         except Exception as e:
@@ -137,6 +137,19 @@ class TelegramDatabase:
                 return cur.fetchone()
         except Exception as e:
             logger.error(f"Error getting user: {e}")
+            return None
+        
+    def update_reaction_text(self, user_id: int, message_text: str) -> Optional[Dict[str, Any]]:
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                    UPDATE telegram_users
+                    SET reaction_text = %s
+                    WHERE user_id = %s
+                """, (message_text, user_id))
+                self.conn.commit()
+        except Exception as e:
+            logger.error(f"Error updating reaction text: {e}")
             return None
     
     def get_active_users(self) -> List[Dict[str, Any]]:

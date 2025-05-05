@@ -5,7 +5,7 @@ from typing import Dict, Any
 import random
 
 import telegram
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, CopyTextButton
 
 from config import (
     MAX_NOTIFICATIONS_PER_USER_PER_DAY,
@@ -69,10 +69,17 @@ class TelegramNotificationManager:
             # Format property message
             message_text = format_listing_message(property_data)
             
-            # Create reaction keyboard with only View Details
+            # Get user's reaction text
+            user = self.telegram_db.get_user(user_id)
+            reaction_text = user.get('reaction_text', 'No reaction text set') if user else 'No reaction text set'
+            address = property_data.get('address', 'Unknown address') if property_data else 'Unknown address'
+            formatted_reaction = reaction_text.replace('{ADDRESS}', address)
+            
+            # Create reaction keyboard with View Details and Copy Reaction Text
             keyboard = [
                 [
-                    InlineKeyboardButton("🔍 View Details", url=property_data.get('url', 'https://example.com'))
+                    InlineKeyboardButton("🔍 View Details", url=property_data.get('url', 'https://example.com')),
+                    InlineKeyboardButton("📋 Copy Reaction", copy_text=CopyTextButton(text=formatted_reaction))
                 ]
             ]
             

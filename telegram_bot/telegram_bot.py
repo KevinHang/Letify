@@ -3,7 +3,7 @@ from typing import List
 from datetime import datetime, timezone, timedelta
 import uuid
 
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, KeyboardButton
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, CopyTextButton, ReplyKeyboardMarkup, KeyboardButton
 from telegram.ext import (
     Application, CommandHandler, MessageHandler, CallbackQueryHandler,
     filters, ContextTypes
@@ -34,7 +34,8 @@ MENU_STATES = {
     'status': 'status',
     'help': 'help',
     'subscription': 'subs',
-    'faq': 'faq'
+    'faq': 'faq',
+    'reaction_text': 'reaction_text'
 }
 
 # Property types
@@ -53,7 +54,7 @@ class TelegramRealEstateBot:
         
         self.application = Application.builder().token(token).build()
         self.setup_handlers()
-        logger.info("Loaded TelegramRealEstateBot v5 with fixed Property Types toggle (2025-04-25)")
+        logger.info("Loaded TelegramRealEstateBot v6 with reaction text support (2025-05-05)")
 
     def setup_handlers(self):
         """Set up command and message handlers"""
@@ -105,7 +106,6 @@ class TelegramRealEstateBot:
 
     async def show_menu(self, update: Update, context: ContextTypes.DEFAULT_TYPE, state: str, menu_id: str) -> None:
         """Display a menu based on the current state"""
-
         # Edge case where current state is same as new state (e.g. handle quick double-tap bug)
         if context.user_data.get('current_state', '') == state and state != 'main':
             return
@@ -138,7 +138,8 @@ class TelegramRealEstateBot:
             menu_text = (
                 "🏡 Thanks for using the Letify Bot!\n\n"
                 "🏠 <b>Rental Preferences:</b> Set preferences to find your ideal home\n"
-                "🔔 <b>Settings:</b> Manage your notifications\n"
+                "🔔 <b>Notifications:</b> Manage notifications\n"
+                "📋 <b>Reaction Text:</b> Modify property reaction text\n"
                 "📊 <b>Status:</b> Check your current status\n"
                 "❓ <b>Help:</b> Show available commands\n"
                 "📚 <b>FAQ:</b> Learn more about Letify Bot\n"
@@ -147,9 +148,12 @@ class TelegramRealEstateBot:
             )
             keyboard = [
                 [InlineKeyboardButton("🏠 Rental Preferences", callback_data=f"menu:{MENU_STATES['preferences']}:{menu_id}")],
-                [InlineKeyboardButton("🔔 Settings", callback_data=f"menu:{MENU_STATES['subscription']}:{menu_id}"), InlineKeyboardButton("📊 Status", callback_data=f"menu:{MENU_STATES['status']}:{menu_id}")],
-                [InlineKeyboardButton("❓ Help", callback_data=f"menu:{MENU_STATES['help']}:{menu_id}"), InlineKeyboardButton("📚 FAQ", callback_data=f"menu:{MENU_STATES['faq']}:{menu_id}")],
-                [InlineKeyboardButton("❎ Close Menu", callback_data=f"menu:done:{menu_id}")]
+                [InlineKeyboardButton("🔔 Notifications", callback_data=f"menu:{MENU_STATES['subscription']}:{menu_id}"), 
+                 InlineKeyboardButton("📋 Reaction Text", callback_data=f"menu:{MENU_STATES['reaction_text']}:{menu_id}")],
+                [InlineKeyboardButton("📊 Status", callback_data=f"menu:{MENU_STATES['status']}:{menu_id}"),
+                 InlineKeyboardButton("📚 FAQ", callback_data=f"menu:{MENU_STATES['faq']}:{menu_id}")],
+                [InlineKeyboardButton("❓ Help", callback_data=f"menu:{MENU_STATES['help']}:{menu_id}"),
+                 InlineKeyboardButton("❎ Close Menu", callback_data=f"menu:done:{menu_id}")]
             ]
             return menu_text, keyboard
         
@@ -293,6 +297,7 @@ class TelegramRealEstateBot:
                 menu_text = "📊 Your current settings:\n\n"
                 menu_text += f"👤 User: {user.get('first_name', '')}\n"
                 menu_text += f"🔔 Notifications: {'Enabled' if user.get('notification_enabled') else 'Disabled'}\n"
+                menu_text += f"📋 Reaction Text: {user.get('reaction_text', 'Not set')}\n"
                 menu_text += f"👑 Admin: {'Yes' if user.get('is_admin') else 'No'}\n\n"
                 
                 if preferences:
@@ -329,7 +334,6 @@ class TelegramRealEstateBot:
                 "📋 Available commands:\n\n"
                 "/start - Start the bot and see welcome message\n"
                 "/menu - Open the main navigation menu\n\n"
-                # "/cancel - Close the current menu\n\n"
             )
             if user and user.get('is_admin'):
                 menu_text += (
@@ -352,29 +356,38 @@ class TelegramRealEstateBot:
                 "📚 Frequently Asked Questions\n\n"
                 "<b>How does the rental finding work?</b>\n"
                 "Letify Bot scans trusted Dutch rental websites every 5 minutes. Set at least one city and enable notifications to receive listings. Price, area, and room preferences are optional. Listings matching your criteria are sent with key details so you can act quickly.\n\n"
-
                 "<b>Why is Letify Bot free?</b>\n"
                 "As a solo developer, I believe everyone deserves fair housing opportunities without financial barriers. Unlike paid services with high fees, Letify Bot focuses on helping people find homes, not profiting from their search.\n\n"
-                
                 "<b>How does Letify Bot differ from competitors?</b>\n"
                 "Many services exploit the urgency of house-hunting in the Netherlands' competitive market. Letify Bot doesn't hide essential features behind paywalls or sell your data. We're transparent, user-focused, and deliver timely rental listings.\n\n"
-                
                 "<b>What inspired Letify Bot?</b>\n"
                 "Letify Bot was inspired by some other community efforts but is coded completely from scratch. This new implementation fixes several shortcomings of existing solutions, offering improved reliability, better matching algorithms, and enhanced user experience while maintaining simplicity and accessibility.\n\n"
-                
                 "<b>What data does Letify Bot store?</b>\n"
-                "Letify Bot only stores your preference choices (cities, price range, etc.) which are necessary to match you with relevant listings. No personal data, search history, or usage patterns are collected or stored. Your privacy is a priority!\n\n"
-                
+                "Letify Bot only stores your preference choices (cities, price range, etc.) which are necessary to match you with relevant listings, including your reaction text. No personal data, search history, or usage patterns are collected or stored. Your privacy is a priority!\n\n"
                 "<b>When will Letify Bot be open source?</b>\n"
                 "I'm prioritizing stability and security before open-sourcing. My focus is protecting user data and maintaining reliability. It's on my roadmap, but I need to refine the codebase and build community support first.\n\n"
-                
                 "<b>Why am I not seeing many listings?</b>\n"
                 "This could be due to limited properties matching your preferences in the competitive Dutch market. Try broadening your price range, area, or room requirements. Remember, at least one city must be set and notifications enabled.\n\n"
-                
                 "<b>How can I share feedback?</b>\n"
                 "I welcome all suggestions and questions! Contact me directly at @wifbeliever on Telegram. Your input helps improve Letify Bot for everyone."
             )
             keyboard = [[InlineKeyboardButton("↩ Return", callback_data=f"menu:{MENU_STATES['main']}:{menu_id}")]]
+            return menu_text, keyboard
+        
+        elif state == MENU_STATES['reaction_text']:
+            user = telegram_db.get_user(user_id)
+            current_reaction_text = user.get('reaction_text', 'Not set') if user else 'Not set'
+            menu_text = (
+                "📋 Reaction Text Menu\n\n"
+                "Current reaction text:\n"
+                "-----------------------------------"
+                f"\n{current_reaction_text}\n"
+                "-----------------------------------\n\n"
+                "For example: 'Interested in {ADDRESS}, please contact me!' will replace {ADDRESS} with the property's street address.\n\n"
+                "<b>Enter your new reaction text below:</b>"
+            )
+            keyboard = [[InlineKeyboardButton("↩ Return", callback_data=f"menu:{MENU_STATES['main']}:{menu_id}"),
+                         InlineKeyboardButton("📋 Copy Current Text", copy_text=CopyTextButton(text=current_reaction_text))]]
             return menu_text, keyboard
         
         return "Unknown menu state.", [[]]
@@ -534,6 +547,7 @@ class TelegramRealEstateBot:
         telegram_db.update_user_activity(user_id)
         
         message_text = update.message.text.lower().strip()
+        reaction_text = update.message.text.strip()
         
         current_state = context.user_data.get('current_state')
         menu_id = context.user_data.get('latest_menu_id')
@@ -855,6 +869,73 @@ class TelegramRealEstateBot:
             except Exception as e:
                 logger.warning(f"Failed to delete type input message for user {user_id}: {e}")
         
+        elif current_state == MENU_STATES['reaction_text']:
+            if not reaction_text or len(reaction_text) < 10:
+                message = await update.message.reply_text(
+                    "❌ Reaction text cannot be empty or is too short.\n\n<em>This message will be auto-deleted in 5 seconds ⏳</em>",
+                    parse_mode="HTML"
+                )
+                asyncio.create_task(self.delete_message_later(message.chat_id, message.message_id))
+                try:
+                    await context.bot.delete_message(chat_id=input_chat_id, message_id=input_message_id)
+                except Exception as e:
+                    logger.warning(f"Failed to delete reaction text input message for user {user_id}: {e}")
+                return
+            
+            try:
+                # Get user's current reaction text
+                user = telegram_db.get_user(user_id)
+                current_reaction_text = user.get('reaction_text', 'No reaction text set') if user else 'No reaction text set'
+
+                # Update reaction text in telegram_users table
+                telegram_db.update_reaction_text(user_id, reaction_text)
+                
+                # Send confirmation message
+                confirmation = await update.message.reply_text(
+                    f"✅ Reaction text set to:\n\n<b>{reaction_text}</b>\n\n<em>This message will be auto-deleted in 5 seconds ⏳</em>",
+                    parse_mode="HTML"
+                )
+                asyncio.create_task(self.delete_message_later(confirmation.chat_id, confirmation.message_id))
+            
+                if current_reaction_text != reaction_text:
+                    # Update the existing menu
+                    menu_text, keyboard = self.build_menu(MENU_STATES['reaction_text'], menu_id, user_id)
+                    try:
+                        await context.bot.edit_message_text(
+                            chat_id=chat_id,
+                            message_id=message_id,
+                            text=menu_text,
+                            reply_markup=InlineKeyboardMarkup(keyboard),
+                            parse_mode="HTML"
+                        )
+                    except Exception as e:
+                        logger.error(f"Error editing reaction text menu for user {user_id}: {e}")
+                        new_message = await context.bot.send_message(
+                            chat_id=chat_id,
+                            text=menu_text,
+                            reply_markup=InlineKeyboardMarkup(keyboard)
+                        )
+                        context.user_data['current_menu_message_id'] = new_message.message_id
+                        context.user_data['current_menu_chat_id'] = new_message.chat_id
+                
+                # Delete the user's input message
+                try:
+                    await context.bot.delete_message(chat_id=input_chat_id, message_id=input_message_id)
+                except Exception as e:
+                    logger.warning(f"Failed to delete reaction text input message for user {user_id}: {e}")
+            
+            except Exception as e:
+                logger.error(f"Error setting reaction text for user {user_id}: {e}")
+                message = await update.message.reply_text(
+                    "❌ Error setting reaction text. Please try again.\n\n<em>This message will be auto-deleted in 5 seconds ⏳</em>",
+                    parse_mode="HTML"
+                )
+                asyncio.create_task(self.delete_message_later(message.chat_id, message.message_id))
+                try:
+                    await context.bot.delete_message(chat_id=input_chat_id, message_id=input_message_id)
+                except Exception as e:
+                    logger.warning(f"Failed to delete reaction text input message for user {user_id}: {e}")
+        
         else:
             message = await update.message.reply_text(
                 "Please use the menu buttons or /menu to open a new one.",
@@ -899,18 +980,25 @@ class TelegramRealEstateBot:
         user_id = user.id
         is_admin = user_id in self.admin_ids
         
+        default_reaction_text = (
+            "Interested in {ADDRESS}, please contact me!"
+        )
+        
         telegram_db.register_user(
             user_id=user_id,
             username=user.username,
             first_name=user.first_name,
             last_name=user.last_name,
-            is_admin=is_admin
+            is_admin=is_admin,
+            reaction_text=default_reaction_text
         )
         
         welcome_text = (
             f"👋 Hello {user.first_name}! Welcome to the Letify Bot.\n\n"
             f"I can notify you about new property listings that match your preferences.\n\n"
-            f"Use /menu to access all features and settings"
+            f"Use /menu to access all features and settings.\n"
+            f"You can set a custom reaction text in the menu to quickly copy a message for each listing. "
+            f"The default is: '{default_reaction_text}'"
         )
         
         await update.message.reply_text(welcome_text)

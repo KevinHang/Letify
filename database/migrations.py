@@ -153,7 +153,8 @@ def initialize_telegram_db(connection_string: str):
                 is_admin BOOLEAN DEFAULT FALSE,
                 notification_enabled BOOLEAN DEFAULT TRUE,
                 date_joined TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-                last_active TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+                last_active TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+                reaction_text TEXT
             )
             """)
             
