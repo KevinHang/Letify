@@ -78,8 +78,10 @@ class TelegramNotificationManager:
             # Create reaction keyboard with View Details and Copy Reaction Text
             keyboard = [
                 [
-                    InlineKeyboardButton("🔍 View Details", url=property_data.get('url', 'https://example.com')),
-                    InlineKeyboardButton("📋 Copy Reaction", copy_text=CopyTextButton(text=formatted_reaction))
+                    InlineKeyboardButton("📋 Copy Reaction Text", copy_text=CopyTextButton(text=formatted_reaction))
+                ],
+                [
+                    InlineKeyboardButton("🔍 View Details", url=property_data.get('url', 'https://example.com'))
                 ]
             ]
             

@@ -386,8 +386,8 @@ class TelegramRealEstateBot:
                 "For example: 'Interested in {ADDRESS}, please contact me!' will replace {ADDRESS} with the property's street address.\n\n"
                 "<b>Enter your new reaction text below:</b>"
             )
-            keyboard = [[InlineKeyboardButton("↩ Return", callback_data=f"menu:{MENU_STATES['main']}:{menu_id}"),
-                         InlineKeyboardButton("📋 Copy Current Text", copy_text=CopyTextButton(text=current_reaction_text))]]
+            keyboard = [[InlineKeyboardButton("📋 Copy Current Text", copy_text=CopyTextButton(text=current_reaction_text))],
+                        [InlineKeyboardButton("↩ Return", callback_data=f"menu:{MENU_STATES['main']}:{menu_id}")]]
             return menu_text, keyboard
         
         return "Unknown menu state.", [[]]
