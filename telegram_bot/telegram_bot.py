@@ -379,11 +379,9 @@ class TelegramRealEstateBot:
                 current_reaction_text = 'Not set'
             menu_text = (
                 "📋 Reaction Text Menu\n\n"
-                "Current reaction text:\n"
-                "-----------------------------------"
-                f"\n{current_reaction_text}\n"
-                "-----------------------------------\n\n"
-                "For example: 'Interested in {ADDRESS}, please contact me!' will replace {ADDRESS} with the property's street address.\n\n"
+                "Current reaction text:\n\n"
+                f"<b>{current_reaction_text}</b>\n\n"
+                "The keyword {ADDRESS} will be replaced with the property's street address.\n\n"
                 "<b>Enter your new reaction text below (10 - 5000 characters):</b>"
             )
             keyboard = [[InlineKeyboardButton("📋 Copy Current Text", copy_text=CopyTextButton(text=current_reaction_text))],
