@@ -106,8 +106,8 @@ class TelegramRealEstateBot:
 
     async def show_menu(self, update: Update, context: ContextTypes.DEFAULT_TYPE, state: str, menu_id: str) -> None:
         """Display a menu based on the current state"""
-        # Edge case where current state is same as new state (e.g. handle quick double-tap bug)
-        if context.user_data.get('current_state', '') == state and state != 'main':
+        # Edge case where current state is same as new state (e.g. handle quick double-tap bug, still happends for cities, price, etc)
+        if context.user_data.get('current_state', '') == state and state != 'main' and state != 'cities' and state != 'price' and state != 'rooms' and state != 'area' and state != 'type':
             return
 
         user_id = update.effective_user.id
