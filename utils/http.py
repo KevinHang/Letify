@@ -456,6 +456,8 @@ class EnhancedHttpClient:
         anti_bot_patterns = self.ANTI_BOT_PATTERNS
         if source == "kamernet":
             anti_bot_patterns = [pattern for pattern in anti_bot_patterns if pattern != "captcha"]
+        elif source in ["huurwoningenappartement", "huurwoningenhuis", "huurwoningenstudio", "huurwoningenkamer"]:
+            anti_bot_patterns = [pattern for pattern in anti_bot_patterns if pattern != "Cloudflare"]
         
         # Check for anti-bot patterns in the response text
         for pattern in anti_bot_patterns:
