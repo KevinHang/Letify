@@ -55,7 +55,7 @@ def suggest_city(query, max_distance=3, max_suggestions=3):
     # Return limited number of suggestions
     return suggestions[:max_suggestions]
 
-def construct_full_address(property_data: Dict[str, Any]) -> str:
+def construct_full_address(property_data: Dict[str, Any], include_neighborhood: bool = True) -> str:
     # Extract property data with explicit None handling
     title = property_data.get('title', 'Property Listing') or 'Property Listing'
     address = property_data.get('address', 'Unknown Address') or 'Unknown Address'
@@ -67,7 +67,7 @@ def construct_full_address(property_data: Dict[str, Any]) -> str:
     location_parts = []
     if address:
         location_parts.append(address)
-    if neighborhood and isinstance(neighborhood, str) and neighborhood not in address:
+    if include_neighborhood and neighborhood and isinstance(neighborhood, str) and neighborhood not in address:
         location_parts.append(neighborhood)
     if postal_code and isinstance(postal_code, str):
         location_parts.append(postal_code)
