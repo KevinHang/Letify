@@ -73,7 +73,7 @@ class TelegramNotificationManager:
             user = self.telegram_db.get_user(user_id)
             reaction_text = user.get('reaction_text', 'No reaction text set') if user else 'No reaction text set'
             address = property_data.get('address', 'Unknown address') if property_data else 'Unknown address'
-            formatted_reaction = reaction_text.replace('{ADDRESS}', address)
+            formatted_reaction = reaction_text.replace('{ADDRESS}', address) if reaction_text else 'No reaction text set'
             
             # Create reaction keyboard with View Details and Copy Reaction Text
             keyboard = [
