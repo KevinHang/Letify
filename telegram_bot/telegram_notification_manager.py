@@ -81,7 +81,7 @@ class TelegramNotificationManager:
             # Create reaction keyboard with View Details and Copy Reaction Text
             keyboard = [
                 [
-                    InlineKeyboardButton("✉️ Letter", copy_text=CopyTextButton(text=formatted_reaction)),
+                    InlineKeyboardButton("✉️ Reaction", copy_text=CopyTextButton(text=formatted_reaction)),
                     InlineKeyboardButton("📍 Maps", url=maps_url)
                 ],
                 [
