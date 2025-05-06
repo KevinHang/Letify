@@ -1,4 +1,5 @@
 from config import ALL_CITIES
+from typing import Dict, Any, Optional
 
 def levenshtein_distance(s1, s2):
     """
@@ -53,3 +54,23 @@ def suggest_city(query, max_distance=3, max_suggestions=3):
     
     # Return limited number of suggestions
     return suggestions[:max_suggestions]
+
+def construct_full_address(property_data: Dict[str, Any]) -> str:
+    # Extract property data with explicit None handling
+    title = property_data.get('title', 'Property Listing') or 'Property Listing'
+    address = property_data.get('address', 'Unknown Address') or 'Unknown Address'
+    city = property_data.get('city', '') or ''
+    neighborhood = property_data.get('neighborhood', '') or ''
+    postal_code = property_data.get('postal_code', '') or ''
+    
+    # Format full location
+    location_parts = []
+    if address:
+        location_parts.append(address)
+    if neighborhood and isinstance(neighborhood, str) and neighborhood not in address:
+        location_parts.append(neighborhood)
+    if postal_code and isinstance(postal_code, str):
+        location_parts.append(postal_code)
+    if city and isinstance(city, str):
+        location_parts.append(city.title())
+    return ", ".join(location_parts) or "Unknown Location"  
