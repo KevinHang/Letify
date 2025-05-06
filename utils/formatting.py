@@ -195,6 +195,9 @@ def format_listing_message(property_data: Dict[str, Any]) -> str:
         if 'publication_module' in all_req_keys:
             requirements_parts.append(f"• Module: {get_value_for_key(requirements, 'publication_module')}")
 
+        if 'exclusive_listing' in all_req_keys:
+            requirements_parts.append(f"• Platform exclusive listing: {get_value_for_key(requirements, 'exclusive_listing')}")
+
     # Description (truncated)
     description = property_data.get('description', '') or ''
     if description:

@@ -146,7 +146,31 @@ SITE_CONFIGS = {
         "search_url_template": "", # TODO
         "min_interval": 10,  # TODO
         "source_name": "regiohuiswaarts"
-    }
+    },
+    "huurwoningenappartement": {
+        "base_url": "https://www.huurwoningen.nl",
+        "search_url_template": "", # TODO
+        "min_interval": 10,  # TODO
+        "type": "appartement",
+    },
+    "huurwoningenhuis": {
+        "base_url": "https://www.huurwoningen.nl",
+        "search_url_template": "", # TODO
+        "min_interval": 10,  # TODO
+        "type": "huis",
+    },
+    "huurwoningenstudio": {
+        "base_url": "https://www.huurwoningen.nl",
+        "search_url_template": "", # TODO
+        "min_interval": 10,  # TODO
+        "type": "studio",
+    },
+    "huurwoningenkamer": {
+        "base_url": "https://www.huurwoningen.nl",
+        "search_url_template": "", # TODO
+        "min_interval": 10,  # TODO
+        "type": "kamer",
+    },
 }
 
 # Proxy settings
