@@ -14,6 +14,7 @@ from scrapers.kamernet import KamernetScraper
 from scrapers.woningnet import WoningNetScraper
 from scrapers.huurwoningen import HuurwoningenScraper
 from scrapers.bouwinvest import WonenBijBouwinvestScraper
+from scrapers.vbt import VBTVerhuurmakelaarsScraper
 
 
 class RealEstateScraperFactory:
@@ -39,6 +40,8 @@ class RealEstateScraperFactory:
             return KamernetScraper(site_name, SITE_CONFIGS[site_name])
         elif site_name == "bouwinvest":
             return WonenBijBouwinvestScraper(site_name, SITE_CONFIGS[site_name])
+        elif site_name == "vbt":
+            return VBTVerhuurmakelaarsScraper(site_name, SITE_CONFIGS[site_name])
         elif site_name in ["huurwoningenappartement", "huurwoningenhuis", "huurwoningenstudio", "huurwoningenkamer"]:
             return HuurwoningenScraper(site_name, SITE_CONFIGS[site_name])
         elif site_name in ["regioamsterdam", "regioutrecht", "regiogroningen", "regiogooienvecht", "regioalmere", "regiomiddenholland", "regioeemvallei", "regiobovengroningen", "regiowoonkeus", "regiowoongaard", "regiohuiswaarts"]:

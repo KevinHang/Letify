@@ -205,6 +205,9 @@ def format_listing_message(property_data: Dict[str, Any]) -> str:
         if 'total_interested' in all_req_keys:
             requirements_parts.append(f"• People interested: {get_value_for_key(requirements, 'total_interested')}")
 
+        if 'min_rental_months' in all_req_keys:
+            requirements_parts.append(f"• Minimum rental months: {get_value_for_key(requirements, 'min_rental_months')}")
+
     # Description (truncated)
     description = property_data.get('description', '') or ''
     if description:

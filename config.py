@@ -176,6 +176,11 @@ SITE_CONFIGS = {
         "search_url_template": "", # TODO
         "min_interval": 10,  # TODO
     },
+    "vbt": {
+        "base_url": "https://www.vbtverhuurmakelaars.nl",
+        "search_url_template": "", # TODO
+        "min_interval": 10,  # TODO
+    },
 }
 
 # Proxy settings
