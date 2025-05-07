@@ -145,6 +145,10 @@ class FundaScraper(BaseScraperStrategy):
                             listing.status = status_elem.text().strip()
                     
                     listing.price = price_text
+
+                    if "Prijs op aanvraag" in price_text:
+                        logger.info("Skipping this property as Prijs op aanvraag detected for price.")
+                        continue
                     
                     # Extract numeric price
                     price_match = re.search(r'€\s*([\d\.,]+)', price_text)
