@@ -171,6 +171,11 @@ SITE_CONFIGS = {
         "min_interval": 10,  # TODO
         "type": "kamer",
     },
+    "bouwinvest": {
+        "base_url": "https://www.wonenbijbouwinvest.nl",
+        "search_url_template": "", # TODO
+        "min_interval": 10,  # TODO
+    },
 }
 
 # Proxy settings

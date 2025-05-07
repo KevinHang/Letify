@@ -141,6 +141,10 @@ def format_listing_message(property_data: Dict[str, Any]) -> str:
     construction_year = property_data.get('construction_year', 0) or 0
     construction_year_str = f"{construction_year}" if construction_year else "N/A"
     
+    # Total floors
+    total_floors = property_data.get('floors', 0) or 0
+    total_floors_str = f"{total_floors}" if total_floors else "N/A"
+    
     # Additional extras
     extras = []
     if property_data.get('balcony'):
@@ -181,7 +185,7 @@ def format_listing_message(property_data: Dict[str, Any]) -> str:
             requirements_parts.append(f"• Has lift: {get_value_for_key(requirements, 'has_lift')}")
 
         if 'floor' in all_req_keys:
-            requirements_parts.append(f"• Floor: {get_value_for_key(requirements, 'floor')}")
+            requirements_parts.append(f"• Situated on floor: {get_value_for_key(requirements, 'floor')}")
 
         if 'student_housing' in all_req_keys:
             requirements_parts.append(f"• Student housing: {get_value_for_key(requirements, 'student_housing')}")
@@ -197,6 +201,9 @@ def format_listing_message(property_data: Dict[str, Any]) -> str:
 
         if 'exclusive_listing' in all_req_keys:
             requirements_parts.append(f"• Platform exclusive listing: {get_value_for_key(requirements, 'exclusive_listing')}")
+
+        if 'total_interested' in all_req_keys:
+            requirements_parts.append(f"• People interested: {get_value_for_key(requirements, 'total_interested')}")
 
     # Description (truncated)
     description = property_data.get('description', '') or ''
@@ -253,6 +260,11 @@ def format_listing_message(property_data: Dict[str, Any]) -> str:
 
     if energy_label_part:
         message += f"{energy_label_part}"
+
+    total_floors_part = f"• Total floors: {total_floors_str}\n" if total_floors_str != "N/A" else ""
+
+    if total_floors_part:
+        message += f"{total_floors_part}"
 
     construction_year_part = f"• Construction year: {construction_year_str}\n" if construction_year_str != "N/A" else ""
 
