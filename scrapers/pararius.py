@@ -157,7 +157,8 @@ class ParariusScraper(BaseScraperStrategy):
                     if price_elem:
                         price_text = price_elem.text().strip()
                         # We don't want listings that have no price
-                        if price_text == "Price on request":
+                        if "Price on request" in price_text:
+                            logger.info("Skipping this property as Price on request detected for price.")
                             continue
                         
                         # Apply regex to extract price up to "month" if it exists
