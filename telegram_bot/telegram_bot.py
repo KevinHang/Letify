@@ -3,7 +3,7 @@ from typing import List
 from datetime import datetime, timezone, timedelta
 import uuid
 
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, CopyTextButton, ReplyKeyboardMarkup, KeyboardButton
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, KeyboardButton
 from telegram.ext import (
     Application, CommandHandler, MessageHandler, CallbackQueryHandler,
     filters, ContextTypes
@@ -139,7 +139,7 @@ class TelegramRealEstateBot:
                 "🏡 Thanks for using the Letify Bot!\n\n"
                 "🏠 <b>Rental Preferences:</b> Set preferences to find your ideal home\n"
                 "🔔 <b>Notifications:</b> Manage notifications\n"
-                "✉️ <b>Reaction Text:</b> Modify property reaction text\n"
+                # "✉️ <b>Reaction Text:</b> Modify property reaction text\n"
                 "📊 <b>Status:</b> Check your current status\n"
                 "❓ <b>Help:</b> Show available commands\n"
                 "📚 <b>FAQ:</b> Learn more about Letify Bot\n"
@@ -148,12 +148,14 @@ class TelegramRealEstateBot:
             )
             keyboard = [
                 [InlineKeyboardButton("🏠 Rental Preferences", callback_data=f"menu:{MENU_STATES['preferences']}:{menu_id}")],
-                [InlineKeyboardButton("🔔 Notifications", callback_data=f"menu:{MENU_STATES['subscription']}:{menu_id}"), 
-                 InlineKeyboardButton("✉️ Reaction Text", callback_data=f"menu:{MENU_STATES['reaction_text']}:{menu_id}")],
-                [InlineKeyboardButton("📊 Status", callback_data=f"menu:{MENU_STATES['status']}:{menu_id}"),
-                 InlineKeyboardButton("📚 FAQ", callback_data=f"menu:{MENU_STATES['faq']}:{menu_id}")],
+                [
+                    InlineKeyboardButton("🔔 Notifications", callback_data=f"menu:{MENU_STATES['subscription']}:{menu_id}"),
+                    InlineKeyboardButton("📊 Status", callback_data=f"menu:{MENU_STATES['status']}:{menu_id}")
+                    # InlineKeyboardButton("✉️ Reaction Text", callback_data=f"menu:{MENU_STATES['reaction_text']}:{menu_id}")
+                 ],
                 [InlineKeyboardButton("❓ Help", callback_data=f"menu:{MENU_STATES['help']}:{menu_id}"),
-                 InlineKeyboardButton("❎ Close Menu", callback_data=f"menu:done:{menu_id}")]
+                 InlineKeyboardButton("📚 FAQ", callback_data=f"menu:{MENU_STATES['faq']}:{menu_id}")],
+                [InlineKeyboardButton("❎ Close Menu", callback_data=f"menu:done:{menu_id}")]
             ]
             return menu_text, keyboard
         
@@ -372,23 +374,23 @@ class TelegramRealEstateBot:
             keyboard = [[InlineKeyboardButton("↩ Return", callback_data=f"menu:{MENU_STATES['main']}:{menu_id}")]]
             return menu_text, keyboard
         
-        elif state == MENU_STATES['reaction_text']:
-            user = telegram_db.get_user(user_id)
-            current_reaction_text = user.get('reaction_text', 'Not set') if user else 'Not set'
-            if not current_reaction_text:
-                current_reaction_text = 'Not set'
-            menu_text = (
-                "✉️ Reaction Text Menu\n\n"
-                "Current reaction text:\n\n"
-                f"<b>{current_reaction_text}</b>\n\n"
-                "The keyword {ADDRESS} will be replaced with the property's street address.\n\n"
-                "<b>Enter your new reaction text below (10 - 5000 characters):</b>"
-            )
-            keyboard = [[InlineKeyboardButton("✉️ Copy Current Text", copy_text=CopyTextButton(text=current_reaction_text))],
-                        [InlineKeyboardButton("↩ Return", callback_data=f"menu:{MENU_STATES['main']}:{menu_id}")]]
-            return menu_text, keyboard
+        # elif state == MENU_STATES['reaction_text']:
+        #     user = telegram_db.get_user(user_id)
+        #     current_reaction_text = user.get('reaction_text', 'Not set') if user else 'Not set'
+        #     if not current_reaction_text:
+        #         current_reaction_text = 'Not set'
+        #     menu_text = (
+        #         "✉️ Reaction Text Menu\n\n"
+        #         "Current reaction text:\n\n"
+        #         f"<b>{current_reaction_text}</b>\n\n"
+        #         "The keyword {ADDRESS} will be replaced with the property's street address.\n\n"
+        #         "<b>Enter your new reaction text below (10 - 5000 characters):</b>"
+        #     )
+        #     keyboard = [[InlineKeyboardButton("✉️ Copy Current Text", copy_text=CopyTextButton(text=current_reaction_text))],
+        #                 [InlineKeyboardButton("↩ Return", callback_data=f"menu:{MENU_STATES['main']}:{menu_id}")]]
+        #     return menu_text, keyboard
         
-        return "Unknown menu state.", [[]]
+        # return "Unknown menu state.", [[]]
 
     async def handle_menu_callback(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         """Handle menu callback queries"""
@@ -1021,8 +1023,8 @@ class TelegramRealEstateBot:
         welcome_text = (
             f"👋 Hello {user.first_name}! Welcome to the Letify Bot.\n\n"
             f"I can notify you about new property listings that match your preferences.\n\n"
-            f"Set at least one city in the preferences to start receiving notifications. Other preferences such as price and rooms are optional. "
-            f"You can set a custom reaction text in the menu to quickly copy a message for each listing.\n\n"
+            f"Set at least one city in the preferences to start receiving notifications. Other preferences such as price and rooms are optional.\n\n"
+            # f"You can set a custom reaction text in the menu to quickly copy a message for each listing.\n\n"
             f"Use /menu to access all features and settings.\n"
         )
         
