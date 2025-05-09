@@ -322,7 +322,7 @@ class WonenBijBouwinvestScraper(BaseScraperStrategy):
                             self._add_feature(listing, "owner", owner["name"])
                     
                     # Add content features (property highlights)
-                    if "content" in prop_data and isinstance(prop_data["content"], list):
+                    if "content" in prop_data and isinstance(prop_data["content"], list) and len(prop_data["content"]) > 0:
                         content_list = prop_data["content"]
                         
                         for i, content_item in enumerate(content_list, start=1):
@@ -335,7 +335,13 @@ class WonenBijBouwinvestScraper(BaseScraperStrategy):
                                 # Add as a feature
                                 feature_name = f"highlight_{i}"
                                 self._add_feature(listing, feature_name, content_text)
-                    
+                    # if we cant find property type in content, try to get from description
+                    elif "description" in prop_data and len(prop_data["content"]) == 0:
+                        description = prop_data["description"]
+                        listing.property_type = self._map_property_type(description)
+                    else:
+                        listing.property_type = PropertyType.APARTMENT
+ 
                     # Set offering type (always rental)
                     listing.offering_type = OfferingType.RENTAL
                     
