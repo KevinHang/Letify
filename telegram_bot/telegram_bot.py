@@ -35,7 +35,6 @@ MENU_STATES = {
     'help': 'help',
     'subscription': 'subs',
     'faq': 'faq',
-    'reaction_text': 'reaction_text'
 }
 
 # Property types
@@ -139,7 +138,6 @@ class TelegramRealEstateBot:
                 "🏡 Thanks for using the Letify Bot!\n\n"
                 "🏠 <b>Rental Preferences:</b> Set preferences to find your ideal home\n"
                 "🔔 <b>Notifications:</b> Manage notifications\n"
-                # "✉️ <b>Reaction Text:</b> Modify property reaction text\n"
                 "📊 <b>Status:</b> Check your current status\n"
                 "❓ <b>Help:</b> Show available commands\n"
                 "📚 <b>FAQ:</b> Learn more about Letify Bot\n"
@@ -148,11 +146,8 @@ class TelegramRealEstateBot:
             )
             keyboard = [
                 [InlineKeyboardButton("🏠 Rental Preferences", callback_data=f"menu:{MENU_STATES['preferences']}:{menu_id}")],
-                [
-                    InlineKeyboardButton("🔔 Notifications", callback_data=f"menu:{MENU_STATES['subscription']}:{menu_id}"),
-                    InlineKeyboardButton("📊 Status", callback_data=f"menu:{MENU_STATES['status']}:{menu_id}")
-                    # InlineKeyboardButton("✉️ Reaction Text", callback_data=f"menu:{MENU_STATES['reaction_text']}:{menu_id}")
-                 ],
+                [InlineKeyboardButton("🔔 Notifications", callback_data=f"menu:{MENU_STATES['subscription']}:{menu_id}"),
+                 InlineKeyboardButton("📊 Status", callback_data=f"menu:{MENU_STATES['status']}:{menu_id}")],
                 [InlineKeyboardButton("❓ Help", callback_data=f"menu:{MENU_STATES['help']}:{menu_id}"),
                  InlineKeyboardButton("📚 FAQ", callback_data=f"menu:{MENU_STATES['faq']}:{menu_id}")],
                 [InlineKeyboardButton("❎ Close Menu", callback_data=f"menu:done:{menu_id}")]
@@ -374,23 +369,7 @@ class TelegramRealEstateBot:
             keyboard = [[InlineKeyboardButton("↩ Return", callback_data=f"menu:{MENU_STATES['main']}:{menu_id}")]]
             return menu_text, keyboard
         
-        # elif state == MENU_STATES['reaction_text']:
-        #     user = telegram_db.get_user(user_id)
-        #     current_reaction_text = user.get('reaction_text', 'Not set') if user else 'Not set'
-        #     if not current_reaction_text:
-        #         current_reaction_text = 'Not set'
-        #     menu_text = (
-        #         "✉️ Reaction Text Menu\n\n"
-        #         "Current reaction text:\n\n"
-        #         f"<b>{current_reaction_text}</b>\n\n"
-        #         "The keyword {ADDRESS} will be replaced with the property's street address.\n\n"
-        #         "<b>Enter your new reaction text below (10 - 5000 characters):</b>"
-        #     )
-        #     keyboard = [[InlineKeyboardButton("✉️ Copy Current Text", copy_text=CopyTextButton(text=current_reaction_text))],
-        #                 [InlineKeyboardButton("↩ Return", callback_data=f"menu:{MENU_STATES['main']}:{menu_id}")]]
-        #     return menu_text, keyboard
-        
-        # return "Unknown menu state.", [[]]
+        return "Unknown menu state.", [[]]
 
     async def handle_menu_callback(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         """Handle menu callback queries"""
@@ -547,7 +526,6 @@ class TelegramRealEstateBot:
         telegram_db.update_user_activity(user_id)
         
         message_text = update.message.text.lower().strip()
-        reaction_text = update.message.text.strip()
         
         current_state = context.user_data.get('current_state')
         menu_id = context.user_data.get('latest_menu_id')
@@ -883,85 +861,6 @@ class TelegramRealEstateBot:
                 await context.bot.delete_message(chat_id=input_chat_id, message_id=input_message_id)
             except Exception as e:
                 logger.warning(f"Failed to delete type input message for user {user_id}: {e}")
-        
-        elif current_state == MENU_STATES['reaction_text']:
-            if not reaction_text or len(reaction_text) < 10:
-                message = await update.message.reply_text(
-                    "❌ Reaction text cannot be empty or is too short.\n\n<em>This message will be auto-deleted in 5 seconds ⏳</em>",
-                    parse_mode="HTML"
-                )
-                asyncio.create_task(self.delete_message_later(message.chat_id, message.message_id))
-                try:
-                    await context.bot.delete_message(chat_id=input_chat_id, message_id=input_message_id)
-                except Exception as e:
-                    logger.warning(f"Failed to delete reaction text input message for user {user_id}: {e}")
-                return
-            
-            if len(reaction_text) >= 5000:
-                message = await update.message.reply_text(
-                    "❌ Reaction text is too long (cannot be above 5000 characters).\n\n<em>This message will be auto-deleted in 5 seconds ⏳</em>",
-                    parse_mode="HTML"
-                )
-                asyncio.create_task(self.delete_message_later(message.chat_id, message.message_id))
-                try:
-                    await context.bot.delete_message(chat_id=input_chat_id, message_id=input_message_id)
-                except Exception as e:
-                    logger.warning(f"Failed to delete reaction text input message for user {user_id}: {e}")
-                return
-            
-            try:
-                # Get user's current reaction text
-                user = telegram_db.get_user(user_id)
-                current_reaction_text = user.get('reaction_text', 'No reaction text set') if user else 'No reaction text set'
-
-                # Update reaction text in telegram_users table
-                telegram_db.update_reaction_text(user_id, reaction_text)
-                
-                # Send confirmation message
-                confirmation = await update.message.reply_text(
-                    f"✅ Reaction text set to:\n\n<b>{reaction_text}</b>\n\n<em>This message will be auto-deleted in 5 seconds ⏳</em>",
-                    parse_mode="HTML"
-                )
-                asyncio.create_task(self.delete_message_later(confirmation.chat_id, confirmation.message_id))
-            
-                if current_reaction_text != reaction_text:
-                    # Update the existing menu
-                    menu_text, keyboard = self.build_menu(MENU_STATES['reaction_text'], menu_id, user_id)
-                    try:
-                        await context.bot.edit_message_text(
-                            chat_id=chat_id,
-                            message_id=message_id,
-                            text=menu_text,
-                            reply_markup=InlineKeyboardMarkup(keyboard),
-                            parse_mode="HTML"
-                        )
-                    except Exception as e:
-                        logger.error(f"Error editing reaction text menu for user {user_id}: {e}")
-                        new_message = await context.bot.send_message(
-                            chat_id=chat_id,
-                            text=menu_text,
-                            reply_markup=InlineKeyboardMarkup(keyboard)
-                        )
-                        context.user_data['current_menu_message_id'] = new_message.message_id
-                        context.user_data['current_menu_chat_id'] = new_message.chat_id
-                
-                # Delete the user's input message
-                try:
-                    await context.bot.delete_message(chat_id=input_chat_id, message_id=input_message_id)
-                except Exception as e:
-                    logger.warning(f"Failed to delete reaction text input message for user {user_id}: {e}")
-            
-            except Exception as e:
-                logger.error(f"Error setting reaction text for user {user_id}: {e}")
-                message = await update.message.reply_text(
-                    "❌ Error setting reaction text. Please try again.\n\n<em>This message will be auto-deleted in 5 seconds ⏳</em>",
-                    parse_mode="HTML"
-                )
-                asyncio.create_task(self.delete_message_later(message.chat_id, message.message_id))
-                try:
-                    await context.bot.delete_message(chat_id=input_chat_id, message_id=input_message_id)
-                except Exception as e:
-                    logger.warning(f"Failed to delete reaction text input message for user {user_id}: {e}")
         
         else:
             message = await update.message.reply_text(
