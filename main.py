@@ -289,6 +289,11 @@ class RealEstateScraper:
                                     logger.info(f"First scan of {source} query URL (ID={query_url['id']}) resulted in no new listings. Skipping new pages of this source.")
                                     sources_to_skip.add(source)
                                     continue
+                                # This is the case because we always sort by newest listings
+                                elif first_scan_by_source[source] and total_count != 0 and new_count != total_count:
+                                    logger.info(f"First scan of {source} query URL (ID={query_url['id']}) resulted in new listings less than the total listings. Skipping new pages of this source.")
+                                    sources_to_skip.add(source)
+                                    continue
                                 elif first_scan_by_source[source] and total_count == 0:
                                     logger.info(f"First scan of {source} query URL (ID={query_url['id']}) failed with no result. HTML structure may have changed!")
                                     sources_to_skip.add(source)
