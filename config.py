@@ -181,6 +181,11 @@ SITE_CONFIGS = {
         "search_url_template": "", # TODO
         "min_interval": 10,  # TODO
     },
+    "123wonen": {
+        "base_url": "https://www.123wonen.nl",
+        "search_url_template": "", # TODO
+        "min_interval": 10,  # TODO
+    },
 }
 
 # Proxy settings
