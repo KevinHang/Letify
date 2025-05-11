@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: realestate_scraper
-    command: python -m cli --query-scan --sources funda,pararius,vesteda,rebo,kamernet,regioamsterdam,regioutrecht,regiogroningen,regiogooienvecht,regioalmere,regiomiddenholland,regioeemvallei,regiobovengroningen,regiowoonkeus,regiowoongaard,regiohuiswaarts,huurwoningenkamer,huurwoningenstudio,huurwoningenappartement,huurwoningenhuis,bouwinvest,vbt
+    command: python -m cli --query-scan --sources funda,pararius,vesteda,rebo,kamernet,regioamsterdam,regioutrecht,regiogroningen,regiogooienvecht,regioalmere,regiomiddenholland,regioeemvallei,regiobovengroningen,regiowoonkeus,regiowoongaard,regiohuiswaarts,huurwoningenkamer,huurwoningenstudio,huurwoningenappartement,huurwoningenhuis,bouwinvest,vbt,123wonen
     env_file:
       - .env
     volumes:
