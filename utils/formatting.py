@@ -211,6 +211,18 @@ def format_listing_message(property_data: Dict[str, Any]) -> str:
         if 'min_rental_months' in all_req_keys:
             requirements_parts.append(f"• Minimum rental months: {get_value_for_key(requirements, 'min_rental_months')}")
 
+        if 'storage' in all_req_keys:
+            requirements_parts.append(f"• Storage: {'Yes' if get_value_for_key(requirements, 'storage') else 'No'}")
+
+        if 'Balcony' in extras:
+            requirements_parts.append(f"• Balcony: Yes")
+
+        if 'Garden' in extras:
+            requirements_parts.append(f"• Garden: Yes")
+
+        if 'Parking' in extras:
+            requirements_parts.append(f"• Parking: Yes")
+
     # Description (truncated)
     description = property_data.get('description', '') or ''
     if description:

@@ -186,6 +186,11 @@ SITE_CONFIGS = {
         "search_url_template": "", # TODO
         "min_interval": 10,  # TODO
     },
+    "hollandrijnland": {
+        "base_url": "https://www.hureninhollandrijnland.nl",
+        "search_url_template": "", # TODO
+        "min_interval": 10,  # TODO
+    },
 }
 
 # Proxy settings
