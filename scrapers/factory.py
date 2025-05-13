@@ -16,6 +16,7 @@ from scrapers.huurwoningen import HuurwoningenScraper
 from scrapers.bouwinvest import WonenBijBouwinvestScraper
 from scrapers.vbt import VBTVerhuurmakelaarsScraper
 from scrapers.onetwothreewonen import Wonen123Scraper
+from scrapers.hureninhollandrijnland import HurenInHollandRijnland
 
 
 class RealEstateScraperFactory:
@@ -43,6 +44,8 @@ class RealEstateScraperFactory:
             return WonenBijBouwinvestScraper(site_name, SITE_CONFIGS[site_name])
         elif site_name == "123wonen":
             return Wonen123Scraper(site_name, SITE_CONFIGS[site_name])
+        elif site_name == "hollandrijnland":
+            return HurenInHollandRijnland(site_name, SITE_CONFIGS[site_name])
         elif site_name == "vbt":
             return VBTVerhuurmakelaarsScraper(site_name, SITE_CONFIGS[site_name])
         elif site_name in ["huurwoningenappartement", "huurwoningenhuis", "huurwoningenstudio", "huurwoningenkamer"]:
