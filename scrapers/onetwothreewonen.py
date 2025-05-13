@@ -160,6 +160,9 @@ class Wonen123Scraper(BaseScraperStrategy):
         """
         if not date_str:
             return None
+        
+        if date_str == "In overleg":
+            return None
             
         # Remove "Vanaf " prefix if present
         date_str = date_str.replace("Vanaf ", "")
