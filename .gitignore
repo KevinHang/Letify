@@ -12,3 +12,5 @@ telegram_bot.log
 # Ignore logs
 logs/
 *.log
+.ruff_cache
+dutch_realestate_scraper.egg-info
