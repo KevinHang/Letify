@@ -1,7 +1,12 @@
 ![Dutch Real Estate Scraper](https://github.com/KevinHang/Letify/blob/main/media/letify_banner.png)  
+
+![GitHub Repo stars](https://img.shields.io/github/stars/KevinHang/Letify?style=social) ![GitHub forks](https://img.shields.io/github/forks/KevinHang/Letify?style=social) ![GitHub watchers](https://img.shields.io/github/watchers/KevinHang/Letify?style=social)
+
 *Monitor rental listings from Funda, Pararius, and more — with Telegram alerts.*
 
 __*Having gained over 1000 users in the first months*__
+
+__*Open-sourced on November 1st, 2025*__
 
 ---
 
@@ -14,8 +19,6 @@ __*Having gained over 1000 users in the first months*__
 [https://www.letify.nl/](https://www.letify.nl/)
 
 ---
-
-![GitHub Repo stars](https://img.shields.io/github/stars/KevinHang/Letify?style=social) ![GitHub forks](https://img.shields.io/github/forks/KevinHang/Letify?style=social) ![GitHub watchers](https://img.shields.io/github/watchers/KevinHang/Letify?style=social)
 
 [![Star on GitHub](https://img.shields.io/github/stars/KevinHang/Letify?label=Star&style=for-the-badge&logo=github)](https://github.com/KevinHang/Letify) [![Fork on GitHub](https://img.shields.io/github/forks/KevinHang/Letify?label=Fork&style=for-the-badge&logo=github)](https://github.com/KevinHang/Letify/fork) [![Watch on GitHub](https://img.shields.io/github/watchers/KevinHang/Letify?label=Watch&style=for-the-badge&logo=github)](https://github.com/KevinHang/Letify/subscription)
 
