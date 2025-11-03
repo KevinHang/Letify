@@ -114,15 +114,16 @@ class TelegramRealEstateBot:
         
         reply_markup = InlineKeyboardMarkup(keyboard)
         message = None
+        disable_preview = False if "Frequently Asked Questions" in menu_text else True
         
         if update.callback_query:
             try:
-                message = await update.callback_query.edit_message_text(menu_text, reply_markup=reply_markup, parse_mode="HTML")
+                message = await update.callback_query.edit_message_text(menu_text, reply_markup=reply_markup, parse_mode="HTML", disable_web_page_preview=disable_preview)
             except Exception as e:
                 logger.error(f"Error editing menu message for user {user_id} at state {state}: {e}")
-                message = await update.callback_query.message.reply_text(menu_text, reply_markup=reply_markup, parse_mode="HTML")
+                message = await update.callback_query.message.reply_text(menu_text, reply_markup=reply_markup, parse_mode="HTML", disable_web_page_preview=disable_preview)
         else:
-            message = await update.message.reply_text(menu_text, reply_markup=reply_markup, parse_mode="HTML")
+            message = await update.message.reply_text(menu_text, reply_markup=reply_markup, parse_mode="HTML", disable_web_page_preview=disable_preview)
         
         # Store the message ID for future edits
         context.user_data['current_menu_message_id'] = message.message_id
@@ -142,6 +143,8 @@ class TelegramRealEstateBot:
                 "❓ <b>Help:</b> Show available commands\n"
                 "📚 <b>FAQ:</b> Learn more about Letify Bot\n"
                 "❎ <b>Close Menu:</b> Close the current menu\n\n"
+                "Star the project on "
+                '<a href="https://github.com/KevinHang/Letify">GitHub</a> to show your support ⭐️\n'
                 "<em>Please close the menu once done 🌎</em>"
             )
             keyboard = [
@@ -359,12 +362,12 @@ class TelegramRealEstateBot:
                 "Letify Bot was inspired by some other community efforts but is coded completely from scratch. This new implementation fixes several shortcomings of existing solutions, offering improved reliability, better matching algorithms, and enhanced user experience while maintaining simplicity and accessibility.\n\n"
                 "<b>What data does Letify Bot store?</b>\n"
                 "Letify Bot only stores your preference choices (cities, price range, etc.) which are necessary to match you with relevant listings, including your reaction text. No personal data, search history, or usage patterns are collected or stored. Your privacy is a priority!\n\n"
-                "<b>When will Letify Bot be open source?</b>\n"
-                "I'm prioritizing stability and security before open-sourcing. My focus is protecting user data and maintaining reliability. It's on my roadmap, but I need to refine the codebase and build community support first.\n\n"
                 "<b>Why am I not seeing many listings?</b>\n"
                 "This could be due to limited properties matching your preferences in the competitive Dutch market. Try broadening your price range, area, or room requirements. Remember, at least one city must be set and notifications enabled.\n\n"
                 "<b>How can I share feedback?</b>\n"
-                "I welcome all suggestions and questions! Contact me directly at @wifbeliever on Telegram. Your input helps improve Letify Bot for everyone."
+                "I welcome all suggestions and questions! Contact me directly at @wifbeliever on Telegram. Your input helps improve Letify Bot for everyone.\n\n"
+                "<b>When will Letify Bot be open source?</b>\n"
+                "The project was officially open-sourced on November 1st, 2025. You can check it out on <a href='https://github.com/KevinHang/Letify'>GitHub</a>. Contributions are welcome!\n\n"
             )
             keyboard = [[InlineKeyboardButton("↩ Return", callback_data=f"menu:{MENU_STATES['main']}:{menu_id}")]]
             return menu_text, keyboard
