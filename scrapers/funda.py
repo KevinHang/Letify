@@ -134,8 +134,7 @@ class FundaScraper(BaseScraperStrategy):
                         listing.city = postal_city_text.upper()
                 
                 # Extract price
-                # First case is if there is only monthly price, second case is if it contains buying price and monthly rent
-                price_elem = card.css_first("div.font-semibold.mt-2.mb-0 div") or card.css_first("div.font-semibold.mt-2 div:nth-child(2)")
+                price_elem = card.css_first("div.font-semibold div.truncate")
                 if price_elem:
                     price_text = price_elem.text().strip()
                     if price_elem.parent and "line-through" in price_elem.parent.attributes.get("class", ""):
@@ -166,7 +165,7 @@ class FundaScraper(BaseScraperStrategy):
                         listing.price_period = "week"
                 
                 # Extract property features (living area, bedrooms, energy label, etc.)
-                features_list = card.css_first("ul.flex.h-8.flex-wrap.gap-4.overflow-hidden.truncate.py-1")
+                features_list = card.css_first("ul.flex.flex-wrap.gap-3.gap-y-2.truncate.overflow-hidden.py-1")
                 if features_list:
                     for feature in features_list.css("li"):
                         feature_text = feature.text().strip()
