@@ -139,7 +139,7 @@ class TelegramRealEstateBot:
                 "🏡 Thanks for using Letify Bot!\n\n"
                 "🏠 <b>Rental Preferences:</b> Set preferences to find your ideal home\n"
                 "🔔 <b>Notifications:</b> Manage notifications\n"
-                "📊 <b>Status:</b> Check your current status\n"
+                "📊 <b>Status:</b> Live system status\n"
                 "❓ <b>Help:</b> Show available commands\n"
                 "📚 <b>FAQ:</b> Learn more about Letify Bot\n"
                 "❎ <b>Close Menu:</b> Close the current menu\n\n"
