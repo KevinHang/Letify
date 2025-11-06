@@ -12,7 +12,7 @@ from telegram.ext import (
 from config import DB_CONNECTION_STRING, ALL_CITIES
 from database.property_db import PropertyDatabase
 from database.telegram_db import TelegramDatabase
-from utils.utils import suggest_city
+from utils.utils import suggest_city, get_source_status_summary
 from utils.formatting import format_currency
 from utils.logging_config import get_telegram_logger
 
@@ -136,16 +136,15 @@ class TelegramRealEstateBot:
         logger.debug(f"Building menu for user {user_id}, state: {state}")
         if state == MENU_STATES['main']:
             menu_text = (
-                "🏡 Thanks for using the Letify Bot!\n\n"
+                "🏡 Thanks for using Letify Bot!\n\n"
                 "🏠 <b>Rental Preferences:</b> Set preferences to find your ideal home\n"
                 "🔔 <b>Notifications:</b> Manage notifications\n"
                 "📊 <b>Status:</b> Check your current status\n"
                 "❓ <b>Help:</b> Show available commands\n"
                 "📚 <b>FAQ:</b> Learn more about Letify Bot\n"
                 "❎ <b>Close Menu:</b> Close the current menu\n\n"
-                "Star the project on "
-                '<a href="https://github.com/KevinHang/Letify">GitHub</a> to show your support ⭐️\n'
-                "<em>Please close the menu once done 🌎</em>"
+                'Official website: <a href="https://letify.nl">Letify.nl</a>\n'
+                'Star the project on <a href="https://github.com/KevinHang/Letify">GitHub</a> to show your support ⭐️'
             )
             keyboard = [
                 [InlineKeyboardButton("🏠 Rental Preferences", callback_data=f"menu:{MENU_STATES['preferences']}:{menu_id}")],
@@ -167,7 +166,8 @@ class TelegramRealEstateBot:
             min_area = f"{preferences.get('min_area')} m²" if preferences.get('min_area') is not None else "Not set"
             max_area = "No limit" if preferences.get('max_area') == 0 else f"{preferences.get('max_area')} m²" if preferences.get('max_area') is not None else "Not set"
             property_type = ', '.join([pref.capitalize() for pref in (preferences.get('property_type', []))]) if preferences.get('property_type') else "Not set"
-            
+            last_update = preferences.get('updated_at').strftime('%Y-%m-%d %H:%M:%S')
+
             menu_text = (
                 "⚙️ Preferences Menu\n\n"
                 f"📍 Cities: {cities}\n"
@@ -175,6 +175,7 @@ class TelegramRealEstateBot:
                 f"🚪 Rooms: {min_rooms} - {max_rooms}\n"
                 f"📏 Area: {min_area} - {max_area}\n"
                 f"🏢 Property Types: {property_type}\n\n"
+                f"Last updated: {last_update}\n\n"
                 "Select an option to modify:"
             )
             keyboard = [
@@ -289,39 +290,25 @@ class TelegramRealEstateBot:
             return menu_text, keyboard
         
         elif state == MENU_STATES['status']:
-            user = telegram_db.get_user(user_id)
-            preferences = telegram_db.get_user_preferences(user_id)
-            if not user:
-                menu_text = "❌ User not found in database. Please use /start to register."
+            sources = telegram_db.get_distinct_sources_by_city()
+            latest_per_source = telegram_db.get_latest_3_properties_per_source()
+
+            menu_text = "📊 System Status\n\n"
+            
+            if sources and latest_per_source:
+                status_summaries = get_source_status_summary(sources, latest_per_source)
+                menu_text += f"{status_summaries}\n\n"
+
+                menu_text += (
+                    "<b>Scraper Status Explanation:</b>\n"
+                    "🟢: Operational\n"
+                    "🔴: No listings scraped → scraper is broken\n\n"
+                    "<b>Formatter Status Explanation:</b>\n"
+                    "🟢: Operational\n"
+                    "🔴: Critical fields missing → no message can be built"
+                )
             else:
-                menu_text = "📊 Your current settings:\n\n"
-                menu_text += f"👤 User: {user.get('first_name', '')}\n"
-                menu_text += f"🔔 Notifications: {'Enabled' if user.get('notification_enabled') else 'Disabled'}\n\n"
-                
-                if preferences:
-                    menu_text += "🏠 Property preferences:\n"
-                    if preferences.get('cities'):
-                        menu_text += f"📍 Cities: {', '.join([city.title() for city in (preferences.get('cities', []))])}\n"
-                    if preferences.get('neighborhood'):
-                        menu_text += f"🏙️ Neighborhood: {preferences.get('neighborhood')}\n"
-                    if preferences.get('property_type'):
-                        menu_text += f"🏢 Property type: {', '.join([pref.capitalize() for pref in (preferences.get('property_type', []))])}\n"
-                    if preferences.get('min_price') is not None:
-                        menu_text += f"💰 Min price: {format_currency(preferences.get('min_price'))}\n"
-                    if preferences.get('max_price') is not None:
-                        menu_text += f"💰 Max price: {'No limit' if preferences.get('max_price') == 0 else format_currency(preferences.get('max_price'))}\n"
-                    if preferences.get('min_rooms') is not None:
-                        menu_text += f"🚪 Min rooms: {preferences.get('min_rooms')}\n"
-                    if preferences.get('max_rooms') is not None:
-                        menu_text += f"🚪 Max rooms: {'No limit' if preferences.get('max_rooms') == 0 else preferences.get('max_rooms')}\n"
-                    if preferences.get('min_area') is not None:
-                        menu_text += f"📏 Min area: {preferences.get('min_area')} m²\n"
-                    if preferences.get('max_area') is not None:
-                        max_area = preferences.get('max_area')
-                        menu_text += f"📏 Max area: {'No limit' if max_area == 0 else f'{max_area} m²'}\n"
-                    menu_text += f"\nLast updated: {preferences.get('updated_at').strftime('%Y-%m-%d %H:%M:%S')}"
-                else:
-                    menu_text += "🏠 No property preferences set. Use the Preferences menu to set them."
+                menu_text += "⚠️ Something went wrong while fetching system status."
             
             keyboard = [[InlineKeyboardButton("↩ Return", callback_data=f"menu:{MENU_STATES['main']}:{menu_id}")]]
             return menu_text, keyboard

@@ -1,5 +1,6 @@
 from config import ALL_CITIES
-from typing import Dict, Any, Optional
+from typing import Dict, Any, List
+
 
 def levenshtein_distance(s1, s2):
     """
@@ -74,3 +75,119 @@ def construct_full_address(property_data: Dict[str, Any], include_neighborhood: 
     if city and isinstance(city, str):
         location_parts.append(city.title())
     return ", ".join(location_parts) or "Unknown Location"  
+
+
+def get_source_status_summary(scan_rows: List[dict], properties: List[dict]) -> str:
+    """
+    Generate a clean, two-section status report:
+    • Scraper Status (S): based on total_listings_count
+    • Formatter Status (F): based on data quality of latest 3 properties
+        - red circle if source missing from properties OR any required field missing
+    """
+    # === Source Name Mappings ===
+    SCAN_NAME_MAP = {
+        '123wonen': '123Wonen',
+        'bouwinvest': 'Bouwinvest',
+        'funda': 'Funda',
+        'hollandrijnland': 'Holland Rijnland',
+        'huurwoningenappartement': 'Huurwoningen (Apartment)',
+        'huurwoningenhuis': 'Huurwoningen (House)',
+        'huurwoningenkamer': 'Huurwoningen (Room)',
+        'huurwoningenstudio': 'Huurwoningen (Studio)',
+        'kamernet': 'Kamernet',
+        'pararius': 'Pararius',
+        'rebo': 'REBO',
+        'regioalmere': 'Regio Almere',
+        'regioamsterdam': 'Regio Amsterdam',
+        'regioeemvallei': 'Regio Eemvallei',
+        'regiogooienvecht': 'Regio Gooi en Vecht',
+        'regiogroningen': 'Regio Groningen',
+        'regiohuiswaarts': 'Regio Huiswaarts',
+        'regiomiddenholland': 'Regio Midden-Holland',
+        'regioutrecht': 'Regio Utrecht',
+        'regiowoongaard': 'Regio Woongaard',
+        'regiowoonkeus': 'Regio Woonkeus',
+        'vbt': 'VB&T',
+        'vesteda': 'Vesteda',
+    }
+
+    PROP_NAME_MAP = {
+        '123wonen': '123Wonen',
+        'hollandrijnland': 'Holland Rijnland',
+        'funda': 'Funda',
+        'huurwoningen': 'Huurwoningen',
+        'pararius': 'Pararius',
+        'rebo': 'REBO',
+        'regioalmere': 'Regio Almere',
+        'regioamsterdam': 'Regio Amsterdam',
+        'regioeemvallei': 'Regio Eemvallei',
+        'regiogooienvecht': 'Regio Gooi en Vecht',
+        'regiogroningen': 'Regio Groningen',
+        'regiohuiswaarts': 'Regio Huiswaarts',
+        'regiomiddenholland': 'Regio Midden-Holland',
+        'regioutrecht': 'Regio Utrecht',
+        'regiowoongaard': 'Regio Woongaard',
+        'regiowoonkeus': 'Regio Woonkeus',
+        'vb&t': 'VB&T',
+        'vesteda': 'Vesteda',
+        'wonenbijbouwinvest': 'Bouwinvest',
+        'kamernet': 'Kamernet',
+    }
+
+    # === Extract actual sources from properties (lowercase) ===
+    actual_prop_sources = {p.get('source', '').strip().lower() for p in properties if p.get('source')}
+
+    # === Group properties by source ===
+    props_by_source = {}
+    for p in properties:
+        src = p.get('source', '').strip()
+        if src:
+            key = src.lower()
+            props_by_source.setdefault(key, []).append(p)
+
+    # === Scraper Status (S) ===
+    scraper_lines = []
+    for row in scan_rows:
+        source = row.get('source', '').strip()
+        if not source:
+            continue
+        count = row.get('total_listings_count', 0)
+        icon = "🔴" if count == 0 else "🟢"
+        name = SCAN_NAME_MAP.get(source, source.replace('_', ' ').title())
+        scraper_lines.append(f"{icon} {name}")
+
+    # === Formatter Status (F) ===
+    formatter_lines = []
+    for key, display_name in sorted(PROP_NAME_MAP.items(), key=lambda x: x[1]):
+        # Check if this source exists in properties
+        if key not in actual_prop_sources:
+            formatter_lines.append(f"🔴 {display_name}")
+            continue
+
+        latest = props_by_source.get(key, [])[:3]
+        required = {'source', 'url', 'title', 'address', 'city', 'price_numeric'}
+
+        all_valid = bool(latest) and all(
+            all(
+                str(p.get(f) or '').strip() and
+                (f != 'price_numeric' or p.get(f) not in (None, 0))
+                for f in required
+            )
+            for p in latest
+        )
+
+        icon = "🟢" if all_valid else "🔴"
+        formatter_lines.append(f"{icon} {display_name}")
+
+    # === Sort lines ===
+    scraper_lines.sort()
+    formatter_lines.sort()
+
+    # === Build final output ===
+    output = ["<b>Scraper Status</b>:"]
+    output.extend(scraper_lines)
+    output.append("")
+    output.append("<b>Formatter Status</b>:")
+    output.extend(formatter_lines)
+
+    return "\n".join(output)

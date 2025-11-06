@@ -234,6 +234,47 @@ class TelegramDatabase:
         except Exception as e:
             logger.error(f"Error getting user preferences: {e}")
             return None
+        
+    def get_distinct_sources_by_city(self) -> List[Dict[str, Any]]:
+        """
+        Retrieve distinct sources from scan_history, one row per source,
+        sorted by city column ASC (city column contains query url ID for some reason).
+        """
+        try:
+            with self.conn.cursor(row_factory=dict_row) as cur:
+                cur.execute("""
+                    SELECT DISTINCT ON (source) *
+                    FROM scan_history
+                    ORDER BY source, city ASC
+                """)
+                return cur.fetchall()
+                
+        except Exception as e:
+            logger.error(f"Error fetching distinct sources: {e}")
+            return []
+
+    def get_latest_3_properties_per_source(self) -> List[Dict[str, Any]]:
+        """
+        Get the 3 most recently scraped properties for each source.
+        Ordered by source, then by date_scraped DESC.
+        """
+        try:
+            with self.conn.cursor(row_factory=dict_row) as cur:
+                cur.execute("""
+                    SELECT *
+                    FROM (
+                        SELECT *,
+                            ROW_NUMBER() OVER (PARTITION BY source ORDER BY date_scraped DESC) AS rn
+                        FROM properties
+                    ) ranked
+                    WHERE rn <= 3
+                    ORDER BY source, date_scraped DESC
+                """)
+                return cur.fetchall()
+                
+        except Exception as e:
+            logger.error(f"Error fetching latest 3 per source: {e}")
+            return []
     
     def add_to_notification_queue(self, user_id: int, property_id: int) -> bool:
         try:

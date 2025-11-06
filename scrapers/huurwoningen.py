@@ -350,7 +350,7 @@ class HuurwoningenScraper(BaseScraperStrategy):
                         if price_text == "Prijs op aanvraag":
                             logger.info(f"Skipping listing because it's price is: {price_text}")
                             continue
-                        listing.price = price_text
+                        listing.price = re.split(r' per maand', price_text, flags=re.IGNORECASE)[0] if "per maand" in price_text else price_text
                         listing.price_numeric = self._extract_price(price_text)
                         listing.price_period = "month"
                     
@@ -459,7 +459,7 @@ class HuurwoningenScraper(BaseScraperStrategy):
             price_elem = soup.select_one('.listing-detail-summary__price')
             if price_elem:
                 price_text = price_elem.text.strip()
-                listing.price = price_text
+                listing.price = re.split(r' per maand', price_text, flags=re.IGNORECASE)[0] if "per maand" in price_text else price_text
                 listing.price_numeric = self._extract_price(price_text)
                 listing.price_period = "month"
             
