@@ -250,8 +250,11 @@ class KamernetScraper(BaseScraperStrategy):
         
         try:
             # Find all listing cards - using the exact class structure from the HTML
-            listing_cards = soup.select('a.MuiTypography-root.MuiTypography-inherit.MuiLink-root.MuiLink-underlineNone.MuiPaper-root.MuiCard-root.ListingCard_root__e9Z81')
-            
+            # Target <a> tags that are listing cards using partial class matching and structure
+            listing_cards = soup.find_all('a', class_=lambda x: x and any(
+                cls.endswith('mui-style-i2963i') 
+                for cls in x.split()
+            ))
             if not listing_cards:
                 logger.warning(f"No listing cards found in Kamernet search results. Using alternative selector.")
                 # Try with a more permissive selector
@@ -285,8 +288,8 @@ class KamernetScraper(BaseScraperStrategy):
                             continue
                     
                     # Extract address and city
-                    address_elem = card.select_one('span.ListingCard_noWhiteSpaceWrap__EGjqf')
-                    city_elem = card.select_one('span.MuiTypography-noWrap')
+                    address_elem = card.select_one('span.MuiTypography-root.MuiTypography-subtitle1.CommonStyles_whiteSpaceNoWrap__wYjK1.mui-style-qn273e')
+                    city_elem = card.select_one('span.MuiTypography-root.MuiTypography-subtitle1.MuiTypography-noWrap.mui-style-1ejqop2')
                     
                     if address_elem:
                         listing.address = address_elem.text.replace(',', '').strip()
@@ -299,7 +302,7 @@ class KamernetScraper(BaseScraperStrategy):
                         listing.title = f"{listing.address}, {listing.city}"
                     
                     # Extract property type
-                    property_type_elems = card.select('p.MuiTypography-body2.MuiTypography-noWrap')
+                    property_type_elems = card.select('p.MuiTypography-root.MuiTypography-body2.MuiTypography-noWrap.mui-style-1i83cky')
                     if property_type_elems:
                         for elem in property_type_elems:
                             text = elem.text.strip()
@@ -308,7 +311,7 @@ class KamernetScraper(BaseScraperStrategy):
                                 break
                     
                     # Extract size
-                    size_elems = card.select('p.ListingCard_noWhiteSpaceWrap__EGjqf')
+                    size_elems = card.select('p.MuiTypography-root.MuiTypography-body2.CommonStyles_whiteSpaceNoWrap__wYjK1.mui-style-1fsfdy1')
                     for elem in size_elems:
                         text = elem.text.strip()
                         if 'm²' in text:
@@ -316,7 +319,7 @@ class KamernetScraper(BaseScraperStrategy):
                             break
                     
                     # Extract interior type
-                    interior_elems = card.select('p.MuiTypography-body2')
+                    interior_elems = card.select('p.MuiTypography-root.MuiTypography-body2.mui-style-1fsfdy1')
                     for elem in interior_elems:
                         text = elem.text.strip().lower()
                         if text in ['gemeubileerd', 'gestoffeerd', 'kaal']:
@@ -324,7 +327,7 @@ class KamernetScraper(BaseScraperStrategy):
                             break
                     
                     # Extract availability
-                    date_elems = card.select('p.MuiTypography-body2')
+                    date_elems = card.select('p.MuiTypography-root.MuiTypography-body2.mui-style-1fsfdy1')
                     for elem in date_elems:
                         text = elem.text.strip()
                         if ('Vanaf' in text or ' - ' in text or 
@@ -338,7 +341,7 @@ class KamernetScraper(BaseScraperStrategy):
                             break
                     
                     # Extract price and utilities included
-                    price_elem = card.select_one('span.MuiTypography-h5')
+                    price_elem = card.select_one('span.MuiTypography-root.MuiTypography-h5.mui-style-1pios4g')
                     if price_elem:
                         price_text = price_elem.text.strip()
                         listing.price = price_text
@@ -368,7 +371,7 @@ class KamernetScraper(BaseScraperStrategy):
                             self._add_feature(listing, "free_response", "Yes")
                     
                     # Extract additional info that might be in the description
-                    student_house_elem = card.select_one('.ListingCard_ellipsis__CBlwN')
+                    student_house_elem = card.select_one('.MuiTypography-root.MuiTypography-body2.MuiTypography-noWrap.CommonStyles_textEllipsis__Z5sTe.mui-style-1i83cky')
                     if student_house_elem and "studentenhuis" in student_house_elem.text.lower():
                         self._add_feature(listing, "student_housing", "Yes")
                     
