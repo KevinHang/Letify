@@ -10,7 +10,7 @@ __*Open-sourced on November 1st, 2025*__
 
 ---
 
-> *This project has been inactive for a few months. The bot remains available on Telegram, and I will occasionally fix bugs as they arise. If the project gets more traction in the form of stars, then I will consider updating and improving this project. This project requires regular maintenance, as it might break for specific websites if the structure changes.*
+> *If the project gets more traction in the form of stars, then I will consider updating and improving this project. This project requires regular maintenance, as it might break for specific websites if the structure changes.*
 
 ---
 
