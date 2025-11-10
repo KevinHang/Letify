@@ -108,6 +108,15 @@ class TelegramNotificationManager:
                                     parse_mode=telegram.constants.ParseMode.HTML
                                 )
                                 return True
+                        
+                        except telegram.error.Forbidden as e:
+                            error_msg = str(e).lower()
+                            if "bot was blocked" in error_msg or "user is deactivated" in error_msg:
+                                logger.error(f"User {user_id} has blocked the bot or user is deactivated: {e}. Proceeding to disable the user...")
+                                # Deactivate the user
+                                self.telegram_db.toggle_user_active(user_id, False)
+                                return False
+                        
                         except Exception as img_error:
                             logger.error(f"Error sending property image for property {property_data['id']}: {img_error}, falling back to text message")
                     
@@ -125,8 +134,9 @@ class TelegramNotificationManager:
                     return False
                     
                 except telegram.error.Forbidden as e:
-                    if "bot was blocked" in str(e).lower():
-                        logger.error(f"User {user_id} has blocked the bot: {e}. Proceeding to deactivate the user...")
+                    error_msg = str(e).lower()
+                    if "bot was blocked" in error_msg or "user is deactivated" in error_msg:
+                        logger.error(f"User {user_id} has blocked the bot or user is deactivated: {e}. Proceeding to disable the user...")
                         # Deactivate the user
                         self.telegram_db.toggle_user_active(user_id, False)
                         return False
