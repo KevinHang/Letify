@@ -124,11 +124,12 @@ class TelegramNotificationManager:
                     logger.error(f"Bad request error sending notification to {user_id} for property {property_data['id']}: {e}")
                     return False
                     
-                except telegram.error.Unauthorized as e:
-                    logger.error(f"User {user_id} has blocked the bot: {e}")
-                    # Deactivate the user
-                    self.telegram_db.toggle_user_active(user_id, False)
-                    return False
+                except telegram.error.Forbidden as e:
+                    if "bot was blocked" in str(e).lower():
+                        logger.error(f"User {user_id} has blocked the bot: {e}")
+                        # Deactivate the user
+                        self.telegram_db.toggle_user_active(user_id, False)
+                        return False
                     
                 except Exception as e:
                     logger.error(f"Error sending notification to {user_id} for property {property_data['id']} (attempt {attempt+1}): {e}")
